@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { useState } from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -10,6 +10,8 @@ import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppFormField from "../components/form/AppFormField";
 import SubmitButton from "../components/form/SubmitButton";
+import BottomSheet from "../components/BottomSheet";
+import SelectOptions from "../components/form/SelectOptions";
 
 const initialValues = {
   fullname: "",
@@ -30,6 +32,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const ProfileScreen = () => {
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(true);
+
   return (
     <Screen>
       <GoBackArrowHeader title="Fill Your Profile" />
@@ -50,8 +54,20 @@ const ProfileScreen = () => {
         validationSchema={validationSchema}
         onSubmit={(values) => console.log(values)}
       >
-        {() => (
+        {({ setFieldValue, values }) => (
           <View>
+            <BottomSheet
+              bottomSheetVisible={bottomSheetVisible}
+              setBottomSheetVisible={setBottomSheetVisible}
+              bottomSheetContent={
+                <SelectOptions
+                  fieldName="gender"
+                  data={[{ value: "Male" }, { value: "Female" }]}
+                  setFieldValue={setFieldValue}
+                  setBottomSheetVisible={setBottomSheetVisible}
+                />
+              }
+            />
             <AppFormField
               icon={"account"}
               name={"fullname"}
@@ -68,15 +84,19 @@ const ProfileScreen = () => {
               name={"dob"}
               placeholder={"Date of Birth"}
             />
+            {/* TODO work on date picker using emulator or device  */}
             <AppFormField
               icon={"flag-variant"}
               name={"country"}
-              placeholder={"Country"}
+              placeholder={"Country"} // TODO fetch country data from backend
             />
             <AppFormField
               icon={"account-box"}
               name={"gender"}
               placeholder={"Gender"}
+              value={values.gender}
+              editable={false}
+              onPress={() => setBottomSheetVisible(true)}
             />
             <SubmitButton title={"Continue"} />
           </View>

@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, Text, View } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useFormikContext } from "formik";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ErrorMessage from "./ErrorMessage";
 import defaultStyles from "../../config/styles";
 
-const AppFormField = ({ name, icon, ...otherProps }) => {
+const AppFormField = ({ name, icon, onPress, ...otherProps }) => {
   const [isFocus, setIsFocus] = useState(false);
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
@@ -17,7 +17,7 @@ const AppFormField = ({ name, icon, ...otherProps }) => {
     : defaultStyles.colors.mediumText;
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       {
         <MaterialCommunityIcons
           style={{ ...styles.icon, color: iconColor }}
@@ -39,7 +39,7 @@ const AppFormField = ({ name, icon, ...otherProps }) => {
         placeholderTextColor={defaultStyles.colors.lightText}
       />
       <ErrorMessage visible={touched[name]} error={errors[name]} />
-    </View>
+    </TouchableOpacity>
   );
 };
 

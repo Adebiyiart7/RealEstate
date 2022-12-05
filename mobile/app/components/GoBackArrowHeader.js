@@ -3,8 +3,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
 import defaultStyles from "../config/styles";
+import AppText from "./AppText";
 
-const BackArrowHeader = () => {
+const GoBackArrowHeader = ({title}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.left}>
@@ -14,11 +15,14 @@ const BackArrowHeader = () => {
           color={defaultStyles.colors.primaryText}
         />
       </TouchableOpacity>
+      <AppText numberOfLines={1} style={styles.title}>
+        {title}
+      </AppText>
     </View>
   );
 };
 
-export default BackArrowHeader;
+export default GoBackArrowHeader;
 
 const styles = StyleSheet.create({
   container: {
@@ -26,7 +30,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     paddingVertical: 16,
+    alignItems: "center"
   },
-  left: {
+  left: {},
+  title: {
+    fontSize: 20,
+    fontWeight: "600",
+    marginLeft: 7,
   }
 });

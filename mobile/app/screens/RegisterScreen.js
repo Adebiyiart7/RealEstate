@@ -136,7 +136,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 25,
     paddingVertical: 12,
     marginHorizontal: 7,
-    borderRadius: defaultStyles.primaryRadius
+    borderRadius: defaultStyles.primaryBorderRadius
   },
   socialImage: {
     height: 20,

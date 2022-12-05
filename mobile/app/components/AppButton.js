@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   button: {
     display: "flex",
     flexDirection: "row",
-    minWidth: "100%",
+    // width: "100%",
     backgroundColor: defaultStyles.colors.primaryColor,
     padding: 12,
     borderRadius: 25,

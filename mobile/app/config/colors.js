@@ -3,9 +3,10 @@ const colors = {
   danger: "#ff5252",
   lightBackground: "#f8f4f4",
   border100: "#EEE",
+  border200: "#DDD",
   lightText: "#9d9d9d",
   mediumText: "#6e6969",
-  primaryColor: "rgb(36, 107, 253)",
+  primaryColor: "rgb(36, 107, 253)", // #246bfd
   primaryText: "#222",
   white: "#FFF"
 };

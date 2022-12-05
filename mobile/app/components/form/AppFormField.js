@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     position: "relative"
   },
   textInput: {
-    borderRadius: defaultStyles.primaryRadius,
+    borderRadius: defaultStyles.primaryBorderRadius,
     backgroundColor: defaultStyles.colors.lightBackground,
     paddingVertical: 12,
     paddingHorizontal: 35,

@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
   },
   modalView: {
     backgroundColor: "white",
-    borderTopStartRadius: defaultStyles.primaryRadius,
-    borderTopEndRadius: defaultStyles.primaryRadius,
+    borderTopStartRadius: defaultStyles.primaryBorderRadius,
+    borderTopEndRadius: defaultStyles.primaryBorderRadius,
     width: "100%",
     position: "absolute",
     bottom: 0,

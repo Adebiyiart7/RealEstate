@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: defaultStyles.colors.border100,
     color: defaultStyles.colors.primaryText,
-    borderRadius: defaultStyles.primaryRadius
+    borderRadius: defaultStyles.primaryBorderRadius
   },
   socialText: {
     color: defaultStyles.colors.primaryText

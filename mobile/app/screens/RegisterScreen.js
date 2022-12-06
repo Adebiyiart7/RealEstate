@@ -1,33 +1,23 @@
-import {
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View
-} from "react-native";
-import { Formik } from "formik";
 import * as Yup from "yup";
+import { Formik } from "formik";
+import { Image, StyleSheet, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
-import AppButton from "../components/AppButton";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import TextWithLines from "../components/TextWithLines";
 import SubmitButton from "../components/form/SubmitButton";
 import AuthFooter from "../components/AuthFooter";
 import AppFormField from "../components/form/AppFormField";
-
-const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-const passwordError =
-  "Password must be more than 8 chars, have at least one number, at least one special character(!@#$%^&*), at least one uppercase and one lowercase.";
+import constants from "../config/constants";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
   password: Yup.string()
     .required()
-    .matches(passwordRegEx, passwordError)
+    .matches(constants.passwordRegEx, constants.passwordError)
     .label("Password")
 });
 
@@ -65,7 +55,7 @@ const RegisterScreen = () => {
               />
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons
-                  name="checkbox-blank-outline"
+                  name="square-rounded-outline"
                   size={20}
                   style={styles.rememberMeIcon}
                 />

@@ -13,15 +13,10 @@ import SubmitButton from "../components/form/SubmitButton";
 import { styles } from "./RegisterScreen";
 import AuthFooter from "../components/AuthFooter";
 
-const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-const passwordError =
-  "Password must be more than 8 chars, have at least one number, at least one special character(!@#$%^&*), at least one uppercase and one lowercase.";
-
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
   password: Yup.string()
     .required()
-    .matches(passwordRegEx, passwordError)
     .label("Password")
 });
 
@@ -59,7 +54,7 @@ const LoginScreen = () => {
               />
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons
-                  name="checkbox-blank-outline"
+                  name="square-rounded-outline"
                   size={20}
                   style={styles.rememberMeIcon}
                 />

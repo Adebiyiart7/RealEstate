@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  Touchable,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 
 // LOCAL IMPORTS
@@ -15,7 +9,7 @@ import PinForm from "../components/form/PinForm";
 import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
 
-const OTPCodeVerification = () => {
+const OTPCodeVerificationScreen = () => {
   let counter = 55;
   const [time, setTime] = useState(counter);
   const [showResend, setShowResend] = useState(false);
@@ -43,7 +37,8 @@ const OTPCodeVerification = () => {
         <View>
           <GoBackArrowHeader title={"OTP Code Verification"} />
           <AppText style={styles.text}>
-            Code have been sent to <AppText style={styles.contact}>+234 0902*****29</AppText>
+            Code have been sent to{" "}
+            <AppText style={styles.contact}>+234 0902*****29</AppText>
           </AppText>
           <PinForm pin={pin} setPin={setPin} />
           <AppText style={styles.resendText}>
@@ -64,7 +59,7 @@ const OTPCodeVerification = () => {
   );
 };
 
-export default OTPCodeVerification;
+export default OTPCodeVerificationScreen;
 
 const styles = StyleSheet.create({
   contact: {
@@ -86,5 +81,5 @@ const styles = StyleSheet.create({
   time: {
     fontWeight: "600",
     color: defaultStyles.colors.primaryColor
-  },
+  }
 });

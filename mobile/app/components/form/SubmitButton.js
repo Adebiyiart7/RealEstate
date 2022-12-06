@@ -5,9 +5,9 @@ import { useFormikContext } from "formik";
 // LOCAL IMPORTS
 import AppButton from "../AppButton";
 
-const SubmitButton = ({ title }) => {
+const SubmitButton = ({ title, style }) => {
   const { handleSubmit } = useFormikContext();
-  return <AppButton onPress={() => handleSubmit()}>{title}</AppButton>;
+  return <AppButton style={style} onPress={() => handleSubmit()}>{title}</AppButton>;
 };
 
 export default SubmitButton;

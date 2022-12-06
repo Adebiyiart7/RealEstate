@@ -17,6 +17,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import TextWithLines from "../components/TextWithLines";
 import SubmitButton from "../components/form/SubmitButton";
 import AuthFooter from "../components/AuthFooter";
+import AppFormField from "../components/form/AppFormField";
 
 const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 const passwordError =

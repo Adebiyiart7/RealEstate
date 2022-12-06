@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const ProfileScreen = () => {
-  const [bottomSheetVisible, setBottomSheetVisible] = useState(true);
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   return (
     <Screen>

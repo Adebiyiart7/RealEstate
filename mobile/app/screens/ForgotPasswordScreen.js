@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions, Image, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 
 // LOCAL IMPORTS
@@ -6,7 +7,6 @@ import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppText from "../components/AppText";
 import Card1 from "../components/cards/Card1";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
 

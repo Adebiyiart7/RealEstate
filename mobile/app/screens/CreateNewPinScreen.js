@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppText from "../components/AppText";
-import SecurePinForm from "../components/form/SecurePinForm";
+import PinForm from "../components/form/PinForm";
 import AppButton from "../components/AppButton";
 import SetupSuccess from "../components/SetupSuccess";
 
@@ -26,7 +26,7 @@ const CreateNewPin = () => {
           <AppText style={styles.tag}>
             Add a PIN number to make you account more secure.
           </AppText>
-          <SecurePinForm pin={pin} setPin={setPin} />
+          <PinForm secureTextEntry pin={pin} setPin={setPin} />
           <AppButton style={styles.button}>Continue</AppButton>
         </View>
       </Screen>

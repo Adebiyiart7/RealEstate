@@ -1,6 +1,7 @@
 const colors = {
   black: "#000",
   danger: "#ff5252",
+  disabled: "#EBE4E4",
   lightBackground: "#f8f4f4",
   border100: "#EEE",
   border200: "#DDD",

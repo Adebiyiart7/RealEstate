@@ -1,4 +1,4 @@
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -8,23 +8,21 @@ import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppText from "../components/AppText";
 import AppFormField from "../components/form/AppFormField";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import TextWithLines from "../components/TextWithLines";
 import SubmitButton from "../components/form/SubmitButton";
 import { styles } from "./RegisterScreen";
 import AuthFooter from "../components/AuthFooter";
+import routes from "../config/routes";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
-  password: Yup.string()
-    .required()
-    .label("Password")
+  password: Yup.string().required().label("Password")
 });
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   return (
     <Screen>
       <View style={styles.container}>
-        <GoBackArrowHeader />
+        <GoBackArrowHeader navigation={navigation} />
         <Image
           source={require("../assets/images/logo.png")}
           style={styles.logo}
@@ -61,7 +59,9 @@ const LoginScreen = () => {
                 <AppText style={styles.rememberMeText}>Remember me</AppText>
               </View>
               <SubmitButton title="Sign in" />
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(routes.FORGOT_PASSWORD)}
+              >
                 <AppText style={styles.forgotPassword}>
                   Forgot the password?
                 </AppText>
@@ -72,7 +72,11 @@ const LoginScreen = () => {
         <AuthFooter styles={styles} />
         <AppText style={styles.signiInMessage}>
           Don't have an account?{" "}
-          <AppText style={styles.signIn}>Sign up</AppText>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(routes.REGISTER)}
+          >
+            <AppText style={styles.signIn}>Sign up</AppText>
+          </TouchableOpacity>
         </AppText>
       </View>
     </Screen>

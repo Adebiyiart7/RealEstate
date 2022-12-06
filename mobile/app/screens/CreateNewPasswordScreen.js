@@ -20,12 +20,15 @@ const validationSchema = Yup.object().shape({
     .matches(constants.passwordRegEx, constants.passwordError)
 });
 
-const CreateNewPasswordScreen = () => {
+const CreateNewPasswordScreen = ({ navigation }) => {
   return (
     <>
       <SetupSuccess />
       <Screen>
-        <GoBackArrowHeader title={"Create New Password"} />
+        <GoBackArrowHeader
+          title={"Create New Password"}
+          navigation={navigation}
+        />
         <Image
           style={styles.image}
           source={require("../assets/images/create-new-password.png")}

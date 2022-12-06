@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { Formik } from "formik";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
@@ -12,6 +12,7 @@ import SubmitButton from "../components/form/SubmitButton";
 import AuthFooter from "../components/AuthFooter";
 import AppFormField from "../components/form/AppFormField";
 import constants from "../config/constants";
+import routes from "../config/routes";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
@@ -21,11 +22,11 @@ const validationSchema = Yup.object().shape({
     .label("Password")
 });
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   return (
     <Screen>
       <View style={styles.container}>
-        <GoBackArrowHeader />
+        <GoBackArrowHeader navigation={navigation} />
         <Image
           source={require("../assets/images/logo.png")}
           style={styles.logo}
@@ -68,7 +69,9 @@ const RegisterScreen = () => {
         <AuthFooter styles={styles} />
         <AppText style={styles.signiInMessage}>
           Already have an account?{" "}
-          <AppText style={styles.signIn}>Sign in</AppText>
+          <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN)}>
+            <AppText style={styles.signIn}>Sign in</AppText>
+          </TouchableOpacity>
         </AppText>
       </View>
     </Screen>

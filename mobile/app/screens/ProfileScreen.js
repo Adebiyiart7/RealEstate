@@ -31,12 +31,12 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required().max(10).label("Gender")
 });
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   return (
     <Screen>
-      <GoBackArrowHeader title="Fill Your Profile" />
+      <GoBackArrowHeader title="Fill Your Profile" navigation={navigation} />
       <View style={styles.photoContainer}>
         <View style={styles.photo}>
           <Ionicons style={styles.avatar} name="md-person" size={125} />

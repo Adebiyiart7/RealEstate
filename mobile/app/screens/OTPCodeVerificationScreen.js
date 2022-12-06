@@ -9,7 +9,7 @@ import PinForm from "../components/form/PinForm";
 import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
 
-const OTPCodeVerificationScreen = () => {
+const OTPCodeVerificationScreen = ({ navigation }) => {
   let counter = 55;
   const [time, setTime] = useState(counter);
   const [showResend, setShowResend] = useState(false);
@@ -35,7 +35,10 @@ const OTPCodeVerificationScreen = () => {
     <Screen>
       <View>
         <View>
-          <GoBackArrowHeader title={"OTP Code Verification"} />
+          <GoBackArrowHeader
+            title={"OTP Code Verification"}
+            navigation={navigation}
+          />
           <AppText style={styles.text}>
             Code have been sent to{" "}
             <AppText style={styles.contact}>+234 0902*****29</AppText>

@@ -7,13 +7,14 @@ import AppText from "../components/AppText";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import Screen from "../components/Screen";
 import TextWithLines from "../components/TextWithLines";
+import routes from "../config/routes";
 import defaultStyles from "../config/styles";
 
-const LetsYouIn = () => {
+const LetsYouIn = ({ navigation }) => {
   return (
     <Screen>
       <View style={styles.container}>
-        <GoBackArrowHeader />
+        {/* <GoBackArrowHeader navigation={navigation} /> */}
         <Image
           style={styles.image}
           source={require("../assets/images/lets-you-in.png")}
@@ -42,10 +43,14 @@ const LetsYouIn = () => {
             Continue with Apple
           </AppButton>
           <TextWithLines style={styles.textWithLines}>Or</TextWithLines>
-          <AppButton>Sign in with password</AppButton>
+          <AppButton onPress={() => navigation.navigate(routes.LOGIN)}>
+            Sign in with password
+          </AppButton>
           <AppText style={styles.noAccountText}>
             Don't have an account?{" "}
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(routes.REGISTER)}
+            >
               <AppText style={styles.signUpText}>Sign up</AppText>
             </TouchableOpacity>
           </AppText>
@@ -68,7 +73,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 200,
-    height: 170
+    height: 170,
+    marginTop: 30
   },
   noAccountText: {
     textAlign: "center",

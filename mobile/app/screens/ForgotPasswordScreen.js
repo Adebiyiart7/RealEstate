@@ -11,12 +11,11 @@ import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
 
 const mediaWidth = Dimensions.get("screen").width;
-const ForgotPasswordScreen = () => {
-  
+const ForgotPasswordScreen = ({ navigation }) => {
   return (
     <Screen>
       <View style={styles.container}>
-        <GoBackArrowHeader title={"Forgot Password"} />
+        <GoBackArrowHeader title={"Forgot Password"} navigation={navigation} />
         <Image
           style={styles.image}
           source={require("../assets/images/forgot-password.png")}
@@ -26,16 +25,28 @@ const ForgotPasswordScreen = () => {
         </AppText>
         <Card1
           selected
-          Icon={<MaterialCommunityIcons name="chat-processing" size={24} color={defaultStyles.colors.primaryColor} />}
+          Icon={
+            <MaterialCommunityIcons
+              name="chat-processing"
+              size={24}
+              color={defaultStyles.colors.primaryColor}
+            />
+          }
           title="via SMS"
           subTitle="+234 902*****29"
         />
         <Card1
-          Icon={<MaterialCommunityIcons name="email" size={24} color={defaultStyles.colors.primaryColor} />}
+          Icon={
+            <MaterialCommunityIcons
+              name="email"
+              size={24}
+              color={defaultStyles.colors.primaryColor}
+            />
+          }
           title="via Email"
           subTitle="ade********orld@gmail.com dsdsdsdsdsd"
         />
-        <AppButton style={{marginVertical: 20}}>Continue</AppButton>
+        <AppButton style={{ marginVertical: 20 }}>Continue</AppButton>
       </View>
     </Screen>
   );

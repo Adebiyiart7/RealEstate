@@ -9,7 +9,7 @@ import PinForm from "../components/form/PinForm";
 import AppButton from "../components/AppButton";
 import SetupSuccess from "../components/SetupSuccess";
 
-const CreateNewPin = () => {
+const CreateNewPinScreen = ({ navigation }) => {
   const [pin, setPin] = useState({
     first: "",
     second: "",
@@ -22,7 +22,7 @@ const CreateNewPin = () => {
       <SetupSuccess />
       <Screen>
         <View style={styles.container}>
-          <GoBackArrowHeader title={"Create New Pin"} />
+          <GoBackArrowHeader title={"Create New Pin"} navigation={navigation} />
           <AppText style={styles.tag}>
             Add a PIN number to make you account more secure.
           </AppText>
@@ -34,7 +34,7 @@ const CreateNewPin = () => {
   );
 };
 
-export default CreateNewPin;
+export default CreateNewPinScreen;
 
 const styles = StyleSheet.create({
   button: {

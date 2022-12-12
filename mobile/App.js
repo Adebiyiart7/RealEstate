@@ -24,7 +24,8 @@ const App = () => {
     <AppContext.Provider value={contextValue}>
       <Provider store={store}>
         <NavigationContainer>
-          {loggedInUser ? <TabNavigator /> : <AppNavigator />}
+          <TabNavigator />
+          {/* {loggedInUser ? <TabNavigator /> : <AppNavigator />} */}
         </NavigationContainer>
       </Provider>
     </AppContext.Provider>

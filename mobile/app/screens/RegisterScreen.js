@@ -1,7 +1,9 @@
+
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Image, StyleSheet, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useSelector, useDispatch } from "react-redux";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -13,6 +15,7 @@ import AuthFooter from "../components/AuthFooter";
 import AppFormField from "../components/form/AppFormField";
 import constants from "../config/constants";
 import routes from "../config/routes";
+import { register, reset } from "../features/auth/authSlice";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
@@ -23,6 +26,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values) => {
+    dispatch(register(values));
+    dispatch(reset())
+    console.log("Hello")
+    navigation.navigate(routes.APP)
+  };
+
   return (
     <Screen>
       <View style={styles.container}>
@@ -34,7 +46,7 @@ const RegisterScreen = ({ navigation }) => {
         <AppText style={styles.title}>Create New Account</AppText>
         <Formik
           initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => handleSubmit(values)}
           validationSchema={validationSchema}
         >
           {() => (
@@ -44,7 +56,6 @@ const RegisterScreen = ({ navigation }) => {
                 name={"email"}
                 placeholder={"Email"}
                 autoCapitalize="false"
-                autoCorrect="false"
                 keyboardType="email-address"
                 textContentType="emailAddress"
               />
@@ -57,7 +68,7 @@ const RegisterScreen = ({ navigation }) => {
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons
                   name="square-rounded-outline"
-                  size={20}
+                  size={24}
                   style={styles.rememberMeIcon}
                 />
                 <AppText style={styles.rememberMeText}>Remember me</AppText>
@@ -69,9 +80,12 @@ const RegisterScreen = ({ navigation }) => {
         <AuthFooter styles={styles} />
         <AppText style={styles.signiInMessage}>
           Already have an account?{" "}
-          <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN)}>
-            <AppText style={styles.signIn}>Sign in</AppText>
-          </TouchableOpacity>
+          <AppText
+            onPress={() => navigation.navigate(routes.LOGIN)}
+            style={styles.signIn}
+          >
+            Sign in
+          </AppText>
         </AppText>
       </View>
     </Screen>
@@ -84,7 +98,7 @@ export const styles = StyleSheet.create({
   logo: {
     height: 100,
     width: 100,
-    marginTop: 20,
+    marginTop: 10,
     alignSelf: "center"
   },
   container: {
@@ -106,6 +120,7 @@ export const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+    alignItems:"center",
     marginVertical: 5
   },
   rememberMeIcon: {

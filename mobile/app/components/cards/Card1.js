@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     backgroundColor: defaultStyles.colors.lightBackground,
-    borderRadius: "50%",
+    borderRadius: 50,
     padding: 20,
   },
   right: {

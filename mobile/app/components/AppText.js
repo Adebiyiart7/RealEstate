@@ -4,9 +4,10 @@ import { StyleSheet, Text, } from 'react-native'
 // LOCAL IMPORTS
 import defaultStyles from '../config/styles'
 
-const AppText = ({ style, children, numberOfLines }) => {
+const AppText = ({ style, children, numberOfLines, onPress }) => {
   return (
     <Text
+      onPress={onPress}
       numberOfLines={numberOfLines}
       style={[styles.text, style]}
     >

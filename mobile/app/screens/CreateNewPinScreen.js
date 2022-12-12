@@ -19,12 +19,12 @@ const CreateNewPinScreen = ({ navigation }) => {
 
   return (
     <>
-      <SetupSuccess />
+      {/* <SetupSuccess /> */}
       <Screen>
         <View style={styles.container}>
           <GoBackArrowHeader title={"Create New Pin"} navigation={navigation} />
           <AppText style={styles.tag}>
-            Add a PIN number to make you account more secure.
+            Add a PIN number to make your account more secure.
           </AppText>
           <PinForm secureTextEntry pin={pin} setPin={setPin} />
           <AppButton style={styles.button}>Continue</AppButton>

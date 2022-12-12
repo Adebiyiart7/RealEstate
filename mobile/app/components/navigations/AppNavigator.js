@@ -17,12 +17,12 @@ const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         name={routes.LETS_YOU_IN}
         component={LetsYouIn}
         options={{ headerShown: false }}
-      /> */}
-      {/* <Stack.Screen
+      />
+      <Stack.Screen
         name={routes.REGISTER}
         component={RegisterScreen}
         options={{ headerShown: false }}
@@ -31,7 +31,7 @@ const AppNavigator = () => {
         name={routes.LOGIN}
         component={LoginScreen}
         options={{ headerShown: false }}
-      /> */}
+      />
       {/* <Stack.Screen
         name={routes.PROFILE}
         component={ProfileScreen}

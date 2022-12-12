@@ -2,6 +2,8 @@ const asyncHandler = require("express-async-handler");
 const Joi = require("joi");
 const bcrypt = require("bcryptjs");
 
+// TODO: Cannot set headers after they are sent to the client
+
 // LOCAL IMPORTS
 const User = require("../../models/user");
 
@@ -28,23 +30,21 @@ const register = asyncHandler(async (req, res) => {
   const { error } = schema.validate(req.body);
 
   if (error) {
-    res.status(400);
-    throw new Error(error.message);
+    res.status(400).json({ code: 400, error: error.message });
   }
 
   // Create a user
   const { email, password } = req.body;
 
   // check if user already exist
-  const userExist = await User.findOne({email});
+  const userExist = await User.findOne({ email });
   if (userExist) {
-    res.status(400);
-    throw new Error("User already exist!")
+    res.status(400).json({ code: 400, message: "User already exist!" });
   }
 
   // hash password
   const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(password, salt)
+  const hash = await bcrypt.hash(password, salt);
 
   try {
     const user = await User.create({
@@ -54,14 +54,16 @@ const register = asyncHandler(async (req, res) => {
 
     const token = user.generateAuthToken();
 
+    console.log(user._id);
+    
     res.status(201).json({
       id: user._id,
       email: user.email,
-      token: token,
+      token: token
     });
   } catch (error) {
     console.log(error);
-    throw new Error("Error creating user");
+    res.status(400).json({ code: 400, error: "Error creating user" });
   }
 });
 

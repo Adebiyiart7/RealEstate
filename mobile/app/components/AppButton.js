@@ -13,7 +13,6 @@ const AppButton = ({
   onPress,
   disabled
 }) => {
-
   return (
     <>
       {!disabled ? (
@@ -37,16 +36,20 @@ const AppButton = ({
 
 export default AppButton;
 
+const btn = {
+  display: "flex",
+  flexDirection: "row",
+  padding: 14,
+  borderRadius: 25,
+  justifyContent: "center",
+  alignItems: "center",
+  marginVertical: 10,
+};
+
 const styles = StyleSheet.create({
   button: {
-    display: "flex",
-    flexDirection: "row",
-    backgroundColor: defaultStyles.colors.primaryColor,
-    padding: 12,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10
+    ...btn,
+    backgroundColor: defaultStyles.colors.primaryColor
   },
   startImageStyle: {
     height: 20,
@@ -55,18 +58,13 @@ const styles = StyleSheet.create({
   },
   text: {
     color: defaultStyles.colors.white,
-    fontWeight: "500"
+    fontWeight: "600",
+  fontSize: 16,
   },
   disabled: {
     button: {
-      display: "flex",
-      flexDirection: "row",
       backgroundColor: defaultStyles.colors.disabled,
-      padding: 12,
-      borderRadius: 25,
-      justifyContent: "center",
-      alignItems: "center",
-      marginVertical: 10
+      ...btn
     }
   }
 });

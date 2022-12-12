@@ -1,4 +1,5 @@
 const routes = {
+  APP: "App",
   NEW_PASSWORD: "CreateNewPassword",
   NEW_PIN: "CreateNewPin",
   FORGOT_PASSWORD: "ForgotPassword",
@@ -6,7 +7,7 @@ const routes = {
   LOGIN: "Login",
   REGISTER: "Register",
   OTP_CODE_VERIFICATION: "OTPCodeVerification",
-  PROFILE: "Profile",
-}
+  PROFILE: "Profile"
+};
 
 export default routes;

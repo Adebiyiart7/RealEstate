@@ -16,6 +16,12 @@ const AppFormField = ({ name, icon, onPress, ...otherProps }) => {
     ? defaultStyles.colors.primaryColor
     : defaultStyles.colors.mediumText;
 
+  const textInputStyle = {
+    paddingVertical: 8,
+    borderColor: isFocus ? defaultStyles.colors.primaryColor : "transparent",
+    borderWidth: isFocus ? 2 : 0
+  };
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       {
@@ -26,7 +32,7 @@ const AppFormField = ({ name, icon, onPress, ...otherProps }) => {
         />
       }
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, isFocus && textInputStyle]}
         name={name}
         onFocus={() => setIsFocus(true)}
         onChangeText={(value) => setFieldValue(name, value)}
@@ -52,16 +58,17 @@ const styles = StyleSheet.create({
     position: "relative"
   },
   textInput: {
-    borderRadius: defaultStyles.primaryBorderRadius,
+    borderRadius: 50,
     backgroundColor: defaultStyles.colors.lightBackground,
-    paddingVertical: 12,
-    paddingHorizontal: 35,
+    paddingVertical: 10,
+    paddingHorizontal: 37,
     fontSize: 16,
     color: defaultStyles.colors.primaryText
   },
   icon: {
     position: "absolute",
     top: 14,
-    left: 12
+    left: 14,
+    zIndex: 1234
   }
 });

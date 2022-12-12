@@ -40,7 +40,6 @@ const LoginScreen = ({ navigation }) => {
                 name={"email"}
                 placeholder={"Email"}
                 autoCapitalize="false"
-                autoCorrect="false"
                 keyboardType="email-address"
                 textContentType="emailAddress"
               />
@@ -53,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons
                   name="square-rounded-outline"
-                  size={20}
+                  size={24}
                   style={styles.rememberMeIcon}
                 />
                 <AppText style={styles.rememberMeText}>Remember me</AppText>
@@ -72,11 +71,12 @@ const LoginScreen = ({ navigation }) => {
         <AuthFooter styles={styles} />
         <AppText style={styles.signiInMessage}>
           Don't have an account?{" "}
-          <TouchableOpacity
+          <AppText
             onPress={() => navigation.navigate(routes.REGISTER)}
+            style={styles.signIn}
           >
-            <AppText style={styles.signIn}>Sign up</AppText>
-          </TouchableOpacity>
+            Sign up
+          </AppText>
         </AppText>
       </View>
     </Screen>

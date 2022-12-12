@@ -48,11 +48,12 @@ const LetsYouIn = ({ navigation }) => {
           </AppButton>
           <AppText style={styles.noAccountText}>
             Don't have an account?{" "}
-            <TouchableOpacity
-              onPress={() => navigation.navigate(routes.REGISTER)}
-            >
-              <AppText style={styles.signUpText}>Sign up</AppText>
-            </TouchableOpacity>
+              <AppText
+                onPress={() => navigation.navigate(routes.REGISTER)}
+                style={styles.signUpText}
+              >
+                Sign up
+              </AppText>
           </AppText>
         </View>
       </View>

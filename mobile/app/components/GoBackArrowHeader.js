@@ -5,14 +5,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-const GoBackArrowHeader = ({title, navigation}) => {
+const GoBackArrowHeader = ({ title, navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.left}>
         <MaterialCommunityIcons
           name="arrow-left"
           size={24}
-          color={defaultStyles.colors.primaryText}
+          style={styles.arrow}
           onPress={() => navigation.goBack()}
         />
       </TouchableOpacity>
@@ -26,6 +26,12 @@ const GoBackArrowHeader = ({title, navigation}) => {
 export default GoBackArrowHeader;
 
 const styles = StyleSheet.create({
+  arrow: {
+    color: defaultStyles.colors.primaryText,
+    backgroundColor: defaultStyles.colors.lightBackground,
+    padding: 10,
+    borderRadius: 50,
+  },
   container: {
     display: "flex",
     flexDirection: "row",
@@ -36,7 +42,7 @@ const styles = StyleSheet.create({
   left: {},
   title: {
     fontSize: 18,
-    fontWeight: "600",
-    marginLeft: 7,
+    fontWeight: "bold",
+    marginLeft: 10
   }
 });

@@ -1,8 +1,9 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { useContext } from "react";
 
 //LOCAL IMPORTS
 import defaultStyles from "../config/styles";
@@ -12,6 +13,7 @@ import AppFormField from "../components/form/AppFormField";
 import SubmitButton from "../components/form/SubmitButton";
 import BottomSheet from "../components/BottomSheet";
 import SelectOptions from "../components/form/SelectOptions";
+import { AppContext } from "../../App";
 
 const initialValues = {
   fullname: "",
@@ -33,6 +35,9 @@ const validationSchema = Yup.object().shape({
 
 const ProfileScreen = ({ navigation }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+
+  const { user } = useContext(AppContext);
+  console.log(user);
 
   return (
     <Screen>
@@ -98,7 +103,7 @@ const ProfileScreen = ({ navigation }) => {
               editable={false}
               onPress={() => setBottomSheetVisible(true)}
             />
-            <SubmitButton title={"Continue"} />
+            <SubmitButton style={{marginBottom: 30}} title={"Continue"} />
           </View>
         )}
       </Formik>
@@ -111,7 +116,7 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   avatar: {
     color: defaultStyles.colors.mediumText,
-    opacity: "40%",
+    // opacity: 40,
     position: "relative",
     top: 12
   },
@@ -125,7 +130,7 @@ const styles = StyleSheet.create({
   photo: {
     overflow: "hidden",
     backgroundColor: defaultStyles.colors.lightBackground,
-    borderRadius: "50%",
+    borderRadius: 200,
     height: 125
   },
   photoContainer: {

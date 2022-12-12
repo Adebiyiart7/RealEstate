@@ -23,14 +23,6 @@ const userSchema = mongoose.Schema(
       max: 255,
       trim: true
     },
-    nickname: {
-      type: String,
-      required: false,
-      min: 3,
-      max: 255,
-      unique: true,
-      trim: true
-    },
     dob: {
       type: String
     },

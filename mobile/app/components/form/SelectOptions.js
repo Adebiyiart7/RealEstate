@@ -35,7 +35,7 @@ export default SelectOptions;
 
 const styles = StyleSheet.create({
   item: {
-    paddingVertical: 12,
+    paddingVertical: 13,
     paddingHorizontal: 16
   },
   text: {

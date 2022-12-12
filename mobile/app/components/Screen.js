@@ -14,7 +14,7 @@ export default Screen
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    marginTop: Constants.statusBarHeight,
     paddingHorizontal: 16,
     backgroundColor: defaultStyles.colors.white,
   }

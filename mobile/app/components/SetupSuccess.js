@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: "1234",
+    zIndex: 1234,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

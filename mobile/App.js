@@ -1,18 +1,34 @@
-import AuthNavigator from "./app/components/navigations/AuthNavigator";
-import CreateNewPasswordScreen from "./app/screens/CreateNewPasswordScreen";
-import CreateNewPinScreen from "./app/screens/CreateNewPinScreen";
-import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
-import LetsYouIn from "./app/screens/LetsYouInScreen";
-import LoginScreen from "./app/screens/LoginScreen";
-import OTPCodeVerificationScreen from "./app/screens/OTPCodeVerificationScreen";
-import ProfileScreen from "./app/screens/ProfileScreen";
-import RegisterScreen from "./app/screens/RegisterScreen";
+import { Provider } from "react-redux";
+import { createContext, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function App() {
+// LOCAL IMPORTS
+import AppNavigator from "./app/components/navigations/AppNavigator";
+import store from "./app/store/store";
+import TabNavigator from "./app/components/navigations/TabNavigator";
+
+export const AppContext = createContext();
+
+const App = () => {
+  const [loggedInUser, setLoggedInUser] = useState();
+
+  // get user from async storage an set it value to user state
+  AsyncStorage.getItem("user").then((value) => setLoggedInUser(value));
+
+  const contextValue = {
+    user: loggedInUser
+  };
+
   return (
-    <NavigationContainer>
-      <AuthNavigator />
-    </NavigationContainer>
+    <AppContext.Provider value={contextValue}>
+      <Provider store={store}>
+        <NavigationContainer>
+          {loggedInUser ? <TabNavigator /> : <AppNavigator />}
+        </NavigationContainer>
+      </Provider>
+    </AppContext.Provider>
   );
-}
+};
+
+export default App;

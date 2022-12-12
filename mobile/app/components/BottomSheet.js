@@ -17,7 +17,7 @@ const BottomSheet = ({
   return (
     <View style={styles.container}>
       <Modal
-        animationType="slide"
+        animationType="none"
         transparent={true}
         visible={bottomSheetVisible}
       >
@@ -46,7 +46,8 @@ const BottomSheet = ({
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    backgroundColor: "#00000099"
+    backgroundColor: "#00000099",
+    position: "relative"
   },
   closeButton: {
     color: defaultStyles.colors.primaryColor
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     paddingTop: 35,
-    maxHeight: "50%"
+    maxHeight: 500
   },
   modalText: {
     marginBottom: 15

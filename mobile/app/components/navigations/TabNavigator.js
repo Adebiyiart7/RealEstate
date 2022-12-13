@@ -17,8 +17,14 @@ const TabNavigator = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => tabBarIcon(route, focused),
+        tabBarLabelPosition: "below-icon",
         tabBarLabelStyle: {
-          top: 0
+          paddingBottom: 3,
+          fontSize: 11
+        },
+        tabBarIconStyle: {
+          paddingTop: 4,
+          fontSize: 11
         }
       })}
     >

@@ -24,13 +24,11 @@ const AppFormField = ({ name, icon, onPress, ...otherProps }) => {
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      {
-        <MaterialCommunityIcons
-          style={{ ...styles.icon, color: iconColor }}
-          name={icon}
-          size={18}
-        />
-      }
+      <MaterialCommunityIcons
+        style={{ ...styles.icon, color: iconColor }}
+        name={icon}
+        size={18}
+      />
       <TextInput
         style={[styles.textInput, isFocus && textInputStyle]}
         name={name}

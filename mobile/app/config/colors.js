@@ -8,6 +8,7 @@ const colors = {
   lightText: "#9d9d9d",
   mediumText: "#6e6969",
   primaryColor: "rgb(36, 107, 253)", // #246bfd
+  primaryOrange: "#D1771E",
   primaryText: "#222",
   white: "#FFF"
 };

@@ -7,6 +7,7 @@ const routes = {
   LETS_YOU_IN: "LetsYouIn",
   LOGIN: "Login",
   MESSAGES: "Messages",
+  NOTIFICATIONS: "Notifications",
   OTP_CODE_VERIFICATION: "OTPCodeVerification",
   NEW_PASSWORD: "CreateNewPassword",
   NEW_PIN: "CreateNewPin",

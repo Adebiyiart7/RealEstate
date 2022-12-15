@@ -2,13 +2,13 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // LOCAL IMPORTS
-import routes from "../../config/routes";
-import ProfileScreen from "../../screens/ProfileScreen";
-import HomeScreen from "../../screens/HomeScreen";
+import routes from "../config/routes";
+import ProfileScreen from "../screens/ProfileScreen";
+import HomeScreen from "../screens/HomeScreen";
 import tabBarIcon from "./tabBarIcon";
-import ExploreScreen from "../../screens/ExploreScreen";
-import FavoritesScreen from "../../screens/FavoritesScreen";
-import MessagesScreen from "../../screens/MessagesScreen";
+import ExploreScreen from "../screens/ExploreScreen";
+import FavoritesScreen from "../screens/FavoritesScreen";
+import MessagesScreen from "../screens/MessagesScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,13 +19,12 @@ const TabNavigator = () => {
         tabBarIcon: ({ focused }) => tabBarIcon(route, focused),
         tabBarLabelPosition: "below-icon",
         tabBarLabelStyle: {
-          paddingBottom: 3,
+          marginBottom: 3,
           fontSize: 11
         },
         tabBarIconStyle: {
-          paddingTop: 4,
-          fontSize: 11
-        }
+          marginTop: 5,
+        },
       })}
     >
       <Tab.Screen

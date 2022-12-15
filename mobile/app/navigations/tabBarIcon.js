@@ -1,8 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
-import colors from "../../config/colors";
-import routes from "../../config/routes";
+import colors from "../config/colors";
+import routes from "../config/routes";
 
 const tabBarIcon = (route, focused) => {
   let iconName;

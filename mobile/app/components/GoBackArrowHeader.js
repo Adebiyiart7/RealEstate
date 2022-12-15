@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-const GoBackArrowHeader = ({ title, navigation }) => {
+const GoBackArrowHeader = ({ title, navigation, RightIcon }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.left}>
@@ -19,6 +19,9 @@ const GoBackArrowHeader = ({ title, navigation }) => {
       <AppText numberOfLines={1} style={styles.title}>
         {title}
       </AppText>
+      {RightIcon && (
+        <TouchableOpacity style={styles.right}>{RightIcon}</TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -40,6 +43,14 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   left: {},
+  right: {
+    position: "absolute",
+    right: 0,
+    color: defaultStyles.colors.primaryText,
+    backgroundColor: defaultStyles.colors.lightBackground,
+    padding: 10,
+    borderRadius: 50,
+  },
   title: {
     fontSize: 18,
     fontWeight: "bold",

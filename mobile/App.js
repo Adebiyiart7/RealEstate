@@ -4,9 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // LOCAL IMPORTS
-import AppNavigator from "./app/components/navigations/AppNavigator";
 import store from "./app/store/store";
-import TabNavigator from "./app/components/navigations/TabNavigator";
+import TabNavigator from "./app/navigations/TabNavigator";
 
 export const AppContext = createContext();
 
@@ -25,6 +24,7 @@ const App = () => {
       <Provider store={store}>
         <NavigationContainer>
           <TabNavigator />
+          {/* <AppNavigator /> */}
           {/* {loggedInUser ? <TabNavigator /> : <AppNavigator />} */}
         </NavigationContainer>
       </Provider>

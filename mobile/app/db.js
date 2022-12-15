@@ -147,3 +147,61 @@ export const ourRecommendation = [
     rating: 4.6
   }
 ];
+
+export const notifications = [
+  {
+    _id: "1",
+    type: "booking",
+    title: "Booking Successful!",
+    message:
+      "Congratulations! You have successfully booked a house for 3 days for NGN65,000. Enjoy the services!",
+    timestamp: 1671112131985,
+    isNew: true
+  },
+  {
+    _id: "2",
+    type: "booking",
+    title: "Booking Successful!",
+    message:
+      "Congratulations! You have successfully booked a house for 3 days for NGN65,000. Enjoy the services!",
+    timestamp: 1671012031985,
+    isNew: true
+  },
+
+  {
+    _id: "4",
+    type: "new",
+    title: "New Services Available!",
+    message:
+      "You can now make multiple book real estate at once. You can also cancelyour booking.",
+    timestamp: 1670911831985,
+    isNew: false
+  },
+  {
+    _id: "3",
+    type: "booking",
+    title: "Booking Successful!",
+    message:
+      "Congratulations! You have successfully booked a villa for 5 days for NGN875,000. Enjoy the services!",
+    timestamp: 1670811831985,
+    isNew: false
+  },
+  {
+    _id: "5",
+    type: "card",
+    title: "Credit Card Connected!",
+    message:
+      "You credit card has been successfully linked with your account. Enjoy our services!",
+    timestamp: 1670711731985,
+    isNew: false
+  },
+  {
+    _id: "6",
+    type: "user",
+    title: "user",
+    message:
+      "Your account creation is successful, you can now experience our services",
+    timestamp: 1670611631985,
+    isNew: false
+  }
+];

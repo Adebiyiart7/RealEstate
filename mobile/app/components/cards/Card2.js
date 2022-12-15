@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   f1: {
     color: colors.white,
-    fontWeight: "600",
+    fontWeight: "bold",
     fontSize: 18
   },
   f2: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   firstText: {
     color: colors.white,
     fontSize: 17,
-    fontWeight: "600",
+    fontWeight: "bold",
     width: "85%"
   },
   footer: {

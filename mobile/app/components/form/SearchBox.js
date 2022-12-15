@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
@@ -11,6 +11,8 @@ const SearchBox = ({
   Icon,
   onPress,
   borderRadius,
+  RightIcon,
+  onPressFilter,
   ...otherProps
 }) => {
   const [iconName, setIconName] = useState("ios-search-outline");
@@ -39,9 +41,11 @@ const SearchBox = ({
           setIsFocus(true);
           setIconName("ios-search");
         }}
+        placeholder="Search..."
         placeholderTextColor={defaultStyles.colors.lightText}
         {...otherProps}
       />
+      <TouchableOpacity onPress={onPressFilter} style={styles.rightIcon}>{RightIcon && RightIcon}</TouchableOpacity>
     </View>
   );
 };
@@ -54,6 +58,19 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     position: "relative"
   },
+  icon: {
+    position: "absolute",
+    top: 12,
+    left: 14,
+    zIndex: 1234
+  },
+  rightIcon: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    zIndex: 1234,
+    padding: 10
+  },
   textInput: {
     borderRadius: defaultStyles.primaryBorderRadius,
     backgroundColor: defaultStyles.colors.lightBackground,
@@ -61,11 +78,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 37,
     fontSize: 16,
     color: defaultStyles.colors.primaryText
-  },
-  icon: {
-    position: "absolute",
-    top: 11,
-    left: 14,
-    zIndex: 1234
   }
 });

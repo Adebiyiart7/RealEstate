@@ -3,14 +3,15 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // LOCAL IMPORTS
-import routes from "../../config/routes";
-import LetsYouIn from "../../screens/LetsYouInScreen";
-import RegisterScreen from "../../screens/RegisterScreen";
-import LoginScreen from "../../screens/LoginScreen";
-import ProfileScreen from "../../screens/ProfileScreen";
-import CreateNewPinScreen from "../../screens/CreateNewPinScreen";
-import ForgotPasswordScreen from "../../screens/ForgotPasswordScreen";
+import routes from "../config/routes";
+import LetsYouIn from "../screens/LetsYouInScreen";
+import RegisterScreen from "../screens/RegisterScreen";
+import LoginScreen from "../screens/LoginScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import CreateNewPinScreen from "../screens/CreateNewPinScreen";
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import TabNavigator from "./TabNavigator";
+import NotificationsScreen from "../screens/NotificationScreens";
 
 const Stack = createStackNavigator();
 
@@ -32,11 +33,6 @@ const AppNavigator = () => {
         component={LoginScreen}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
-        name={routes.PROFILE}
-        component={ProfileScreen}
-        options={{ headerShown: false }}
-      /> */}
       <Stack.Screen
         name={routes.NEW_PIN}
         component={CreateNewPinScreen}
@@ -48,9 +44,14 @@ const AppNavigator = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name={routes.NOTIFICATIONS}
+        component={NotificationsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name={routes.APP}
         component={TabNavigator}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

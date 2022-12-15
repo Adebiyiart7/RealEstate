@@ -11,12 +11,12 @@ const Card3 = ({ item }) => {
   const [heartIcon, setHeartIcon] = useState("heart-outline");
 
   const imageDimension = {
-    height: dimension.width / 2 - 40,
-    width: dimension.width / 2 - 40
+    height: dimension.width / 2 - 32,
+    width: dimension.width / 2 - 32
   };
 
   const detailsDimension = {
-    width: dimension.width / 2 - 40
+    width: dimension.width / 2 - 32
   };
 
   return (
@@ -81,16 +81,8 @@ const styles = StyleSheet.create({
   card: {
     display: "flex",
     alignItems: "center",
-    paddingHorizontal: 8,
-    paddingVertical: 11,
-    marginHorizontal: 6,
-    shadowColor: "#00000012",
-    // shadowOffset: { width: 0, height: 1 },
-    // shadowOpacity: 0.8,
-    shadowRadius: 30,
-    elevation: 5,
+    padding: 8,
     borderRadius: 20,
-    marginBottom: 12
   },
   details: {
     marginVertical: 5,

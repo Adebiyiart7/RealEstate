@@ -13,12 +13,14 @@ import colors from "../config/colors";
 import SearchBox from "../components/form/SearchBox";
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
-import Card2 from "../components/cards/Card2";
 import Card3 from "../components/cards/Card3";
+import Card2 from "../components/cards/Card2";
 import { featured, ourRecommendation } from "../db";
 import Chip from "../components/Chip";
+import BottomSheet from "../components/BottomSheet";
+import PropertiesFilterContent from "../components/PropertiesFilterContent";
 
-const chips = [
+export const categoryChips = [
   { name: "All", icon: "check-decagram" },
   { name: "House" },
   { name: "Villa" },
@@ -37,6 +39,7 @@ const Header = ({ title, right }) => {
 
 const HomeScreen = () => {
   const [focusedItem, setFocusedItem] = useState("All");
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(true)
 
   return (
     <Screen style={styles.screen}>
@@ -50,10 +53,24 @@ const HomeScreen = () => {
         }
         first_text={`Good Morning`}
         second_text={"Adeeyo Joseph"}
-        avatar={require("../assets/images/avatar.jfif")}detailsDimension
+        avatar={require("../assets/images/avatar.jpg")}
       />
-      <SearchBox />
+      <SearchBox
+        onPressFilter={() => setBottomSheetVisible(true)}
+        RightIcon={
+          <Ionicons
+            name="md-filter-sharp"
+            color={colors.primaryColor}
+            size={18}
+          />
+        }
+      />
       <View style={styles.featuredView}>
+        <BottomSheet
+          bottomSheetVisible={bottomSheetVisible}
+          setBottomSheetVisible={setBottomSheetVisible}
+          bottomSheetContent={<PropertiesFilterContent />}
+        />
         <Header
           title="Featured"
           right={<AppText style={styles.seeAll}>See All</AppText>}
@@ -79,7 +96,7 @@ const HomeScreen = () => {
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={chips}
+          data={categoryChips}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <View>
@@ -135,7 +152,8 @@ const styles = StyleSheet.create({
     marginBottom: 12
   },
   ourRecommendation: {
-    marginVertical: 16
+    marginBottom: 16,
+    marginTop: 20
   },
   ourRecommendationGrid: {
     display: "flex",

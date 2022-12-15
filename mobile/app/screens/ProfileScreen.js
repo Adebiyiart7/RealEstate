@@ -13,7 +13,7 @@ import AppFormField from "../components/form/AppFormField";
 import SubmitButton from "../components/form/SubmitButton";
 import BottomSheet from "../components/BottomSheet";
 import SelectOptions from "../components/form/SelectOptions";
-import { AppContext } from "../../App";
+// import { AppContext } from "../../App"; TODO remove this
 
 const initialValues = {
   fullname: "",
@@ -36,8 +36,8 @@ const validationSchema = Yup.object().shape({
 const ProfileScreen = ({ navigation }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
-  const { user } = useContext(AppContext);
-  console.log(user);
+  // const { user } = useContext(AppContext);
+  // console.log(user);
 
   return (
     <Screen>

@@ -21,9 +21,9 @@ const BottomSheet = ({
         transparent={true}
         visible={bottomSheetVisible}
       >
-        <TouchableOpacity
+        <View
           style={styles.centeredView}
-          onPress={() => setBottomSheetVisible(false)}
+          // onPress={() => setBottomSheetVisible(false)}
         >
           <View style={styles.modalView}>
             <TouchableOpacity
@@ -31,14 +31,14 @@ const BottomSheet = ({
               style={styles.closeButtonContainer}
             >
               <FontAwesome
-                name="times-circle"
+                name="times"
                 size={32}
                 style={styles.closeButton}
               />
             </TouchableOpacity>
             {bottomSheetContent}
           </View>
-        </TouchableOpacity>
+        </View>
       </Modal>
     </View>
   );
@@ -50,6 +50,8 @@ const styles = StyleSheet.create({
     position: "relative"
   },
   closeButton: {
+    marginTop: 4,
+    marginRight: 3,
     color: defaultStyles.colors.primaryColor
   },
   closeButtonContainer: {

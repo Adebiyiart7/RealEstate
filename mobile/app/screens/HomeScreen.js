@@ -15,6 +15,7 @@ import BottomSheet from "../components/BottomSheet";
 import PropertiesFilterContent from "../components/PropertiesFilterContent";
 import routes from "../config/routes";
 import OurRecommendation from "../components/OurRecommendation";
+import SeeAllText from "../components/SeeAllText";
 
 const Header = ({ title, right, onPressRight }) => {
   return (
@@ -59,10 +60,7 @@ const HomeScreen = ({ navigation }) => {
           setBottomSheetVisible={setBottomSheetVisible}
           bottomSheetContent={<PropertiesFilterContent />}
         />
-        <Header
-          title="Featured"
-          right={<AppText style={styles.seeAll}>See All</AppText>}
-        />
+        <Header title="Featured" right={<SeeAllText />} />
         <FlatList
           data={featured}
           horizontal
@@ -83,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
           <Header
             title="Our Recommendation"
             onPressRight={() => navigation.navigate(routes.OUR_RECOMMENDATION)}
-            right={<AppText style={styles.seeAll}>See All</AppText>}
+            right={<SeeAllText />}
           />
           <OurRecommendation navigation={navigation} />
         </View>
@@ -114,9 +112,5 @@ const styles = StyleSheet.create({
   screen: {
     paddingTop: 16
   },
-  seeAll: {
-    color: colors.primaryColor,
-    fontWeight: "bold",
-    marginTop: 2
-  }
+
 });

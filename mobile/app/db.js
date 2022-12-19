@@ -101,6 +101,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -152,6 +153,7 @@ export const estates = [
     ],
     reviews: [
       {
+        _id: "1",
         author: {
           name: "Ibrahim Ngozi",
           image: require("./assets/images/avatar.jpg")
@@ -160,6 +162,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -219,6 +222,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -278,6 +282,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -337,6 +342,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -396,6 +402,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -455,6 +462,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -514,6 +522,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -573,6 +582,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -632,6 +642,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -691,6 +702,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]
@@ -750,6 +762,7 @@ export const estates = [
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
+        star: 5,
         timestamp: 1671375843703
       }
     ]

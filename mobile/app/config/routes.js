@@ -1,5 +1,6 @@
 const routes = {
   TAB: "Tab",
+  BOOKING: "Booking",
   ESTATE_DETAILS: "EstateDetails",
   EXPLORE: "Explore",
   FAVORITES: "Favorites",

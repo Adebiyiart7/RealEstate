@@ -14,13 +14,14 @@ import NotificationsScreen from "../screens/NotificationScreens";
 import OurRecommendationScreen from "../screens/OurRecommendationScreen";
 import SearchScreen from "../screens/SearchScreen";
 import EstateDetails from "../screens/EstateDetails";
+import BookingScreen from "../screens/BookingScreen";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={routes.ESTATE_DETAILS}
+      initialRouteName={routes.TAB}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name={routes.LETS_YOU_IN} component={LetsYouIn} />
@@ -41,6 +42,7 @@ const AppNavigator = () => {
       />
       <Stack.Screen name={routes.SEARCH} component={SearchScreen} />
       <Stack.Screen name={routes.ESTATE_DETAILS} component={EstateDetails} />
+      <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
 
       {/* TAB NAVIGATOR */}
       <Stack.Screen name={routes.TAB} component={TabNavigator} />

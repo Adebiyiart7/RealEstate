@@ -4,14 +4,15 @@ import {
   StyleSheet,
   Image,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from "react-native";
 import {
   FontAwesome,
   Ionicons,
   MaterialCommunityIcons
 } from "@expo/vector-icons";
-import Carousel from "react-native-reanimated-carousel";
+// import Carousel from "react-native-reanimated-carousel";
 import { useDimensions } from "@react-native-community/hooks";
 import Constants from "expo-constants";
 
@@ -23,6 +24,10 @@ import Icon from "../components/Icon";
 import AccountCard from "../components/cards/AccountCard";
 import Facilities from "../components/estateDetails/Facilities";
 import Gallery from "../components/estateDetails/Gallery";
+import Location from "../components/estateDetails/Location";
+import Reviews from "../components/estateDetails/Reviews";
+import SeeAllText from "../components/SeeAllText";
+import Footer from "../components/estateDetails/Footer";
 
 const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
@@ -33,8 +38,7 @@ const EstateDetails = ({ navigation, route }) => {
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   const { width: screenWidth } = useDimensions().screen;
   const carouselHeight = screenWidth / 1.5;
-  // const { _id } = route.params;
-  const _id = "1";
+  const { _id } = route.params;
   const item = estates.find((e) => e._id === _id);
 
   const handleScroll = (e) => {
@@ -55,22 +59,24 @@ const EstateDetails = ({ navigation, route }) => {
       ListHeaderComponent={
         <>
           <View>
-            <Carousel
-              loop
-              width={screenWidth}
-              height={carouselHeight}
-              // autoPlay={true}
-              data={item.images.slice(0, 5)}
-              scrollAnimationDuration={1000}
-              pagingEnabled
-              onSnapToItem={(index) => setItemInView(index)}
-              renderItem={({ item }) => (
-                <View style={styles.carousel}>
-                  <AppText>1</AppText>
-                  <Image source={item} style={{ width: screenWidth }} />
-                </View>
-              )}
-            />
+            {Platform.OS !== "web" && (
+              <Carousel
+                loop
+                width={screenWidth}
+                height={carouselHeight}
+                // autoPlay={true}
+                data={item.images.slice(0, 5)}
+                scrollAnimationDuration={1000}
+                pagingEnabled
+                onSnapToItem={(index) => setItemInView(index)}
+                renderItem={({ item }) => (
+                  <View style={styles.carousel}>
+                    <AppText>1</AppText>
+                    <Image source={item} style={{ width: screenWidth }} />
+                  </View>
+                )}
+              />
+            )}
 
             {/* IMAGE SCROLL INDICATOR */}
             <View style={styles.imageScrollIndicator}>
@@ -89,7 +95,6 @@ const EstateDetails = ({ navigation, route }) => {
               ))}
             </View>
           </View>
-
           {/* TOP NAV */}
           <TouchableOpacity>
             <MaterialCommunityIcons
@@ -106,7 +111,6 @@ const EstateDetails = ({ navigation, route }) => {
               style={[styles.topIcon, { top: -carouselHeight, right: 0 }]}
             />
           </TouchableOpacity>
-
           {/* ===== DETAILS ===== */}
           <View style={styles.details}>
             <AppText numberOfLines={1} style={styles.title}>
@@ -210,7 +214,36 @@ const EstateDetails = ({ navigation, route }) => {
             {/* GALLERY */}
             <Header title="Gallery" />
             <Gallery item={item} />
+
+            {/* MAP */}
+            <Header title={"Location"} />
+            <Location item={item} />
+
+            {/* REVIEWS */}
+            <Header title={"Reviews"} />
+            <View style={styles.reviewSummary}>
+              <AppText
+                style={[
+                  styles.rating,
+                  { fontWeight: "bold", fontSize: 17, marginLeft: 0 }
+                ]}
+              >
+                <MaterialCommunityIcons
+                  name="star"
+                  size={20}
+                  color={colors.primaryOrange}
+                />{" "}
+                {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
+                reviews)
+              </AppText>
+              <SeeAllText />
+            </View>
+            <Reviews item={item} />
+
+            {/* FOOTER */}
           </View>
+          <Footer navigation={navigation} item={item} />{" "}
+          {/* TODO : Make footer fixed to bottom*/}
         </>
       }
     />
@@ -281,7 +314,7 @@ const styles = StyleSheet.create({
   overview: {
     // color: colors.mediumText,
     lineHeight: 18,
-    fontSize: 15,
+    fontSize: 15
   },
   rating: {
     marginLeft: 10,
@@ -290,6 +323,11 @@ const styles = StyleSheet.create({
   readMore: {
     fontWeight: "500",
     color: colors.primaryColor
+  },
+  reviewSummary: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   topIcon: {
     position: "absolute",

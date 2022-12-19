@@ -14,12 +14,17 @@ const Gallery = ({ item }) => {
         <ImageBackground
           key={index}
           source={image}
-          style={[styles.image, { width: imageWidth, height: imageWidth, borderRadius: 10, }]}
+          style={[styles.image, { width: imageWidth, height: imageWidth }]}
         >
+          {index == 2 && (
+            <View
+              style={styles.opaqImage}
+            />
+          )}
           {index == 2 && (
             <AppText style={styles.innerText}>
               {" "}
-              +{item.images.length - 3}
+              {item.images.length - 3}+
             </AppText>
           )}
         </ImageBackground>
@@ -43,14 +48,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#00000099",
-    overflow: "hidden",
+    overflow: "hidden"
   },
   innerText: {
-    fontSize: 30,
+    fontSize: 25,
     color: colors.white,
-    fontWeight: "700",
-    borderRadius: 30,
-    padding: 5
-  }
+    fontWeight: "bold",
+    zIndex: 1234,
+  },
+  opaqImage: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#00000099"
+  },
 });

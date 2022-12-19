@@ -1,9 +1,4 @@
-import {
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 
@@ -15,7 +10,7 @@ import SearchBox from "../components/form/SearchBox";
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
 import Card2 from "../components/cards/Card2";
-import { featured,  } from "../db";
+import { featured } from "../db";
 import BottomSheet from "../components/BottomSheet";
 import PropertiesFilterContent from "../components/PropertiesFilterContent";
 import routes from "../config/routes";
@@ -30,7 +25,7 @@ const Header = ({ title, right, onPressRight }) => {
   );
 };
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   return (
@@ -83,13 +78,15 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       {/* Our Recommendation */}
-      <View style={styles.ourRecommendation}>
-        <Header
-          title="Our Recommendation"
-          onPressRight={() => navigation.navigate(routes.OUR_RECOMMENDATION)}
-          right={<AppText style={styles.seeAll}>See All</AppText>}
-        />
-        <OurRecommendation navigation={navigation} />
+      <View>
+        <View style={styles.ourRecommendation}>
+          <Header
+            title="Our Recommendation"
+            onPressRight={() => navigation.navigate(routes.OUR_RECOMMENDATION)}
+            right={<AppText style={styles.seeAll}>See All</AppText>}
+          />
+          <OurRecommendation navigation={navigation} />
+        </View>
       </View>
     </Screen>
   );
@@ -98,13 +95,12 @@ const HomeScreen = ({navigation}) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  featuredView: {
-  },
+  featuredView: {},
   header: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10,
+    marginTop: 10
   },
   headerTitle: {
     fontWeight: "bold",
@@ -113,7 +109,7 @@ const styles = StyleSheet.create({
     marginBottom: 12
   },
   ourRecommendation: {
-    marginTop: 16,
+    marginTop: 16
   },
   screen: {
     paddingTop: 16
@@ -122,5 +118,5 @@ const styles = StyleSheet.create({
     color: colors.primaryColor,
     fontWeight: "bold",
     marginTop: 2
-  },
+  }
 });

@@ -1,115 +1,219 @@
-import { StyleSheet, Image, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { FlatList } from "react-native-gesture-handler";
+import {
+  StyleSheet,
+  Image,
+  View,
+  TouchableOpacity
+} from "react-native";
+import {
+  FontAwesome,
+  Ionicons,
+  MaterialCommunityIcons
+} from "@expo/vector-icons";
+import Carousel from "react-native-reanimated-carousel";
+import { useDimensions } from "@react-native-community/hooks";
+import Constants from "expo-constants";
+
+// LOCAL IMPORTS
 import { estates } from "../db";
 import AppText from "../components/AppText";
-import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import colors from "../config/colors";
-import ImageIcon from "../components/ImageIcon";
-import Card1 from "../components/cards/Card1";
+import Icon from "../components/Icon";
 import AccountCard from "../components/cards/AccountCard";
-import { Ionicons } from "@expo/vector-icons";
-import { FlatList } from "react-native-gesture-handler";
+import Facilities from "../components/estateDetails/Facilities";
+import Gallery from "../components/estateDetails/Gallery";
 
 const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
 };
 
 const EstateDetails = ({ navigation, route }) => {
+  const [itemInView, setItemInView] = useState(0);
+  const [statusBarHeight, setStatusBarHeight] = useState(0);
+  const { width: screenWidth } = useDimensions().screen;
+  const carouselHeight = screenWidth / 1.5;
   // const { _id } = route.params;
   const _id = "1";
   const item = estates.find((e) => e._id === _id);
 
+  const handleScroll = (e) => {
+    if (e.nativeEvent.contentOffset.y > carouselHeight - 5) {
+      setStatusBarHeight(Constants.statusBarHeight);
+    } else if (e.nativeEvent.contentOffset.y < carouselHeight + 5) {
+      setStatusBarHeight(0);
+    }
+  };
+
   return (
-    <View style={{ overflow: "hidden", backgroundColor: colors.white }}>
-      <GoBackArrowHeader navigation={navigation} />
-
-      <View style={styles.details}>
-        <AppText numberOfLines={1} style={styles.title}>
-          {item.name}
-        </AppText>
-        {/* BASIC DETAILS 1 */}
-        <View style={styles.basics1}>
-          <AppText style={styles.category}>{item.category}</AppText>
-          <AppText style={styles.rating}>
-            {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
-            reviews)
-          </AppText>
-        </View>
-        {/* BASIC DETAILS 2 */}
-        <View style={styles.basics2}>
-          <View style={styles.iconContainer}>
-            <ImageIcon
-              size={42}
-              image={require("../assets/images/icons/bed.png")}
+    <FlatList
+      data={[]}
+      keyExtractor={() => "key"}
+      renderItem={null}
+      onScroll={(e) => handleScroll(e)}
+      style={[styles.container, { marginTop: statusBarHeight }]}
+      ListHeaderComponent={
+        <>
+          <View>
+            <Carousel
+              loop
+              width={screenWidth}
+              height={carouselHeight}
+              // autoPlay={true}
+              data={item.images.slice(0, 5)}
+              scrollAnimationDuration={1000}
+              pagingEnabled
+              onSnapToItem={(index) => setItemInView(index)}
+              renderItem={({ item }) => (
+                <View style={styles.carousel}>
+                  <AppText>1</AppText>
+                  <Image source={item} style={{ width: screenWidth }} />
+                </View>
+              )}
             />
-            <AppText style={styles.basics2Text}>{item.beds} Beds</AppText>
+
+            {/* IMAGE SCROLL INDICATOR */}
+            <View style={styles.imageScrollIndicator}>
+              {item.images.slice(0, 5).map((item, index) => (
+                <View
+                  key={index}
+                  style={{
+                    backgroundColor:
+                      index == itemInView ? colors.primaryColor : colors.white,
+                    height: 10,
+                    width: index != itemInView ? 10 : 20,
+                    margin: 2,
+                    borderRadius: 5
+                  }}
+                ></View>
+              ))}
+            </View>
           </View>
-          <View style={styles.iconContainer}>
-            <ImageIcon
-              size={42}
-              image={require("../assets/images/icons/bath.png")}
+
+          {/* TOP NAV */}
+          <TouchableOpacity>
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={24}
+              style={[styles.topIcon, { top: -carouselHeight }]}
+              onPress={() => navigation.goBack()}
             />
-            <AppText style={styles.basics2Text}>{item.bath} bath</AppText>
-          </View>
-          <View style={styles.iconContainer}>
-            <ImageIcon
-              size={42}
-              image={require("../assets/images/icons/area.png")}
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <MaterialCommunityIcons
+              name="heart-outline"
+              size={24}
+              style={[styles.topIcon, { top: -carouselHeight, right: 0 }]}
             />
-            <AppText style={styles.basics2Text}>{item.area}</AppText>
-          </View>
-        </View>
+          </TouchableOpacity>
 
-        {/* AUTHOR */}
-        <View style={{ marginTop: 16 }}>
-          <AccountCard
-            Icon1={
-              <Ionicons
-                name="chatbubble-ellipses-outline"
-                color={colors.primaryColor}
-                size={24}
-              />
-            }
-            Icon2={
-              <Ionicons
-                name="ios-call-outline"
-                color={colors.primaryColor}
-                size={24}
-              />
-            }
-            first_text={item.owner.name}
-            second_text={"Owner"}
-            avatar={require("../assets/images/avatar.jpg")}
-            showIconBorder={false}
-          />
-        </View>
+          {/* ===== DETAILS ===== */}
+          <View style={styles.details}>
+            <AppText numberOfLines={1} style={styles.title}>
+              {item.name}
+            </AppText>
 
-        {/* OVERVIEW */}
-        <View>
-          <Header title={"Overview"} />
-          <AppText numberOfLines={4}>{item.overview}</AppText>
-          <AppText style={styles.readMore}>Read more</AppText>
-        </View>
+            {/* BASIC DETAILS 1 */}
+            <View style={styles.basics1}>
+              <AppText style={styles.category}>{item.category}</AppText>
+              <AppText style={styles.rating}>
+                <MaterialCommunityIcons
+                  name="star"
+                  size={16}
+                  color={colors.primaryOrange}
+                />{" "}
+                {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
+                reviews)
+              </AppText>
+            </View>
 
-        {/* FACILITIES */}
-        <Header title="Facilities" />
-        <View>
-          <FlatList
-            data={item.facilities}
-            keyExtractor={(item) => item.name}
-            renderItem={({ item }) => (
-              <View>
-                <ImageIcon
-                  size={60}
-                  image={require(`../assets/images/icons/${item.icon}.png`)}
+            {/* BASIC DETAILS 2 */}
+            <View style={styles.basics2}>
+              <View style={styles.iconContainer}>
+                <Icon
+                  size={42}
+                  Icon={
+                    <MaterialCommunityIcons
+                      name="bed"
+                      size={20}
+                      color={colors.primaryColor}
+                    />
+                  }
                 />
-                <AppText>{item.name}</AppText>
+                <AppText style={styles.basics2Text}>{item.beds} Beds</AppText>
               </View>
-            )}
-          />
-        </View>
-      </View>
-    </View>
+              <View style={styles.iconContainer}>
+                <Icon
+                  size={42}
+                  Icon={
+                    <FontAwesome
+                      name="bath"
+                      size={20}
+                      color={colors.primaryColor}
+                    />
+                  }
+                />
+                <AppText style={styles.basics2Text}>{item.bath} bath</AppText>
+              </View>
+              <View style={styles.iconContainer}>
+                <Icon
+                  size={42}
+                  Icon={
+                    <MaterialCommunityIcons
+                      name="arrow-expand-all"
+                      size={20}
+                      color={colors.primaryColor}
+                    />
+                  }
+                />
+                <AppText style={styles.basics2Text}>{item.area}</AppText>
+              </View>
+            </View>
+
+            {/* AUTHOR */}
+            <View style={{ marginTop: 16 }}>
+              <AccountCard
+                Icon1={
+                  <Ionicons
+                    name="chatbubble-ellipses-outline"
+                    color={colors.primaryColor}
+                    size={24}
+                  />
+                }
+                Icon2={
+                  <Ionicons
+                    name="ios-call-outline"
+                    color={colors.primaryColor}
+                    size={24}
+                  />
+                }
+                first_text={item.owner.name}
+                second_text={"Owner"}
+                avatar={require("../assets/images/avatar.jpg")}
+                showIconBorder={false}
+              />
+            </View>
+
+            {/* OVERVIEW */}
+            <View>
+              <Header title={"Overview"} />
+              <AppText numberOfLines={4} style={styles.overview}>
+                {item.overview}
+              </AppText>
+              <AppText style={styles.readMore}>Read more</AppText>
+            </View>
+
+            {/* FACILITIES */}
+            <Header title="Facilities" />
+            <Facilities item={item} />
+
+            {/* GALLERY */}
+            <Header title="Gallery" />
+            <Gallery item={item} />
+          </View>
+        </>
+      }
+    />
   );
 };
 
@@ -137,19 +241,25 @@ const styles = StyleSheet.create({
     overflow: "scroll",
     fontSize: 13
   },
+  carousel: {
+    flex: 1,
+    justifyContent: "center"
+  },
   category: {
+    position: "relative",
     color: colors.primaryColor,
     fontSize: 12,
-    // fontWeight: "500",
-    paddingHorizontal: 7,
+    paddingHorizontal: 10,
     paddingVertical: 3,
     borderRadius: 4,
     backgroundColor: colors.background200
   },
+  container: {
+    overflow: "hidden",
+    backgroundColor: colors.white
+  },
   details: {
-    marginTop: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 20
+    paddingHorizontal: 16
   },
   header: {
     marginVertical: 16,
@@ -162,6 +272,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginRight: 5
   },
+  imageScrollIndicator: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    bottom: 20
+  },
+  overview: {
+    // color: colors.mediumText,
+    lineHeight: 18,
+    fontSize: 15,
+  },
   rating: {
     marginLeft: 10,
     fontWeight: "600"
@@ -169,6 +290,16 @@ const styles = StyleSheet.create({
   readMore: {
     fontWeight: "500",
     color: colors.primaryColor
+  },
+  topIcon: {
+    position: "absolute",
+    color: colors.primaryText,
+    padding: 10,
+    zIndex: 1234,
+    backgroundColor: colors.background100,
+    borderRadius: 50,
+    margin: 16,
+    marginTop: 25
   },
   title: {
     fontSize: 25,

@@ -21,6 +21,5 @@ export default AppText;
 const styles = StyleSheet.create({
   text: {
     color: defaultStyles.colors.primaryText,
-    // fontFamily: "Cochin"
   }
 });

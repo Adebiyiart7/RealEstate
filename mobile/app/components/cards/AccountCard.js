@@ -1,10 +1,23 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { useDimensions } from "@react-native-community/hooks";
+
+// LOCAL IMPORTS
 import AppText from "../AppText";
 import colors from "../../config/colors";
 
 const avatarSize = 50;
-const AccountCard = ({ Icon, avatar, first_text, second_text }) => {
+const AccountCard = ({
+  Icon1,
+  Icon2,
+  avatar,
+  first_text,
+  second_text,
+  reverse,
+  showIconBorder = true
+}) => {
+  const { width: screenWidth } = useDimensions().screen;
+
   return (
     <View style={styles.accountCard}>
       <Image source={avatar} style={styles.avatar} />
@@ -16,17 +29,38 @@ const AccountCard = ({ Icon, avatar, first_text, second_text }) => {
           justifyContent: "space-between"
         }}
       >
-        <View style={styles.center}>
-          <AppText style={styles.first_text}>
-            {`${first_text} `}
-            <Image
-              source={require(".././../assets/images/waving-hand.png")}
-              style={styles.wavingHand}
-            />
+        <View
+          style={[
+            styles.center,
+            {
+              width: screenWidth - (Icon1 && Icon2 ? 173 : 173 - 40),
+              flexDirection: reverse ? "column-reverse" : "column"
+            }
+          ]}
+        >
+          <AppText numberOfLines={1} style={styles.first_text}>
+            {first_text}
           </AppText>
-          <AppText style={styles.second_text}>{second_text}</AppText>
+          <AppText numberOfLines={1} style={styles.second_text}>
+            {second_text}
+          </AppText>
         </View>
-        <TouchableOpacity style={styles.icon}>{Icon && Icon}</TouchableOpacity>
+        <View style={styles.icons}>
+          {Icon1 && (
+            <TouchableOpacity
+              style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
+            >
+              {Icon1}
+            </TouchableOpacity>
+          )}
+          {Icon2 && (
+            <TouchableOpacity
+              style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
+            >
+              {Icon2}
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -48,22 +82,25 @@ const styles = StyleSheet.create({
   center: {
     marginLeft: 10
   },
-  first_text: {
+  second_text: {
     color: colors.mediumText
   },
   icon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
     padding: 5,
     borderColor: colors.border100,
     borderRadius: 30,
     height: 43,
-    width: 43,
-    marginRight: avatarSize,
+    width: 43
   },
-  second_text: {
+  icons: {
+    display: "flex",
+    flexDirection: "row",
+    marginRight: avatarSize
+  },
+  first_text: {
     color: colors.primaryText,
     fontWeight: "bold",
     fontSize: 18

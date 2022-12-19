@@ -2,22 +2,32 @@ import React from "react";
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import colors from "../config/colors";
 
-const Chip = ({ text, focused, Icon, onPress, style }) => {
+const Chip = ({ text, focused, Icon, onPress, style, small }) => {
   return (
     <Pressable
       onPress={onPress}
       style={[
         style,
         styles.chip,
-        { backgroundColor: focused ? colors.primaryColor : colors.white }
+        {
+          backgroundColor: focused ? colors.primaryColor : colors.white
+        }
       ]}
     >
-      <View style={{ display: "flex", flexDirection: "row" }}>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row"
+        }}
+      >
         {Icon && <Text style={styles.icon}>{Icon}</Text>}
         <Text
           style={[
             styles.text,
-            { color: focused ? colors.white : colors.primaryColor }
+            { color: focused ? colors.white : colors.primaryColor },
+            {
+              fontSize: small ? 13 : 15
+            }
           ]}
         >
           {text}
@@ -36,16 +46,15 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 30,
     alignSelf: "flex-start",
-    borderWidth: 2,
-    borderColor: colors.primaryColor,
+    borderWidth: 1.5,
+    borderColor: colors.primaryColor
   },
   icon: {
-    paddingRight: 5,
+    paddingRight: 5
   },
   text: {
-    fontSize: 15,
-    fontWeight: "600",
-  },
+    fontWeight: "600"
+  }
 });
 
 export default Chip;

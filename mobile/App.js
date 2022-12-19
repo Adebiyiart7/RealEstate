@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // LOCAL IMPORTS
 import store from "./app/store/store";
-import TabNavigator from "./app/navigations/TabNavigator";
+import AppNavigator from "./app/navigations/AppNavigator";
 
 export const AppContext = createContext();
 
@@ -23,9 +23,7 @@ const App = () => {
     <AppContext.Provider value={contextValue}>
       <Provider store={store}>
         <NavigationContainer>
-          <TabNavigator />
-          {/* <AppNavigator /> */}
-          {/* {loggedInUser ? <TabNavigator /> : <AppNavigator />} */}
+          <AppNavigator />
         </NavigationContainer>
       </Provider>
     </AppContext.Provider>

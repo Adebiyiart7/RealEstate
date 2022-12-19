@@ -32,7 +32,7 @@ const RegisterScreen = ({ navigation }) => {
     dispatch(register(values));
     dispatch(reset())
     console.log("Hello")
-    navigation.navigate(routes.APP)
+    navigation.navigate(routes.TAB)
   };
 
   return (

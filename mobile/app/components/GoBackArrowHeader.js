@@ -1,11 +1,14 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDimensions } from "@react-native-community/hooks";
 
 // LOCAL IMPORTS
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
 const GoBackArrowHeader = ({ title, navigation, RightIcon }) => {
+  const { width: screenWidth } = useDimensions().screen;
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.left}>
@@ -16,7 +19,10 @@ const GoBackArrowHeader = ({ title, navigation, RightIcon }) => {
           onPress={() => navigation.goBack()}
         />
       </TouchableOpacity>
-      <AppText numberOfLines={1} style={styles.title}>
+      <AppText
+        numberOfLines={1}
+        style={[styles.title, { width: screenWidth - 138 }]}
+      >
         {title}
       </AppText>
       {RightIcon && (
@@ -31,9 +37,9 @@ export default GoBackArrowHeader;
 const styles = StyleSheet.create({
   arrow: {
     color: defaultStyles.colors.primaryText,
-    backgroundColor: defaultStyles.colors.lightBackground,
+    backgroundColor: defaultStyles.colors.background100,
     padding: 10,
-    borderRadius: 50,
+    borderRadius: 50
   },
   container: {
     display: "flex",
@@ -47,9 +53,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     color: defaultStyles.colors.primaryText,
-    backgroundColor: defaultStyles.colors.lightBackground,
+    backgroundColor: defaultStyles.colors.background100,
     padding: 10,
-    borderRadius: 50,
+    borderRadius: 50
   },
   title: {
     fontSize: 18,

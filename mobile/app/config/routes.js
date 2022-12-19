@@ -1,5 +1,6 @@
 const routes = {
-  APP: "App",
+  TAB: "Tab",
+  ESTATE_DETAILS: "EstateDetails",
   EXPLORE: "Explore",
   FAVORITES: "Favorites",
   FORGOT_PASSWORD: "ForgotPassword",
@@ -7,12 +8,14 @@ const routes = {
   LETS_YOU_IN: "LetsYouIn",
   LOGIN: "Login",
   MESSAGES: "Messages",
-  NOTIFICATIONS: "Notifications",
-  OTP_CODE_VERIFICATION: "OTPCodeVerification",
   NEW_PASSWORD: "CreateNewPassword",
   NEW_PIN: "CreateNewPin",
+  NOTIFICATIONS: "Notifications",
+  OTP_CODE_VERIFICATION: "OTPCodeVerification",
+  OUR_RECOMMENDATION: "OurRecommendation",
   PROFILE: "Profile",
   REGISTER: "Register",
+  SEARCH: "Search"
 };
 
 export default routes;

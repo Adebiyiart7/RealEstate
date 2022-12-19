@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   photo: {
     overflow: "hidden",
-    backgroundColor: defaultStyles.colors.lightBackground,
+    backgroundColor: defaultStyles.colors.background100,
     borderRadius: 200,
     height: 125
   },

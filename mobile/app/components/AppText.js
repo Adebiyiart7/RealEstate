@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, } from 'react-native'
+import { Platform, StyleSheet, Text, } from 'react-native'
 
 // LOCAL IMPORTS
 import defaultStyles from '../config/styles'
@@ -21,5 +21,6 @@ export default AppText;
 const styles = StyleSheet.create({
   text: {
     color: defaultStyles.colors.primaryText,
+    // fontFamily: "Cochin"
   }
 });

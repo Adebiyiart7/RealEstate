@@ -1,4 +1,9 @@
-import { ImageBackground, StyleSheet, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View
+} from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { useDimensions } from "@react-native-community/hooks";
@@ -6,57 +11,78 @@ import { useDimensions } from "@react-native-community/hooks";
 // LOCAL IMPORTS
 import AppText from "../AppText";
 import colors from "../../config/colors";
-const Card3 = ({ item }) => {
+import routes from "../../config/routes";
+
+const Card3 = ({ navigation, item, format }) => {
   const dimension = useDimensions().screen;
   const [heartIcon, setHeartIcon] = useState("heart-outline");
 
   const imageDimension = {
-    height: dimension.width / 2 - 32,
-    width: dimension.width / 2 - 32
+    height:
+      format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
+    width:
+      format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32
   };
 
   const detailsDimension = {
-    width: dimension.width / 2 - 32
+    width:
+      format === "list"
+        ? dimension.width - imageDimension.width - 48
+        : dimension.width / 2 - 32
   };
 
   return (
-    <View style={styles.card}>
-      <ImageBackground
-        resizeMode="cover"
-        source={item.image}
-        style={[styles.image, imageDimension]}
+    <View style={[styles.card, format === "list" && styles.cardListFormat]}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
+        }
       >
-        <AppText style={styles.rating}>
-          <MaterialCommunityIcons
-            name="star"
-            size={12}
-            color={colors.primaryOrange}
-          />
-          {item.rating}
-        </AppText>
-        <View style={styles.heartIcon}>
-          {heartIcon === "heart-outline" ? (
-            <Ionicons
-              name={heartIcon}
-              size={22}
-              color={colors.white}
-              onPress={() => setHeartIcon("heart")}
-            />
-          ) : (
-            <Ionicons
-              name={heartIcon}
-              size={22}
+        <ImageBackground
+          source={item.image}
+          style={[styles.image, styles.imageListFormat, imageDimension]}
+        >
+          <AppText style={styles.rating}>
+            <MaterialCommunityIcons
+              name="star"
+              size={12}
               color={colors.primaryOrange}
-              onPress={() => setHeartIcon("heart-outline")}
             />
-          )}
-        </View>
-      </ImageBackground>
+            {item.rating}
+          </AppText>
+          <View style={styles.heartIcon}>
+            {heartIcon === "heart-outline" ? (
+              <Ionicons
+                name={heartIcon}
+                size={22}
+                color={colors.white}
+                onPress={() => setHeartIcon("heart")}
+              />
+            ) : (
+              <Ionicons
+                name={heartIcon}
+                size={22}
+                color={colors.primaryOrange}
+                onPress={() => setHeartIcon("heart-outline")}
+              />
+            )}
+          </View>
+        </ImageBackground>
+      </TouchableOpacity>
       <View style={[styles.details, detailsDimension]}>
         <View style={styles.texts}>
-          <AppText numberOfLines={1} style={styles.firstText}>
-            {item.name}
-          </AppText>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
+            }
+          >
+            <AppText
+              numberOfLines={format === "list" ? 2 : 1}
+              style={[styles.firstText, { marginTop: format === "grid" && 8 }]}
+            >
+              {item.name}
+            </AppText>
+          </TouchableOpacity>
           <AppText numberOfLines={1} style={styles.secondText}>
             {item.location}
           </AppText>
@@ -64,7 +90,7 @@ const Card3 = ({ item }) => {
             numberOfLines={1}
             style={[styles.footer, { detailsDimension }]}
           >
-            <AppText style={styles.f1}>
+            <AppText style={[styles.f1, { marginTop: 10 }]}>
               &#8358;{parseFloat(item.cost).toLocaleString()}
             </AppText>
             <AppText style={styles.f2}>&nbsp;/&nbsp;{item.duration}</AppText>
@@ -82,15 +108,27 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     padding: 8,
-    borderRadius: 20,
+    borderRadius: 20
   },
+  cardListFormat: {
+    display: "flex",
+    flexDirection: "row",
+    marginVertical: 4
+  },
+
   details: {
     marginVertical: 5,
-    marginHorizontal: 5
+    marginHorizontal: 5,
+    maxWidth: 200
   },
   image: {
     borderRadius: 20,
-    overflow: "hidden"
+    overflow: "hidden",
+    maxHeight: 200,
+    maxWidth: 200
+  },
+  imageListFormat: {
+    marginRight: 10
   },
   f1: {
     color: colors.primaryColor,
@@ -109,12 +147,13 @@ const styles = StyleSheet.create({
   footer: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "flex-end"
   },
   heartIcon: {
     position: "absolute",
-    bottom: 8,
-    right: 8
+    bottom: 4,
+    right: 4,
+    padding: 6
   },
   secondText: {
     color: colors.mediumText
@@ -131,6 +170,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.primaryColor
   },
-  texts: {
-  }
+  texts: {}
 });

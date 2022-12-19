@@ -7,12 +7,11 @@ import defaultStyles from "../../config/styles";
 
 const SearchBox = ({
   name,
-  icon,
-  Icon,
   onPress,
   borderRadius,
   RightIcon,
   onPressFilter,
+  width,
   ...otherProps
 }) => {
   const [iconName, setIconName] = useState("ios-search-outline");
@@ -28,7 +27,7 @@ const SearchBox = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: width }]}>
       <Ionicons
         style={{ ...styles.icon, color: iconColor }}
         name={iconName}
@@ -45,7 +44,9 @@ const SearchBox = ({
         placeholderTextColor={defaultStyles.colors.lightText}
         {...otherProps}
       />
-      <TouchableOpacity onPress={onPressFilter} style={styles.rightIcon}>{RightIcon && RightIcon}</TouchableOpacity>
+      <TouchableOpacity onPress={onPressFilter} style={styles.rightIcon}>
+        {RightIcon && RightIcon}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -60,20 +61,20 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: "absolute",
-    top: 12,
+    top: 14,
     left: 14,
     zIndex: 1234
   },
   rightIcon: {
     position: "absolute",
-    top: 0,
+    top: 4,
     right: 0,
     zIndex: 1234,
     padding: 10
   },
   textInput: {
     borderRadius: defaultStyles.primaryBorderRadius,
-    backgroundColor: defaultStyles.colors.lightBackground,
+    backgroundColor: defaultStyles.colors.background100,
     paddingVertical: 10,
     paddingHorizontal: 37,
     fontSize: 16,

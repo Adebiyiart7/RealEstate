@@ -12,6 +12,7 @@ import { useDimensions } from "@react-native-community/hooks";
 import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
+import utils from "../../utils";
 
 const Card3 = ({ navigation, item, format }) => {
   const dimension = useDimensions().screen;
@@ -71,27 +72,35 @@ const Card3 = ({ navigation, item, format }) => {
       </TouchableOpacity>
       <View style={[styles.details, detailsDimension]}>
         <View style={styles.texts}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
-            }
-          >
+          <View>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
+              }
+            >
+              <AppText
+                numberOfLines={format === "list" ? 2 : 1}
+                style={[
+                  styles.firstText,
+                  { marginTop: format === "grid" ? 8 : 0 }
+                ]}
+              >
+                {item.name}
+              </AppText>
+            </TouchableOpacity>
             <AppText
               numberOfLines={format === "list" ? 2 : 1}
-              style={[styles.firstText, { marginTop: format === "grid" && 8 }]}
+              style={styles.secondText}
             >
-              {item.name}
+              {item.location}
             </AppText>
-          </TouchableOpacity>
-          <AppText numberOfLines={1} style={styles.secondText}>
-            {item.location}
-          </AppText>
+          </View>
           <AppText
             numberOfLines={1}
             style={[styles.footer, { detailsDimension }]}
           >
             <AppText style={[styles.f1, { marginTop: 10 }]}>
-              &#8358;{parseFloat(item.cost).toLocaleString()}
+              &#8358;{utils.seperateToThounsand(item.cost)}
             </AppText>
             <AppText style={styles.f2}>&nbsp;/&nbsp;{item.duration}</AppText>
           </AppText>
@@ -133,7 +142,7 @@ const styles = StyleSheet.create({
   f1: {
     color: colors.primaryColor,
     fontWeight: "bold",
-    fontSize: 16
+    fontSize: 18
   },
   f2: {
     color: colors.mediumText,
@@ -147,7 +156,8 @@ const styles = StyleSheet.create({
   footer: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+    marginTop: 5
   },
   heartIcon: {
     position: "absolute",
@@ -170,5 +180,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.primaryColor
   },
-  texts: {}
+  texts: { display: "flex", flex: 1, justifyContent: "space-between" }
 });

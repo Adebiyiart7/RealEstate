@@ -7,7 +7,7 @@ import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppText from "../components/AppText";
 import PinForm from "../components/form/PinForm";
 import AppButton from "../components/AppButton";
-import SetupSuccess from "../components/SetupSuccess";
+import ProcessStatus from "../components/ProcessStatus";
 
 const CreateNewPinScreen = ({ navigation }) => {
   const [pin, setPin] = useState({
@@ -19,7 +19,14 @@ const CreateNewPinScreen = ({ navigation }) => {
 
   return (
     <>
-      {/* <SetupSuccess /> */}
+      <ProcessStatus
+        status="success"
+        title={"Congratulations!"}
+        image={require("../assets/images/setup-success-image.png")}
+        message={
+          "Your account is ready to use. You will be redirected to the Home Page in a few seconds"
+        }
+      />
       <Screen>
         <View style={styles.container}>
           <GoBackArrowHeader title={"Create New Pin"} navigation={navigation} />

@@ -14,7 +14,12 @@ import NotificationsScreen from "../screens/NotificationScreens";
 import OurRecommendationScreen from "../screens/OurRecommendationScreen";
 import SearchScreen from "../screens/SearchScreen";
 import EstateDetails from "../screens/EstateDetails";
-import BookingScreen from "../screens/BookingScreen";
+import BookingScreen from "../screens/booking/BookingScreen";
+import BookingFormScreen from "../screens/booking/BookingFormScreen";
+import BookingPaymentScreen from "../screens/booking/BookingPaymentScreen";
+import AddNewCardScreen from "../screens/booking/AddNewCardScreen";
+import ReviewSummary from "../screens/booking/ReviewSummary";
+import ConfirmPinScreen from "../screens/ConfirmPinScreen";
 
 const Stack = createStackNavigator();
 
@@ -43,7 +48,14 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.SEARCH} component={SearchScreen} />
       <Stack.Screen name={routes.ESTATE_DETAILS} component={EstateDetails} />
       <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
-
+      <Stack.Screen name={routes.BOOKING_FORM} component={BookingFormScreen} />
+      <Stack.Screen
+        name={routes.BOOKING_PAYMENT}
+        component={BookingPaymentScreen}
+      />
+      <Stack.Screen name={routes.ADD_NEW_CARD} component={AddNewCardScreen} />
+      <Stack.Screen name={routes.REVIEW_SUMMARY} component={ReviewSummary} />
+      <Stack.Screen name={routes.CONFIRM_PIN} component={ConfirmPinScreen} />
       {/* TAB NAVIGATOR */}
       <Stack.Screen name={routes.TAB} component={TabNavigator} />
     </Stack.Navigator>

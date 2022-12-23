@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight,
     paddingHorizontal: 16,
-    backgroundColor: defaultStyles.colors.white,
+    backgroundColor: defaultStyles.colors.background100,
   }
 });

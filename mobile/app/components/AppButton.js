@@ -13,13 +13,14 @@ const AppButton = ({
   onPress,
   disabled,
   small,
-  secondary
+  secondary,
+  rounded
 }) => {
   const btn = {
     display: "flex",
     flexDirection: "row",
     padding: small ? 10 : 14,
-    borderRadius: 25,
+    borderRadius: rounded ? 25 : 5,
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 10

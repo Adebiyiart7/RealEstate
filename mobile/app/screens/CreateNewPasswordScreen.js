@@ -12,7 +12,7 @@ import AppFormField from "../components/form/AppFormField";
 import SubmitButton from "../components/form/SubmitButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/styles";
-import SetupSuccess from "../components/SetupSuccess";
+import ProcessStatus from "../components/ProcessStatus";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -23,7 +23,14 @@ const validationSchema = Yup.object().shape({
 const CreateNewPasswordScreen = ({ navigation }) => {
   return (
     <>
-      <SetupSuccess />
+      <ProcessStatus
+        status="success"
+        title={"Congratulations!"}
+        image={require("../assets/images/setup-success-image.png")}
+        message={
+          "Your account is ready to use. You will be redirected to the Home Page in a few seconds"
+        }
+      />
       <Screen>
         <GoBackArrowHeader
           title={"Create New Password"}

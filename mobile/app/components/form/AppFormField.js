@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ErrorMessage from "./ErrorMessage";
 import defaultStyles from "../../config/styles";
 
-const AppFormField = ({ name, icon, onPress, ...otherProps }) => {
+const AppFormField = ({ name, icon, onPress, style, ...otherProps }) => {
   const [isFocus, setIsFocus] = useState(false);
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
@@ -30,7 +30,12 @@ const AppFormField = ({ name, icon, onPress, ...otherProps }) => {
         size={18}
       />
       <TextInput
-        style={[styles.textInput, isFocus && textInputStyle]}
+        style={[
+          styles.textInput,
+          { paddingHorizontal: icon ? 37 : 16 },
+          isFocus && textInputStyle,
+          style
+        ]}
         name={name}
         onFocus={() => setIsFocus(true)}
         onChangeText={(value) => setFieldValue(name, value)}
@@ -56,10 +61,9 @@ const styles = StyleSheet.create({
     position: "relative"
   },
   textInput: {
-    borderRadius: 50,
-    backgroundColor: defaultStyles.colors.background100,
+    borderRadius: 5,
+    backgroundColor: defaultStyles.colors.background200,
     paddingVertical: 10,
-    paddingHorizontal: 37,
     fontSize: 16,
     color: defaultStyles.colors.primaryText
   },

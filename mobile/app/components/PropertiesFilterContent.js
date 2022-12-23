@@ -28,7 +28,7 @@ const ratingChips = [
   { name: 1 }
 ];
 
-const Header = ({ title }) => {
+export const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
 };
 

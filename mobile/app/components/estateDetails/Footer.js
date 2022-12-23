@@ -3,7 +3,6 @@ import React from "react";
 import AppButton from "../AppButton";
 import AppText from "../AppText";
 import colors from "../../config/colors";
-import { NavigationContainer } from "@react-navigation/native";
 import routes from "../../config/routes";
 
 const Footer = ({ navigation, item }) => {
@@ -16,7 +15,16 @@ const Footer = ({ navigation, item }) => {
           <AppText style={styles.duration}> / {item.duration}</AppText>
         </AppText>
       </View>
-      <AppButton style={styles.button} onPress={() => NavigationContainer.navigate(routes.BOOKING)}>Booking Now</AppButton>
+      <AppButton
+        style={styles.button}
+        onPress={() =>
+          navigation.navigate(routes.BOOKING, {
+            _id: item._id
+          })
+        }
+      >
+        Booking Now
+      </AppButton>
     </View>
   );
 };
@@ -28,18 +36,18 @@ const styles = StyleSheet.create({
     flex: 1
   },
   duration: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: 13,
     color: colors.mediumText
   },
   footer: {
     display: "flex",
     flexDirection: "row",
-    marginTop: 20,
     borderTopWidth: 1,
-    borderColor: colors.border100,
-    borderRadius: 25,
+    borderColor: colors.border200,
+    // borderRadius: 25,
     padding: 16,
+    backgroundColor: colors.white
   },
   price: {
     color: colors.primaryColor,

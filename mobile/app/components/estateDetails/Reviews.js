@@ -3,7 +3,6 @@ import React from "react";
 import { useDimensions } from "@react-native-community/hooks";
 
 // LOCAL IMPORTS
-import AccountCard from "../cards/AccountCard";
 import AppText from "../AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
@@ -14,7 +13,7 @@ const Reviews = ({ item }) => {
   return (
     <View>
       {item.reviews.map((review, index) => (
-        <View  key={index}>
+        <View style={styles.review} key={index}>
           <View style={styles.accountCard}>
             <Image source={review.author.image} style={styles.avatar} />
             <View style={[styles.center, { width: screenWidth - 73 }]}>
@@ -114,10 +113,11 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   review: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    paddingBottom: 16
+    // display: "flex",
+    // flexDirection: "row",
+    // justifyContent: "space-between",
+    // alignItems: "center"
   },
   star: {
     borderWidth: 2,

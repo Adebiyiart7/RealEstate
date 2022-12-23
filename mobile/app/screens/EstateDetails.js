@@ -12,7 +12,7 @@ import {
   Ionicons,
   MaterialCommunityIcons
 } from "@expo/vector-icons";
-// import Carousel from "react-native-reanimated-carousel";
+import Carousel from "react-native-reanimated-carousel";
 import { useDimensions } from "@react-native-community/hooks";
 import Constants from "expo-constants";
 
@@ -36,7 +36,7 @@ const Header = ({ title }) => {
 const EstateDetails = ({ navigation, route }) => {
   const [itemInView, setItemInView] = useState(0);
   const [statusBarHeight, setStatusBarHeight] = useState(0);
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth, height: screenHeight } = useDimensions().screen;
   const carouselHeight = screenWidth / 1.5;
   const { _id } = route.params;
   const item = estates.find((e) => e._id === _id);
@@ -50,203 +50,213 @@ const EstateDetails = ({ navigation, route }) => {
   };
 
   return (
-    <FlatList
-      data={[]}
-      keyExtractor={() => "key"}
-      renderItem={null}
-      onScroll={(e) => handleScroll(e)}
-      style={[styles.container, { marginTop: statusBarHeight }]}
-      ListHeaderComponent={
-        <>
-          <View>
-            {Platform.OS !== "web" && (
-              <Carousel
-                loop
-                width={screenWidth}
-                height={carouselHeight}
-                // autoPlay={true}
-                data={item.images.slice(0, 5)}
-                scrollAnimationDuration={1000}
-                pagingEnabled
-                onSnapToItem={(index) => setItemInView(index)}
-                renderItem={({ item }) => (
-                  <View style={styles.carousel}>
-                    <AppText>1</AppText>
-                    <Image source={item} style={{ width: screenWidth }} />
-                  </View>
-                )}
-              />
-            )}
-
-            {/* IMAGE SCROLL INDICATOR */}
-            <View style={styles.imageScrollIndicator}>
-              {item.images.slice(0, 5).map((item, index) => (
-                <View
-                  key={index}
-                  style={{
-                    backgroundColor:
-                      index == itemInView ? colors.primaryColor : colors.white,
-                    height: 10,
-                    width: index != itemInView ? 10 : 20,
-                    margin: 2,
-                    borderRadius: 5
-                  }}
-                ></View>
-              ))}
-            </View>
-          </View>
-          {/* TOP NAV */}
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="arrow-left"
-              size={24}
-              style={[styles.topIcon, { top: -carouselHeight }]}
-              onPress={() => navigation.goBack()}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="heart-outline"
-              size={24}
-              style={[styles.topIcon, { top: -carouselHeight, right: 0 }]}
-            />
-          </TouchableOpacity>
-          {/* ===== DETAILS ===== */}
-          <View style={styles.details}>
-            <AppText numberOfLines={1} style={styles.title}>
-              {item.name}
-            </AppText>
-
-            {/* BASIC DETAILS 1 */}
-            <View style={styles.basics1}>
-              <AppText style={styles.category}>{item.category}</AppText>
-              <AppText style={styles.rating}>
-                <MaterialCommunityIcons
-                  name="star"
-                  size={16}
-                  color={colors.primaryOrange}
-                />{" "}
-                {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
-                reviews)
-              </AppText>
-            </View>
-
-            {/* BASIC DETAILS 2 */}
-            <View style={styles.basics2}>
-              <View style={styles.iconContainer}>
-                <Icon
-                  size={42}
-                  Icon={
-                    <MaterialCommunityIcons
-                      name="bed"
-                      size={20}
-                      color={colors.primaryColor}
-                    />
-                  }
-                />
-                <AppText style={styles.basics2Text}>{item.beds} Beds</AppText>
-              </View>
-              <View style={styles.iconContainer}>
-                <Icon
-                  size={42}
-                  Icon={
-                    <FontAwesome
-                      name="bath"
-                      size={20}
-                      color={colors.primaryColor}
-                    />
-                  }
-                />
-                <AppText style={styles.basics2Text}>{item.bath} bath</AppText>
-              </View>
-              <View style={styles.iconContainer}>
-                <Icon
-                  size={42}
-                  Icon={
-                    <MaterialCommunityIcons
-                      name="arrow-expand-all"
-                      size={20}
-                      color={colors.primaryColor}
-                    />
-                  }
-                />
-                <AppText style={styles.basics2Text}>{item.area}</AppText>
-              </View>
-            </View>
-
-            {/* AUTHOR */}
-            <View style={{ marginTop: 16 }}>
-              <AccountCard
-                Icon1={
-                  <Ionicons
-                    name="chatbubble-ellipses-outline"
-                    color={colors.primaryColor}
-                    size={24}
-                  />
-                }
-                Icon2={
-                  <Ionicons
-                    name="ios-call-outline"
-                    color={colors.primaryColor}
-                    size={24}
-                  />
-                }
-                first_text={item.owner.name}
-                second_text={"Owner"}
-                avatar={require("../assets/images/avatar.jpg")}
-                showIconBorder={false}
-              />
-            </View>
-
-            {/* OVERVIEW */}
+    <View style={{backgroundColor: colors.white}}>
+      <FlatList
+        data={[]}
+        keyExtractor={() => "key"}
+        renderItem={null}
+        onScroll={(e) => handleScroll(e)}
+        style={[
+          styles.container,
+          {
+            marginTop: statusBarHeight,
+            height: screenHeight - 100 - statusBarHeight
+          }
+        ]}
+        ListHeaderComponent={
+          <>
             <View>
-              <Header title={"Overview"} />
-              <AppText numberOfLines={4} style={styles.overview}>
-                {item.overview}
-              </AppText>
-              <AppText style={styles.readMore}>Read more</AppText>
+              {Platform.OS !== "web" && (
+                <Carousel
+                  loop
+                  width={screenWidth}
+                  height={carouselHeight}
+                  // autoPlay={true}
+                  data={item.images.slice(0, 5)}
+                  scrollAnimationDuration={1000}
+                  pagingEnabled
+                  onSnapToItem={(index) => setItemInView(index)}
+                  renderItem={({ item }) => (
+                    <View style={styles.carousel}>
+                      <AppText>1</AppText>
+                      <Image source={item} style={{ width: screenWidth }} />
+                    </View>
+                  )}
+                />
+              )}
+
+              {/* IMAGE SCROLL INDICATOR */}
+              <View style={styles.imageScrollIndicator}>
+                {item.images.slice(0, 5).map((item, index) => (
+                  <View
+                    key={index}
+                    style={{
+                      backgroundColor:
+                        index == itemInView
+                          ? colors.primaryColor
+                          : colors.white,
+                      height: 10,
+                      width: index != itemInView ? 10 : 20,
+                      margin: 2,
+                      borderRadius: 5
+                    }}
+                  ></View>
+                ))}
+              </View>
             </View>
 
-            {/* FACILITIES */}
-            <Header title="Facilities" />
-            <Facilities item={item} />
+            {/* TOP NAV */}
+            <TouchableOpacity>
+              <MaterialCommunityIcons
+                name="arrow-left"
+                size={24}
+                style={[styles.topIcon, { top: -carouselHeight }]}
+                onPress={() => navigation.goBack()}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <MaterialCommunityIcons
+                name="heart-outline"
+                size={24}
+                style={[styles.topIcon, { top: -carouselHeight, right: 0 }]}
+              />
+            </TouchableOpacity>
 
-            {/* GALLERY */}
-            <Header title="Gallery" />
-            <Gallery item={item} />
-
-            {/* MAP */}
-            <Header title={"Location"} />
-            <Location item={item} />
-
-            {/* REVIEWS */}
-            <Header title={"Reviews"} />
-            <View style={styles.reviewSummary}>
-              <AppText
-                style={[
-                  styles.rating,
-                  { fontWeight: "bold", fontSize: 17, marginLeft: 0 }
-                ]}
-              >
-                <MaterialCommunityIcons
-                  name="star"
-                  size={20}
-                  color={colors.primaryOrange}
-                />{" "}
-                {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
-                reviews)
+            {/* ===== DETAILS ===== */}
+            <View style={styles.details}>
+              <AppText numberOfLines={1} style={styles.title}>
+                {item.name}
               </AppText>
-              <SeeAllText />
-            </View>
-            <Reviews item={item} />
 
-            {/* FOOTER */}
-          </View>
-          <Footer navigation={navigation} item={item} />{" "}
-          {/* TODO : Make footer fixed to bottom*/}
-        </>
-      }
-    />
+              {/* BASIC DETAILS 1 */}
+              <View style={styles.basics1}>
+                <AppText style={styles.category}>{item.category}</AppText>
+                <AppText style={styles.rating}>
+                  <MaterialCommunityIcons
+                    name="star"
+                    size={16}
+                    color={colors.primaryOrange}
+                  />{" "}
+                  {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
+                  reviews)
+                </AppText>
+              </View>
+
+              {/* BASIC DETAILS 2 */}
+              <View style={styles.basics2}>
+                <View style={styles.iconContainer}>
+                  <Icon
+                    size={42}
+                    Icon={
+                      <MaterialCommunityIcons
+                        name="bed"
+                        size={20}
+                        color={colors.primaryColor}
+                      />
+                    }
+                  />
+                  <AppText style={styles.basics2Text}>{item.beds} Beds</AppText>
+                </View>
+                <View style={styles.iconContainer}>
+                  <Icon
+                    size={42}
+                    Icon={
+                      <FontAwesome
+                        name="bath"
+                        size={20}
+                        color={colors.primaryColor}
+                      />
+                    }
+                  />
+                  <AppText style={styles.basics2Text}>{item.bath} bath</AppText>
+                </View>
+                <View style={styles.iconContainer}>
+                  <Icon
+                    size={42}
+                    Icon={
+                      <MaterialCommunityIcons
+                        name="arrow-expand-all"
+                        size={20}
+                        color={colors.primaryColor}
+                      />
+                    }
+                  />
+                  <AppText style={styles.basics2Text}>{item.area}</AppText>
+                </View>
+              </View>
+
+              {/* AUTHOR */}
+              <View style={{ marginTop: 16 }}>
+                <AccountCard
+                  Icon1={
+                    <Ionicons
+                      name="chatbubble-ellipses-outline"
+                      color={colors.primaryColor}
+                      size={24}
+                    />
+                  }
+                  Icon2={
+                    <Ionicons
+                      name="ios-call-outline"
+                      color={colors.primaryColor}
+                      size={24}
+                    />
+                  }
+                  first_text={item.owner.name}
+                  second_text={"Owner"}
+                  avatar={require("../assets/images/avatar.jpg")}
+                  showIconBorder={false}
+                />
+              </View>
+
+              {/* OVERVIEW */}
+              <View>
+                <Header title={"Overview"} />
+                <AppText numberOfLines={4} style={styles.overview}>
+                  {item.overview}
+                </AppText>
+                <AppText style={styles.readMore}>Read more</AppText>
+              </View>
+
+              {/* FACILITIES */}
+              <Header title="Facilities" />
+              <Facilities item={item} />
+
+              {/* GALLERY */}
+              <Header title="Gallery" />
+              <Gallery item={item} />
+
+              {/* MAP */}
+              <Header title={"Location"} />
+              <Location item={item} />
+
+              {/* REVIEWS */}
+              <Header title={"Reviews"} />
+              <View style={styles.reviewSummary}>
+                <AppText
+                  style={[
+                    styles.rating,
+                    { fontWeight: "bold", fontSize: 17, marginLeft: 0 }
+                  ]}
+                >
+                  <MaterialCommunityIcons
+                    name="star"
+                    size={20}
+                    color={colors.primaryOrange}
+                  />{" "}
+                  {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
+                  reviews)
+                </AppText>
+                <SeeAllText />
+              </View>
+              <Reviews item={item} />
+            </View>
+          </>
+        }
+      />
+      {/* FOOTER */}
+      <Footer navigation={navigation} item={item} />
+    </View>
   );
 };
 
@@ -288,6 +298,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background200
   },
   container: {
+    display: "flex",
     overflow: "hidden",
     backgroundColor: colors.white
   },
@@ -327,7 +338,7 @@ const styles = StyleSheet.create({
   reviewSummary: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   topIcon: {
     position: "absolute",

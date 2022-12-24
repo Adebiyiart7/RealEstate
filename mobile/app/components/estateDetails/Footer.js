@@ -16,6 +16,7 @@ const Footer = ({ navigation, item }) => {
         </AppText>
       </View>
       <AppButton
+        small
         style={styles.button}
         onPress={() =>
           navigation.navigate(routes.BOOKING, {

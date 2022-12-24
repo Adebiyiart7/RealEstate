@@ -5,6 +5,7 @@ const routes = {
   BOOKING_FORM: "BookingForm",
   BOOKING_PAYMENT: "BookingPayment",
   CONFIRM_PIN: "ConfirmPin",
+  E_RECEIPT: " E_Receipt",
   ESTATE_DETAILS: "EstateDetails",
   EXPLORE: "Explore",
   FAVORITES: "Favorites",

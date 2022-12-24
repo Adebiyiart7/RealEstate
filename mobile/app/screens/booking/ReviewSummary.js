@@ -19,70 +19,61 @@ import routes from "../../config/routes";
 const ReviewSummary = ({ navigation, route }) => {
   const item = estates.find((i) => i._id === route.params._id);
   const checksDetails = route.params.checksDetails;
-
-  const tax = 5000;
-
-  const dateDifference = (start, end) => {
-    start = moment(start);
-    end = moment(end);
-    const diff = end.diff(start, "days");
-    return diff + (diff > 1 || diff < 1 ? " days" : " day");
-  };
-
+  
   return (
     <Screen>
       <GoBackArrowHeader navigation={navigation} title={"Review Summary"} />
       <View>
         <Card3 format={"list"} item={item} navigation={navigation} />
       </View>
-      <View style={[styles.card, styles.checksDetails]}>
-        <View style={styles.textContainer}>
+      <View style={[defaultStyles.summaryCard, styles.checksDetails]}>
+        <View style={defaultStyles.summaryTextContainer}>
           <AppText>Date</AppText>
-          <AppText style={styles.value}>
+          <AppText style={defaultStyles.summaryValue}>
             {moment(checksDetails.startDate).format("DD MMM, YYYY")} -
             {moment(checksDetails.endDate).format("DD MMM, YYYY")}
           </AppText>
         </View>
-        <View style={styles.textContainer}>
+        <View style={defaultStyles.summaryTextContainer}>
           <AppText>Checks In</AppText>
-          <AppText style={styles.value}>
+          <AppText style={defaultStyles.summaryValue}>
             {moment(checksDetails.startDate).format("DD MMMM, YYYY")}
           </AppText>
         </View>
-        <View style={styles.textContainer}>
+        <View style={defaultStyles.summaryTextContainer}>
           <AppText>Checks Out</AppText>
-          <AppText style={styles.value}>
+          <AppText style={defaultStyles.summaryValue}>
             {moment(checksDetails.endDate).format("DD MMMM, YYYY")}
           </AppText>
         </View>
       </View>
-      <View style={styles.card}>
-        <View style={styles.textContainer}>
+      <View style={defaultStyles.summaryCard}>
+        <View style={defaultStyles.summaryTextContainer}>
           <AppText>
             Amount (
-            {dateDifference(checksDetails.startDate, checksDetails.endDate)})
+            {utils.dateDifference(checksDetails.startDate, checksDetails.endDate)})
           </AppText>
-          <AppText style={styles.value}>
+          <AppText style={defaultStyles.summaryValue}>
             &#8358;{utils.seperateToThounsand(item.cost)}
           </AppText>
         </View>
-        <View style={styles.textContainer}>
+        <View style={defaultStyles.summaryTextContainer}>
           <AppText>Tax</AppText>
-          <AppText style={styles.value}>
-            &#8358;{utils.seperateToThounsand(tax)}
+          <AppText style={defaultStyles.summaryValue}>
+            &#8358;{utils.seperateToThounsand(utils.tax)}
           </AppText>
-        </View>
-        <ItemSeparatorComponent style={styles.seperator} />
-        <View style={styles.textContainer}>
+        </View>  
+        <ItemSeparatorComponent style={defaultStyles.summarySeperator} />
+        <View style={defaultStyles.summaryTextContainer}>
           <AppText>Total</AppText>
-          <AppText style={styles.value}>
-            &#8358;{utils.seperateToThounsand(item.cost + tax)}
+          <AppText style={defaultStyles.summaryValue}>
+            &#8358;{utils.seperateToThounsand(item.cost + utils.tax)}
           </AppText>
         </View>
       </View>
-      <View style={[styles.card, styles.selectedCard]}>
+      <View style={[defaultStyles.summaryCard, styles.selectedCard]}>
         <Image
-          style={styles.cardLogo}
+          style={defaultStyles.summaryCardLogo}
           source={require("../../assets/images/master-card-logo.png")}
         />
         <AppText style={styles.atmNumber}>**** **** **** 4194</AppText>
@@ -93,7 +84,9 @@ const ReviewSummary = ({ navigation, route }) => {
       <AppButton
         onPress={() =>
           navigation.navigate(routes.CONFIRM_PIN, {
-            item: item
+            _id: route.params._id,
+            checksDetails: checksDetails,
+            userInfo: route.params.userInfo
           })
         }
       >
@@ -110,12 +103,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16
   },
-  card: {
-    padding: 16,
-    borderRadius: defaultStyles.primaryBorderRadius,
-    backgroundColor: colors.white,
-    marginVertical: 8
-  },
   changeText: {
     color: colors.primaryColor,
     fontWeight: "bold",
@@ -128,16 +115,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
-  seperator: {
-    marginVertical: 6
-  },
-  textContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 3
-  },
-  value: {
-    fontWeight: "bold"
-  }
+
 });

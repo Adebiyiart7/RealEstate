@@ -38,7 +38,7 @@ class BookingScreen extends React.Component {
 
     return (
       <Screen style={styles.container}>
-        <GoBackArrowHeader title={"Booking Real Estate"} />
+        <GoBackArrowHeader navigation={props.navigation} title={"Booking Real Estate"} />
         <Header title={"Select Date"} />
         <View style={styles.calendar}>
           <DateRangePicker
@@ -105,7 +105,7 @@ class BookingScreen extends React.Component {
                 _id: props.route.params._id,
                 checksDetails: {
                   startDate: startDate,
-                  endDate: endDate,
+                  endDate: endDate
                 }
               })
             }

@@ -15,7 +15,28 @@ const defaultStyles = {
     marginHorizontal: -36,
     flexDirection: "row",
     flexWrap: "wrap"
+  },
+
+  // Start Summary Card
+  summaryCard: {
+    padding: 16,
+    borderRadius: 12,
+    backgroundColor: colors.white,
+    marginVertical: 8
+  },
+  summaryTextContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 4
+  },
+  summaryValue: {
+    fontWeight: "bold"
+  },
+  summarySeperator: {
+    marginVertical: 6
   }
+  // end
 };
 
 export default defaultStyles;

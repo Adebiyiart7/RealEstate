@@ -17,7 +17,7 @@ const initialValues = {
   gender: "Male",
   dob: "01-01-2009",
   email: "adebiyiartworld@gmail.com",
-  phoneNumber: "Phone Number",
+  phoneNumber: "09029242729",
   country: "Nigeria"
 };
 const validationSchema = Yup.object().shape({

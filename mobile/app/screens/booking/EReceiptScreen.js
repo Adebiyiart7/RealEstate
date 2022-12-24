@@ -18,48 +18,19 @@ import RateBooking from "../../components/RateBooking";
 
 const EReceiptScreen = ({ navigation, route }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(true);
-  // const item = estates.find((i) => i._id === route.params._id);
-  // const checksDetails = route.params.checksDetails;
-  // const userInfo = route.params.userInfo;
-  // const { width: screenWidth } = useDimensions().screen;
+  const item = estates.find((i) => i._id === route.params._id);
+  const checksDetails = route.params.checksDetails;
+  const userInfo = route.params.userInfo;
+  const { width: screenWidth } = useDimensions().screen;
 
   return (
     <Screen>
       <BottomSheet
-        bottomSheetContent={<RateBooking />}
+        bottomSheetContent={<RateBooking estateName={item.name} />}
         bottomSheetVisible={bottomSheetVisible}
         setBottomSheetVisible={setBottomSheetVisible}
       />
-     
-    </Screen>
-  );
-};
-
-export default EReceiptScreen;
-
-const styles = StyleSheet.create({
-  contentCopy: {
-    color: colors.primaryColor,
-    fontSize: 16,
-    marginLeft: 8,
-    marginTop: 2
-  },
-  paidText: {
-    fontStyle: "italic",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    color: colors.primaryGreen
-  },
-  receiptImage: {
-    width: "100%",
-    maxWidth: 400,
-    height: 100
-  }
-});
-
-
-/**
- *  <GoBackArrowHeader
+      <GoBackArrowHeader
         title={"E-Receipt"}
         navigation={navigation}
         RightIcon={
@@ -161,4 +132,28 @@ const styles = StyleSheet.create({
           <AppText style={styles.paidText}>paid</AppText>
         </View>
       </View>
- */
+    </Screen>
+  );
+};
+
+export default EReceiptScreen;
+
+const styles = StyleSheet.create({
+  contentCopy: {
+    color: colors.primaryColor,
+    fontSize: 16,
+    marginLeft: 8,
+    marginTop: 2
+  },
+  paidText: {
+    fontStyle: "italic",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: colors.primaryGreen
+  },
+  receiptImage: {
+    width: "100%",
+    maxWidth: 400,
+    height: 100
+  }
+});

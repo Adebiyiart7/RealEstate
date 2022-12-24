@@ -60,7 +60,7 @@ const EstateDetails = ({ navigation, route }) => {
           styles.container,
           {
             marginTop: statusBarHeight,
-            height: screenHeight - 100 - statusBarHeight
+            height: screenHeight - 90 - statusBarHeight
           }
         ]}
         ListHeaderComponent={

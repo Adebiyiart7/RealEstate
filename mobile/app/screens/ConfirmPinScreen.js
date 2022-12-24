@@ -6,9 +6,12 @@ import AppText from "../components/AppText";
 import PinForm from "../components/form/PinForm";
 import AppButton from "../components/AppButton";
 import ProcessStatus from "../components/ProcessStatus";
+import routes from "../config/routes";
+import { estates } from "../db";
 
 const ConfirmPinScreen = ({ navigation, route }) => {
-  const item = route.params.item;
+  const item = estates.find((i) => i._id === route.params._id);
+  const userInfo = route.params.userInfo;
   const [pin, setPin] = useState({
     first: "",
     second: "",
@@ -22,12 +25,20 @@ const ConfirmPinScreen = ({ navigation, route }) => {
         status="success"
         title={"Congratulations!"}
         image={require("../assets/images/success-image.png")}
-        message={
-          `${item.name} successfully booked, you can check your bookings on the menu Profile -> My Booking`
-        }
+        message={`${item.name} successfully booked, you can check your bookings on the menu Profile -> My Booking`}
         Actions={
           <View style={{ marginTop: 10 }}>
-            <AppButton rounded style={{ width: "100%", marginBottom: 0 }}>
+            <AppButton
+              onPress={() =>
+                navigation.navigate(routes.E_RECEIPT, {
+                  _id: route.params._id,
+                  checksDetails: route.params.checksDetails,
+                  userInfo: userInfo
+                })
+              }
+              rounded
+              style={{ width: "100%", marginBottom: 0 }}
+            >
               View E-Receipt
             </AppButton>
             <AppButton rounded secondary>

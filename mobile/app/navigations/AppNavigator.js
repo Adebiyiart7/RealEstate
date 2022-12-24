@@ -20,6 +20,7 @@ import BookingPaymentScreen from "../screens/booking/BookingPaymentScreen";
 import AddNewCardScreen from "../screens/booking/AddNewCardScreen";
 import ReviewSummary from "../screens/booking/ReviewSummary";
 import ConfirmPinScreen from "../screens/ConfirmPinScreen";
+import EReceiptScreen from "../screens/booking/EReceiptScreen";
 
 const Stack = createStackNavigator();
 
@@ -56,6 +57,7 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.ADD_NEW_CARD} component={AddNewCardScreen} />
       <Stack.Screen name={routes.REVIEW_SUMMARY} component={ReviewSummary} />
       <Stack.Screen name={routes.CONFIRM_PIN} component={ConfirmPinScreen} />
+      <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
       {/* TAB NAVIGATOR */}
       <Stack.Screen name={routes.TAB} component={TabNavigator} />
     </Stack.Navigator>

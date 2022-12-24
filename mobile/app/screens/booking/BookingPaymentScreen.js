@@ -44,6 +44,7 @@ const BookingPaymentScreen = ({ navigation, route }) => {
           onPress={() => {
             navigation.navigate(routes.REVIEW_SUMMARY, {
               _id: route.params._id,
+              userInfo: route.params.userInfo,
               checksDetails: route.params.checksDetails
             });
           }}

@@ -1,7 +1,10 @@
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // LOCAL IMPORTS
-import authService from "./authService";
+export const API_URI = "http://192.168.43.231:5000/api";
+
 let user = null;
 
 const initialState = {
@@ -16,16 +19,14 @@ export const register = createAsyncThunk(
   "auth/register",
   async (data, thunkAPI) => {
     try {
-      const response = await authService.register(data);
-      return response;
+      const response = await axios.post(API_URI + "/users/register", data);
+      if (response.data) {
+        AsyncStorage.setItem("user", JSON.stringify(response.data.body));
+        return response.data.body;
+      }
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
+      const message = error.response.data.body.message.toString();
+      console.log(message);
       return thunkAPI.rejectWithValue(message);
     }
   }

@@ -1,10 +1,9 @@
-
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Image, StyleSheet, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useContext } from "react";
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
@@ -12,12 +11,16 @@ import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
 import SubmitButton from "../components/form/SubmitButton";
 import AuthFooter from "../components/AuthFooter";
+import { AppContext } from "../../App";
 import AppFormField from "../components/form/AppFormField";
 import constants from "../config/constants";
 import routes from "../config/routes";
 import { register, reset } from "../features/auth/authSlice";
+import { useEffect } from "react";
+import Loading from "../components/Loading";
 
 const validationSchema = Yup.object().shape({
+  username: Yup.string().required().label("Username"),
   email: Yup.string().email().required().label("Email"),
   password: Yup.string()
     .required()
@@ -26,17 +29,30 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterScreen = ({ navigation }) => {
+  const c = useContext(AppContext)
   const dispatch = useDispatch();
-
+  const { isLoading, isError, isSuccess, message, user } = useSelector(
+    (state) => state.auth
+  );
+console.log(c)
   const handleSubmit = (values) => {
     dispatch(register(values));
-    dispatch(reset())
-    console.log("Hello")
-    navigation.navigate(routes.TAB)
   };
+
+  useEffect(() => {
+    if (isError) console.log(message);
+
+    if (isSuccess || user) {
+      console.log(user);
+      navigation.navigate(routes.TAB);
+    }
+
+    dispatch(reset());
+  }, [dispatch, isSuccess, message, navigation, isError, user]);
 
   return (
     <Screen>
+      <Loading visible={isLoading} />
       <View style={styles.container}>
         <GoBackArrowHeader navigation={navigation} />
         <Image
@@ -45,12 +61,22 @@ const RegisterScreen = ({ navigation }) => {
         />
         <AppText style={styles.title}>Create New Account</AppText>
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{
+            username: "Adebiyiart",
+            email: "adebiyiartworld@gmail.com",
+            password: "Test@123"
+          }}
           onSubmit={(values) => handleSubmit(values)}
           validationSchema={validationSchema}
         >
           {() => (
             <>
+              <AppFormField
+                icon="account"
+                name={"username"}
+                placeholder={"Username"}
+                autoCapitalize="false"
+              />
               <AppFormField
                 icon="email"
                 name={"email"}
@@ -120,7 +146,7 @@ export const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
     marginVertical: 5
   },
   rememberMeIcon: {

@@ -27,39 +27,62 @@ const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={routes.TAB}
+      initialRouteName={routes.REGISTER}
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name={routes.LETS_YOU_IN} component={LetsYouIn} />
-      <Stack.Screen name={routes.REGISTER} component={RegisterScreen} />
-      <Stack.Screen name={routes.LOGIN} component={LoginScreen} />
-      <Stack.Screen name={routes.NEW_PIN} component={CreateNewPinScreen} />
-      <Stack.Screen
-        name={routes.FORGOT_PASSWORD}
-        component={ForgotPasswordScreen}
-      />
-      <Stack.Screen
-        name={routes.NOTIFICATIONS}
-        component={NotificationsScreen}
-      />
-      <Stack.Screen
-        name={routes.OUR_RECOMMENDATION}
-        component={OurRecommendationScreen}
-      />
-      <Stack.Screen name={routes.SEARCH} component={SearchScreen} />
-      <Stack.Screen name={routes.ESTATE_DETAILS} component={EstateDetails} />
-      <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
-      <Stack.Screen name={routes.BOOKING_FORM} component={BookingFormScreen} />
-      <Stack.Screen
-        name={routes.BOOKING_PAYMENT}
-        component={BookingPaymentScreen}
-      />
-      <Stack.Screen name={routes.ADD_NEW_CARD} component={AddNewCardScreen} />
-      <Stack.Screen name={routes.REVIEW_SUMMARY} component={ReviewSummary} />
-      <Stack.Screen name={routes.CONFIRM_PIN} component={ConfirmPinScreen} />
-      <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
-      {/* TAB NAVIGATOR */}
-      <Stack.Screen name={routes.TAB} component={TabNavigator} />
+      {/* {"a" === "a" ? ( */}
+        <Stack.Group>
+          <Stack.Screen name={routes.LETS_YOU_IN} component={LetsYouIn} />
+          <Stack.Screen name={routes.REGISTER} component={RegisterScreen} />
+          <Stack.Screen name={routes.LOGIN} component={LoginScreen} />
+          <Stack.Screen name={routes.NEW_PIN} component={CreateNewPinScreen} />
+          <Stack.Screen
+            name={routes.FORGOT_PASSWORD}
+            component={ForgotPasswordScreen}
+          />
+        </Stack.Group>
+      {/* ) : ( */}
+        <Stack.Group>
+          <Stack.Screen
+            name={routes.NOTIFICATIONS}
+            component={NotificationsScreen}
+          />
+          <Stack.Screen
+            name={routes.OUR_RECOMMENDATION}
+            component={OurRecommendationScreen}
+          />
+          <Stack.Screen name={routes.SEARCH} component={SearchScreen} />
+          <Stack.Screen
+            name={routes.ESTATE_DETAILS}
+            component={EstateDetails}
+          />
+          <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
+          <Stack.Screen
+            name={routes.BOOKING_FORM}
+            component={BookingFormScreen}
+          />
+          <Stack.Screen
+            name={routes.BOOKING_PAYMENT}
+            component={BookingPaymentScreen}
+          />
+          <Stack.Screen
+            name={routes.ADD_NEW_CARD}
+            component={AddNewCardScreen}
+          />
+          <Stack.Screen
+            name={routes.REVIEW_SUMMARY}
+            component={ReviewSummary}
+          />
+          <Stack.Screen
+            name={routes.CONFIRM_PIN}
+            component={ConfirmPinScreen}
+          />
+          <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
+
+          {/* TAB NAVIGATOR */}
+          <Stack.Screen name={routes.TAB} component={TabNavigator} />
+        </Stack.Group>
+      {/* )} */}
     </Stack.Navigator>
   );
 };

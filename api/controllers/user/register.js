@@ -22,9 +22,9 @@ const register = async (req, res) => {
 
   // Create a user
   const { username, email, password } = req.body;
-
+  
   // check if user already exist
-  const userExist = await User.findOne({ email });
+  const userExist = await User.findOne({ $or: [{ email }, {username}] });
   if (userExist) {
     res.status(400);
     throw new Error("User already exist!");

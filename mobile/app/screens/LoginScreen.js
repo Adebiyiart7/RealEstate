@@ -1,7 +1,7 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-
+import { useDispatch,  } from "react-redux";
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
@@ -19,6 +19,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const handleSubmit = (values) => {
+// dispatch(auth)
+  }
   return (
     <Screen>
       <View style={styles.container}>
@@ -30,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
         <AppText style={styles.title}>Login to Your Account</AppText>
         <Formik
           initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => handleSubmit(values)}
           validationSchema={validationSchema}
         >
           {() => (

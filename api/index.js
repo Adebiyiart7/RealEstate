@@ -8,14 +8,15 @@ const express = require("express");
 // LOCAL IMPORTS
 const connectDB = require("./config/db");
 const errorMiddleware = require("./middleware/error");
-// const asyncMiddleware = require("./middleware/async");
 
 connectDB();
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: "*" }))
+app.use(
+  cors({ origin: ["http://192.168.43.231:5000", "http://localhost:5000"] })
+);
 
 // ROUTES
 app.use("/api/users", require("./routes/user"));

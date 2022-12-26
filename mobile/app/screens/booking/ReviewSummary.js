@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -15,13 +15,21 @@ import ItemSeparatorComponent from "../../components/ItemSeparatorComponent";
 import Card1 from "../../components/cards/Card1";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
+import LoginBottomSheet from "../../components/LoginBottomSheet";
+import { useSelector } from "react-redux";
 
 const ReviewSummary = ({ navigation, route }) => {
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const { user } = useSelector((state) => state.auth);
   const item = estates.find((i) => i._id === route.params._id);
   const checksDetails = route.params.checksDetails;
-  
+
   return (
     <Screen>
+      <LoginBottomSheet
+        bottomSheetVisible={bottomSheetVisible}
+        setBottomSheetVisible={setBottomSheetVisible}
+      />
       <GoBackArrowHeader navigation={navigation} title={"Review Summary"} />
       <View>
         <Card3 format={"list"} item={item} navigation={navigation} />
@@ -51,23 +59,27 @@ const ReviewSummary = ({ navigation, route }) => {
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>
             Amount (
-            {utils.dateDifference(checksDetails.startDate, checksDetails.endDate)})
+            {utils.dateDifference(
+              checksDetails.startDate,
+              checksDetails.endDate
+            )}
+            )
           </AppText>
           <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.seperateToThounsand(item.cost)}
+            &#8358;{utils.separateToThounsand(item.cost)}
           </AppText>
         </View>
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Tax</AppText>
           <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.seperateToThounsand(utils.tax)}
+            &#8358;{utils.separateToThounsand(utils.tax)}
           </AppText>
-        </View>  
+        </View>
         <ItemSeparatorComponent style={defaultStyles.summarySeperator} />
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Total</AppText>
           <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.seperateToThounsand(item.cost + utils.tax)}
+            &#8358;{utils.separateToThounsand(item.cost + utils.tax)}
           </AppText>
         </View>
       </View>
@@ -82,13 +94,15 @@ const ReviewSummary = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
       <AppButton
-        onPress={() =>
-          navigation.navigate(routes.CONFIRM_PIN, {
-            _id: route.params._id,
-            checksDetails: checksDetails,
-            userInfo: route.params.userInfo
-          })
-        }
+        onPress={() => {
+          user
+            ? navigation.navigate(routes.CONFIRM_PIN, {
+                _id: route.params._id,
+                checksDetails: checksDetails,
+                userInfo: route.params.userInfo
+              })
+            : setBottomSheetVisible(true);
+        }}
       >
         Continue
       </AppButton>
@@ -114,6 +128,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
-  },
-
+  }
 });

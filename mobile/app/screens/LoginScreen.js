@@ -1,7 +1,8 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useDispatch,  } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
@@ -12,6 +13,9 @@ import SubmitButton from "../components/form/SubmitButton";
 import { styles } from "./RegisterScreen";
 import AuthFooter from "../components/AuthFooter";
 import routes from "../config/routes";
+import { login, reset } from "../features/auth/authSlice";
+import { useEffect } from "react";
+import Loading from "../components/Loading";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
@@ -20,11 +24,28 @@ const validationSchema = Yup.object().shape({
 
 const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
   const handleSubmit = (values) => {
-// dispatch(auth)
-  }
+    dispatch(login(values));
+  };
+
+  useEffect(() => {
+    if (isError) console.log(message); // TODO log message in a alert box instead
+
+    if (isSuccess || user) {
+      navigation.navigate(routes.TAB);
+      // console.log(user);
+    }
+
+    dispatch(reset());
+  }, [user, isSuccess, isError, message, dispatch, navigation]);
+
   return (
     <Screen>
+      <Loading visible={isLoading} />
       <View style={styles.container}>
         <GoBackArrowHeader navigation={navigation} />
         <Image
@@ -33,7 +54,10 @@ const LoginScreen = ({ navigation }) => {
         />
         <AppText style={styles.title}>Login to Your Account</AppText>
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{
+            email: "adebiyiartworld@gmail.com",
+            password: "Test@123"
+          }}
           onSubmit={(values) => handleSubmit(values)}
           validationSchema={validationSchema}
         >

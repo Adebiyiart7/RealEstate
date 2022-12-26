@@ -1,13 +1,23 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+
 import AppButton from "../AppButton";
 import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
+import { useSelector } from "react-redux";
+import LoginBottomSheet from "../LoginBottomSheet";
 
 const Footer = ({ navigation, item }) => {
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const { user } = useSelector(state => state.auth)
+
   return (
     <View style={styles.footer}>
+      <LoginBottomSheet
+        bottomSheetVisible={bottomSheetVisible}
+        setBottomSheetVisible={setBottomSheetVisible}
+      />
       <View style={styles.left}>
         <AppText style={styles.priceText}>Price</AppText>
         <AppText style={styles.price}>
@@ -18,11 +28,13 @@ const Footer = ({ navigation, item }) => {
       <AppButton
         small
         style={styles.button}
-        onPress={() =>
-          navigation.navigate(routes.BOOKING, {
-            _id: item._id
-          })
-        }
+        onPress={() => {
+          user
+            ? navigation.navigate(routes.BOOKING, {
+                _id: item._id
+              })
+            : setBottomSheetVisible(true);
+        }}
       >
         Booking Now
       </AppButton>

@@ -1,6 +1,6 @@
 const routes = {
   TAB: "Tab",
-  ADD_NEW_CARD: "AddNewCard",
+  ADD_NEW_CARD: "AddNewCard", // sdsds
   BOOKING: "Booking",
   BOOKING_FORM: "BookingForm",
   BOOKING_PAYMENT: "BookingPayment",
@@ -9,6 +9,7 @@ const routes = {
   ESTATE_DETAILS: "EstateDetails",
   EXPLORE: "Explore",
   FAVORITES: "Favorites",
+  FILL_PROFILE: "FillProfile",
   FORGOT_PASSWORD: "ForgotPassword",
   HOME: "Home",
   LETS_YOU_IN: "LetsYouIn",

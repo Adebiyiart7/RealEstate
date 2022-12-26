@@ -11,6 +11,7 @@ import AppText from "../../components/AppText";
 import colors from "../../config/colors";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
+import LoginBottomSheet from "../../components/LoginBottomSheet";
 
 class BookingScreen extends React.Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class BookingScreen extends React.Component {
       props: props,
       startDate: 1611106322840,
       endDate: 1671706322840,
-      displayedDate: moment()
+      displayedDate: moment(),
+      bottomSheetVisible: false
     };
   }
 
@@ -29,16 +31,30 @@ class BookingScreen extends React.Component {
     });
   };
 
+  setBottomSheetVisible = () => {
+    this.setState({
+      bottomSheetVisible: true
+    });
+  };
+
   render() {
-    const { startDate, endDate, displayedDate, props } = this.state;
-    
+    const { startDate, endDate, displayedDate, props, bottomSheetVisible } =
+      this.state;
+
     const Header = ({ title }) => {
       return <AppText style={styles.header}>{title} </AppText>;
     };
 
     return (
       <Screen style={styles.container}>
-        <GoBackArrowHeader navigation={props.navigation} title={"Booking Real Estate"} />
+        <LoginBottomSheet
+          bottomSheetVisible={bottomSheetVisible}
+          setBottomSheetVisible={this.setBottomSheetVisible}
+        />
+        <GoBackArrowHeader
+          navigation={props.navigation}
+          title={"Booking Real Estate"}
+        />
         <Header title={"Select Date"} />
         <View style={styles.calendar}>
           <DateRangePicker
@@ -100,15 +116,17 @@ class BookingScreen extends React.Component {
             value="I would like to know if there are extra charges apart from the tax and security"
           />
           <AppButton
-            onPress={() =>
-              props.navigation.navigate(routes.BOOKING_FORM, {
-                _id: props.route.params._id,
-                checksDetails: {
-                  startDate: startDate,
-                  endDate: endDate
-                }
-              })
-            }
+            onPress={() => {
+              !user
+                ? props.navigation.navigate(routes.BOOKING_FORM, {
+                    _id: props.route.params._id,
+                    checksDetails: {
+                      startDate: startDate,
+                      endDate: endDate
+                    }
+                  })
+                : this.setBottomSheetVisible;
+            }}
           >
             Continue
           </AppButton>

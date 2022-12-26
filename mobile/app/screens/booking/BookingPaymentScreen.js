@@ -1,5 +1,5 @@
 import { Image, StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 // LOCAL IMPORTS
 import AppText from "../../components/AppText";
@@ -8,12 +8,23 @@ import Screen from "../../components/Screen";
 import Card1 from "../../components/cards/Card1";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
+import LoginBottomSheet from "../../components/LoginBottomSheet";
+import { useSelector } from "react-redux";
 
 const BookingPaymentScreen = ({ navigation, route }) => {
-  
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <Screen>
-      <GoBackArrowHeader navigation={navigation} title={"Booking Real Estate"} />
+      <LoginBottomSheet
+        bottomSheetVisible={bottomSheetVisible}
+        setBottomSheetVisible={setBottomSheetVisible}
+      />
+      <GoBackArrowHeader
+        navigation={navigation}
+        title={"Booking Real Estate"}
+      />
       <AppText>Select the payment method you want to use.</AppText>
       <View>
         <Card1
@@ -37,16 +48,25 @@ const BookingPaymentScreen = ({ navigation, route }) => {
             />
           }
         />
-        <AppButton secondary
-        onPress={() => navigation.navigate(routes.ADD_NEW_CARD)}
-        >Add New Card</AppButton>
+        <AppButton
+          secondary
+          onPress={() => {
+            user
+              ? navigation.navigate(routes.ADD_NEW_CARD)
+              : setBottomSheetVisible(true);
+          }}
+        >
+          Add New Card
+        </AppButton>
         <AppButton
           onPress={() => {
-            navigation.navigate(routes.REVIEW_SUMMARY, {
-              _id: route.params._id,
-              userInfo: route.params.userInfo,
-              checksDetails: route.params.checksDetails
-            });
+            user
+              ? navigation.navigate(routes.REVIEW_SUMMARY, {
+                  _id: route.params._id,
+                  userInfo: route.params.userInfo,
+                  checksDetails: route.params.checksDetails
+                })
+              : setBottomSheetVisible(true);
           }}
         >
           Continue

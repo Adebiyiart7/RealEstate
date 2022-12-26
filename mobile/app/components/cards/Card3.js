@@ -7,16 +7,20 @@ import {
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { useDimensions } from "@react-native-community/hooks";
+import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
 import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
 import utils from "../../utils";
+import LoginBottomSheet from "../LoginBottomSheet";
 
 const Card3 = ({ navigation, item, format }) => {
   const dimension = useDimensions().screen;
   const [heartIcon, setHeartIcon] = useState("heart-outline");
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   const imageDimension = {
     height:
@@ -35,10 +39,16 @@ const Card3 = ({ navigation, item, format }) => {
   return (
     <View style={[styles.card, format === "list" && styles.cardListFormat]}>
       <TouchableOpacity
-        onPress={() =>
-          navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
-        }
+        onPress={() => {
+          user
+            ? navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
+            : setBottomSheetVisible(true);
+        }}
       >
+        <LoginBottomSheet
+          bottomSheetVisible={bottomSheetVisible}
+          setBottomSheetVisible={setBottomSheetVisible}
+        />
         <ImageBackground
           source={item.image}
           style={[styles.image, styles.imageListFormat, imageDimension]}
@@ -74,9 +84,13 @@ const Card3 = ({ navigation, item, format }) => {
         <View style={styles.texts}>
           <View>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
-              }
+              onPress={() => {
+                user
+                  ? navigation.navigate(routes.ESTATE_DETAILS, {
+                      _id: item._id
+                    })
+                  : setBottomSheetVisible(true);
+              }}
             >
               <AppText
                 numberOfLines={format === "list" ? 2 : 1}
@@ -100,7 +114,7 @@ const Card3 = ({ navigation, item, format }) => {
             style={[styles.footer, { detailsDimension }]}
           >
             <AppText style={[styles.f1, { marginTop: 10 }]}>
-              &#8358;{utils.seperateToThounsand(item.cost)}
+              &#8358;{utils.separateToThounsand(item.cost)}
             </AppText>
             <AppText style={styles.f2}>&nbsp;/&nbsp;{item.duration}</AppText>
           </AppText>

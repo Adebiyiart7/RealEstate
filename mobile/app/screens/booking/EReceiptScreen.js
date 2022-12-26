@@ -78,20 +78,20 @@ const EReceiptScreen = ({ navigation, route }) => {
             )
           </AppText>
           <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.seperateToThounsand(item.cost)}
+            &#8358;{utils.separateToThounsand(item.cost)}
           </AppText>
         </View>
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Tax</AppText>
           <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.seperateToThounsand(utils.tax)}
+            &#8358;{utils.separateToThounsand(utils.tax)}
           </AppText>
         </View>
         <ItemSeparatorComponent style={defaultStyles.summarySeperator} />
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Total</AppText>
           <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.seperateToThounsand(item.cost + utils.tax)}
+            &#8358;{utils.separateToThounsand(item.cost + utils.tax)}
           </AppText>
         </View>
       </View>

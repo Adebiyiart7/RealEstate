@@ -17,7 +17,7 @@ export default TextWithLines
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomColor: defaultStyles.colors.border100,
+    borderBottomColor: defaultStyles.colors.border200,
     borderBottomWidth: 1,
     alignItems: "center",
   },
@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top:-12,
     paddingHorizontal: 10,
-    backgroundColor: defaultStyles.colors.white,
+    backgroundColor: defaultStyles.colors.background100,
   }
 });

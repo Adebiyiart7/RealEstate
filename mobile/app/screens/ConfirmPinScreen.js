@@ -8,8 +8,12 @@ import AppButton from "../components/AppButton";
 import ProcessStatus from "../components/ProcessStatus";
 import routes from "../config/routes";
 import { estates } from "../db";
+import LoginBottomSheet from "../components/LoginBottomSheet";
+import { useSelector } from "react-redux";
 
 const ConfirmPinScreen = ({ navigation, route }) => {
+  const { user } = useSelector((state) => state.auth);
+    const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const item = estates.find((i) => i._id === route.params._id);
   const userInfo = route.params.userInfo;
   const [pin, setPin] = useState({
@@ -21,6 +25,10 @@ const ConfirmPinScreen = ({ navigation, route }) => {
 
   return (
     <>
+      <LoginBottomSheet
+        bottomSheetVisible={bottomSheetVisible}
+        setBottomSheetVisible={setBottomSheetVisible}
+      />
       <ProcessStatus
         status="success"
         title={"Congratulations!"}
@@ -29,13 +37,15 @@ const ConfirmPinScreen = ({ navigation, route }) => {
         Actions={
           <View style={{ marginTop: 10 }}>
             <AppButton
-              onPress={() =>
-                navigation.navigate(routes.E_RECEIPT, {
-                  _id: route.params._id,
-                  checksDetails: route.params.checksDetails,
-                  userInfo: userInfo
-                })
-              }
+              onPress={() => {
+                user
+                  ? navigation.navigate(routes.E_RECEIPT, {
+                      _id: route.params._id,
+                      checksDetails: route.params.checksDetails,
+                      userInfo: userInfo
+                    })
+                  : setBottomSheetVisible(true);
+              }}
               rounded
               style={{ width: "100%", marginBottom: 0 }}
             >

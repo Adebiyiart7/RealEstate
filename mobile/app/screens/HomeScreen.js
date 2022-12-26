@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -30,70 +31,67 @@ const Header = ({ title, right, onPressRight }) => {
 const HomeScreen = ({ navigation }) => {
   // const [loading, setLoading] = useState(true);
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  
-  return (
-      <Screen style={styles.screen}>
-      {/* <Loading visible={loading} /> */}
-        <AccountCard
-          reverse
-          Icon1={
-            <Ionicons
-              name="notifications-outline"
-              color={colors.mediumText}
-              size={24}
-            />
-          }
-          first_text={"Adeeyo Joseph"}
-          second_text={`Good Morning`}
-          avatar={require("../assets/images/avatar.jpg")}
-        />
-        <SearchBox
-          onPressFilter={() => setBottomSheetVisible(true)}
-          RightIcon={
-            <Ionicons
-              name="md-filter-sharp"
-              color={colors.primaryColor}
-              size={18}
-            />
-          }
-        />
-        <View style={styles.featuredView}>
-          <BottomSheet
-            bottomSheetVisible={bottomSheetVisible}
-            setBottomSheetVisible={setBottomSheetVisible}
-            bottomSheetContent={<PropertiesFilterContent />}
-          />
-          <Header title="Featured" right={<SeeAllText />} />
-          <FlatList
-            data={featured}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={(item) => item._id}
-            renderItem={({ item }) => (
-              <View key={item._id}>
-                <Card2 item={item} />
-              </View>
-            )}
-            ItemSeparatorComponent={() => (
-              <AppText style={{ marginRight: 16 }} />
-            )}
-          />
-        </View>
+  const { user } = useSelector(state => state.auth);
 
-        {/* Our Recommendation */}
-        <View>
-          <View style={styles.ourRecommendation}>
-            <Header
-              title="Our Recommendation"
-              onPressRight={() =>
-                navigation.navigate(routes.OUR_RECOMMENDATION)
-              }
-              right={<SeeAllText />}
-            />
-            <OurRecommendation navigation={navigation} />
-          </View>
+  return (
+    <Screen style={styles.screen}>
+      {/* <Loading visible={loading} /> */}
+      <AccountCard
+        reverse
+        Icon1={
+          <Ionicons
+            name="notifications-outline"
+            color={colors.mediumText}
+            size={24}
+          />
+        }
+        first_text={user ? user.fullname || user.username : "Welcome!"}
+        second_text={`Good Morning`}
+        avatar={require("../assets/images/avatar.jpg")}
+      />
+      <SearchBox
+        onPressFilter={() => setBottomSheetVisible(true)}
+        RightIcon={
+          <Ionicons
+            name="md-filter-sharp"
+            color={colors.primaryColor}
+            size={18}
+          />
+        }
+      />
+      <View style={styles.featuredView}>
+        <BottomSheet
+          bottomSheetVisible={bottomSheetVisible}
+          setBottomSheetVisible={setBottomSheetVisible}
+          bottomSheetContent={<PropertiesFilterContent />}
+        />
+        <Header title="Featured" right={<SeeAllText />} />
+        <FlatList
+          data={featured}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <View key={item._id}>
+              <Card2 item={item} />
+            </View>
+          )}
+          ItemSeparatorComponent={() => <AppText style={{ marginRight: 16 }} />}
+        />
+      </View>
+
+      {/* Our Recommendation */}
+      <View>
+        <View style={styles.ourRecommendation}>
+          <Header
+            title="Our Recommendation"
+            onPressRight={() => navigation.navigate(routes.OUR_RECOMMENDATION)}
+            right={<SeeAllText />}
+          />
+          <OurRecommendation navigation={navigation} />
         </View>
-      </Screen>
+      </View>
+    </Screen>
   );
 };
 

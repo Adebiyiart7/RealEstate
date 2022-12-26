@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   socialActions: {
     backgroundColor: "transparent",
     borderWidth: 1,
-    borderColor: defaultStyles.colors.border100,
+    borderColor: defaultStyles.colors.border200,
     color: defaultStyles.colors.primaryText,
     borderRadius: defaultStyles.primaryBorderRadius
   },

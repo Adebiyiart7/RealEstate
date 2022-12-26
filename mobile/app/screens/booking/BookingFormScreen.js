@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 
 // LOCAL IMPORTS
@@ -10,6 +10,8 @@ import AppFormField from "../../components/form/AppFormField";
 import { Header } from "../../components/PropertiesFilterContent";
 import SubmitButton from "../../components/form/SubmitButton";
 import routes from "../../config/routes";
+import LoginBottomSheet from "../../components/LoginBottomSheet";
+import { useSelector } from "react-redux";
 
 const initialValues = {
   fullname: "Adeeyo Joseph Adebiyi",
@@ -27,23 +29,32 @@ const validationSchema = Yup.object().shape({
   dob: Yup.string().required().min(3).max(255).label("Date of Birth"),
   email: Yup.string().required().min(3).max(255).email().label("Email"),
   phoneNumber: Yup.string().required().min(3).max(255).label("Phone Number"),
-  country: Yup.string().required().min(3).max(255).label("Country"),
+  country: Yup.string().required().min(3).max(255).label("Country")
 });
 
 const BookingFormScreen = ({ navigation, route }) => {
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <Screen>
+      <LoginBottomSheet
+        bottomSheetVisible={bottomSheetVisible}
+        setBottomSheetVisible={setBottomSheetVisible}
+      />
       <GoBackArrowHeader navigation={navigation} title={"Book Real Estate"} />
       <Header title={"Your Information Details"} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          navigation.navigate(routes.BOOKING_PAYMENT, {
-            _id: route.params._id,
-            userInfo: values,
-            checksDetails: route.params.checksDetails
-          });
+          user
+            ? navigation.navigate(routes.BOOKING_PAYMENT, {
+                _id: route.params._id,
+                userInfo: values,
+                checksDetails: route.params.checksDetails
+              })
+            : setBottomSheetVisible(true);
         }}
       >
         {() => (

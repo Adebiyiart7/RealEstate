@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
 
 // LOCAL IMPORTS
 import colors from "../config/colors";
@@ -8,10 +9,14 @@ import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppButton from "../components/AppButton";
 import routes from "../config/routes";
+import { clearAuth } from "../features/auth/authSlice";
 
 const ProfileScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const handleLogout = () => {
-    AsyncStorage.multiRemove(["user"]).then(() =>
+    dispatch(clearAuth());
+    AsyncStorage.clear().then(() =>
       navigation.navigate(routes.LETS_YOU_IN)
     );
   };

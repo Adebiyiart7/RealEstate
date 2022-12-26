@@ -18,8 +18,8 @@ class BookingScreen extends React.Component {
     super(props);
     this.state = {
       props: props,
-      startDate: 1611106322840,
-      endDate: 1671706322840,
+      startDate: new Date(1611106322840),
+      endDate: new Date(1671706322840),
       displayedDate: moment(),
       bottomSheetVisible: false
     };
@@ -117,7 +117,7 @@ class BookingScreen extends React.Component {
           />
           <AppButton
             onPress={() => {
-              !user
+              user
                 ? props.navigation.navigate(routes.BOOKING_FORM, {
                     _id: props.route.params._id,
                     checksDetails: {

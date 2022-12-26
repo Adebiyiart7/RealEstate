@@ -7,21 +7,17 @@ import {
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { useDimensions } from "@react-native-community/hooks";
-import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
 import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
 import utils from "../../utils";
-import LoginBottomSheet from "../LoginBottomSheet";
 
 const Card3 = ({ navigation, item, format }) => {
   const dimension = useDimensions().screen;
   const [heartIcon, setHeartIcon] = useState("heart-outline");
-  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const { user } = useSelector((state) => state.auth);
-
+ 
   const imageDimension = {
     height:
       format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
@@ -40,15 +36,9 @@ const Card3 = ({ navigation, item, format }) => {
     <View style={[styles.card, format === "list" && styles.cardListFormat]}>
       <TouchableOpacity
         onPress={() => {
-          user
-            ? navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
-            : setBottomSheetVisible(true);
+          navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id });
         }}
       >
-        <LoginBottomSheet
-          bottomSheetVisible={bottomSheetVisible}
-          setBottomSheetVisible={setBottomSheetVisible}
-        />
         <ImageBackground
           source={item.image}
           style={[styles.image, styles.imageListFormat, imageDimension]}
@@ -85,11 +75,9 @@ const Card3 = ({ navigation, item, format }) => {
           <View>
             <TouchableOpacity
               onPress={() => {
-                user
-                  ? navigation.navigate(routes.ESTATE_DETAILS, {
-                      _id: item._id
-                    })
-                  : setBottomSheetVisible(true);
+                navigation.navigate(routes.ESTATE_DETAILS, {
+                  _id: item._id
+                });
               }}
             >
               <AppText

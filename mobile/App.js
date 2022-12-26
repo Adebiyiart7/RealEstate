@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 // LOCAL IMPORTS
 import store from "./app/store/store";
 import AppNavigator from "./app/navigations/AppNavigator";
-import BaseData from "./app/screens/BaseData";
+import BaseData from "./app/components/BaseData";
 
 const App = () => {
   return (

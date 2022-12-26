@@ -6,10 +6,14 @@ import { setUser } from "../features/auth/authSlice";
 const BaseData = () => {
   const dispatch = useDispatch();
 
-  AsyncStorage.getItem("user").then((value) => {
-    dispatch(setUser(JSON.parse(value)));
-    console.log(value);
-  });
+  AsyncStorage.getItem("user")
+    .then((value) => {
+      dispatch(setUser(JSON.parse(value)));
+      console.log(value);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   return <></>;
 };

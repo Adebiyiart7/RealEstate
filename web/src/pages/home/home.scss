@@ -1,0 +1,212 @@
+@import "../../scss/config";
+
+.home-landing {
+  background: url("../../assets/images/landing-image.jpg");
+  background-size: cover;
+  background-position: center;
+
+  .nav-bar {
+    background-color: $primaryOverlay;
+    display: flex;
+    align-items: center;
+    padding: 0.8em 3em;
+    border-bottom: 1px solid #b6cdfd55;
+
+    .close-button,
+    .open-button {
+      display: none;
+    }
+
+    .logo {
+      font-size: 2.5em;
+      color: $white;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .right {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 1em;
+
+      .auths {
+        position: absolute;
+        right: 0;
+        margin-right: 3em;
+        .auth {
+          padding: 8px 16px;
+          margin-left: 20px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+
+        a {
+          display: inline-block;
+          // align-items: center;
+          color: $white;
+          text-decoration: none;
+          font-weight: 500;
+          border-radius: 5px;
+          font-size: 17px;
+          padding: 8px 12px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          li {
+            list-style: none;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    background-color: $primaryOverlay;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 650px;
+    color: $white;
+
+    .tag-line-1 {
+      font-size: 4em;
+      z-index: 1234;
+      font-weight: 800;
+      margin: 0;
+      margin-top: -3.5em;
+    }
+    .tag-line-2 {
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .home-landing {
+    .nav-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+
+      .open-button {
+        display: inline-block;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 35px;
+        color: $white;
+      }
+
+      .right {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+        padding-top: 60px;
+        background-color: $white;
+        position: fixed;
+        top: 0;
+        left: -320px;
+        height: 100vh;
+        width: 300px;
+        z-index: 1235;
+        transition: 0.5s;
+
+        .close-button {
+          display: block;
+          position: absolute;
+          top: 8px;
+          right: 10px;
+          font-size: 30px;
+          color: $mediumText;
+        }
+
+        .auths {
+          position: unset;
+          padding-bottom: 60px;
+
+          .button {
+            color: $white;
+          }
+          .auth {
+            margin-bottom: 16px;
+          }
+        }
+
+        ul {
+          a {
+            display: block;
+            color: $primaryColor;
+            border-top: 1px solid $border100;
+            padding: 12px 20px;
+
+            &:hover {
+              text-decoration: underline;
+            }
+
+            li {
+              list-style: none;
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+
+      .mobile-right {
+        left: 0;
+      }
+    }
+
+    // .content {
+    //   background-color: $primaryOverlay;
+    //   flex-direction: column;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   height: 650px;
+    //   color: $white;
+
+    //   .tag-line-1 {
+    //     font-size: 4em;
+    //     z-index: 9999;
+    //     font-weight: 800;
+    //     margin: 0;
+    //     margin-top: -3.5em;
+    //   }
+
+    //   .tag-line-2 {
+    //     font-size: 24px;
+    //     margin: 0;
+    //   }
+    // }
+  }
+}
+
+@media (max-width: 600px) {
+  .home-landing {
+    .nav-bar {
+      padding: 0.5em 1em;
+
+      .logo {
+        font-size: 30px;
+      }
+
+      .open-button {
+        font-size: 30px;
+        top: 10px;
+        right: 16px;
+      }
+    }
+  }
+}

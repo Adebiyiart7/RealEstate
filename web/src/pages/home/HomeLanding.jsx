@@ -3,6 +3,7 @@ import { FaTimes } from "react-icons/fa";
 import { IconButton } from "@mui/material";
 import { MdMenu } from "react-icons/md";
 import Backdrop from "../../components/Backdrop";
+import HomeSearch from "./HomeSearch";
 
 // LOCAL IMPORTS
 // import logo from "../../assets/images/logo-sm.png";
@@ -13,6 +14,7 @@ const HomeLanding = () => {
   return (
     <section className="home-landing">
       <Backdrop open={showNav} showProgress={false} zIndex={1235} />
+      {/* NAV BAR */}
       <nav className="nav-bar">
         <IconButton
           className="open-button"
@@ -54,20 +56,26 @@ const HomeLanding = () => {
             {/* <a href="/">
               <li>Profile</li>
                 </a> */}
-            <a className="alt-button auth" href="/">
+            <a className="_alt-button auth" href="/">
               <li>Login</li>
             </a>
-            <a className="button auth" href="/">
+            <a className="_button auth" href="/">
               <li>Register</li>
             </a>
           </ul>
         </div>
       </nav>
+
+      {/* LANDING CONTENT */}
       <div className="content">
+        {/* TAG LINES */}
         <h1 className="tag-line-1">Find Your New Home</h1>
         <p className="tag-line-2">
           The best real estate website to complete your life and family
         </p>
+
+        {/* HOME SEARCH */}
+        <HomeSearch />
       </div>
     </section>
   );

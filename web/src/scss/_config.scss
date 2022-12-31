@@ -1,5 +1,6 @@
 // FONTS
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "./scroll-bar.scss";
 
 $black: #000;
 $danger: #ff5252;
@@ -14,17 +15,29 @@ $primaryColor: rgb(36, 107, 253);
 $primaryGreen: #c70039;
 $primaryGreenHover: #b40335;
 $primaryOrange: #d1771e;
-$primaryOverlay: #246bfd55;
+$primaryOverlay: #246bfd44;
 $primaryText: #222;
 $white: #fff;
+$zIndex: 1234;
 
 body {
   margin: 0;
   padding: 0;
   font-family: "Jost", sans-serif;
+  color: $primaryText;
 }
 
-.button {
+._app-button {
+  border: none;
+border-radius: 5px;
+padding: 8px 20px;
+font-size: 17px;
+font-family: "Jost", sans-serif;
+max-height: 41px;
+cursor: pointer;
+}
+
+._button {
   background-color: $primaryColor;
   color: $white;
 
@@ -33,11 +46,44 @@ body {
   }
 }
 
-.alt-button {
+._alt-button {
   background-color: $background100;
   color: $primaryColor !important;
 
+  &:hover {
+    background-color: $background200;
+  }
+}
+
+._selectOptions {
+  display: none;
+  background-color: $white !important;
+  border: 1px solid $lightText;
+  border-radius: 5px;
+  max-width: 250px;
+  min-width: 200px;z-index: calc($zIndex + 3);
+  max-height: 200px;
+  overflow-y: scroll;
+
+  .item {
+    padding: 3px 7px;
+    color: $primaryText;
+
     &:hover {
-        background-color: $background200;
-      }
+      color: $white;
+      background: $primaryColor;
+    }
+  }
+}
+
+._icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: $primaryColor;
+  height: 37px;
+  width: 37px;
+  font-size: 17px;
+  border-radius: 50px;
+  background-color: $background200;
 }

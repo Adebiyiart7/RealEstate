@@ -1,0 +1,44 @@
+._sliderContainer {
+  position: relative;
+
+  .icon {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    background-color: $background100;
+    color: $primaryColor;
+
+    &:hover {
+      color: $background100;
+      background-color: $primaryColor;
+    }
+    z-index: $zIndex;
+  }
+
+  &:hover {
+    .icon {
+     visibility: visible;
+    }
+  }
+
+  .icon.right {
+    right: 8px;
+    left: unset;
+  }
+
+  ._slider {
+    overflow-x: scroll;
+    white-space: nowrap;
+
+    .slide {
+      display: inline-block;
+      padding: 0 16px 0 8px;
+    }
+  }
+}
+
+._slider::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}

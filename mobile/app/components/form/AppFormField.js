@@ -7,8 +7,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ErrorMessage from "./ErrorMessage";
 import defaultStyles from "../../config/styles";
 
-const AppFormField = ({ name, icon, onPress, style, ...otherProps }) => {
+const AppFormField = ({ name, icon, onPress, style, secureInput, ...otherProps }) => {
   const [isFocus, setIsFocus] = useState(false);
+  const [hideSecureInput, setHideSecureInput] = useState(true)
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
@@ -29,6 +30,20 @@ const AppFormField = ({ name, icon, onPress, style, ...otherProps }) => {
         name={icon}
         size={18}
       />
+      {secureInput &&
+        (hideSecureInput ? (
+          <MaterialCommunityIcons
+            name="eye-off"
+            style={styles.eye}
+            onPress={() => {setHideSecureInput(false)}}
+          />
+        ) : (
+          <MaterialCommunityIcons
+            name="eye"
+            style={styles.eye}
+            onPress={() => {setHideSecureInput(true)}}
+          />
+        ))}
       <TextInput
         style={[
           styles.textInput,
@@ -45,6 +60,7 @@ const AppFormField = ({ name, icon, onPress, style, ...otherProps }) => {
         }}
         value={values[name]}
         {...otherProps}
+        secureTextEntry={secureInput && hideSecureInput}
         placeholderTextColor={defaultStyles.colors.lightText}
       />
       <ErrorMessage visible={touched[name]} error={errors[name]} />
@@ -59,6 +75,14 @@ const styles = StyleSheet.create({
     width: "100%",
     marginVertical: 10,
     position: "relative"
+  },
+  eye: {
+    position: "absolute",
+    fontSize: 20,
+    top: 14,
+    right: 14,
+    zIndex: 1234,
+    color: defaultStyles.colors.primaryText,
   },
   textInput: {
     borderRadius: 5,

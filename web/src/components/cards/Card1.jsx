@@ -12,7 +12,7 @@ const Card1 = ({ item }) => {
   const [favorited, setFavorited] = useState(false);
 
   return (
-    <div className="card1">
+    <div className="_card1">
       <Link to="/" className="left">
         <span className="rating">
           <MdStar />

@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
@@ -18,6 +18,8 @@ import routes from "../config/routes";
 import OurRecommendation from "../components/OurRecommendation";
 import SeeAllText from "../components/SeeAllText";
 import Loading from "../components/Loading";
+import LoginBottomSheet from "../components/LoginBottomSheet";
+import FillProfileBottomSheet from "../components/FillProfileBottomSheet";
 
 const Header = ({ title, right, onPressRight }) => {
   return (
@@ -31,11 +33,30 @@ const Header = ({ title, right, onPressRight }) => {
 const HomeScreen = ({ navigation }) => {
   // const [loading, setLoading] = useState(true);
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const { user } = useSelector(state => state.auth);
+  const [bottomSheetVisibleLogin, setBottomSheetVisibleLogin] = useState(false);
+  const [bottomSheetVisibleProfile, setBottomSheetVisibleProfile] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const { profile } = useSelector((state) => state.profile);
 
+  useEffect(() => {
+    if (!user) setBottomSheetVisibleLogin(true)
+  }, [user])
+
+    useEffect(() => {
+      if (user && !profile) setBottomSheetVisibleProfile(true);
+    }, [user, profile]);
+  
   return (
     <Screen style={styles.screen}>
       {/* <Loading visible={loading} /> */}
+      <LoginBottomSheet
+        bottomSheetVisible={bottomSheetVisibleLogin}
+        setBottomSheetVisible={setBottomSheetVisibleLogin}
+      />
+      <FillProfileBottomSheet
+        bottomSheetVisible={bottomSheetVisibleProfile}
+        setBottomSheetVisible={setBottomSheetVisibleProfile}
+      />
       <AccountCard
         reverse
         Icon1={

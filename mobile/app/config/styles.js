@@ -31,7 +31,7 @@ const defaultStyles = {
     padding: 4
   },
   summaryValue: {
-    fontWeight: "bold"
+    fontWeight: "500"
   },
   summarySeperator: {
     marginVertical: 6

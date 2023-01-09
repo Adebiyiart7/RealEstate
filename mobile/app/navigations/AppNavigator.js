@@ -30,7 +30,7 @@ const AppNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName={routes.TAB}
+      initialRouteName={routes.NEW_PIN}
       screenOptions={{ headerShown: false }}
     >
       {/* PUBLIC SCREEN */}
@@ -50,31 +50,40 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.ESTATE_DETAILS} component={EstateDetails} />
 
       {/* PRIVATE SCREENS */}
-      {user &&
-      <Stack.Group>
-        <Stack.Screen
-          name={routes.FILL_PROFILE}
-          component={FillProfileScreen}
-        />
-        <Stack.Screen
-          name={routes.NOTIFICATIONS}
-          component={NotificationsScreen}
-        />
-        <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
-        <Stack.Screen
-          name={routes.BOOKING_FORM}
-          component={BookingFormScreen}
-        />
-        <Stack.Screen
-          name={routes.BOOKING_PAYMENT}
-          component={BookingPaymentScreen}
-        />
-        <Stack.Screen name={routes.ADD_NEW_CARD} component={AddNewCardScreen} />
-        <Stack.Screen name={routes.REVIEW_SUMMARY} component={ReviewSummary} />
-        <Stack.Screen name={routes.CONFIRM_PIN} component={ConfirmPinScreen} />
-        <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
-      </Stack.Group>
-      }
+      {user && (
+        <Stack.Group>
+          <Stack.Screen
+            name={routes.FILL_PROFILE}
+            component={FillProfileScreen}
+          />
+          <Stack.Screen
+            name={routes.NOTIFICATIONS}
+            component={NotificationsScreen}
+          />
+          <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
+          <Stack.Screen
+            name={routes.BOOKING_FORM}
+            component={BookingFormScreen}
+          />
+          <Stack.Screen
+            name={routes.BOOKING_PAYMENT}
+            component={BookingPaymentScreen}
+          />
+          <Stack.Screen
+            name={routes.ADD_NEW_CARD}
+            component={AddNewCardScreen}
+          />
+          <Stack.Screen
+            name={routes.REVIEW_SUMMARY}
+            component={ReviewSummary}
+          />
+          <Stack.Screen
+            name={routes.CONFIRM_PIN}
+            component={ConfirmPinScreen}
+          />
+          <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
+        </Stack.Group>
+      )}
       {/**
        * TAB NAVIGATOR
        * some screens in the tab stack are private

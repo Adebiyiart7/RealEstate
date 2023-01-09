@@ -6,6 +6,7 @@ import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import Screen from "../components/Screen";
+import SeeAllText from "../components/SeeAllText";
 import TextWithLines from "../components/TextWithLines";
 import routes from "../config/routes";
 import defaultStyles from "../config/styles";
@@ -14,7 +15,10 @@ const LetsYouIn = ({ navigation }) => {
   return (
     <Screen>
       <View style={styles.container}>
-        {/* <GoBackArrowHeader navigation={navigation} /> */}
+        <GoBackArrowHeader
+          navigation={navigation}
+          RightIcon={<AppText onPress={() => navigation.navigate(routes.TAB)} style={styles.skipText}>Skip</AppText>}
+        />
         <Image
           style={styles.image}
           source={require("../assets/images/lets-you-in.png")}
@@ -43,17 +47,17 @@ const LetsYouIn = ({ navigation }) => {
             Continue with Apple
           </AppButton>
           <TextWithLines style={styles.textWithLines}>Or</TextWithLines>
-          <AppButton onPress={() => navigation.navigate(routes.LOGIN)}>
+          <AppButton rounded onPress={() => navigation.navigate(routes.LOGIN)}>
             Sign in with password
           </AppButton>
           <AppText style={styles.noAccountText}>
             Don't have an account?{" "}
-              <AppText
-                onPress={() => navigation.navigate(routes.REGISTER)}
-                style={styles.signUpText}
-              >
-                Sign up
-              </AppText>
+            <AppText
+              onPress={() => navigation.navigate(routes.REGISTER)}
+              style={styles.signUpText}
+            >
+              Sign up
+            </AppText>
           </AppText>
         </View>
       </View>
@@ -75,7 +79,6 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 170,
-    marginTop: 30
   },
   noAccountText: {
     textAlign: "center",
@@ -85,6 +88,10 @@ const styles = StyleSheet.create({
   signUpText: {
     color: defaultStyles.colors.primaryColor,
     fontWeight: "500"
+  },
+  skipText: {
+    fontSize: 18,
+    color: defaultStyles.colors.primaryColor,
   },
   socialActions: {
     backgroundColor: "transparent",

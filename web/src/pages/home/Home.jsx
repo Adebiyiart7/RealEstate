@@ -4,6 +4,7 @@ import HomeFeatured from './HomeFeatured';
 // LOCAL IMPORTS
 import HomeLanding from './HomeLanding';
 import HomeOurRecommendation from './HomeOurRecommendation';
+import HomeTestimonials from './HomeTestimonials';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <HomeLanding />
       <HomeFeatured />
       <HomeOurRecommendation />
+      <HomeTestimonials />
     </div>
   )
 }

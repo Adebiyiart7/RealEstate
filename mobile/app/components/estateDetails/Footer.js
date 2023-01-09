@@ -31,7 +31,8 @@ const Footer = ({ navigation, item }) => {
         onPress={() => {
           user
             ? navigation.navigate(routes.BOOKING, {
-                _id: item._id
+                _id: item._id,
+              user: user,
               })
             : setBottomSheetVisible(true);
         }}

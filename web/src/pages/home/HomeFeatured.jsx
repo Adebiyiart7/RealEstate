@@ -3,8 +3,9 @@ import { Container } from "@mui/material";
 
 // LOCAL IMPORTS
 import SectionTitle from "../../components/SectionTitle";
-import { estates } from "../../db";
-import Card1 from "../../components/cards/Card1";
+import { featured } from "../../db";
+import Card2 from "../../components/cards/Card2";
+import Slider from "../../components/common/slider/Slider";
 
 const HomeFeatured = () => {
   return (
@@ -19,6 +20,16 @@ const HomeFeatured = () => {
           <Card1 item={item} />
         ))}
       </Container> */}
+      <Container className="featured-item">
+        <Slider
+          // itemWidth={}
+          numberVisible={2}
+          label={"home-featured"}
+          Items={featured.map((item) => (
+            <Card2 item={item} />
+          ))}
+        />
+      </Container>
     </div>
   );
 };

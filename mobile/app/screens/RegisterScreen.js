@@ -64,7 +64,7 @@ const RegisterScreen = ({ navigation }) => {
             email: "adebiyiartworld@gmail.com",
             password: "Test@123"
           }}
-          onSubmit={(values) => handleSubmit(values)}
+          onSubmit={(values) => {handleSubmit(values);}}
           validationSchema={validationSchema}
         >
           {() => (
@@ -87,7 +87,7 @@ const RegisterScreen = ({ navigation }) => {
                 icon="lock"
                 name={"password"}
                 placeholder={"Password"}
-                secureTextEntry
+                secureInput
               />
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons
@@ -120,9 +120,8 @@ export default RegisterScreen;
 
 export const styles = StyleSheet.create({
   logo: {
-    height: 100,
-    width: 100,
-    marginTop: 10,
+    height: 120,
+    width: 330,
     alignSelf: "center"
   },
   container: {
@@ -135,7 +134,8 @@ export const styles = StyleSheet.create({
   forgotPassword: {
     color: defaultStyles.colors.primaryColor,
     fontWeight: "500",
-    textAlign: "center"
+    textAlign: "center",
+    marginTop: 10,
   },
   otherOptions: {
     marginTop: 30

@@ -1,11 +1,9 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createAsyncThunk, createSlice, Dispatch } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // LOCAL IMPORTS
-// import store from "../../store/store";
-
-export const API_URI = "http://192.168.43.231:5000/api";
+import API_URI from "../api_uri";
 
 let user = null;
 
@@ -53,7 +51,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     clearAuth: (state) => {
-      state = initialState;
+      state.user = null;
     },
     reset: (state) => {
       state.isLoading = false;

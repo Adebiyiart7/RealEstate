@@ -17,7 +17,7 @@ import SelectOptions from "../components/form/SelectOptions";
 
 const initialValues = {
   fullname: "",
-  nickname: "",
+  username: "",
   email: "",
   dob: "",
   country: "",
@@ -26,7 +26,7 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   fullname: Yup.string().required().max(255).label("Full Name"),
-  nickname: Yup.string().required().max(255).label("Nickname"),
+  username: Yup.string().required().max(255).label("Username"),
   email: Yup.string().required().max(255).label("Email"),
   dob: Yup.string().required().max(255).label("Date of Birth"),
   country: Yup.string().required().max(50).label("Country"),
@@ -80,8 +80,8 @@ const FillProfileScreen = ({ navigation }) => {
             />
             <AppFormField
               icon={"account-outline"}
-              name={"nickname"}
-              placeholder={"Nickname"}
+              name={"username"}
+              placeholder={"Username"}
             />
             <AppFormField icon={"email"} name={"email"} placeholder={"Email"} />
             <AppFormField

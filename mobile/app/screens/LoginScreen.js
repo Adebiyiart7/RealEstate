@@ -75,7 +75,7 @@ const LoginScreen = ({ navigation }) => {
                 icon="lock"
                 name={"password"}
                 placeholder={"Password"}
-                secureTextEntry
+                secureInput
               />
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons

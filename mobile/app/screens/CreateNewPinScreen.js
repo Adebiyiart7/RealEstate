@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -10,23 +10,21 @@ import AppButton from "../components/AppButton";
 import ProcessStatus from "../components/ProcessStatus";
 
 const CreateNewPinScreen = ({ navigation }) => {
-  const [pin, setPin] = useState({
-    first: "",
-    second: "",
-    third: "",
-    forth: ""
-  });
+  const [pin, setPin] = useState("");
 
+  useEffect(() => {
+    console.log(pin);
+  }, [pin])
   return (
     <>
-      <ProcessStatus
+      {/* <ProcessStatus
         status="success"
         title={"Congratulations!"}
         image={require("../assets/images/setup-success-image.png")}
         message={
           "Your account is ready to use. You will be redirected to the Home Page in a few seconds"
         }
-      />
+      /> */}
       <Screen>
         <View style={styles.container}>
           <GoBackArrowHeader title={"Create New Pin"} navigation={navigation} />

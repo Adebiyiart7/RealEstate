@@ -1,76 +1,68 @@
-import React, { useState } from "react";
+import { Octicons } from "@expo/vector-icons";
+import React, { useState, useRef } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
+import { useDimensions } from "@react-native-community/hooks";
+
+// LOCAL IMPORT
 import defaultStyles from "../../config/styles";
+import AppText from "../AppText";
 
 const PinForm = ({ pin, setPin, secureTextEntry }) => {
-  const [focusFirst, setFocusFirst] = useState(false);
-  const [focusSecond, setFocusSecond] = useState(false);
-  const [focusThird, setFocusThird] = useState(false);
-  const [focusForth, setFocusForth] = useState(false);
+  const inputRef = useRef();
 
-  const handleOnChange = (name, value,) => {
-    setPin((rest) => ({
-      ...rest,
-      [name]: value
-    }));
-  };
+  const { width: screenWidth } = useDimensions().screen;
 
   const textInput = {
-    fontSize: 25,
-    fontWeight: "600",
-    paddingBottom: 3,
+    width: (screenWidth - 32 - (7 * 8))/4,
+  };
+
+  const focusedInputStyle = {
+    borderWidth: 2,
+    borderColor: defaultStyles.colors.primaryColor
+  };
+
+  const handleOnPress = (pinValue) => {
+    inputRef.current.focus();
+    if(pinValue) setPin("")
   };
 
   return (
     <View style={styles.container}>
       <TextInput
-        autoFocus={focusFirst}
-        maxLength={1}
+        ref={inputRef}
+        onChangeText={(text) => setPin(text)}
+        maxLength={4}
         name={"first"}
-        secureTextEntry={secureTextEntry && true}
-        value={pin.first}
+        value={pin}
         caretHidden={true}
-        style={[styles.textInput, !secureTextEntry && textInput]}
-        onFocus={() => {
-          handleOnChange("first", "");
-        }}
-        onChangeText={(text) => {
-          handleOnChange("first", text);
-        }}
+        keyboardType={"numeric"}
+        style={styles.realInput}
       />
-      <TextInput
-        autoFocus={focusSecond}
-        maxLength={1}
-        name={"second"}
-        secureTextEntry={secureTextEntry && true}
-        value={pin.second}
-        caretHidden={true}
-        style={[styles.textInput, !secureTextEntry && textInput]}
-        onFocus={() => handleOnChange("second", "")}
-        onChangeText={(text) => handleOnChange("second", text)}
-      />
-      <TextInput
-        autoFocus={focusThird}
-        maxLength={1}
-        name={"third"}
-        secureTextEntry={secureTextEntry && true}
-        value={pin.third}
-        caretHidden={true}
-        style={[styles.textInput, !secureTextEntry && textInput]}
-        onFocus={() => handleOnChange("third", "")}
-        onChangeText={(text) => handleOnChange("third", text)}
-      />
-      <TextInput
-        autoFocus={focusForth}
-        maxLength={1}
-        name={"forth"}
-        secureTextEntry={secureTextEntry && true}
-        value={pin.forth}
-        caretHidden={true}
-        style={[styles.textInput, !secureTextEntry && textInput]}
-        onFocus={() => handleOnChange("forth", "")}
-        onChangeText={(text) => handleOnChange("forth", text)}
-      />
+
+      <AppText
+        onPress={() => handleOnPress(pin[0])}
+        style={[styles.input, textInput]}
+      >
+        {secureTextEntry ? pin[0] && <Octicons name="dot-fill" size={35} /> : pin[0]}
+      </AppText>
+      <AppText
+        onPress={() => handleOnPress(pin[1])}
+        style={[styles.input, textInput]}
+      >
+        {secureTextEntry ? pin[1] && <Octicons name="dot-fill" size={35} /> : pin[1]}
+      </AppText>
+      <AppText
+        onPress={() => handleOnPress(pin[2])}
+        style={[styles.input, textInput]}
+      >
+        {secureTextEntry ? pin[2] && <Octicons name="dot-fill" size={35} /> : pin[2]}
+      </AppText>
+      <AppText
+        onPress={() => handleOnPress(pin[3])}
+        style={[styles.input, textInput]}
+      >
+        {secureTextEntry ? pin[3] && <Octicons name="dot-fill" size={35} /> : pin[3]}
+      </AppText>
     </View>
   );
 };
@@ -82,19 +74,24 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    maxWidth: 300
+    // alignItems: "center",
+    // maxWidth: 300,
   },
-  textInput: {
+  input: {
     borderWidth: 1,
     borderColor: defaultStyles.colors.border200,
     borderRadius: defaultStyles.primaryBorderRadius,
-    height: 45,
-    width: 57,
+    height: 55,
     marginHorizontal: 7,
     textAlign: "center",
-    fontSize: 65,
-    paddingBottom: 12,
+    fontSize: 25,
+    fontWeight: "500",
+    paddingTop: 9,
     backgroundColor: defaultStyles.colors.lightBackground,
     color: defaultStyles.colors.primaryText
+  },
+  realInput: {
+    position: "absolute",
+    color: "transparent",
   }
 });

@@ -42,6 +42,50 @@ export const featured = [
     cost: 35000,
     duration: "night",
     rating: 4.7
+  },
+  {
+    _id: "5",
+    image: require("./assets/images/building2.jpg"),
+    name: "Zenith Apartments",
+    state: "Lagos",
+    location: "No 6 St. Michael street, Lagos, Nigeria.",
+    map: "",
+    cost: 64000,
+    duration: "night",
+    rating: 4.9
+  },
+  {
+    _id: "6",
+    image: require("./assets/images/building1.jpg"),
+    name: "Kings and Queens Apartments",
+    state: "Abuja",
+    location: "No 6 St. Michael street, Abuja, Nigeria.",
+    map: "",
+    cost: 480000,
+    duration: "night",
+    rating: 4.7
+  },
+  {
+    _id: "7",
+    image: require("./assets/images/building3.jpg"),
+    name: "Gwarimpa Estate",
+    state: "Abuja",
+    location: "No 6 St. Michael street, Abuja, Nigeria.",
+    map: "",
+    cost: 11000000,
+    duration: "year",
+    rating: 5.0
+  },
+  {
+    _id: "8",
+    image: require("./assets/images/building4.jpg"),
+    name: "Adewale Hotels",
+    state: "Akure",
+    location: "No 6 St. Michael street, Akure, Nigeria.",
+    map: "",
+    cost: 35000,
+    duration: "night",
+    rating: 4.7
   }
 ];
 

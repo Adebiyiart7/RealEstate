@@ -70,7 +70,7 @@
   }
 
   .content {
-    background-color: $primaryOverlay;
+    background-color:  #00000099; // $primaryOverlay;
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -159,7 +159,8 @@
 }
 
 .featured {
-  padding-top: 70px;
+  background-color: $background200;
+  padding: 70px 0;
 
   .featured-item {
     // display: flex;

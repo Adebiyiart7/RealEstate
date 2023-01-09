@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
 const BookingFormScreen = ({ navigation, route }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const { user } = useSelector((state) => state.auth);
-
+  
   return (
     <Screen>
       <LoginBottomSheet

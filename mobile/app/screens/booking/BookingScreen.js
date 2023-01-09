@@ -38,7 +38,7 @@ class BookingScreen extends React.Component {
   };
 
   render() {
-    const { startDate, endDate, displayedDate, props, bottomSheetVisible } =
+    const { startDate, endDate, displayedDate, props, bottomSheetVisible, navigation } =
       this.state;
 
     const Header = ({ title }) => {
@@ -52,7 +52,7 @@ class BookingScreen extends React.Component {
           setBottomSheetVisible={this.setBottomSheetVisible}
         />
         <GoBackArrowHeader
-          navigation={props.navigation}
+          navigation={navigation}
           title={"Booking Real Estate"}
         />
         <Header title={"Select Date"} />
@@ -117,7 +117,7 @@ class BookingScreen extends React.Component {
           />
           <AppButton
             onPress={() => {
-              user
+              props.route.params.user
                 ? props.navigation.navigate(routes.BOOKING_FORM, {
                     _id: props.route.params._id,
                     checksDetails: {

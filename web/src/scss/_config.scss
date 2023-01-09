@@ -20,6 +20,10 @@ $primaryText: #222;
 $white: #fff;
 $zIndex: 1234;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;

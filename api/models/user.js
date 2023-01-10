@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const { string } = require("joi");
 
 const userSchema = mongoose.Schema(
   {
@@ -45,12 +46,6 @@ const userSchema = mongoose.Schema(
       trim: true,
       max: 20
     },
-    fullname: {
-      type: String,
-      min: 3,
-      max: 255,
-      trim: true
-    },
     isActive: {
       type: Boolean,
       require: true,
@@ -65,6 +60,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       require: true,
       default: false
+    },
+    verificationCode: {
+      type: String,
+      required: false,
     }
   },
   {
@@ -73,7 +72,7 @@ const userSchema = mongoose.Schema(
 );
 
 userSchema.methods.generateAuthToken = function () {
-  return jwt.sign({ _id: this._is }, process.env.JWT_SECRET, {
+  return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "30d"
   });
 };

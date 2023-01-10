@@ -23,7 +23,19 @@ const registerSchema = Joi.object({
     .regex(passwordRegEx)
     .message(passwordError)
 });
+
+// PROFILE
+const profileSchema = Joi.object({
+  username: Joi.string().required().min(3).max(255).label("Username"),
+  email: Joi.string().required().min(3).max(255).label("Email"),
+  fullname: Joi.string().required().min(3).max(255).label("Full Name"),
+  dob: Joi.string().required().label("DOB"),
+  phoneNumber: Joi.string().required().min(3).max(20).label("Phone Number"),
+  gender: Joi.string().required().min(3).max(20).label("Gender")
+});
+
 module.exports = {
   registerSchema,
-  loginSchema
+  loginSchema,
+  profileSchema
 };

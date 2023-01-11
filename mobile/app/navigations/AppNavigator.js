@@ -22,6 +22,7 @@ import AddNewCardScreen from "../screens/booking/AddNewCardScreen";
 import ReviewSummary from "../screens/booking/ReviewSummary";
 import ConfirmPinScreen from "../screens/ConfirmPinScreen";
 import EReceiptScreen from "../screens/booking/EReceiptScreen";
+import OTPCodeVerificationScreen from "../screens/OTPCodeVerificationScreen";
 
 const Stack = createStackNavigator();
 
@@ -30,7 +31,7 @@ const AppNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName={routes.NEW_PIN}
+      initialRouteName={routes.OTP_CODE_VERIFICATION}
       screenOptions={{ headerShown: false }}
     >
       {/* PUBLIC SCREEN */}
@@ -38,6 +39,7 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.REGISTER} component={RegisterScreen} />
       <Stack.Screen name={routes.LOGIN} component={LoginScreen} />
       <Stack.Screen name={routes.NEW_PIN} component={CreateNewPinScreen} />
+      <Stack.Screen name={routes.OTP_CODE_VERIFICATION} component={OTPCodeVerificationScreen} />
       <Stack.Screen
         name={routes.FORGOT_PASSWORD}
         component={ForgotPasswordScreen}

@@ -46,7 +46,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
           title="via Email"
           subTitle="ade********orld@gmail.com dsdsdsdsdsd"
         />
-        <AppButton style={{ marginVertical: 20 }}>Continue</AppButton>
+        <AppButton rounded style={{ marginVertical: 20 }}>Continue</AppButton>
       </View>
     </Screen>
   );
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     display: "flex"
   },
   image: {
-    width: mediaWidth - 100,
-    height: mediaWidth - 90,
+    width: mediaWidth - 120,
+    height: mediaWidth - 110,
     alignSelf: "center",
     marginTop: 10
   },

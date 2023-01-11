@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   icon: {
-    backgroundColor: defaultStyles.colors.lightBackground,
+    backgroundColor: defaultStyles.colors.background200,
     borderRadius: 50,
     padding: 20,
+    marginRight: 10,
   },
   radio: {
     color: colors.primaryColor,

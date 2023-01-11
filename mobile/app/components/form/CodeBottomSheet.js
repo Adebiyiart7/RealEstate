@@ -14,7 +14,13 @@ const CodeBottomSheet = ({ code, setCode, email, handleSubmit }) => {
       <AppText style={defaultStyles.bottomSheetStyles.header}>
         Enter Code
       </AppText>
-      <AppText style={defaultStyles.bottomSheetStyles.subHeading}>
+      <AppText
+        numberOfLines={1}
+        style={{
+          ...defaultStyles.bottomSheetStyles.subHeading,
+          width: "90%",
+        }}
+      >
         Enter the code sent to {email}
       </AppText>
       <View style={formStyles.container}>

@@ -17,16 +17,9 @@ import SelectOptions from "../components/form/SelectOptions";
 import CodeBottomSheet from "../components/form/CodeBottomSheet";
 import AppButton from "../components/AppButton";
 import { updateProfile } from "../features/profile/profileSlice";
-
-const initialValues = {
-  fullname: "Adeeyo Joseph",
-  username: "Adebiyiart",
-  phoneNumber: "09029242729",
-  email: "adebiyiartworld@gmail.com",
-  dob: "07/02/2023",
-  country: "Nigeria",
-  gender: "Male",
-};
+import { clearAuth } from "../features/auth/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import routes from "../config/routes";
 
 const validationSchema = Yup.object().shape({
   fullname: Yup.string().required().max(255).label("Full Name"),
@@ -44,7 +37,29 @@ const FillProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  const handleSubmitForm = (values, handleSubmit) => {
+  const initialValues = {
+    fullname: user?.fullname || "Adeeyo Joseph",
+    username: user?.username || "Adebiyiart",
+    phoneNumber: user?.phoneNumber || "09029242729",
+    email: user?.email || "adebiyiartworld@gmail.com",
+    dob: user?.dob || "07/02/2023",
+    country: user?.country || "Nigeria",
+    gender: user?.gender || "Male",
+  };
+
+  const logout = () => {
+    dispatch(clearAuth());
+    AsyncStorage.clear().then(() => navigation.navigate(routes.LOGIN));
+  };
+
+  const handleSubmitForm = (values) => {
+    if (values.email !== user.email && code.length > 0) {
+      dispatch(
+        updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
+      );
+      logout();
+    }
+
     if (values.email !== user.email) {
       setBottomSheetVisibleCode(true);
       dispatch(
@@ -54,30 +69,34 @@ const FillProfileScreen = ({ navigation }) => {
           query: `/?_id=${user._id}&code=${code}`,
         })
       );
-    } else {
-      handleSubmit(); // colorado delva
-    }
-  };
 
-  const handleSubmitCode = () => {
-    dispatch(
-      updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
-    );
+      // logout user if he is updating username
+      if (
+        (values.username !== user.username || values.email !== user.email) &&
+        code.length > 0
+      ) {
+        logout();
+      }
+    } else if (values.email === user.email && code === "") {
+      setBottomSheetVisibleCode(false);
+      dispatch(
+        updateProfile({
+          data: values,
+          token: user.token,
+          query: `/?_id=${user._id}&code=${code}`,
+        })
+      );
+
+      // logout user if he is updating username
+      if (values.username !== user.username) {
+        logout();
+      }
+    }
+    // console.log("hello");
   };
 
   return (
     <Screen>
-      <BottomSheet
-        bottomSheetVisible={bottomSheetVisibleCode}
-        setBottomSheetVisible={setBottomSheetVisibleCode}
-        bottomSheetContent={
-          <CodeBottomSheet
-            code={code}
-            setCode={setCode}
-            handleSubmit={handleSubmitCode}
-          />
-        }
-      />
       <GoBackArrowHeader title="Fill Your Profile" navigation={navigation} />
       <View style={styles.photoContainer}>
         <View style={styles.photo}>
@@ -94,13 +113,13 @@ const FillProfileScreen = ({ navigation }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) =>
-          dispatch(
-            updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
-          )
-        }
+        // onSubmit={(values) =>
+        //   dispatch(
+        //     updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
+        //   )
+        // }
       >
-        {({ setFieldValue, values, handleSubmit }) => (
+        {({ setFieldValue, values }) => (
           <View>
             <BottomSheet
               bottomSheetVisible={bottomSheetVisible}
@@ -111,6 +130,20 @@ const FillProfileScreen = ({ navigation }) => {
                   data={[{ value: "Male" }, { value: "Female" }]}
                   setFieldValue={setFieldValue}
                   setBottomSheetVisible={setBottomSheetVisible}
+                />
+              }
+            />
+            <BottomSheet
+              bottomSheetVisible={bottomSheetVisibleCode}
+              setBottomSheetVisible={setBottomSheetVisibleCode}
+              bottomSheetContent={
+                <CodeBottomSheet
+                  code={code}
+                  setCode={setCode}
+                  email={values.email}
+                  handleSubmit={() => {
+                    handleSubmitForm(values);
+                  }}
                 />
               }
             />
@@ -151,7 +184,7 @@ const FillProfileScreen = ({ navigation }) => {
             />
             <AppButton
               style={{ marginBottom: 30 }}
-              onPress={() => handleSubmitForm(values, handleSubmit)}
+              onPress={() => handleSubmitForm(values)}
             >
               Continue
             </AppButton>

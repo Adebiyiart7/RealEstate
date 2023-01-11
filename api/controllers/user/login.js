@@ -14,7 +14,7 @@ const login = async (req, res) => {
   // validate input
   const schema = loginSchema;
   const { error } = schema.validate(req.body);
-
+  console.log(req.body);
   // throw an error if error
   if (error) {
     res.status(400); // bad request

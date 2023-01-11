@@ -10,14 +10,14 @@ import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
 
 const OTPCodeVerificationScreen = ({ navigation }) => {
-  let counter = 55;
+  let counter = 5;
   const [time, setTime] = useState(counter);
   const [showResend, setShowResend] = useState(false);
   const [pin, setPin] = useState({
     first: "",
     second: "",
     third: "",
-    forth: ""
+    forth: "",
   });
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const OTPCodeVerificationScreen = ({ navigation }) => {
             <AppText style={styles.contact}>+234 0902*****29</AppText>
           </AppText>
           <PinForm pin={pin} setPin={setPin} />
-          <AppText style={styles.resendText}>
+          <View style={styles.resendText}>
             {!showResend ? (
               <AppText>
                 Resend code in <AppText style={styles.time}>{time}</AppText>s
@@ -54,7 +54,7 @@ const OTPCodeVerificationScreen = ({ navigation }) => {
                 <AppText style={styles.resendButton}>Resend</AppText>
               </TouchableOpacity>
             )}
-          </AppText>
+          </View>
         </View>
         <AppButton style={styles.verifyButton}>Verify</AppButton>
       </View>
@@ -66,23 +66,25 @@ export default OTPCodeVerificationScreen;
 
 const styles = StyleSheet.create({
   contact: {
-    fontWeight: "500"
+    fontWeight: "500",
   },
   resendText: {
-    textAlign: "center",
-    marginVertical: 40
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginVertical: 40,
   },
   resendButton: {
     color: defaultStyles.colors.primaryColor,
-    fontWeight: "600"
+    fontWeight: "600",
   },
   text: {
     marginTop: 55,
     marginBottom: 35,
-    textAlign: "center"
+    textAlign: "center",
   },
   time: {
     fontWeight: "600",
-    color: defaultStyles.colors.primaryColor
-  }
+    color: defaultStyles.colors.primaryColor,
+  },
 });

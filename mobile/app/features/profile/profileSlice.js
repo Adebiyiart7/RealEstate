@@ -2,23 +2,25 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // LOCAL IMPORTS
-import API_URI from "../api_uri";
-console.log(API_URI);
-
+import { API_URI, axiosConfig } from "../config";
 
 const initialState = {
   profile: null,
   isLoading: false,
   isSuccess: false,
   isError: false,
-  message: ""
+  message: "",
 };
 
 export const profile = createAsyncThunk(
   "profile",
-  async (data, thunkAPI) => {
+  async (data, token, thunkAPI) => {
     try {
-      const response = await axios.post(API_URI + "/users/profile", data);
+      const response = await axios.post(
+        API_URI + "/users/profile",
+        data,
+        axiosConfig(token)
+      );
       if (response.data) {
         return response.data.body;
       }
@@ -56,8 +58,8 @@ const profileSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.message = action.payload;
-      })
-  }
+      });
+  },
 });
 
 export default profileSlice.reducer;

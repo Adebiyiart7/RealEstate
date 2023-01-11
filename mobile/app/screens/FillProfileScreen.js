@@ -4,6 +4,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //LOCAL IMPORTS
 import defaultStyles from "../config/styles";
@@ -21,7 +22,7 @@ const initialValues = {
   email: "",
   dob: "",
   country: "",
-  gender: ""
+  gender: "",
 };
 
 const validationSchema = Yup.object().shape({
@@ -30,15 +31,15 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().max(255).label("Email"),
   dob: Yup.string().required().max(255).label("Date of Birth"),
   country: Yup.string().required().max(50).label("Country"),
-  gender: Yup.string().required().max(10).label("Gender")
+  gender: Yup.string().required().max(10).label("Gender"),
 });
 
 const FillProfileScreen = ({ navigation }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const dispatch = useDispatch();
 
-  // const { user } = useContext(AppContext);
-  // console.log(user);
-
+  const { user } = useSelector((state) => state.auth);
+  con;
   return (
     <Screen>
       <GoBackArrowHeader title="Fill Your Profile" navigation={navigation} />
@@ -57,7 +58,7 @@ const FillProfileScreen = ({ navigation }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => dispatch(values)}
       >
         {({ setFieldValue, values }) => (
           <View>
@@ -103,7 +104,7 @@ const FillProfileScreen = ({ navigation }) => {
               editable={false}
               onPress={() => setBottomSheetVisible(true)}
             />
-            <SubmitButton style={{marginBottom: 30}} title={"Continue"} />
+            <SubmitButton style={{ marginBottom: 30 }} title={"Continue"} />
           </View>
         )}
       </Formik>
@@ -118,23 +119,23 @@ const styles = StyleSheet.create({
     color: defaultStyles.colors.mediumText,
     // opacity: 40,
     position: "relative",
-    top: 12
+    top: 12,
   },
   editPhoto: {
     position: "absolute",
     bottom: 3,
     right: 3,
 
-    color: defaultStyles.colors.primaryColor
+    color: defaultStyles.colors.primaryColor,
   },
   photo: {
     overflow: "hidden",
     backgroundColor: defaultStyles.colors.background100,
     borderRadius: 200,
-    height: 125
+    height: 125,
   },
   photoContainer: {
     alignSelf: "center",
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });

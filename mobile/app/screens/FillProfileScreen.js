@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { useEffect, useState } from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as Yup from "yup";
@@ -14,15 +14,18 @@ import AppFormField from "../components/form/AppFormField";
 import SubmitButton from "../components/form/SubmitButton";
 import BottomSheet from "../components/BottomSheet";
 import SelectOptions from "../components/form/SelectOptions";
-// import { AppContext } from "../../App"; TODO remove this
+import CodeBottomSheet from "../components/form/CodeBottomSheet";
+import AppButton from "../components/AppButton";
+import { updateProfile } from "../features/profile/profileSlice";
 
 const initialValues = {
-  fullname: "",
-  username: "",
-  email: "",
-  dob: "",
-  country: "",
-  gender: "",
+  fullname: "Adeeyo Joseph",
+  username: "Adebiyiart",
+  phoneNumber: "09029242729",
+  email: "adebiyiartworld@gmail.com",
+  dob: "07/02/2023",
+  country: "Nigeria",
+  gender: "Male",
 };
 
 const validationSchema = Yup.object().shape({
@@ -35,13 +38,46 @@ const validationSchema = Yup.object().shape({
 });
 
 const FillProfileScreen = ({ navigation }) => {
+  const [code, setCode] = useState("");
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [bottomSheetVisibleCode, setBottomSheetVisibleCode] = useState(false);
   const dispatch = useDispatch();
-
   const { user } = useSelector((state) => state.auth);
-  con;
+
+  const handleSubmitForm = (values, handleSubmit) => {
+    if (values.email !== user.email) {
+      setBottomSheetVisibleCode(true);
+      dispatch(
+        updateProfile({
+          data: values,
+          token: user.token,
+          query: `/?_id=${user._id}&code=${code}`,
+        })
+      );
+    } else {
+      handleSubmit(); // colorado delva
+    }
+  };
+
+  const handleSubmitCode = () => {
+    dispatch(
+      updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
+    );
+  };
+
   return (
     <Screen>
+      <BottomSheet
+        bottomSheetVisible={bottomSheetVisibleCode}
+        setBottomSheetVisible={setBottomSheetVisibleCode}
+        bottomSheetContent={
+          <CodeBottomSheet
+            code={code}
+            setCode={setCode}
+            handleSubmit={handleSubmitCode}
+          />
+        }
+      />
       <GoBackArrowHeader title="Fill Your Profile" navigation={navigation} />
       <View style={styles.photoContainer}>
         <View style={styles.photo}>
@@ -58,9 +94,13 @@ const FillProfileScreen = ({ navigation }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => dispatch(values)}
+        onSubmit={(values) =>
+          dispatch(
+            updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
+          )
+        }
       >
-        {({ setFieldValue, values }) => (
+        {({ setFieldValue, values, handleSubmit }) => (
           <View>
             <BottomSheet
               bottomSheetVisible={bottomSheetVisible}
@@ -84,6 +124,11 @@ const FillProfileScreen = ({ navigation }) => {
               name={"username"}
               placeholder={"Username"}
             />
+            <AppFormField
+              icon={"phone"}
+              name={"phoneNumber"}
+              placeholder={"Phone Number"}
+            />
             <AppFormField icon={"email"} name={"email"} placeholder={"Email"} />
             <AppFormField
               icon={"calendar"}
@@ -104,7 +149,12 @@ const FillProfileScreen = ({ navigation }) => {
               editable={false}
               onPress={() => setBottomSheetVisible(true)}
             />
-            <SubmitButton style={{ marginBottom: 30 }} title={"Continue"} />
+            <AppButton
+              style={{ marginBottom: 30 }}
+              onPress={() => handleSubmitForm(values, handleSubmit)}
+            >
+              Continue
+            </AppButton>
           </View>
         )}
       </Formik>
@@ -121,6 +171,7 @@ const styles = StyleSheet.create({
     position: "relative",
     top: 12,
   },
+  codeInput: {},
   editPhoto: {
     position: "absolute",
     bottom: 3,

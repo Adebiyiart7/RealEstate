@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema(
       require: true,
       min: 3,
       max: 255,
-      trim: true
+      trim: true,
     },
     email: {
       type: String,
@@ -18,62 +18,67 @@ const userSchema = mongoose.Schema(
       require: true,
       max: 255,
       trim: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
       required: true,
       min: 8,
       max: 255,
-      trim: true
+      trim: true,
     },
     fullname: {
       type: String,
       min: 3,
       max: 255,
-      trim: true
+      trim: true,
     },
     dob: {
-      type: String
+      type: String,
     },
     phone_number: {
       type: String,
       trim: true,
-      max: 20
+      max: 20,
+    },
+    country: {
+      type: String,
+      trim: true,
+      max: 255,
     },
     gender: {
       type: String,
       trim: true,
-      max: 20
+      max: 20,
     },
     isActive: {
       type: Boolean,
       require: true,
-      default: false
+      default: false,
     },
     isAdmin: {
       type: Boolean,
       require: true,
-      default: false
+      default: false,
     },
     isBlocked: {
       type: Boolean,
       require: true,
-      default: false
+      default: false,
     },
     verificationCode: {
       type: String,
       required: false,
-    }
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
 userSchema.methods.generateAuthToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: "30d"
+    expiresIn: "30d",
   });
 };
 

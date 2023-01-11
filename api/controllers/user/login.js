@@ -26,17 +26,17 @@ const login = async (req, res) => {
   // check if user exist and compare password
   const user = await User.findOne({ $or: [{ email }, { username }] });
   const token = user.generateAuthToken();
-  
+
   if (user && (await bcrypt.compare(password, user.password))) {
     res
       .status(200) // success
       .json(
         apiResponse(res.statusCode, "", {
-          id: user._id,
+          _id: user._id,
           email: user.email,
           username: user.username,
           fullname: "",
-          token: token
+          token: token,
         })
       );
   } else {

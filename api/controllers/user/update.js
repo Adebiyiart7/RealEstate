@@ -13,8 +13,12 @@ const { apiResponse } = require("../../utils");
  */
 const update = async (req, res) => {
   const { _id, code } = req.query;
+  console.log(req.query);
   let user = await User.findById(_id); // get current user
 
+  if (!user) {
+    throw new Error("User not found!");
+  }
   // validation
   const { error } = profileSchema.validate(req.body);
 
@@ -25,7 +29,7 @@ const update = async (req, res) => {
 
   // check if username already exist
   const checkUsername = await User.findOne({
-    username: req.body.username
+    username: req.body.username,
   });
 
   if (user.username !== req.body.username) {
@@ -34,6 +38,7 @@ const update = async (req, res) => {
       throw new Error("Username already exist.");
     }
   }
+
   // check if username already exist
   const checkEmail = await User.findOne({ email: req.body.email });
   // console.log(checkEmail);
@@ -51,8 +56,8 @@ const update = async (req, res) => {
 
     // send mail
     mailer(req.body.email, "Email Verification", html);
-    user.verificationCode = code
-    user.save()
+    user.verificationCode = code;
+    user.save();
     return res.status(200).json(apiResponse(res.statusCode, "Email sent", {}));
   }
 
@@ -62,7 +67,7 @@ const update = async (req, res) => {
   }
 
   user = await User.findByIdAndUpdate(_id, req.body, {
-    new: true
+    new: true,
   }).select([
     "_id",
     "username",
@@ -71,7 +76,8 @@ const update = async (req, res) => {
     "updatedAt",
     "dob",
     "fullname",
-    "gender"
+    "country",
+    "gender",
   ]);
 
   return res.status(200).json(apiResponse(res.statusCode, "", user));

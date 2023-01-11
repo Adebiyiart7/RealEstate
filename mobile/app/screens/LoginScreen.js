@@ -19,7 +19,7 @@ import Loading from "../components/Loading";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
-  password: Yup.string().required().label("Password")
+  password: Yup.string().required().label("Password"),
 });
 
 const LoginScreen = ({ navigation }) => {
@@ -37,7 +37,6 @@ const LoginScreen = ({ navigation }) => {
 
     if (isSuccess || user) {
       navigation.navigate(routes.TAB);
-      // console.log(user);
     }
 
     dispatch(reset());
@@ -56,7 +55,7 @@ const LoginScreen = ({ navigation }) => {
         <Formik
           initialValues={{
             email: "adebiyiartworld@gmail.com",
-            password: "Test@123"
+            password: "Test@123",
           }}
           onSubmit={(values) => handleSubmit(values)}
           validationSchema={validationSchema}

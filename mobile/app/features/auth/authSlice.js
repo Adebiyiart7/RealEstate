@@ -3,8 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // LOCAL IMPORTS
-import API_URI from "../api_uri";
-
+import { API_URI } from "../config";
 let user = null;
 
 const initialState = {
@@ -12,7 +11,7 @@ const initialState = {
   isLoading: false,
   isSuccess: false,
   isError: false,
-  message: ""
+  message: "",
 };
 
 export const register = createAsyncThunk(
@@ -65,7 +64,7 @@ const authSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -101,7 +100,7 @@ const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       });
-  }
+  },
 });
 
 export default authSlice.reducer;

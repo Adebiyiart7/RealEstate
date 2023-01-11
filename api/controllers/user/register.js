@@ -43,7 +43,7 @@ const register = async (req, res) => {
   const token = user.generateAuthToken();
 
   return res.status(201).json(apiResponse(res.statusCode, "", {
-    id: user._id,
+    _id: user._id,
     email: user.email,
     username: user.username,
     fullname: "",

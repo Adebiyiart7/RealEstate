@@ -12,15 +12,16 @@ const initialState = {
   message: "",
 };
 
-export const profile = createAsyncThunk(
-  "profile",
-  async (data, token, thunkAPI) => {
+export const updateProfile = createAsyncThunk(
+  "profile/update",
+  async (data, thunkAPI) => {
     try {
-      const response = await axios.post(
-        API_URI + "/users/profile",
-        data,
-        axiosConfig(token)
+      const response = await axios.put(
+        API_URI + "/users/update" + data.query,
+        data.data,
+        axiosConfig(data.token)
       );
+
       if (response.data) {
         return response.data.body;
       }
@@ -45,15 +46,15 @@ const profileSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(profile.pending, (state) => {
+      .addCase(updateProfile.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(profile.fulfilled, (state, action) => {
+      .addCase(updateProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.profile = action.payload;
       })
-      .addCase(profile.rejected, (state, action) => {
+      .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

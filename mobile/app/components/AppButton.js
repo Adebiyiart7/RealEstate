@@ -14,7 +14,7 @@ const AppButton = ({
   disabled,
   small,
   secondary,
-  rounded
+  rounded,
 }) => {
   const btn = {
     display: "flex",
@@ -23,32 +23,32 @@ const AppButton = ({
     borderRadius: rounded ? 25 : 5,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 10
+    marginVertical: 10,
   };
 
   const styles = {
     button: {
       backgroundColor: !secondary
         ? defaultStyles.colors.primaryColor
-        : defaultStyles.colors.background200
+        : defaultStyles.colors.background200,
     },
     startImageStyle: {
       height: 20,
       width: 20,
-      marginRight: 5
+      marginRight: 5,
     },
     text: {
       color: !secondary
         ? defaultStyles.colors.white
         : defaultStyles.colors.primaryColor,
       fontWeight: "600",
-      fontSize: 16
+      fontSize: 16,
     },
     disabled: {
       button: {
-        backgroundColor: defaultStyles.colors.disabled
-      }
-    }
+        backgroundColor: defaultStyles.colors.disabled,
+      },
+    },
   };
 
   return (

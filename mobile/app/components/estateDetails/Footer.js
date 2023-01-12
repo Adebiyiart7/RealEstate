@@ -10,7 +10,7 @@ import LoginBottomSheet from "../LoginBottomSheet";
 
 const Footer = ({ navigation, item }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const { user } = useSelector(state => state.auth)
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <View style={styles.footer}>
@@ -32,7 +32,7 @@ const Footer = ({ navigation, item }) => {
           user
             ? navigation.navigate(routes.BOOKING, {
                 _id: item._id,
-              user: user,
+                user: user,
               })
             : setBottomSheetVisible(true);
         }}
@@ -47,30 +47,34 @@ export default Footer;
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1
+    flex: 1,
   },
   duration: {
     fontWeight: "400",
     fontSize: 13,
-    color: colors.mediumText
+    color: colors.mediumText,
   },
   footer: {
+    position: "absolute",
+    borderWidth: 1,
     display: "flex",
     flexDirection: "row",
     borderTopWidth: 1,
     borderColor: colors.border200,
     // borderRadius: 25,
+    bottom: 0,
     padding: 16,
-    backgroundColor: colors.white
+    paddingBottom: 30,
+    backgroundColor: colors.white,
   },
   price: {
     color: colors.primaryColor,
     fontSize: 25,
     fontWeight: "bold",
-    marginRight: 16
+    marginRight: 16,
   },
   priceText: {
     fontSize: 13,
-    color: colors.lightText
-  }
+    color: colors.lightText,
+  },
 });

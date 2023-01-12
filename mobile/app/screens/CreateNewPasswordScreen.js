@@ -17,7 +17,7 @@ import ProcessStatus from "../components/ProcessStatus";
 const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required()
-    .matches(constants.passwordRegEx, constants.passwordError)
+    .matches(constants.passwordRegEx, constants.passwordError),
 });
 
 const CreateNewPasswordScreen = ({ navigation }) => {
@@ -85,27 +85,27 @@ export default CreateNewPasswordScreen;
 
 const styles = StyleSheet.create({
   button: {
-    marginBottom: 20
+    marginBottom: 20,
   },
   checkbox: {
     color: defaultStyles.colors.primaryColor,
-    marginRight: 5
+    marginRight: 5,
   },
   image: {
     height: 216 - 10,
     width: 260 - 10,
     alignSelf: "center",
     marginHorizontal: 0,
-    marginTop: 20
+    marginTop: 20,
   },
   rememberMe: {
     display: "flex",
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 10
+    marginVertical: 10,
   },
   text: {
-    marginTop: 30
-  }
+    marginTop: 30,
+  },
 });

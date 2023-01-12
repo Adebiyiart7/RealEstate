@@ -12,6 +12,7 @@ import colors from "../../config/colors";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
 import LoginBottomSheet from "../../components/LoginBottomSheet";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 class BookingScreen extends React.Component {
   constructor(props) {
@@ -21,117 +22,143 @@ class BookingScreen extends React.Component {
       startDate: new Date(1611106322840),
       endDate: new Date(1671706322840),
       displayedDate: moment(),
-      bottomSheetVisible: false
+      bottomSheetVisible: false,
+      openDate: false,
     };
   }
 
   setDates = (dates) => {
     this.setState({
-      ...dates
+      ...dates,
     });
   };
 
   setBottomSheetVisible = () => {
     this.setState({
-      bottomSheetVisible: true
+      bottomSheetVisible: true,
+    });
+  };
+
+  setOpenDate = () => {
+    this.setState({
+      openDate: true,
     });
   };
 
   render() {
-    const { startDate, endDate, displayedDate, props, bottomSheetVisible, navigation } =
-      this.state;
+    const {
+      startDate,
+      endDate,
+      displayedDate,
+      props,
+      bottomSheetVisible,
+      navigation,
+      openDate,
+    } = this.state;
 
     const Header = ({ title }) => {
       return <AppText style={styles.header}>{title} </AppText>;
     };
 
     return (
-      <Screen style={styles.container}>
-        <LoginBottomSheet
-          bottomSheetVisible={bottomSheetVisible}
-          setBottomSheetVisible={this.setBottomSheetVisible}
-        />
-        <GoBackArrowHeader
-          navigation={navigation}
-          title={"Booking Real Estate"}
-        />
-        <Header title={"Select Date"} />
-        <View style={styles.calendar}>
-          <DateRangePicker
-            open={true}
-            headerTextStyle={{ fontWeight: "bold" }}
-            backdropStyle={{
-              backgroundColor: "transparent"
-            }}
-            selectedStyle={{ backgroundColor: colors.primaryColor }}
-            onChange={this.setDates}
-            endDate={endDate}
-            startDate={startDate}
-            displayedDate={displayedDate}
-            containerStyle={styles.calendarStyle}
-            range
-          />
-        </View>
+      <>
+        <DateRangePicker
+          open={openDate}
+          headerTextStyle={{ fontWeight: "bold" }}
+          
+          backdropStyle={
+            {
+              // backgroundColor: "transparent",
+            }
+          }
+          selectedStyle={{ backgroundColor: colors.primaryColor }}
+          onChange={this.setDates}
+          endDate={endDate}
+          startDate={startDate}
+          displayedDate={displayedDate}
+          containerStyle={styles.calendarStyle}
+          range
+        >
+          <AppText></AppText>
+        </DateRangePicker>
 
-        {/* DATE RANGE */}
-        <View style={styles.checks}>
-          <View style={styles.left}>
-            <Header title={"Check In"} />
-            <View style={styles.input}>
-              <AppText>
-                {startDate && moment(startDate).format("DD-MM-YYYY")}
-              </AppText>
-              <MaterialCommunityIcons
-                name="calendar"
-                color={colors.mediumText}
-                size={20}
-              />
+        <Screen style={styles.container}>
+          <LoginBottomSheet
+            bottomSheetVisible={bottomSheetVisible}
+            setBottomSheetVisible={this.setBottomSheetVisible}
+          />
+          <GoBackArrowHeader
+            navigation={navigation}
+            title={"Booking Real Estate"}
+          />
+          <View style={styles.calendar}></View>
+
+          {/* DATE RANGE */}
+          <View style={styles.checks}>
+            <View style={styles.left}>
+              <Header title={"Check In"} />
+              <TouchableOpacity
+                style={styles.input}
+                onPress={() => this.setOpenDate()}
+              >
+                <AppText>
+                  {startDate && moment(startDate).format("DD-MM-YYYY")}
+                </AppText>
+                <MaterialCommunityIcons
+                  name="calendar"
+                  color={colors.mediumText}
+                  size={20}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.right}>
+              <Header title={"Check Out"} />
+              <TouchableOpacity
+                style={styles.input}
+                onPress={() => this.setOpenDate()}
+              >
+                <AppText>
+                  {endDate && moment(endDate).format("DD-MM-YYYY")}
+                </AppText>
+                <MaterialCommunityIcons
+                  name="calendar"
+                  color={colors.mediumText}
+                  size={20}
+                />
+              </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.right}>
-            <Header title={"Check Out"} />
-            <View style={styles.input}>
-              <AppText>
-                {endDate && moment(endDate).format("DD-MM-YYYY")}
-              </AppText>
-              <MaterialCommunityIcons
-                name="calendar"
-                color={colors.mediumText}
-                size={20}
-              />
-            </View>
+
+          {/* NOTE */}
+          <View style={{ marginTop: 16 }}>
+            <Header title={"Note to Owner (Optional)"} />
+
+            <TextInput
+              placeholder="Write to the owner..."
+              style={styles.noteInput}
+              name={"note"}
+              numberOfLines={3}
+              multiline
+              value="I would like to know if there are extra charges apart from the tax and security"
+            />
+            <AppButton
+              onPress={() => {
+                props.route.params.user
+                  ? props.navigation.navigate(routes.BOOKING_FORM, {
+                      _id: props.route.params._id,
+                      checksDetails: {
+                        startDate: startDate,
+                        endDate: endDate,
+                      },
+                    })
+                  : this.setBottomSheetVisible;
+              }}
+            >
+              Continue
+            </AppButton>
           </View>
-        </View>
-
-        {/* NOTE */}
-        <View style={{ marginTop: 16 }}>
-          <Header title={"Note to Owner (Optional)"} />
-
-          <TextInput
-            placeholder="Write to the owner..."
-            style={styles.noteInput}
-            name={"note"}
-            numberOfLines={3}
-            multiline
-            value="I would like to know if there are extra charges apart from the tax and security"
-          />
-          <AppButton
-            onPress={() => {
-              props.route.params.user
-                ? props.navigation.navigate(routes.BOOKING_FORM, {
-                    _id: props.route.params._id,
-                    checksDetails: {
-                      startDate: startDate,
-                      endDate: endDate
-                    }
-                  })
-                : this.setBottomSheetVisible;
-            }}
-          >
-            Continue
-          </AppButton>
-        </View>
-      </Screen>
+        </Screen>
+      </>
     );
   }
 }
@@ -143,26 +170,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    height: 340
   },
   calendarStyle: {
     backgroundColor: colors.background100,
     borderWidth: 1,
-    borderColor: colors.border200
+    borderColor: colors.border200,
   },
   checks: {
     display: "flex",
     flex: 10,
     flexDirection: "row",
-    marginTop: 16
+    marginTop: 16,
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   header: {
     fontWeight: "bold",
-    fontSize: 17
+    fontSize: 17,
   },
   input: {
     flexDirection: "row",
@@ -171,17 +197,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     backgroundColor: colors.background100,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   left: {
     flex: 5,
     alignSelf: "flex-start",
-    marginRight: 8
+    marginRight: 8,
   },
   right: {
     flex: 5,
     alignSelf: "flex-start",
-    marginLeft: 8
+    marginLeft: 8,
   },
   noteInput: {
     marginVertical: 10,
@@ -189,6 +215,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background100,
     padding: 16,
     fontSize: 16,
-    color: colors.primaryText
-  }
+    color: colors.primaryText,
+  },
 });

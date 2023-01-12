@@ -11,10 +11,11 @@ const { apiResponse } = require("../../utils");
  * @access      public
  */
 const login = async (req, res) => {
+  // try {
   // validate input
   const schema = loginSchema;
   const { error } = schema.validate(req.body);
-  console.log(req.body);
+
   // throw an error if error
   if (error) {
     res.status(400); // bad request
@@ -25,9 +26,9 @@ const login = async (req, res) => {
 
   // check if user exist and compare password
   const user = await User.findOne({ $or: [{ email }, { username }] });
-  const token = user.generateAuthToken();
-
+  // console.log(user && (await bcrypt.compare(password, user.password)));
   if (user && (await bcrypt.compare(password, user.password))) {
+    const token = user.generateAuthToken();
     res
       .status(200) // success
       .json(
@@ -43,6 +44,11 @@ const login = async (req, res) => {
     res.status(401); // unauthorized
     throw new Error("Invalid Credentials!");
   }
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(400);
+  //   throw new Error("Error Logging in");
+  // }
 };
 
 module.exports = login;

@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
 
 // LOCAL IMPORTS
 import BottomSheet from "./BottomSheet";
@@ -8,9 +7,19 @@ import AppButton from "./AppButton";
 import routes from "../config/routes";
 import { useNavigation } from "@react-navigation/native";
 import colors from "../config/colors";
+import { useBackHandler } from "./hooks/useBackHandler";
 
 const LoginBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) => {
   const navigation = useNavigation();
+
+  useBackHandler(() => {
+    if (bottomSheetVisible) {
+      console.log("Hello");
+      setBottomSheetVisible(false);
+      return true;
+    }
+    return false;
+  });
 
   return (
     <View>
@@ -25,12 +34,14 @@ const LoginBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) => {
               <View style={styles.content}>
                 <View style={styles.buttons}>
                   <AppButton
+                    small
                     style={styles.login}
                     onPress={() => navigation.navigate(routes.LOGIN)}
                   >
                     LOGIN
                   </AppButton>
                   <AppButton
+                    small
                     secondary
                     style={styles.register}
                     onPress={() => navigation.navigate(routes.REGISTER)}
@@ -55,26 +66,26 @@ const styles = StyleSheet.create({
   buttons: {
     display: "flex",
     flexDirection: "row",
-    flex: 2
+    // flex: 2,
   },
   content: {
-    margin: 16
+    margin: 16,
   },
   header: {
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
   },
   login: {
     marginRight: 8,
-    flex: 1
+    flex: 1,
   },
   register: {
     marginLeft: 8,
-    flex: 1
+    flex: 1,
   },
   subHeading: {
     textAlign: "center",
-    color: colors.mediumText
-  }
+    color: colors.mediumText,
+  },
 });

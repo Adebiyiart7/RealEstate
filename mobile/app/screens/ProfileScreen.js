@@ -33,6 +33,15 @@ const ProfileScreen = ({ navigation }) => {
       <AppButton onPress={() => navigation.navigate(routes.FILL_PROFILE)}>
         Update Profile
       </AppButton>
+      <AppButton onPress={() => navigation.navigate(routes.NEW_PASSWORD)}>
+        Change Password
+      </AppButton>
+      <AppButton onPress={() => navigation.navigate(routes.NOTIFICATIONS)}>
+        Notification
+      </AppButton>
+      <AppButton onPress={() => navigation.navigate(routes.SEARCH)}>
+        Search
+      </AppButton>
     </Screen>
   );
 };

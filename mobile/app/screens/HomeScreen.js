@@ -34,18 +34,19 @@ const HomeScreen = ({ navigation }) => {
   // const [loading, setLoading] = useState(true);
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [bottomSheetVisibleLogin, setBottomSheetVisibleLogin] = useState(false);
-  const [bottomSheetVisibleProfile, setBottomSheetVisibleProfile] = useState(false);
+  const [bottomSheetVisibleProfile, setBottomSheetVisibleProfile] =
+    useState(false);
   const { user } = useSelector((state) => state.auth);
   const { profile } = useSelector((state) => state.profile);
 
   useEffect(() => {
-    if (!user) setBottomSheetVisibleLogin(true)
-  }, [user])
+    if (!user) setBottomSheetVisibleLogin(true);
+  }, [user]);
 
-    useEffect(() => {
-      if (user && !profile) setBottomSheetVisibleProfile(true);
-    }, [user, profile]);
-  
+  useEffect(() => {
+    if (user && !profile) setBottomSheetVisibleProfile(true);
+  }, [user, profile]);
+
   return (
     <Screen style={styles.screen}>
       {/* <Loading visible={loading} /> */}
@@ -124,18 +125,18 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10
+    marginTop: 10,
   },
   headerTitle: {
     fontWeight: "bold",
     color: defaultStyles.colors.primaryText,
     fontSize: 17,
-    marginBottom: 12
+    marginBottom: 12,
   },
   ourRecommendation: {
-    marginTop: 16
+    marginTop: 16,
   },
   screen: {
-    paddingTop: 16
-  }
+    paddingTop: 16,
+  },
 });

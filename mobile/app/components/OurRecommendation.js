@@ -9,14 +9,17 @@ import { estateCategory, estates } from "../db";
 import colors from "../config/colors";
 import AppText from "./AppText";
 import defaultStyles from "../config/styles";
+import PropertyDisplayFormat from "./PropertyDisplayFormat";
 
 const OurRecommendation = ({ navigation }) => {
   const [focusedItem, setFocusedItem] = useState("All");
+  const [displayFormat, setDisplayFormat] = useState("grid"); // list or grid
 
   return (
     <View style={styles.container}>
       <FlatList
         horizontal
+        style={{ marginTop: 16 }}
         showsHorizontalScrollIndicator={false}
         data={estateCategory}
         keyExtractor={(item) => item.name}
@@ -44,10 +47,14 @@ const OurRecommendation = ({ navigation }) => {
         )}
         ItemSeparatorComponent={() => <AppText style={styles.seperator} />}
       />
+      <PropertyDisplayFormat
+        displayFormat={displayFormat}
+        setDisplayFormat={setDisplayFormat}
+      />
       <View style={defaultStyles.gridStyle}>
         {estates.map((item) => (
           <View key={item._id}>
-            <Card3 navigation={navigation} item={item} />
+            <Card3 navigation={navigation} format={displayFormat} item={item} />
           </View>
         ))}
       </View>
@@ -59,21 +66,21 @@ export default OurRecommendation;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 50
+    marginBottom: 50,
   },
   featuredView: {
-    marginTop: 10
+    marginTop: 10,
   },
   header: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   ourRecommendation: {
     marginBottom: 16,
-    marginTop: 20
+    marginTop: 20,
   },
   seperator: {
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });

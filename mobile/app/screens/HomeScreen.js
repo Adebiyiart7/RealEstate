@@ -110,7 +110,10 @@ const HomeScreen = ({ navigation }) => {
             onPressRight={() => navigation.navigate(routes.OUR_RECOMMENDATION)}
             right={<SeeAllText />}
           />
-          <OurRecommendation navigation={navigation} />
+          <OurRecommendation
+            navigation={navigation}
+            propertyCount={"2484 found"}
+          />
         </View>
       </View>
     </Screen>

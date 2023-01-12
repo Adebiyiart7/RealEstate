@@ -2,7 +2,7 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
@@ -13,24 +13,29 @@ import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
 import utils from "../../utils";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Card3 = ({ navigation, item, format }) => {
   const dimension = useDimensions().screen;
   const [heartIcon, setHeartIcon] = useState("heart-outline");
- 
+
   const imageDimension = {
     height:
       format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
     width:
-      format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32
+      format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
   };
 
   const detailsDimension = {
     width:
       format === "list"
         ? dimension.width - imageDimension.width - 48
-        : dimension.width / 2 - 32
+        : dimension.width / 2 - 32,
   };
+
+  // const addToFavorite = async () => {
+  //   await AsyncStorage.setItem("favorite", {});
+  // };
 
   return (
     <View style={[styles.card, format === "list" && styles.cardListFormat]}>
@@ -76,7 +81,7 @@ const Card3 = ({ navigation, item, format }) => {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(routes.ESTATE_DETAILS, {
-                  _id: item._id
+                  _id: item._id,
                 });
               }}
             >
@@ -84,7 +89,7 @@ const Card3 = ({ navigation, item, format }) => {
                 numberOfLines={format === "list" ? 2 : 1}
                 style={[
                   styles.firstText,
-                  { marginTop: format === "grid" ? 8 : 0 }
+                  { marginTop: format === "grid" ? 8 : 0 },
                 ]}
               >
                 {item.name}
@@ -119,56 +124,56 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     padding: 8,
-    borderRadius: 20
+    borderRadius: 20,
   },
   cardListFormat: {
     display: "flex",
     flexDirection: "row",
-    marginVertical: 4
+    marginVertical: 4,
   },
 
   details: {
     marginVertical: 5,
     marginHorizontal: 5,
-    maxWidth: 200
+    maxWidth: 200,
   },
   image: {
     borderRadius: 20,
     overflow: "hidden",
     maxHeight: 200,
-    maxWidth: 200
+    maxWidth: 200,
   },
   imageListFormat: {
-    marginRight: 10
+    marginRight: 10,
   },
   f1: {
     color: colors.primaryColor,
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
   },
   f2: {
     color: colors.mediumText,
-    width: "50%"
+    width: "50%",
   },
   firstText: {
     color: colors.primaryText,
     fontSize: 15,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   footer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "flex-end",
-    marginTop: 5
+    marginTop: 5,
   },
   heartIcon: {
     position: "absolute",
     bottom: 4,
     right: 4,
-    padding: 6
+    padding: 6,
   },
   secondText: {
-    color: colors.mediumText
+    color: colors.mediumText,
   },
   rating: {
     position: "absolute",
@@ -180,7 +185,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     fontSize: 11,
     fontWeight: "bold",
-    color: colors.primaryColor
+    color: colors.primaryColor,
   },
-  texts: { display: "flex", flex: 1, justifyContent: "space-between" }
+  texts: { display: "flex", flex: 1, justifyContent: "space-between" },
 });

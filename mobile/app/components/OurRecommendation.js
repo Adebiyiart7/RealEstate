@@ -11,7 +11,11 @@ import AppText from "./AppText";
 import defaultStyles from "../config/styles";
 import PropertyDisplayFormat from "./PropertyDisplayFormat";
 
-const OurRecommendation = ({ navigation }) => {
+const OurRecommendation = ({
+  navigation,
+  categoryChipStyle,
+  propertyCount,
+}) => {
   const [focusedItem, setFocusedItem] = useState("All");
   const [displayFormat, setDisplayFormat] = useState("grid"); // list or grid
 
@@ -19,7 +23,7 @@ const OurRecommendation = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         horizontal
-        style={{ marginTop: 16 }}
+        style={{ marginTop: 8, ...categoryChipStyle }}
         showsHorizontalScrollIndicator={false}
         data={estateCategory}
         keyExtractor={(item) => item.name}
@@ -49,6 +53,7 @@ const OurRecommendation = ({ navigation }) => {
       />
       <PropertyDisplayFormat
         displayFormat={displayFormat}
+        propertyCount={propertyCount}
         setDisplayFormat={setDisplayFormat}
       />
       <View style={defaultStyles.gridStyle}>

@@ -24,6 +24,8 @@ class BookingScreen extends React.Component {
       displayedDate: moment(),
       bottomSheetVisible: false,
       openDate: false,
+      noteToOwner:
+        "I would like to know if there are extra charges apart from the tax and security",
     };
   }
 
@@ -40,8 +42,14 @@ class BookingScreen extends React.Component {
   };
 
   setOpenDate = () => {
+    // this.setState({
+    //   openDate: true,
+    // });
+  };
+
+  handleChangeNoteToOwner = (text) => {
     this.setState({
-      openDate: true,
+      noteToOwner: text,
     });
   };
 
@@ -54,6 +62,7 @@ class BookingScreen extends React.Component {
       bottomSheetVisible,
       navigation,
       openDate,
+      noteToOwner,
     } = this.state;
 
     const Header = ({ title }) => {
@@ -65,12 +74,6 @@ class BookingScreen extends React.Component {
         <DateRangePicker
           open={openDate}
           headerTextStyle={{ fontWeight: "bold" }}
-          
-          backdropStyle={
-            {
-              // backgroundColor: "transparent",
-            }
-          }
           selectedStyle={{ backgroundColor: colors.primaryColor }}
           onChange={this.setDates}
           endDate={endDate}
@@ -113,10 +116,7 @@ class BookingScreen extends React.Component {
             </View>
             <View style={styles.right}>
               <Header title={"Check Out"} />
-              <TouchableOpacity
-                style={styles.input}
-                onPress={() => this.setOpenDate()}
-              >
+              <View style={styles.input}>
                 <AppText>
                   {endDate && moment(endDate).format("DD-MM-YYYY")}
                 </AppText>
@@ -125,7 +125,7 @@ class BookingScreen extends React.Component {
                   color={colors.mediumText}
                   size={20}
                 />
-              </TouchableOpacity>
+              </View>
             </View>
           </View>
 
@@ -139,7 +139,8 @@ class BookingScreen extends React.Component {
               name={"note"}
               numberOfLines={3}
               multiline
-              value="I would like to know if there are extra charges apart from the tax and security"
+              onChangeText={(text) => this.handleChangeNoteToOwner(text)}
+              value={noteToOwner}
             />
             <AppButton
               onPress={() => {
@@ -171,11 +172,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  calendarStyle: {
-    backgroundColor: colors.background100,
-    borderWidth: 1,
-    borderColor: colors.border200,
-  },
+  calendarStyle: {},
   checks: {
     display: "flex",
     flex: 10,

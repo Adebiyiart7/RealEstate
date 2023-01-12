@@ -14,20 +14,22 @@ const validationSchema = Yup.object().shape({
   cardName: Yup.string().required().min(4).max(255).label("Card Name"),
   cardNumber: Yup.string().required().min(16).label("Card Number"),
   expiryDate: Yup.string().required().min(4).max(50).label("Expiry Date"),
-  cvv: Yup.string().required().length(3).label("CVV")
+  cvv: Yup.string().required().length(3).label("CVV"),
 });
 
 const AddNewCardScreen = ({ navigation }) => {
   return (
     <Screen>
       <GoBackArrowHeader navigation={navigation} title={"Add New card"} />
-      <Image source={require("../../assets/images/atm-card.png")} />
+      <View style={styles.card}>
+        <Image source={require("../../assets/images/atm-card.png")} />
+      </View>
       <Formik
         initialValues={{
           cardName: "",
           cardNumber: "",
           expiryDate: "",
-          cvv: ""
+          cvv: "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => console.log(values)}
@@ -79,24 +81,29 @@ const AddNewCardScreen = ({ navigation }) => {
 export default AddNewCardScreen;
 
 const styles = StyleSheet.create({
+  card: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
   inputField: {
-    borderRadius: 5
+    borderRadius: 5,
   },
   label: {
     marginTop: 10,
-    marginBottom: -5
+    marginBottom: -5,
   },
   lastInputs: {
     display: "flex",
     flexDirection: "row",
-    flex: 3
+    flex: 3,
   },
   left: {
     flex: 2,
-    marginRight: 8
+    marginRight: 8,
   },
   right: {
     flex: 1,
-    marginLeft: 8
-  }
+    marginLeft: 8,
+  },
 });

@@ -13,14 +13,14 @@ import { useSelector } from "react-redux";
 
 const ConfirmPinScreen = ({ navigation, route }) => {
   const { user } = useSelector((state) => state.auth);
-    const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const item = estates.find((i) => i._id === route.params._id);
   const userInfo = route.params.userInfo;
   const [pin, setPin] = useState({
     first: "",
     second: "",
     third: "",
-    fourth: ""
+    fourth: "",
   });
 
   return (
@@ -37,12 +37,13 @@ const ConfirmPinScreen = ({ navigation, route }) => {
         Actions={
           <View style={{ marginTop: 10 }}>
             <AppButton
+              small
               onPress={() => {
                 user
                   ? navigation.navigate(routes.E_RECEIPT, {
                       _id: route.params._id,
                       checksDetails: route.params.checksDetails,
-                      userInfo: userInfo
+                      userInfo: userInfo,
                     })
                   : setBottomSheetVisible(true);
               }}
@@ -51,8 +52,8 @@ const ConfirmPinScreen = ({ navigation, route }) => {
             >
               View E-Receipt
             </AppButton>
-            <AppButton rounded secondary>
-              Cancel
+            <AppButton small rounded secondary>
+              My Booking
             </AppButton>
           </View>
         }
@@ -91,13 +92,13 @@ export default ConfirmPinScreen;
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 50
+    marginTop: 50,
   },
   container: {
-    marginTop: 50
+    marginTop: 50,
   },
   text: {
     marginBottom: 30,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });

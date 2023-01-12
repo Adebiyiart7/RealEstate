@@ -6,10 +6,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import AppText from "./AppText";
 
-const PropertyDisplayFormat = ({ displayFormat, setDisplayFormat }) => {
+const PropertyDisplayFormat = ({
+  displayFormat,
+  setDisplayFormat,
+  propertyCount,
+}) => {
   return (
     <View style={styles.displayFormat}>
-      <AppText style={styles.searchCount}>2484 found</AppText>
+      <AppText style={styles.propertyCount}>{propertyCount}</AppText>
       <View style={styles.displayFormatIcons}>
         <TouchableOpacity onPress={() => setDisplayFormat("list")}>
           <MaterialCommunityIcons
@@ -56,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: 50,
   },
-  searchCount: {
+  propertyCount: {
     fontWeight: "bold",
     fontSize: 16,
   },

@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required()
     .matches(constants.passwordRegEx, constants.passwordError)
-    .label("Password")
+    .label("Password"),
 });
 
 const RegisterScreen = ({ navigation }) => {
@@ -32,7 +32,7 @@ const RegisterScreen = ({ navigation }) => {
   const { isLoading, isError, isSuccess, message, user } = useSelector(
     (state) => state.auth
   );
-  
+
   const handleSubmit = (values) => {
     dispatch(register(values));
   };
@@ -42,7 +42,6 @@ const RegisterScreen = ({ navigation }) => {
 
     if (isSuccess || user) {
       navigation.navigate(routes.TAB);
-      console.log(user);
     }
 
     dispatch(reset());
@@ -62,9 +61,11 @@ const RegisterScreen = ({ navigation }) => {
           initialValues={{
             username: "Adebiyiart",
             email: "adebiyiartworld@gmail.com",
-            password: "Test@123"
+            password: "Test@123",
           }}
-          onSubmit={(values) => {handleSubmit(values);}}
+          onSubmit={(values) => {
+            handleSubmit(values);
+          }}
           validationSchema={validationSchema}
         >
           {() => (
@@ -122,14 +123,14 @@ export const styles = StyleSheet.create({
   logo: {
     height: 120,
     width: 330,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   container: {
-    display: "flex"
+    display: "flex",
   },
   continueText: {
     fontWeight: "500",
-    color: defaultStyles.colors.mediumText
+    color: defaultStyles.colors.mediumText,
   },
   forgotPassword: {
     color: defaultStyles.colors.primaryColor,
@@ -138,30 +139,30 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   otherOptions: {
-    marginTop: 30
+    marginTop: 30,
   },
   rememberMe: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 5
+    marginVertical: 5,
   },
   rememberMeIcon: {
     marginRight: 5,
-    color: defaultStyles.colors.primaryColor
+    color: defaultStyles.colors.primaryColor,
   },
   rememberMeText: {
-    fontWeight: "500"
+    fontWeight: "500",
   },
   signIn: {
     color: defaultStyles.colors.primaryColor,
-    fontWeight: "500"
+    fontWeight: "500",
   },
   signiInMessage: {
     marginVertical: 20,
     color: defaultStyles.colors.lightText,
-    textAlign: "center"
+    textAlign: "center",
   },
   social: {
     borderWidth: 1,
@@ -169,21 +170,21 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 25,
     paddingVertical: 12,
     marginHorizontal: 7,
-    borderRadius: defaultStyles.primaryBorderRadius
+    borderRadius: defaultStyles.primaryBorderRadius,
   },
   socialImage: {
     height: 20,
-    width: 20
+    width: 20,
   },
   socials: {
     marginTop: 30,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   title: {
     ...defaultStyles.titleFont,
     marginTop: 25,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });

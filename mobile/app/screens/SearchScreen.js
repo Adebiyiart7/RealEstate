@@ -1,12 +1,6 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
 
 // LOCAL IMPORTS
@@ -18,6 +12,7 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import defaultStyles from "../config/styles";
 import { estateCategory, estates } from "../db";
+import PropertyDisplayFormat from "../components/PropertyDisplayFormat";
 
 const SearchScreen = ({ navigation }) => {
   const [focusedItem, setFocusedItem] = useState("All");
@@ -29,6 +24,7 @@ const SearchScreen = ({ navigation }) => {
       {/* SEARCH */}
       <View style={styles.searchContainer}>
         <MaterialCommunityIcons
+          onPress={() => navigation.goBack()}
           name="arrow-left"
           color={colors.primaryText}
           size={24}
@@ -72,29 +68,10 @@ const SearchScreen = ({ navigation }) => {
       />
 
       {/* SEARCH COUNT and DISPLAY FORMAT */}
-      <View style={styles.displayFormat}>
-        <AppText style={styles.searchCount}>2484 found</AppText>
-        <View style={styles.displayFormatIcons}>
-          <TouchableOpacity onPress={() => setDisplayFormat("list")}>
-            <MaterialCommunityIcons
-              name="format-list-bulleted"
-              style={[
-                styles.displayFormatIcon,
-                displayFormat === "list" && styles.displayFormatIconColor
-              ]}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setDisplayFormat("grid")}>
-            <MaterialCommunityIcons
-              name="view-grid-outline"
-              style={[
-                styles.displayFormatIcon,
-                displayFormat === "grid" && styles.displayFormatIconColor
-              ]}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <PropertyDisplayFormat
+        displayFormat={displayFormat}
+        setDisplayFormat={setDisplayFormat}
+      />
 
       {/* LIST */}
       <View style={displayFormat !== "list" && defaultStyles.gridStyle}>
@@ -112,35 +89,13 @@ export default SearchScreen;
 
 const styles = StyleSheet.create({
   backArrow: {
-    marginRight: 16
+    marginRight: 16,
   },
-  displayFormat: {
-    marginTop: 16,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-  displayFormatIcon: {
-    fontSize: 18,
-    color: colors.lightText
-  },
-  displayFormatIconColor: {
-    color: colors.primaryColor
-  },
-  displayFormatIcons: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: 50
-  },
+
   searchContainer: {
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
-    marginVertical: 10
+    marginVertical: 10,
   },
-  searchCount: {
-    fontWeight: "bold",
-    fontSize: 16
-  }
 });

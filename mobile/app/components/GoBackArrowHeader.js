@@ -6,7 +6,12 @@ import { useDimensions } from "@react-native-community/hooks";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-const GoBackArrowHeader = ({ title, navigation, RightIcon }) => {
+const GoBackArrowHeader = ({
+  title,
+  navigation,
+  RightIcon,
+  RightIconExtra,
+}) => {
   const { width: screenWidth } = useDimensions().screen;
 
   return (
@@ -26,7 +31,14 @@ const GoBackArrowHeader = ({ title, navigation, RightIcon }) => {
         {title}
       </AppText>
       {RightIcon && (
-        <TouchableOpacity style={styles.right}>{RightIcon}</TouchableOpacity>
+        <TouchableOpacity style={styles.right}>
+          {RightIconExtra}
+        </TouchableOpacity>
+      )}
+      {RightIconExtra && (
+        <TouchableOpacity style={{ ...styles.right, ...styles.rightExtra }}>
+          {RightIcon}
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -39,14 +51,14 @@ const styles = StyleSheet.create({
     color: defaultStyles.colors.primaryText,
     backgroundColor: defaultStyles.colors.background100,
     padding: 10,
-    borderRadius: 50
+    borderRadius: 50,
   },
   container: {
     display: "flex",
     flexDirection: "row",
     width: "100%",
     paddingVertical: 16,
-    alignItems: "center"
+    alignItems: "center",
   },
   left: {},
   right: {
@@ -55,11 +67,14 @@ const styles = StyleSheet.create({
     color: defaultStyles.colors.primaryText,
     backgroundColor: defaultStyles.colors.background100,
     padding: 10,
-    borderRadius: 50
+    borderRadius: 50,
+  },
+  rightExtra: {
+    right: 40,
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    marginLeft: 10
-  }
+    marginLeft: 10,
+  },
 });

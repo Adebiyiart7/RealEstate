@@ -7,9 +7,16 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ErrorMessage from "./ErrorMessage";
 import defaultStyles from "../../config/styles";
 
-const AppFormField = ({ name, icon, onPress, style, secureInput, ...otherProps }) => {
+const AppFormField = ({
+  name,
+  icon,
+  onPress,
+  style,
+  secureInput,
+  ...otherProps
+}) => {
   const [isFocus, setIsFocus] = useState(false);
-  const [hideSecureInput, setHideSecureInput] = useState(true)
+  const [hideSecureInput, setHideSecureInput] = useState(true);
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
@@ -20,7 +27,7 @@ const AppFormField = ({ name, icon, onPress, style, secureInput, ...otherProps }
   const textInputStyle = {
     paddingVertical: 8,
     borderColor: isFocus ? defaultStyles.colors.primaryColor : "transparent",
-    borderWidth: isFocus ? 2 : 0
+    borderWidth: isFocus ? 2 : 0,
   };
 
   return (
@@ -35,13 +42,17 @@ const AppFormField = ({ name, icon, onPress, style, secureInput, ...otherProps }
           <MaterialCommunityIcons
             name="eye-off"
             style={styles.eye}
-            onPress={() => {setHideSecureInput(false)}}
+            onPress={() => {
+              setHideSecureInput(false);
+            }}
           />
         ) : (
           <MaterialCommunityIcons
             name="eye"
             style={styles.eye}
-            onPress={() => {setHideSecureInput(true)}}
+            onPress={() => {
+              setHideSecureInput(true);
+            }}
           />
         ))}
       <TextInput
@@ -49,7 +60,7 @@ const AppFormField = ({ name, icon, onPress, style, secureInput, ...otherProps }
           styles.textInput,
           { paddingHorizontal: icon ? 37 : 16 },
           isFocus && textInputStyle,
-          style
+          style,
         ]}
         name={name}
         onFocus={() => setIsFocus(true)}
@@ -70,11 +81,11 @@ const AppFormField = ({ name, icon, onPress, style, secureInput, ...otherProps }
 
 export default AppFormField;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     width: "100%",
     marginVertical: 10,
-    position: "relative"
+    position: "relative",
   },
   eye: {
     position: "absolute",
@@ -89,12 +100,12 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.background200,
     paddingVertical: 10,
     fontSize: 16,
-    color: defaultStyles.colors.primaryText
+    color: defaultStyles.colors.primaryText,
   },
   icon: {
     position: "absolute",
     top: 14,
     left: 14,
-    zIndex: 1234
-  }
+    zIndex: 1234,
+  },
 });

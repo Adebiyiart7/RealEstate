@@ -7,15 +7,22 @@ const { apiResponse } = require("../../utils");
  * @access        private
  */
 const me = async (req, res) => {
-  const user = await User.findOne(req.body.email).select("-password", "-verificationCode");
+  try {
+    const user = await User.findOne(req.body.email).select(
+      "-password",
+      "-verificationCode"
+    );
 
-  if (!user) {
-    res.status(404);
-    throw new Error("User not found!");
+    if (!user) {
+      res.status(404);
+      throw new Error("User not found!");
+    }
+    res.status(200).json(apiResponse(res.statusCode, "", user));
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+    throw new Error("Error");
   }
-
-  console.log(user);
-  res.status(200).json(apiResponse(res.statusCode, "", user))
-}
+};
 
 module.exports = me;

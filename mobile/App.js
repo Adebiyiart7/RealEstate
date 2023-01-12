@@ -18,3 +18,9 @@ const App = () => {
 };
 
 export default App;
+
+/**
+TODO
+ back bottom should close modal
+ * alert component
+ */

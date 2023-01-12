@@ -11,44 +11,52 @@ const { apiResponse } = require("../../utils");
  * @access        public
  */
 const register = async (req, res) => {
-  // validate user
-  const schema = registerSchema;
-  const { error } = schema.validate(req.body);
+  try {
+    // validate user
+    const schema = registerSchema;
+    const { error } = schema.validate(req.body);
 
-  if (error) {
+    if (error) {
+      res.status(400);
+      throw new Error(error.message);
+    }
+
+    // Create a user
+    const { username, email, password } = req.body;
+
+    // check if user already exist
+    const userExist = await User.findOne({ $or: [{ email }, { username }] });
+    if (userExist) {
+      res.status(400);
+      throw new Error("User already exist!");
+    }
+
+    // hash password
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+
+    const user = await User.create({
+      username: username,
+      email: email,
+      password: hash,
+    });
+
+    const token = user.generateAuthToken();
+
+    return res.status(201).json(
+      apiResponse(res.statusCode, "", {
+        _id: user._id,
+        email: user.email,
+        username: user.username,
+        fullname: "",
+        token: token,
+      })
+    );
+  } catch (error) {
+    console.log(error);
     res.status(400);
-    throw new Error(error.message);
+    throw new Error("Error Creating User");
   }
-
-  // Create a user
-  const { username, email, password } = req.body;
-  
-  // check if user already exist
-  const userExist = await User.findOne({ $or: [{ email }, {username}] });
-  if (userExist) {
-    res.status(400);
-    throw new Error("User already exist!");
-  }
-
-  // hash password
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(password, salt);
-
-  const user = await User.create({
-    username: username,
-    email: email,
-    password: hash
-  });
-
-  const token = user.generateAuthToken();
-
-  return res.status(201).json(apiResponse(res.statusCode, "", {
-    id: user._id,
-    email: user.email,
-    username: user.username,
-    fullname: "",
-    token: token,
-  }));
 };
 
 module.exports = register;

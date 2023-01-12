@@ -21,7 +21,9 @@ app.use(
 // ROUTES
 app.use("/api/users", require("./routes/user"));
 
- // ERROR
+// ERROR
 app.use(errorMiddleware);
 
 app.listen(port, () => console.log(`Server running on port ${port}`.blue.bold));
+
+// TODO Log all errors in a file

@@ -11,16 +11,19 @@ import AppText from "../components/AppText";
 import { notifications } from "../db";
 import NotificationCard from "../components/cards/NotificationCard";
 
-const NotificationsScreen = () => {
+const NotificationsScreen = ({ navigation }) => {
   return (
-    <Screen>
+    <Screen scrollable={false}>
       <GoBackArrowHeader
         title={"Notification"}
+        navigation={navigation}
         RightIcon={<MaterialCommunityIcons name="dots-horizontal" size={24} />}
       />
       <View style={styles.notifications}>
-        {notifications ? (
+        {notifications.length > 0 ? (
           <FlatList
+            style={styles.flatList}
+            showsVerticalScrollIndicator={false}
             data={notifications}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
@@ -30,6 +33,7 @@ const NotificationsScreen = () => {
                 />
               </View>
             )}
+            ListFooterComponent={<AppText></AppText>}
           />
         ) : (
           <>
@@ -50,18 +54,21 @@ const NotificationsScreen = () => {
 export default NotificationsScreen;
 
 const styles = StyleSheet.create({
+  flatList: {
+    height: "90%",
+  },
   infoHeader: {
     fontWeight: "bold",
     fontSize: 18,
-    marginBottom: 5
+    marginBottom: 5,
   },
   image: {
-    height: 400,
-    width: 270
+    // height: 400,
+    // width: 270,
   },
   notifications: {
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
 
 const getImage = (value) => {

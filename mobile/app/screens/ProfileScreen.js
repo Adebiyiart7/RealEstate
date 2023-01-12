@@ -16,9 +16,7 @@ const ProfileScreen = ({ navigation }) => {
 
   const handleLogout = () => {
     dispatch(clearAuth());
-    AsyncStorage.clear().then(() =>
-      navigation.navigate(routes.LETS_YOU_IN)
-    );
+    AsyncStorage.clear().then(() => navigation.navigate(routes.LETS_YOU_IN));
   };
 
   return (
@@ -31,6 +29,18 @@ const ProfileScreen = ({ navigation }) => {
         style={{ backgroundColor: colors.danger }}
       >
         Logout
+      </AppButton>
+      <AppButton onPress={() => navigation.navigate(routes.FILL_PROFILE)}>
+        Update Profile
+      </AppButton>
+      <AppButton onPress={() => navigation.navigate(routes.NEW_PASSWORD)}>
+        Change Password
+      </AppButton>
+      <AppButton onPress={() => navigation.navigate(routes.NOTIFICATIONS)}>
+        Notification
+      </AppButton>
+      <AppButton onPress={() => navigation.navigate(routes.SEARCH)}>
+        Search
       </AppButton>
     </Screen>
   );

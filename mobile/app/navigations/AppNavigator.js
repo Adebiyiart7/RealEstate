@@ -23,6 +23,7 @@ import ReviewSummary from "../screens/booking/ReviewSummary";
 import ConfirmPinScreen from "../screens/ConfirmPinScreen";
 import EReceiptScreen from "../screens/booking/EReceiptScreen";
 import OTPCodeVerificationScreen from "../screens/OTPCodeVerificationScreen";
+import CreateNewPassword from "../screens/CreateNewPasswordScreen";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.REGISTER} component={RegisterScreen} />
       <Stack.Screen name={routes.LOGIN} component={LoginScreen} />
       <Stack.Screen name={routes.NEW_PIN} component={CreateNewPinScreen} />
+      <Stack.Screen name={routes.NEW_PASSWORD} component={CreateNewPassword} />
       <Stack.Screen
         name={routes.OTP_CODE_VERIFICATION}
         component={OTPCodeVerificationScreen}

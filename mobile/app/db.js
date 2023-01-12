@@ -8,7 +8,7 @@ export const featured = [
     map: "",
     cost: 64000,
     duration: "night",
-    rating: 4.9
+    rating: 4.9,
   },
   {
     _id: "1",
@@ -19,7 +19,7 @@ export const featured = [
     map: "",
     cost: 480000,
     duration: "night",
-    rating: 4.7
+    rating: 4.7,
   },
   {
     _id: "3",
@@ -30,7 +30,7 @@ export const featured = [
     map: "",
     cost: 11000000,
     duration: "year",
-    rating: 5.0
+    rating: 5.0,
   },
   {
     _id: "4",
@@ -41,8 +41,8 @@ export const featured = [
     map: "",
     cost: 35000,
     duration: "night",
-    rating: 4.7
-  }
+    rating: 4.7,
+  },
 ];
 
 export const estates = [
@@ -64,7 +64,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
@@ -76,7 +76,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -89,22 +89,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "2",
@@ -124,7 +124,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -136,7 +136,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -149,23 +149,23 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         _id: "1",
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "3",
@@ -185,7 +185,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -197,7 +197,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -210,22 +210,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "4",
@@ -245,7 +245,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -257,7 +257,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -270,22 +270,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "5",
@@ -305,7 +305,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -317,7 +317,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -330,22 +330,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "6",
@@ -365,7 +365,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -377,7 +377,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -390,22 +390,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "7",
@@ -425,7 +425,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -437,7 +437,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -450,22 +450,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "8",
@@ -485,7 +485,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -497,7 +497,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -510,22 +510,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "9",
@@ -545,7 +545,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -557,7 +557,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -570,22 +570,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "10",
@@ -605,7 +605,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -617,7 +617,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -630,22 +630,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "11",
@@ -665,7 +665,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -677,7 +677,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -690,22 +690,22 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
+        timestamp: 1671375843703,
+      },
+    ],
   },
   {
     _id: "12",
@@ -725,7 +725,7 @@ export const estates = [
     owner: {
       name: "Chibuike Adewale Suleiman",
       image: require("./assets/images/avatar.jpg"),
-      phone: "09029242729"
+      phone: "09029242729",
     },
     overview:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maiores cupiditate sunt voluptate voluptatibus perferendis cumque molestias, numquam similique, delectus natus! Alias hic ex odit similique consequuntur atque. Atque, nisi.",
@@ -737,7 +737,7 @@ export const estates = [
       { name: "Wi-fi & Network", icon: "wifi" },
       { name: "Pet Center", icon: "pet" },
       { name: "Sport Center", icon: "sport" },
-      { name: "Laundry", icon: "laundry" }
+      { name: "Laundry", icon: "laundry" },
     ],
     images: [
       require("./assets/images/interior6.jpg"),
@@ -750,23 +750,23 @@ export const estates = [
       require("./assets/images/interior9.jpg"),
       require("./assets/images/interior10.jpg"),
       require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      require("./assets/images/interior12.jpg"),
     ],
     reviews: [
       {
         author: {
           name: "Ibrahim Ngozi",
-          image: require("./assets/images/avatar.jpg")
+          image: require("./assets/images/avatar.jpg"),
         },
         comment:
           "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home.",
 
         favorites: 886,
         star: 5,
-        timestamp: 1671375843703
-      }
-    ]
-  }
+        timestamp: 1671375843703,
+      },
+    ],
+  },
 ];
 
 export const notifications = [
@@ -777,7 +777,7 @@ export const notifications = [
     message:
       "Congratulations! You have successfully booked a house for 3 days for NGN65,000. Enjoy the services!",
     timestamp: 1671112131985,
-    isNew: true
+    isNew: true,
   },
   {
     _id: "2",
@@ -786,7 +786,7 @@ export const notifications = [
     message:
       "Congratulations! You have successfully booked a house for 3 days for NGN65,000. Enjoy the services!",
     timestamp: 1671012031985,
-    isNew: true
+    isNew: true,
   },
 
   {
@@ -796,7 +796,7 @@ export const notifications = [
     message:
       "You can now make multiple book real estate at once. You can also cancelyour booking.",
     timestamp: 1670911831985,
-    isNew: false
+    isNew: false,
   },
   {
     _id: "3",
@@ -805,7 +805,7 @@ export const notifications = [
     message:
       "Congratulations! You have successfully booked a villa for 5 days for NGN875,000. Enjoy the services!",
     timestamp: 1670811831985,
-    isNew: false
+    isNew: false,
   },
   {
     _id: "5",
@@ -814,7 +814,7 @@ export const notifications = [
     message:
       "You credit card has been successfully linked with your account. Enjoy our services!",
     timestamp: 1670711731985,
-    isNew: false
+    isNew: false,
   },
   {
     _id: "6",
@@ -823,8 +823,26 @@ export const notifications = [
     message:
       "Your account creation is successful, you can now experience our services",
     timestamp: 1670611631985,
-    isNew: false
-  }
+    isNew: false,
+  },
+  {
+    _id: "7",
+    type: "user",
+    title: "user",
+    message:
+      "Your account creation is successful, you can now experience our services",
+    timestamp: 1670611631985,
+    isNew: false,
+  },
+  {
+    _id: "8",
+    type: "user",
+    title: "user",
+    message:
+      "Your account creation is successful, you can now experience our services",
+    timestamp: 1670611631985,
+    isNew: false,
+  },
 ];
 
 export const estateCategory = [
@@ -832,5 +850,5 @@ export const estateCategory = [
   { name: "House" },
   { name: "Villa" },
   { name: "Estate" },
-  { name: "Apartment" }
+  { name: "Apartment" },
 ];

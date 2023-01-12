@@ -9,7 +9,7 @@ const loginSchema = Joi.object()
   .keys({
     username: Joi.string().min(3).max(255).label("Username"),
     email: Joi.string().email().label("Email"),
-    password: Joi.string().required().label("Password")
+    password: Joi.string().required().label("Password"),
   })
   .or("username", "email");
 
@@ -21,21 +21,22 @@ const registerSchema = Joi.object({
     .required()
     .label("Password")
     .regex(passwordRegEx)
-    .message(passwordError)
+    .message(passwordError),
 });
 
 // PROFILE
 const profileSchema = Joi.object({
   username: Joi.string().required().min(3).max(255).label("Username"),
+  phoneNumber: Joi.string().required().min(3).max(20).label("Phone Number"),
+  country: Joi.string().required().min(3).max(255).label("Country"),
   email: Joi.string().required().min(3).max(255).label("Email"),
   fullname: Joi.string().required().min(3).max(255).label("Full Name"),
   dob: Joi.string().required().label("DOB"),
-  phoneNumber: Joi.string().required().min(3).max(20).label("Phone Number"),
-  gender: Joi.string().required().min(3).max(20).label("Gender")
+  gender: Joi.string().required().min(3).max(20).label("Gender"),
 });
 
 module.exports = {
   registerSchema,
   loginSchema,
-  profileSchema
+  profileSchema,
 };

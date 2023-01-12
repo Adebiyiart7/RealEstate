@@ -5,12 +5,12 @@ import {
   Image,
   View,
   TouchableOpacity,
-  Platform
+  Platform,
 } from "react-native";
 import {
   FontAwesome,
   Ionicons,
-  MaterialCommunityIcons
+  MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import Carousel from "react-native-reanimated-carousel";
 import { useDimensions } from "@react-native-community/hooks";
@@ -50,7 +50,7 @@ const EstateDetails = ({ navigation, route }) => {
   };
 
   return (
-    <View style={{backgroundColor: colors.white}}>
+    <View style={{ backgroundColor: colors.white }}>
       <FlatList
         data={[]}
         keyExtractor={() => "key"}
@@ -60,8 +60,8 @@ const EstateDetails = ({ navigation, route }) => {
           styles.container,
           {
             marginTop: statusBarHeight,
-            height: screenHeight - 140 - statusBarHeight
-          }
+            height: screenHeight - statusBarHeight,
+          },
         ]}
         ListHeaderComponent={
           <>
@@ -98,7 +98,7 @@ const EstateDetails = ({ navigation, route }) => {
                       height: 10,
                       width: index != itemInView ? 10 : 20,
                       margin: 2,
-                      borderRadius: 5
+                      borderRadius: 5,
                     }}
                   ></View>
                 ))}
@@ -236,7 +236,7 @@ const EstateDetails = ({ navigation, route }) => {
                 <AppText
                   style={[
                     styles.rating,
-                    { fontWeight: "bold", fontSize: 17, marginLeft: 0 }
+                    { fontWeight: "bold", fontSize: 17, marginLeft: 0 },
                   ]}
                 >
                   <MaterialCommunityIcons
@@ -254,8 +254,10 @@ const EstateDetails = ({ navigation, route }) => {
           </>
         }
       />
-      {/* FOOTER */}
-      <Footer navigation={navigation} item={item} />
+      <View style={{}}>
+        {/* FOOTER */}
+        <Footer navigation={navigation} item={item} />
+      </View>
     </View>
   );
 };
@@ -267,7 +269,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 16
+    marginTop: 16,
   },
   basics2: {
     display: "flex",
@@ -276,17 +278,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.border200,
     maxWidth: 340,
-    paddingVertical: 16
+    paddingVertical: 16,
   },
   basics2Text: {
     fontWeight: "500",
     marginLeft: 6,
     overflow: "scroll",
-    fontSize: 13
+    fontSize: 13,
   },
   carousel: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   category: {
     position: "relative",
@@ -295,50 +297,51 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 3,
     borderRadius: 4,
-    backgroundColor: colors.background200
+    backgroundColor: colors.background200,
   },
   container: {
     display: "flex",
     overflow: "hidden",
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
   },
   details: {
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    marginBottom: 100,
   },
   header: {
     marginVertical: 16,
     fontWeight: "bold",
-    fontSize: 20
+    fontSize: 20,
   },
   iconContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 5
+    marginRight: 5,
   },
   imageScrollIndicator: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    bottom: 20
+    bottom: 20,
   },
   overview: {
     // color: colors.mediumText,
     lineHeight: 18,
-    fontSize: 15
+    fontSize: 15,
   },
   rating: {
     marginLeft: 10,
-    fontWeight: "600"
+    fontWeight: "600",
   },
   readMore: {
     fontWeight: "500",
-    color: colors.primaryColor
+    color: colors.primaryColor,
   },
   reviewSummary: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   topIcon: {
     position: "absolute",
@@ -348,10 +351,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background100,
     borderRadius: 50,
     margin: 16,
-    marginTop: 25
+    marginTop: 25,
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 });

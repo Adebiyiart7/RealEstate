@@ -7,9 +7,12 @@ import AppText from "./AppText";
 import AppButton from "./AppButton";
 import routes from "../config/routes";
 import { useNavigation } from "@react-navigation/native";
-import colors from "../config/colors";
+import defaultStyles from "../config/styles";
 
-const FillProfileBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) => {
+const FillProfileBottomSheet = ({
+  bottomSheetVisible,
+  setBottomSheetVisible,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -18,17 +21,19 @@ const FillProfileBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) =
         bottomSheetContent={
           <>
             <View>
-              <AppText style={styles.header}>Create Profile</AppText>
-              <AppText style={styles.subHeading}>
+              <AppText style={defaultStyles.bottomSheetStyles.header}>
+                Create Profile
+              </AppText>
+              <AppText style={defaultStyles.bottomSheetStyles.subHeading}>
                 Your profile is incomplete.
               </AppText>
-              <View style={styles.content}>
-                  <AppButton
-                    style={styles.fill}
-                    onPress={() => navigation.navigate(routes.FILL_PROFILE)}
-                  >
-                    Fill Your Profile
-                  </AppButton>
+              <View style={defaultStyles.bottomSheetStyles.content}>
+                <AppButton
+                  style={defaultStyles.bottomSheetStyles.fill}
+                  onPress={() => navigation.navigate(routes.FILL_PROFILE)}
+                >
+                  Fill Your Profile
+                </AppButton>
               </View>
             </View>
           </>
@@ -41,18 +46,3 @@ const FillProfileBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) =
 };
 
 export default FillProfileBottomSheet;
-
-const styles = StyleSheet.create({
-  content: {
-    margin: 16
-  },
-  header: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 18
-  },
-  subHeading: {
-    textAlign: "center",
-    color: colors.mediumText
-  }
-});

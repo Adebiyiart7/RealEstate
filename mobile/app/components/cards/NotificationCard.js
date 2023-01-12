@@ -13,16 +13,12 @@ const NotificationCard = ({ item }) => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <View style={styles.topItems}>
           <View style={styles.imageContainer}>
-            <Image
-              resizeMode="center"
-              source={item.image}
-              style={styles.image}
-            />
+            <Image source={item.image} style={styles.image} />
           </View>
           <View style={styles.centerItems}>
             <AppText style={styles.title}>{item.title}</AppText>
@@ -42,26 +38,26 @@ export default NotificationCard;
 
 const styles = StyleSheet.create({
   centerItems: {
-    marginLeft: 16
+    marginLeft: 16,
   },
   dateTime: {
     color: colors.mediumText,
     marginTop: 3,
     fontSize: 13,
-    fontWeight: "500"
+    fontWeight: "500",
   },
   image: {
-    height: 25,
-    width: 25
+    height: 20,
+    width: 20,
   },
   imageContainer: {
     padding: 13,
     borderRadius: 50,
-    backgroundColor: colors.lightBackground
+    backgroundColor: colors.background200,
   },
   message: {
     fontSize: 13,
-    marginTop: 10
+    marginTop: 10,
   },
   newText: {
     color: colors.white,
@@ -70,22 +66,22 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryColor,
     borderRadius: 5,
     height: 22,
-    fontSize: 12
+    fontSize: 12,
   },
   notificationCard: {
-    marginBottom: 16
+    marginBottom: 16,
     // display: "flex",
     // flexDirection: "row",
   },
   title: {
     fontWeight: "bold",
-    fontSize: 16
+    fontSize: 16,
   },
   topItems: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
 
 const formatTimestamp = (timestamp) => {

@@ -14,12 +14,14 @@ const AccountCard = ({
   first_text,
   second_text,
   reverse,
+  style,
+  emptyRightComponent,
   showIconBorder = true
 }) => {
   const { width: screenWidth } = useDimensions().screen;
 
   return (
-    <View style={styles.accountCard}>
+    <View style={[styles.accountCard, style]}>
       <Image source={avatar} style={styles.avatar} />
       <View
         style={{
@@ -46,19 +48,25 @@ const AccountCard = ({
           </AppText>
         </View>
         <View style={styles.icons}>
-          {Icon1 && (
-            <TouchableOpacity
-              style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
-            >
-              {Icon1}
-            </TouchableOpacity>
-          )}
-          {Icon2 && (
-            <TouchableOpacity
-              style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
-            >
-              {Icon2}
-            </TouchableOpacity>
+          {emptyRightComponent ? (
+            <View>{Icon1}</View>
+          ) : (
+            <>
+              {Icon1 && (
+                <TouchableOpacity
+                  style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
+                >
+                  {Icon1}
+                </TouchableOpacity>
+              )}
+              {Icon2 && (
+                <TouchableOpacity
+                  style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
+                >
+                  {Icon2}
+                </TouchableOpacity>
+              )}
+            </>
           )}
         </View>
       </View>

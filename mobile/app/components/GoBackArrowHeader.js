@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingVertical: 16,
     alignItems: "center",
+    minHeight: 70,
   },
   left: {},
   right: {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     right: 40,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
     marginLeft: 10,
   },

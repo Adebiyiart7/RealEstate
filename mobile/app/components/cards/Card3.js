@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   firstText: {
     color: colors.primaryText,
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: "bold",
   },
   footer: {

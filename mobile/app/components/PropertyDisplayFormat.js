@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center"
   },
   displayFormatIcon: {
-    fontSize: 18,
+    fontSize: 24,
     color: colors.lightText,
   },
   displayFormatIconColor: {
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 50,
+    width: 60,
   },
   propertyCount: {
     fontWeight: "bold",

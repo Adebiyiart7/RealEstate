@@ -23,7 +23,8 @@ const routes = {
   PROFILE: "Profile",
   REGISTER: "Register",
   REVIEW_SUMMARY: "ReviewSummary",
-  SEARCH: "Search"
+  SEARCH: "Search",
+  CHAT_BOARD: "ChatBoard",
 };
 
 export default routes;

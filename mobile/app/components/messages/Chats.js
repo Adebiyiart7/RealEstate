@@ -6,9 +6,11 @@ import { chats } from "../../db";
 import AccountCard from "../cards/AccountCard";
 import AppText from "../AppText";
 import colors from "../../config/colors";
+import routes from "../../config/routes";
 
 const ChatInfo = ({ item }) => {
   const dateTime = new Date(item.lastMessageDateTime);
+  
   return (
     <View style={{display: "flex", alignItems: "flex-end"}}>
       <View style={styles.messagesCountContainer}>
@@ -23,7 +25,7 @@ const ChatInfo = ({ item }) => {
   );
 };
 
-const Chats = () => {
+const Chats = ({navigation}) => {
   return (
     <View>
       <FlatList
@@ -32,7 +34,7 @@ const Chats = () => {
         showsVerticalScrollIndicator={false}
         key={(item) => item._id}
         renderItem={({ item }) => (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate(routes.CHAT_BOARD, {_id: item._id})}>
             <AccountCard
               emptyRightComponent
               style={styles.card}

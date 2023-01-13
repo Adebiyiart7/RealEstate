@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AppText from "../AppText";
 
-const Calls = () => {
+const Calls = ({ navigation }) => {
   return (
     <View
       style={{

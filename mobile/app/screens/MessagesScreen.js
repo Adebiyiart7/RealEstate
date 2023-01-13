@@ -53,7 +53,7 @@ const MessagesScreen = ({ navigation }) => {
           Calls
         </AppButton>
       </View>
-      <View>{showChats ? <Chats /> : <Calls />}</View>
+      <View>{showChats ? <Chats navigation={navigation} /> : <Calls navigation={navigation} />}</View>
     </Screen>
   );
 };

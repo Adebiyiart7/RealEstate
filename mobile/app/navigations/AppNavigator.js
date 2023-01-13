@@ -24,6 +24,7 @@ import ConfirmPinScreen from "../screens/ConfirmPinScreen";
 import EReceiptScreen from "../screens/booking/EReceiptScreen";
 import OTPCodeVerificationScreen from "../screens/OTPCodeVerificationScreen";
 import CreateNewPassword from "../screens/CreateNewPasswordScreen";
+import ChatBoardScreen from "../screens/ChatBoardScreen";
 
 const Stack = createStackNavigator();
 
@@ -89,6 +90,7 @@ const AppNavigator = () => {
             component={ConfirmPinScreen}
           />
           <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
+          <Stack.Screen name={routes.CHAT_BOARD} component={ChatBoardScreen} />
         </Stack.Group>
       )}
       {/**

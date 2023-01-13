@@ -23,4 +23,7 @@ export default App;
 TODO
  back bottom should close modal
  * alert component
+
+
+ SCREEN: 66, 70
  */

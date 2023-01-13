@@ -12,6 +12,7 @@ import { notifications } from "../db";
 import NotificationCard from "../components/cards/NotificationCard";
 
 const NotificationsScreen = ({ navigation }) => {
+
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader

@@ -11,19 +11,20 @@ const GoBackArrowHeader = ({
   navigation,
   RightIcon,
   RightIconExtra,
+  isTabScreen
 }) => {
   const { width: screenWidth } = useDimensions().screen;
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.left}>
+      {!isTabScreen && <TouchableOpacity style={styles.left}>
         <MaterialCommunityIcons
           name="arrow-left"
           size={24}
           style={styles.arrow}
           onPress={() => navigation.goBack()}
         />
-      </TouchableOpacity>
+      </TouchableOpacity>}
       <AppText
         numberOfLines={1}
         style={[styles.title, { width: screenWidth - 138 }]}

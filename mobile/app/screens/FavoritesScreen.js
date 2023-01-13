@@ -7,9 +7,11 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import BottomSheet from "../components/BottomSheet";
 import PropertiesFilterContent from "../components/PropertiesFilterContent";
+import RemoveFavoriteContent from "../components/RemoveFavoriteContent";
 
 const FavoritesScreen = ({ navigation }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [bottomSheetVisibleRemoveFav, setBottomSheetVisibleRemoveFav] = useState(true);
 
   return (
     <Screen style={styles.container}>
@@ -17,6 +19,15 @@ const FavoritesScreen = ({ navigation }) => {
         bottomSheetVisible={bottomSheetVisible}
         setBottomSheetVisible={setBottomSheetVisible}
         bottomSheetContent={<PropertiesFilterContent />}
+      />
+      <BottomSheet
+        bottomSheetContent={
+          <RemoveFavoriteContent
+            setBottomSheetVisibleRemoveFav={setBottomSheetVisibleRemoveFav}
+          />
+        }
+        bottomSheetVisible={bottomSheetVisibleRemoveFav}
+        setBottomSheetVisible={setBottomSheetVisibleRemoveFav}
       />
       <GoBackArrowHeader
         navigation={navigation}

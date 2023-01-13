@@ -852,3 +852,193 @@ export const estateCategory = [
   { name: "Estate" },
   { name: "Apartment" },
 ];
+
+export const chats = [
+  {
+    _id: "1",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi dddddddddddddddddd"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "2",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "3",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "4",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "5",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "6",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "7",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "8",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "9",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "10",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "11",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "12",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "3",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "14",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "15",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "16",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  },
+  {
+    _id: "17",
+    me: {
+      avatar: require("./assets/images/avatar.jpg"),
+      fullname: "Adeeyo Joseph Adebiyi"
+    },
+    secondPerson: "Abdulkadir Attahiru",
+    lastMessage: "Hey, what is up?",
+    lastMessageDateTime: new Date().getTime(),
+    unReadMessagesCount: 3
+  }
+];

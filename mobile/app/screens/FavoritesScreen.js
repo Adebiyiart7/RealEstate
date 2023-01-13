@@ -23,6 +23,7 @@ const FavoritesScreen = ({ navigation }) => {
       <BottomSheet
         bottomSheetContent={
           <RemoveFavoriteContent
+            navigation={navigation}
             setBottomSheetVisibleRemoveFav={setBottomSheetVisibleRemoveFav}
           />
         }
@@ -30,6 +31,7 @@ const FavoritesScreen = ({ navigation }) => {
         setBottomSheetVisible={setBottomSheetVisibleRemoveFav}
       />
       <GoBackArrowHeader
+        isTabScreen
         navigation={navigation}
         title={"Favorites"}
         RightIcon={
@@ -49,6 +51,7 @@ const FavoritesScreen = ({ navigation }) => {
         }
       />
       <OurRecommendation
+        navigation={navigation}
         categoryChipStyle={{ marginTop: 0 }}
         propertyCount={"2484 favorites"}
       />

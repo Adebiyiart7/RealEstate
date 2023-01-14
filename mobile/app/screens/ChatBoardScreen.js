@@ -7,26 +7,78 @@ import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import { chats } from "../db";
 import ChatCard from "../components/chat/ChatCard";
+import AppText from "../components/AppText";
+import colors from "../config/colors";
 
 const ChatBoardScreen = ({ navigation, route }) => {
   const _id = route.params._id;
   const chat = chats.find((item) => item._id === _id);
-  const { height: screenHeight } = useDimensions().screen
-  
+  const { height: screenHeight } = useDimensions().screen;
+
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader
         navigation={navigation}
         title={chat.secondPerson.fullname}
       />
-      <ScrollView showsVerticalScrollIndicator={false} style={[styles.chatCards, { height: screenHeight - 160 - 65}]}>
-        <ChatCard item={{message: `Hello, Good Afternoon Joseph!🙂`}} fromMe={false} />
-        <ChatCard item={{message: `Hello, Good Afternoon Joseph!🙂`}} fromMe={false} />
-        <ChatCard item={{message: `Hello, Good Afternoon Joseph!🙂`}} fromMe={true} />
-        <ChatCard item={{message: `Hello, Good Afternoon Joseph!🙂`}} fromMe={true} />
-        <ChatCard item={{message: `Hello, Good Afternoon Joseph!🙂`}} fromMe={true} />
-        <ChatCard item={{message: `Hello, Good Afternoon Joseph!🙂`}} fromMe={false} />
-        <ChatCard item={{message: `Hello, Good Afternoon Joseph!🙂`}} fromMe={false} />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={[styles.chatCards, { height: screenHeight - 160 - 65 }]}
+      >
+        <View style={{ display: "flex", alignItems: "center", height: 30 }}>
+          <AppText style={styles.dayText}>Today</AppText>
+        </View>
+        <ChatCard
+          messageType={"text"} // text, images, audio or video
+          item={{
+            message: `Hello, Good Afternoon Joseph!🙂`,
+            dateTime: 1673948875553
+          }}
+          fromMe={false}
+        />
+        <ChatCard
+          messageType={"text"} // text, images, audio or video
+          item={{
+            message: `Of course, the apartment is always open anytime.`,
+            dateTime: 16736993575553
+          }}
+          fromMe={false}
+        />
+        <ChatCard
+          messageType={"text"} // text, images, audio or video
+          item={{
+            message: `I will book for December 23-27. I will also bring some of my things to move.`,
+            dateTime: 1673698873053
+          }}
+          fromMe={true}
+        />
+        <ChatCard
+          messageType={"images"} // text, images, audio or video
+          item={{
+            images: [
+              "https://picsum.photos/150/150",
+              "https://picsum.photos/151/151",
+            ],
+            dateTime: 1673694975553
+          }}
+          fromMe={true}
+        />
+        <ChatCard
+          messageType={"audio"} // text, images, audio or video
+          item={{
+            audioLink: "",
+            dateTime: 1676998875553
+          }}
+          fromMe={true}
+        />
+        <ChatCard
+          messageType={"text"} // text, images, audio or video
+          item={{
+            message: `Alright, I will wait for your booking and arraival.`,
+            dateTime: 1693398875553
+          }}
+          fromMe={false}
+        />
       </ScrollView>
     </Screen>
   );
@@ -39,4 +91,17 @@ const styles = StyleSheet.create({
     // display: "flex",
     // borderWidth: 1,
   },
+
+  dayText: {
+    position: "absolute",
+    color: colors.mediumText,
+    textAlign: "center",
+    borderWidth: 1,
+    borderColor: colors.border200,
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+    fontWeight: "bold",
+    borderRadius: 3,
+    backgroundColor: colors.background200
+  }
 });

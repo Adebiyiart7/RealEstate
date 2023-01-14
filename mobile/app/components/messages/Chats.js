@@ -10,13 +10,17 @@ import routes from "../../config/routes";
 
 const ChatInfo = ({ item }) => {
   const dateTime = new Date(item.lastMessageDateTime);
-  
+
   return (
-    <View style={{display: "flex", alignItems: "flex-end"}}>
+    <View style={{ display: "flex", alignItems: "flex-end" }}>
       <View style={styles.messagesCountContainer}>
-        <AppText style={styles.messagesCount}>
-          {item.unReadMessagesCount}
-        </AppText>
+        {item.unReadMessagesCount ? (
+          <AppText style={styles.messagesCount}>
+            {item.unReadMessagesCount}
+          </AppText>
+        ) : (
+          <AppText></AppText>
+        )}
       </View>
       <AppText style={styles.dateTime}>
         {dateTime.getHours()}:{dateTime.getMinutes()}
@@ -25,7 +29,7 @@ const ChatInfo = ({ item }) => {
   );
 };
 
-const Chats = ({navigation}) => {
+const Chats = ({ navigation }) => {
   return (
     <View>
       <FlatList
@@ -34,12 +38,16 @@ const Chats = ({navigation}) => {
         showsVerticalScrollIndicator={false}
         key={(item) => item._id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate(routes.CHAT_BOARD, {_id: item._id})}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(routes.CHAT_BOARD, { _id: item._id })
+            }
+          >
             <AccountCard
               emptyRightComponent
               style={styles.card}
-              avatar={item.me.avatar}
-              first_text={item.me.fullname}
+              avatar={item.secondPerson.avatar}
+              first_text={item.secondPerson.fullname}
               second_text={item.lastMessage}
               Icon1={<ChatInfo item={item} />}
               Icon2={" "}
@@ -56,23 +64,24 @@ export default Chats;
 
 const styles = StyleSheet.create({
   card: {
-    marginVertical: 10
+    marginVertical: 10,
   },
   dateTime: {
     color: colors.mediumText,
     fontSize: 12,
-    fontWeight: "600"
+    fontWeight: "600",
   },
 
   messagesCount: {
     height: 25,
     width: 25,
-    fontSize: 16,
+    fontSize: 15,
     textAlign: "center",
     backgroundColor: colors.primaryColor,
-    fontWeight: "bold",
+    fontWeight: "500",
     borderRadius: 20,
     color: colors.white,
-    marginBottom: 3
+    marginBottom: 3,
+    paddingTop: 2
   }
 });

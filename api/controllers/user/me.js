@@ -8,15 +8,16 @@ const { apiResponse } = require("../../utils");
  */
 const me = async (req, res) => {
   try {
-    const user = await User.findOne(req.body.email).select(
+    const user = await User.findById(req.user._id).select([
       "-password",
       "-verificationCode"
-    );
+    ]);
 
     if (!user) {
       res.status(404);
       throw new Error("User not found!");
     }
+    
     res.status(200).json(apiResponse(res.statusCode, "", user));
   } catch (error) {
     console.log(error);

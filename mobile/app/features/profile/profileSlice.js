@@ -33,6 +33,19 @@ export const updateProfile = createAsyncThunk(
   }
 );
 
+export const profile = createAsyncThunk("profile", async (token, thunkAPI) => {
+  try {
+    const response = await axios.get( API_URI + "/users/me", axiosConfig(token));
+
+    if (response.data) {
+      return response.data.body;
+    }
+  } catch (error) {
+    const message = error.response.data.body.message.toString();
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
 const profileSlice = createSlice({
   name: "profile",
   initialState,
@@ -55,6 +68,20 @@ const profileSlice = createSlice({
         state.profile = action.payload;
       })
       .addCase(updateProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(profile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(profile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.profile = action.payload;
+      })
+      .addCase(profile.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

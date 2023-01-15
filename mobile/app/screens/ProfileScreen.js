@@ -10,6 +10,7 @@ import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppButton from "../components/AppButton";
 import routes from "../config/routes";
 import { clearAuth } from "../features/auth/authSlice";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -21,27 +22,26 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <Screen>
-      <GoBackArrowHeader navigation={navigation} title={"Profile"} />
-      <AppButton
+      <GoBackArrowHeader
+        isTabScreen
+        navigation={navigation}
+        title={"Profile"}
+        RightIconExtra={
+          <MaterialCommunityIcons
+            name="dots-horizontal-circle-outline"
+            color={colors.primaryText}
+            size={24}
+          />
+        }
+      />
+      {/* <AppButton
         onPress={() => {
           handleLogout();
         }}
         style={{ backgroundColor: colors.danger }}
       >
         Logout
-      </AppButton>
-      <AppButton onPress={() => navigation.navigate(routes.FILL_PROFILE)}>
-        Update Profile
-      </AppButton>
-      <AppButton onPress={() => navigation.navigate(routes.NEW_PASSWORD)}>
-        Change Password
-      </AppButton>
-      <AppButton onPress={() => navigation.navigate(routes.NOTIFICATIONS)}>
-        Notification
-      </AppButton>
-      <AppButton onPress={() => navigation.navigate(routes.SEARCH)}>
-        Search
-      </AppButton>
+      </AppButton> */}
     </Screen>
   );
 };

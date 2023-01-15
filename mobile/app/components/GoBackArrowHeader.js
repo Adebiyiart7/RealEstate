@@ -17,14 +17,16 @@ const GoBackArrowHeader = ({
 
   return (
     <View style={styles.container}>
-      {!isTabScreen && <TouchableOpacity style={styles.left}>
-        <MaterialCommunityIcons
-          name="arrow-left"
-          size={24}
-          style={styles.arrow}
-          onPress={() => navigation.goBack()}
-        />
-      </TouchableOpacity>}
+      {!isTabScreen && (
+        <TouchableOpacity style={styles.left}>
+          <MaterialCommunityIcons
+            name="arrow-left"
+            size={24}
+            style={styles.arrow}
+            onPress={() => navigation.goBack()}
+          />
+        </TouchableOpacity>
+      )}
       <AppText
         numberOfLines={1}
         style={[styles.title, { width: screenWidth - 138 }]}
@@ -32,13 +34,11 @@ const GoBackArrowHeader = ({
         {title}
       </AppText>
       {RightIcon && (
-        <TouchableOpacity style={styles.right}>
-          {RightIconExtra}
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.right}>{RightIcon}</TouchableOpacity>
       )}
       {RightIconExtra && (
         <TouchableOpacity style={{ ...styles.right, ...styles.rightExtra }}>
-          {RightIcon}
+          {RightIconExtra}
         </TouchableOpacity>
       )}
     </View>
@@ -65,14 +65,14 @@ const styles = StyleSheet.create({
   left: {},
   right: {
     position: "absolute",
-    right: 0,
+    right: 40,
     color: defaultStyles.colors.primaryText,
     backgroundColor: defaultStyles.colors.background100,
     padding: 10,
     borderRadius: 50,
   },
   rightExtra: {
-    right: 40,
+    right: 0,
   },
   title: {
     fontSize: 20,

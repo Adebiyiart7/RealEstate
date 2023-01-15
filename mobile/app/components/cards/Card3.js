@@ -34,7 +34,7 @@ const Card3 = ({ navigation, item, format }) => {
   };
 
   // const addToFavorite = async () => {
-  //   await AsyncStorage.setItem("favorite", {});
+  //   await AsyncStorage.setItem("@favorite", {});
   // };
 
   return (

@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().max(255).label("Email"),
   dob: Yup.string().required().max(255).label("Date of Birth"),
   country: Yup.string().required().max(50).label("Country"),
-  gender: Yup.string().required().max(10).label("Gender"),
+  gender: Yup.string().required().max(10).label("Gender")
 });
 
 const FillProfileScreen = ({ navigation }) => {
@@ -44,7 +44,7 @@ const FillProfileScreen = ({ navigation }) => {
     email: user?.email || "adebiyiartworld@gmail.com",
     dob: user?.dob || "07/02/2023",
     country: user?.country || "Nigeria",
-    gender: user?.gender || "Male",
+    gender: user?.gender || "Male"
   };
 
   const logout = () => {
@@ -66,7 +66,7 @@ const FillProfileScreen = ({ navigation }) => {
         updateProfile({
           data: values,
           token: user.token,
-          query: `/?_id=${user._id}&code=${code}`,
+          query: `/?_id=${user._id}&code=${code}`
         })
       );
 
@@ -83,7 +83,7 @@ const FillProfileScreen = ({ navigation }) => {
         updateProfile({
           data: values,
           token: user.token,
-          query: `/?_id=${user._id}&code=${code}`,
+          query: `/?_id=${user._id}&code=${code}`
         })
       );
 
@@ -202,24 +202,23 @@ const styles = StyleSheet.create({
     color: defaultStyles.colors.mediumText,
     // opacity: 40,
     position: "relative",
-    top: 12,
+    top: 12
   },
   codeInput: {},
   editPhoto: {
     position: "absolute",
     bottom: 3,
     right: 3,
-
-    color: defaultStyles.colors.primaryColor,
+    color: defaultStyles.colors.primaryColor
   },
   photo: {
     overflow: "hidden",
     backgroundColor: defaultStyles.colors.background100,
     borderRadius: 200,
-    height: 125,
+    height: 125
   },
   photoContainer: {
     alignSelf: "center",
-    marginBottom: 20,
-  },
+    marginBottom: 20
+  }
 });

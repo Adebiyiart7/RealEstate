@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -20,6 +20,7 @@ import SeeAllText from "../components/SeeAllText";
 import Loading from "../components/Loading";
 import LoginBottomSheet from "../components/LoginBottomSheet";
 import FillProfileBottomSheet from "../components/FillProfileBottomSheet";
+import { profile as setProfile } from "../features/profile/profileSlice";
 
 const Header = ({ title, right, onPressRight }) => {
   return (
@@ -39,13 +40,19 @@ const HomeScreen = ({ navigation }) => {
   const { user } = useSelector((state) => state.auth);
   const { profile } = useSelector((state) => state.profile);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (!user) setBottomSheetVisibleLogin(true);
+    // TODO uncomment
+    // setTimeout(() => {
+    //   if (!user) setBottomSheetVisibleLogin(true);
+    // }, 2000);
   }, [user]);
 
   useEffect(() => {
-    if (user && !profile) setBottomSheetVisibleProfile(true);
-  }, [user, profile]);
+    if (user) dispatch(setProfile(user.token));
+    // if (user && !profile) setBottomSheetVisibleProfile(true); TODO uncomment
+  }, [user, profile, dispatch]);
 
   return (
     <Screen style={styles.screen}>
@@ -128,18 +135,18 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10,
+    marginTop: 10
   },
   headerTitle: {
     fontWeight: "bold",
     color: defaultStyles.colors.primaryText,
     fontSize: 17,
-    marginBottom: 12,
+    marginBottom: 12
   },
   ourRecommendation: {
-    marginTop: 16,
+    marginTop: 16
   },
   screen: {
-    paddingTop: 16,
-  },
+    paddingTop: 16
+  }
 });

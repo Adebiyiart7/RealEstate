@@ -23,6 +23,7 @@ const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { profile } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(clearAuth());
@@ -58,14 +59,18 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <AppText style={styles.fullname} numberOfLines={1}>
-          {profile.fullname}
+          {profile?.fullname ? profile.fullname : user.username}
         </AppText>
       </View>
       <View style={styles.menu}>
         <MenuItem title={"My Booking"} leftIcon="calendar-month" />
         <MenuItem title={"Payments"} leftIcon="cash" />
         <ItemSeparatorComponent style={{ marginVertical: 10 }} />
-        <MenuItem title={"Profile"} leftIcon="account-outline" />
+        <MenuItem
+          title={"Profile"}
+          leftIcon="account-outline"
+          onPress={() => navigation.navigate(routes.FILL_PROFILE)}
+        />
         <MenuItem title={"Notification"} leftIcon="bell-outline" />
         <MenuItem title={"Security"} leftIcon="shield-check-outline" />
         <MenuItem

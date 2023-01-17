@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AppText from "./AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -15,7 +15,7 @@ const MenuItem = ({
   showRightIcon = true
 }) => {
   return (
-    <Pressable style={styles.menuItem} onPress={onPress}>
+    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
       <MaterialCommunityIcons
         name={leftIcon}
         style={[styles.leftIcon, isLogout ? { color: colors.danger } : {}]}
@@ -35,7 +35,7 @@ const MenuItem = ({
             name={rightIcon ? rightIcon : "chevron-right"}
           />
         ))}
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

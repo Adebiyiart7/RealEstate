@@ -6,7 +6,7 @@ const defaultStyles = {
   titleFont: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 10
   },
   gridStyle: {
     display: "flex",
@@ -14,7 +14,7 @@ const defaultStyles = {
     marginTop: 16,
     marginHorizontal: -36,
     flexDirection: "row",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
 
   // Start Summary Card
@@ -22,36 +22,39 @@ const defaultStyles = {
     padding: 16,
     borderRadius: 12,
     backgroundColor: colors.white,
-    marginVertical: 8,
+    marginVertical: 8
   },
   summaryTextContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 4,
+    padding: 4
   },
   summaryValue: {
-    fontWeight: "500",
+    fontWeight: "500"
   },
   summarySeperator: {
-    marginVertical: 6,
+    marginVertical: 6
   },
   // end
 
   bottomSheetStyles: {
     content: {
-      margin: 16,
+      margin: 16
     },
     header: {
       textAlign: "center",
       fontWeight: "bold",
-      fontSize: 18,
+      fontSize: 18
     },
     subHeading: {
       textAlign: "center",
-      color: colors.mediumText,
-    },
+      color: colors.mediumText
+    }
   },
+  alertTextBodyStyle: {
+    fontSize: 16
+  }
 };
 
 export default defaultStyles;

@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View, TouchableOpacity } from "react-native";
+import { FlatList, StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import React from "react";
 
 // LOCAL IMPORTS
@@ -10,7 +10,7 @@ import routes from "../../config/routes";
 
 const ChatInfo = ({ item }) => {
   const dateTime = new Date(item.lastMessageDateTime);
-
+  
   return (
     <View style={{ display: "flex", alignItems: "flex-end" }}>
       <View style={styles.messagesCountContainer}>
@@ -18,9 +18,7 @@ const ChatInfo = ({ item }) => {
           <AppText style={styles.messagesCount}>
             {item.unReadMessagesCount}
           </AppText>
-        ) : (
-          <AppText></AppText>
-        )}
+        ) :null}
       </View>
       <AppText style={styles.dateTime}>
         {dateTime.getHours()}:{dateTime.getMinutes()}

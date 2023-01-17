@@ -2,6 +2,7 @@ import { Image, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -14,12 +15,11 @@ import { styles } from "./RegisterScreen";
 import AuthFooter from "../components/AuthFooter";
 import routes from "../config/routes";
 import { login, reset } from "../features/auth/authSlice";
-import { useEffect } from "react";
 import Loading from "../components/Loading";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
-  password: Yup.string().required().label("Password"),
+  password: Yup.string().required().label("Password")
 });
 
 const LoginScreen = ({ navigation }) => {
@@ -33,7 +33,9 @@ const LoginScreen = ({ navigation }) => {
   };
 
   useEffect(() => {
-    if (isError) console.log(message); // TODO log message in a alert box instead
+    if (isError) {
+      console.log(message);
+    }
 
     if (isSuccess || user) {
       navigation.navigate(routes.TAB);
@@ -55,7 +57,7 @@ const LoginScreen = ({ navigation }) => {
         <Formik
           initialValues={{
             email: "adebiyiartworld@gmail.com",
-            password: "Test@123",
+            password: "Test@123"
           }}
           onSubmit={(values) => handleSubmit(values)}
           validationSchema={validationSchema}

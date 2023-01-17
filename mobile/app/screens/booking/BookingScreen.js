@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View, Text } from "react-native";
 import DateRangePicker from "react-native-daterange-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -68,7 +68,8 @@ class BookingScreen extends React.Component {
     const Header = ({ title }) => {
       return <AppText style={styles.header}>{title} </AppText>;
     };
-
+    const empty = "";
+    
     return (
       <>
         <DateRangePicker
@@ -82,7 +83,6 @@ class BookingScreen extends React.Component {
           containerStyle={styles.calendarStyle}
           range
         >
-          <AppText></AppText>
         </DateRangePicker>
 
         <Screen style={styles.container}>
@@ -149,8 +149,8 @@ class BookingScreen extends React.Component {
                       _id: props.route.params._id,
                       checksDetails: {
                         startDate: startDate,
-                        endDate: endDate,
-                      },
+                        endDate: endDate
+                      }
                     })
                   : this.setBottomSheetVisible;
               }}

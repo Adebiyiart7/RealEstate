@@ -17,7 +17,7 @@ const LetsYouIn = ({ navigation }) => {
       <View style={styles.container}>
         <GoBackArrowHeader
           navigation={navigation}
-          RightIcon={<AppText onPress={() => navigation.navigate(routes.TAB)} style={styles.skipText}>Skip</AppText>}
+          RightIconExtra={<AppText onPress={() => navigation.navigate(routes.TAB)} style={styles.skipText}>Skip</AppText>}
         />
         <Image
           style={styles.image}

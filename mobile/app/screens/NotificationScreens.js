@@ -12,7 +12,6 @@ import { notifications } from "../db";
 import NotificationCard from "../components/cards/NotificationCard";
 
 const NotificationsScreen = ({ navigation }) => {
-
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader
@@ -34,7 +33,6 @@ const NotificationsScreen = ({ navigation }) => {
                 />
               </View>
             )}
-            ListFooterComponent={<AppText></AppText>}
           />
         ) : (
           <>
@@ -61,15 +59,15 @@ const styles = StyleSheet.create({
   infoHeader: {
     fontWeight: "bold",
     fontSize: 18,
-    marginBottom: 5,
+    marginBottom: 5
   },
   image: {
     // height: 400,
     // width: 270,
   },
   notifications: {
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 });
 
 const getImage = (value) => {

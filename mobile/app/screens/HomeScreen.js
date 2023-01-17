@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesome } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -37,6 +38,7 @@ const HomeScreen = ({ navigation }) => {
   const [bottomSheetVisibleLogin, setBottomSheetVisibleLogin] = useState(false);
   const [bottomSheetVisibleProfile, setBottomSheetVisibleProfile] =
     useState(false);
+
   const { user } = useSelector((state) => state.auth);
   const { profile } = useSelector((state) => state.profile);
 
@@ -44,15 +46,25 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     // TODO uncomment
-    // setTimeout(() => {
-    //   if (!user) setBottomSheetVisibleLogin(true);
-    // }, 2000);
+    setTimeout(() => {
+      if (!user) setBottomSheetVisibleLogin(true);
+    }, 2000);
   }, [user]);
 
   useEffect(() => {
     if (user) dispatch(setProfile(user.token));
     // if (user && !profile) setBottomSheetVisibleProfile(true); TODO uncomment
   }, [user, profile, dispatch]);
+
+  const name = () => {
+    if (profile) {
+      if (profile?.fullname) return profile.fullname;
+    } else if (user) {
+      return user.username;
+    }
+
+    return null;
+  };
 
   return (
     <Screen style={styles.screen}>
@@ -65,6 +77,7 @@ const HomeScreen = ({ navigation }) => {
         bottomSheetVisible={bottomSheetVisibleProfile}
         setBottomSheetVisible={setBottomSheetVisibleProfile}
       />
+
       <AccountCard
         reverse
         Icon1={
@@ -74,7 +87,7 @@ const HomeScreen = ({ navigation }) => {
             size={24}
           />
         }
-        first_text={user ? user.fullname || user.username : "Welcome!"}
+        first_text={name() ? name() : "Welcome!"}
         second_text={`Good Morning`}
         avatar={require("../assets/images/avatar.jpg")}
       />

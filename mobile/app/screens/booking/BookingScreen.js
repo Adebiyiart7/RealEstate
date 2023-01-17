@@ -72,7 +72,7 @@ class BookingScreen extends React.Component {
     
     return (
       <>
-        <DateRangePicker
+        {/* <DateRangePicker
           open={openDate}
           headerTextStyle={{ fontWeight: "bold" }}
           selectedStyle={{ backgroundColor: colors.primaryColor }}
@@ -83,7 +83,7 @@ class BookingScreen extends React.Component {
           containerStyle={styles.calendarStyle}
           range
         >
-        </DateRangePicker>
+        </DateRangePicker> */}
 
         <Screen style={styles.container}>
           <LoginBottomSheet
@@ -94,7 +94,7 @@ class BookingScreen extends React.Component {
             navigation={navigation}
             title={"Booking Real Estate"}
           />
-          <View style={styles.calendar}></View>
+          {/* <View style={styles.calendar}></View> */}
 
           {/* DATE RANGE */}
           <View style={styles.checks}>

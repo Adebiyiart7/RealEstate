@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "RealEstate",
+    "description": "Real estate app",
     "slug": "real-estate",
     "version": "1.0.0",
     "orientation": "portrait",

@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 import { StyleSheet, TextInput, View, Text } from "react-native";
-import DateRangePicker from "react-native-daterange-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORT

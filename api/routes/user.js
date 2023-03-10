@@ -25,6 +25,7 @@ router.post("/mailer", (req, res) => {
     }
 
     const code = Math.random().toString().slice(2, 8);
+    console.log(code);
     mailer(
       email,
       "Confirmation Code",

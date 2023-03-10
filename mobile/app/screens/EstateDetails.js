@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { FlatList } from "react-native-gesture-handler";
 import {
   StyleSheet,
   Image,
   View,
   TouchableOpacity,
   Platform,
+  FlatList
 } from "react-native";
 import {
   FontAwesome,
@@ -14,7 +14,6 @@ import {
 } from "@expo/vector-icons";
 import Carousel from "react-native-reanimated-carousel";
 import { useDimensions } from "@react-native-community/hooks";
-import Constants from "expo-constants";
 
 // LOCAL IMPORTS
 import { estates } from "../db";
@@ -35,7 +34,7 @@ const Header = ({ title }) => {
 
 const EstateDetails = ({ navigation, route }) => {
   const [itemInView, setItemInView] = useState(0);
-  const [statusBarHeight, setStatusBarHeight] = useState(0);
+  const [statusBarHeight] = useState(0);
   const { width: screenWidth, height: screenHeight } = useDimensions().screen;
   const carouselHeight = screenWidth / 1.5;
   const { _id } = route.params;
@@ -43,9 +42,7 @@ const EstateDetails = ({ navigation, route }) => {
 
   const handleScroll = (e) => {
     if (e.nativeEvent.contentOffset.y > carouselHeight - 5) {
-      setStatusBarHeight(Constants.statusBarHeight);
     } else if (e.nativeEvent.contentOffset.y < carouselHeight + 5) {
-      setStatusBarHeight(0);
     }
   };
 
@@ -59,7 +56,6 @@ const EstateDetails = ({ navigation, route }) => {
         style={[
           styles.container,
           {
-            marginTop: statusBarHeight,
             height: screenHeight - statusBarHeight,
           },
         ]}
@@ -306,7 +302,7 @@ const styles = StyleSheet.create({
   },
   details: {
     paddingHorizontal: 16,
-    marginBottom: 100,
+    marginBottom: 160,
   },
   header: {
     marginVertical: 16,

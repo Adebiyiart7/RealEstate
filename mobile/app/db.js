@@ -1,7 +1,7 @@
 export const featured = [
   {
     _id: "2",
-    image: require("./assets/images/building2.jpg"),
+    image: "https://picsum.photos/300/400",
     name: "Zenith Apartments",
     state: "Lagos",
     location: "No 6 St. Michael street, Lagos, Nigeria.",
@@ -12,7 +12,7 @@ export const featured = [
   },
   {
     _id: "1",
-    image: require("./assets/images/building1.jpg"),
+    image: "https://picsum.photos/290/400",
     name: "Kings and Queens Apartments",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -23,7 +23,7 @@ export const featured = [
   },
   {
     _id: "3",
-    image: require("./assets/images/building3.jpg"),
+    image: "https://picsum.photos/280/400",
     name: "Gwarimpa Estate",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -34,7 +34,7 @@ export const featured = [
   },
   {
     _id: "4",
-    image: require("./assets/images/building4.jpg"),
+    image: "https://picsum.photos/270/400",
     name: "Adewale Hotels",
     state: "Akure",
     location: "No 6 St. Michael street, Akure, Nigeria.",
@@ -49,7 +49,7 @@ export const estates = [
   {
     _id: "1",
     category: "House",
-    image: require("./assets/images/interior1.jpg"),
+    image: "https://picsum.photos/304",
     name: "Adewale Hotels",
     state: "Akure",
     location: "No 6 St. Michael street, Akure, Nigeria.",
@@ -79,17 +79,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -109,7 +109,7 @@ export const estates = [
   {
     _id: "2",
     category: "Estate",
-    image: require("./assets/images/interior2.jpg"),
+    image: "https://picsum.photos/305",
     name: "Biyi Homes",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -139,17 +139,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -170,7 +170,7 @@ export const estates = [
   {
     _id: "3",
     category: "Villa",
-    image: require("./assets/images/interior3.jpg"),
+    image: "https://picsum.photos/301",
     name: "Kings Hotels",
     state: "Ikeja",
     location: "No 6 St. Michael street, Ikeja, Nigeria.",
@@ -200,17 +200,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -230,7 +230,7 @@ export const estates = [
   {
     _id: "4",
     category: "House",
-    image: require("./assets/images/interior4.jpg"),
+    image: "https://picsum.photos/302",
     name: "Zenith Apartment",
     state: "Enugu",
     location: "No 6 St. Michael street, Enugu, Nigeria.",
@@ -260,17 +260,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -290,7 +290,7 @@ export const estates = [
   {
     _id: "5",
     category: "Apartment",
-    image: require("./assets/images/interior5.jpg"),
+    image: "https://picsum.photos/303",
     name: "Smith Hotels",
     state: "Nasarawa",
     location: "No 6 St. Michael street, Nasarawa, Nigeria.",
@@ -320,17 +320,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -350,7 +350,7 @@ export const estates = [
   {
     _id: "6",
     category: "Estate",
-    image: require("./assets/images/interior6.jpg"),
+    image: "https://picsum.photos/300",
     name: "International Hotels",
     state: "Kogi",
     location: "No 6 St. Michael street, Kogi, Nigeria.",
@@ -380,17 +380,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -410,7 +410,7 @@ export const estates = [
   {
     _id: "7",
     category: "Villa",
-    image: require("./assets/images/interior12.jpg"),
+    image: "https://picsum.photos/310",
     name: "Travellers Hotels",
     state: "Minna",
     location: "No 6 St. Michael street, Minna, Nigeria.",
@@ -440,17 +440,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -470,7 +470,7 @@ export const estates = [
   {
     _id: "8",
     category: "House",
-    image: require("./assets/images/interior8.jpg"),
+    image: "https://picsum.photos/306",
     name: "Portable Homes",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -500,17 +500,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -530,7 +530,7 @@ export const estates = [
   {
     _id: "9",
     category: "Apartment",
-    image: require("./assets/images/interior9.jpg"),
+    image: "https://picsum.photos/307",
     name: "Unique Homes",
     state: "Edo",
     location: "No 6 St. Michael street, Edo, Nigeria.",
@@ -560,17 +560,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -590,7 +590,7 @@ export const estates = [
   {
     _id: "10",
     category: "Estate",
-    image: require("./assets/images/interior10.jpg"),
+    image: "https://picsum.photos/308",
     name: "Senetors Hotels",
     state: "Benin",
     location: "No 6 St. Michael street, Benin, Nigeria.",
@@ -620,17 +620,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -650,7 +650,7 @@ export const estates = [
   {
     _id: "11",
     category: "Villa",
-    image: require("./assets/images/interior11.jpg"),
+    image: "https://picsum.photos/309",
     name: "Banana Hotels",
     state: "Ogun",
     location: "No 6 St. Michael street, Ogun, Nigeria.",
@@ -680,17 +680,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {
@@ -710,7 +710,7 @@ export const estates = [
   {
     _id: "12",
     category: "House",
-    image: require("./assets/images/interior12.jpg"),
+    image: "https://picsum.photos/310",
     name: "Classic Homes",
     state: "Osun",
     location: "No 6 St. Michael street, Osun, Nigeria.",
@@ -740,17 +740,17 @@ export const estates = [
       { name: "Laundry", icon: "laundry" }
     ],
     images: [
-      require("./assets/images/interior6.jpg"),
-      require("./assets/images/interior3.jpg"),
-      require("./assets/images/interior4.jpg"),
-      require("./assets/images/interior5.jpg"),
-      require("./assets/images/interior1.jpg"),
-      require("./assets/images/interior2.jpg"),
-      require("./assets/images/interior8.jpg"),
-      require("./assets/images/interior9.jpg"),
-      require("./assets/images/interior10.jpg"),
-      require("./assets/images/interior11.jpg"),
-      require("./assets/images/interior12.jpg")
+      "https://picsum.photos/300",
+      "https://picsum.photos/301",
+      "https://picsum.photos/302",
+      "https://picsum.photos/303",
+      "https://picsum.photos/304",
+      "https://picsum.photos/305",
+      "https://picsum.photos/306",
+      "https://picsum.photos/307",
+      "https://picsum.photos/308",
+      "https://picsum.photos/309",
+      "https://picsum.photos/310"
     ],
     reviews: [
       {

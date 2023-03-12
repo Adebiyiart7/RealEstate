@@ -56,8 +56,8 @@ const EstateDetails = ({ navigation, route }) => {
         style={[
           styles.container,
           {
-            height: screenHeight - statusBarHeight,
-          },
+            height: screenHeight - statusBarHeight
+          }
         ]}
         ListHeaderComponent={
           <>
@@ -75,7 +75,10 @@ const EstateDetails = ({ navigation, route }) => {
                   renderItem={({ item }) => (
                     <View style={styles.carousel}>
                       <AppText>1</AppText>
-                      <Image source={item} style={{ width: screenWidth }} />
+                      <Image
+                        source={{ uri: item }}
+                        style={{ width: screenWidth }}
+                      />
                     </View>
                   )}
                 />
@@ -94,7 +97,7 @@ const EstateDetails = ({ navigation, route }) => {
                       height: 10,
                       width: index != itemInView ? 10 : 20,
                       margin: 2,
-                      borderRadius: 5,
+                      borderRadius: 5
                     }}
                   ></View>
                 ))}
@@ -232,7 +235,7 @@ const EstateDetails = ({ navigation, route }) => {
                 <AppText
                   style={[
                     styles.rating,
-                    { fontWeight: "bold", fontSize: 17, marginLeft: 0 },
+                    { fontWeight: "bold", fontSize: 17, marginLeft: 0 }
                   ]}
                 >
                   <MaterialCommunityIcons

@@ -47,9 +47,10 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     // TODO uncomment
     setTimeout(() => {
+      console.log(!user);
       if (!user) setBottomSheetVisibleLogin(true);
     }, 2000);
-  }, [user]);
+  }, [user, setBottomSheetVisibleLogin]);
 
   useEffect(() => {
     if (user) dispatch(setProfile(user.token));

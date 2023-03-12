@@ -1,7 +1,7 @@
 export const featured = [
   {
     _id: "2",
-    image: require("./assets/images/building2.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Zenith Apartments",
     state: "Lagos",
     location: "No 6 St. Michael street, Lagos, Nigeria.",
@@ -12,7 +12,7 @@ export const featured = [
   },
   {
     _id: "1",
-    image: require("./assets/images/building1.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Kings and Queens Apartments",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -23,7 +23,7 @@ export const featured = [
   },
   {
     _id: "3",
-    image: require("./assets/images/building3.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Gwarimpa Estate",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -34,7 +34,7 @@ export const featured = [
   },
   {
     _id: "4",
-    image: require("./assets/images/building4.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Adewale Hotels",
     state: "Akure",
     location: "No 6 St. Michael street, Akure, Nigeria.",
@@ -45,7 +45,7 @@ export const featured = [
   },
   {
     _id: "5",
-    image: require("./assets/images/building2.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Zenith Apartments",
     state: "Lagos",
     location: "No 6 St. Michael street, Lagos, Nigeria.",
@@ -56,7 +56,7 @@ export const featured = [
   },
   {
     _id: "6",
-    image: require("./assets/images/building1.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Kings and Queens Apartments",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -67,7 +67,7 @@ export const featured = [
   },
   {
     _id: "7",
-    image: require("./assets/images/building3.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Gwarimpa Estate",
     state: "Abuja",
     location: "No 6 St. Michael street, Abuja, Nigeria.",
@@ -78,7 +78,7 @@ export const featured = [
   },
   {
     _id: "8",
-    image: require("./assets/images/building4.jpg"),
+    image: require("https://picsum/photos/200/300"),
     name: "Adewale Hotels",
     state: "Akure",
     location: "No 6 St. Michael street, Akure, Nigeria.",

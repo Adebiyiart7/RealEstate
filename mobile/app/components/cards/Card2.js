@@ -12,7 +12,7 @@ const Card2 = ({ item }) => {
     <View style={styles.card}>
       <ImageBackground
         resizeMode="cover"
-        source={item.image}
+        source={{ uri: item.image }}
         style={styles.backgroundImage}
       >
         <AppText style={styles.rating}>

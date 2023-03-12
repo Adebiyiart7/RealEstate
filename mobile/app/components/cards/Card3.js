@@ -45,7 +45,7 @@ const Card3 = ({ navigation, item, format }) => {
         }}
       >
         <ImageBackground
-          source={item.image}
+          source={{ uri: item.image }}
           style={[styles.image, styles.imageListFormat, imageDimension]}
         >
           <AppText style={styles.rating}>
@@ -81,7 +81,7 @@ const Card3 = ({ navigation, item, format }) => {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(routes.ESTATE_DETAILS, {
-                  _id: item._id,
+                  _id: item._id
                 });
               }}
             >
@@ -89,7 +89,7 @@ const Card3 = ({ navigation, item, format }) => {
                 numberOfLines={format === "list" ? 2 : 1}
                 style={[
                   styles.firstText,
-                  { marginTop: format === "grid" ? 8 : 0 },
+                  { marginTop: format === "grid" ? 8 : 0 }
                 ]}
               >
                 {item.name}

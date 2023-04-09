@@ -1,22 +1,18 @@
-import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
-import { useEffect, useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import {  useState } from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 //LOCAL IMPORTS
 import defaultStyles from "../config/styles";
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppFormField from "../components/form/AppFormField";
-import SubmitButton from "../components/form/SubmitButton";
 import BottomSheet from "../components/BottomSheet";
 import SelectOptions from "../components/form/SelectOptions";
 import CodeBottomSheet from "../components/form/CodeBottomSheet";
 import AppButton from "../components/AppButton";
-import { updateProfile } from "../features/profile/profileSlice";
 import { clearAuth } from "../features/auth/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import routes from "../config/routes";
@@ -34,65 +30,15 @@ const FillProfileScreen = ({ navigation }) => {
   const [code, setCode] = useState("");
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [bottomSheetVisibleCode, setBottomSheetVisibleCode] = useState(false);
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
 
   const initialValues = {
-    fullname: user?.fullname || "Adeeyo Joseph",
-    username: user?.username || "Adebiyiart",
-    phoneNumber: user?.phoneNumber || "09029242729",
-    email: user?.email || "adebiyiartworld@gmail.com",
-    dob: user?.dob || "07/02/2023",
-    country: user?.country || "Nigeria",
-    gender: user?.gender || "Male"
-  };
-
-  const logout = () => {
-    dispatch(clearAuth());
-    AsyncStorage.clear().then(() => navigation.navigate(routes.LOGIN));
-  };
-
-  const handleSubmitForm = (values) => {
-    if (values.email !== user.email && code.length > 0) {
-      dispatch(
-        updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
-      );
-      logout();
-    }
-
-    if (values.email !== user.email) {
-      setBottomSheetVisibleCode(true);
-      dispatch(
-        updateProfile({
-          data: values,
-          token: user.token,
-          query: `/?_id=${user._id}&code=${code}`
-        })
-      );
-
-      // logout user if he is updating username
-      if (
-        (values.username !== user.username || values.email !== user.email) &&
-        code.length > 0
-      ) {
-        logout();
-      }
-    } else if (values.email === user.email && code === "") {
-      setBottomSheetVisibleCode(false);
-      dispatch(
-        updateProfile({
-          data: values,
-          token: user.token,
-          query: `/?_id=${user._id}&code=${code}`
-        })
-      );
-
-      // logout user if he is updating username
-      if (values.username !== user.username) {
-        logout();
-      }
-    }
-    // console.log("hello");
+    fullname: "Adeeyo Joseph",
+    username: "Adebiyiart",
+    phoneNumber: "09029242729",
+    email: "adebiyiartworld@gmail.com",
+    dob: "07/02/2023",
+    country: "Nigeria",
+    gender: "Male"
   };
 
   return (
@@ -113,11 +59,7 @@ const FillProfileScreen = ({ navigation }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        // onSubmit={(values) =>
-        //   dispatch(
-        //     updateProfile(values, user.token, `/?_id=${user._id}&code=${code}`)
-        //   )
-        // }
+
       >
         {({ setFieldValue, values }) => (
           <View>
@@ -141,9 +83,7 @@ const FillProfileScreen = ({ navigation }) => {
                   code={code}
                   setCode={setCode}
                   email={values.email}
-                  handleSubmit={() => {
-                    handleSubmitForm(values);
-                  }}
+               
                 />
               }
             />
@@ -184,7 +124,6 @@ const FillProfileScreen = ({ navigation }) => {
             />
             <AppButton
               style={{ marginBottom: 30 }}
-              onPress={() => handleSubmitForm(values)}
             >
               Continue
             </AppButton>

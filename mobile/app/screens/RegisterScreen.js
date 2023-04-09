@@ -2,8 +2,6 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import { Image, StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -15,8 +13,6 @@ import AuthFooter from "../components/AuthFooter";
 import AppFormField from "../components/form/AppFormField";
 import constants from "../config/constants";
 import routes from "../config/routes";
-import { register, reset } from "../features/auth/authSlice";
-import Loading from "../components/Loading";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
@@ -28,28 +24,9 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-  const { isLoading, isError, isSuccess, message, user } = useSelector(
-    (state) => state.auth
-  );
-
-  const handleSubmit = (values) => {
-    dispatch(register(values));
-  };
-
-  useEffect(() => {
-    if (isError) console.log(message); // TODO log message in a alert box instead
-
-    if (isSuccess || user) {
-      navigation.navigate(routes.TAB);
-    }
-
-    dispatch(reset());
-  }, [dispatch, isSuccess, message, navigation, isError, user]);
-
   return (
     <Screen>
-      <Loading visible={isLoading} />
+      {/* <Loading visible={isLoading} /> */}
       <View style={styles.container}>
         <GoBackArrowHeader navigation={navigation} />
         <Image

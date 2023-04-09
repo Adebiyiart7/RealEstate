@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
 import routes from "../config/routes";
@@ -29,8 +28,6 @@ import ChatBoardScreen from "../screens/ChatBoardScreen";
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const { user } = useSelector((state) => state.auth);
-
   return (
     <Stack.Navigator
       initialRouteName={routes.TAB}
@@ -57,42 +54,31 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.SEARCH} component={SearchScreen} />
       <Stack.Screen name={routes.ESTATE_DETAILS} component={EstateDetails} />
 
-      {/* PRIVATE SCREENS */}
-      {user && (
-        <Stack.Group>
-          <Stack.Screen
-            name={routes.FILL_PROFILE}
-            component={FillProfileScreen}
-          />
-          <Stack.Screen
-            name={routes.NOTIFICATIONS}
-            component={NotificationsScreen}
-          />
-          <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
-          <Stack.Screen
-            name={routes.BOOKING_FORM}
-            component={BookingFormScreen}
-          />
-          <Stack.Screen
-            name={routes.BOOKING_PAYMENT}
-            component={BookingPaymentScreen}
-          />
-          <Stack.Screen
-            name={routes.ADD_NEW_CARD}
-            component={AddNewCardScreen}
-          />
-          <Stack.Screen
-            name={routes.REVIEW_SUMMARY}
-            component={ReviewSummary}
-          />
-          <Stack.Screen
-            name={routes.CONFIRM_PIN}
-            component={ConfirmPinScreen}
-          />
-          <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
-          <Stack.Screen name={routes.CHAT_BOARD} component={ChatBoardScreen} />
-        </Stack.Group>
-      )}
+      <Stack.Group>
+        <Stack.Screen
+          name={routes.FILL_PROFILE}
+          component={FillProfileScreen}
+        />
+        <Stack.Screen
+          name={routes.NOTIFICATIONS}
+          component={NotificationsScreen}
+        />
+        <Stack.Screen name={routes.BOOKING} component={BookingScreen} />
+        <Stack.Screen
+          name={routes.BOOKING_FORM}
+          component={BookingFormScreen}
+        />
+        <Stack.Screen
+          name={routes.BOOKING_PAYMENT}
+          component={BookingPaymentScreen}
+        />
+        <Stack.Screen name={routes.ADD_NEW_CARD} component={AddNewCardScreen} />
+        <Stack.Screen name={routes.REVIEW_SUMMARY} component={ReviewSummary} />
+        <Stack.Screen name={routes.CONFIRM_PIN} component={ConfirmPinScreen} />
+        <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
+        <Stack.Screen name={routes.CHAT_BOARD} component={ChatBoardScreen} />
+      </Stack.Group>
+
       {/**
        * TAB NAVIGATOR
        * some screens in the tab stack are private

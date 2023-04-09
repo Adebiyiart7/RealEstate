@@ -9,11 +9,9 @@ import Card1 from "../../components/cards/Card1";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
 import LoginBottomSheet from "../../components/LoginBottomSheet";
-import { useSelector } from "react-redux";
 
 const BookingPaymentScreen = ({ navigation, route }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const { user } = useSelector((state) => state.auth);
 
   return (
     <Screen>
@@ -51,22 +49,18 @@ const BookingPaymentScreen = ({ navigation, route }) => {
         <AppButton
           secondary
           onPress={() => {
-            user
-              ? navigation.navigate(routes.ADD_NEW_CARD)
-              : setBottomSheetVisible(true);
+            navigation.navigate(routes.ADD_NEW_CARD);
           }}
         >
           Add New Card
         </AppButton>
         <AppButton
           onPress={() => {
-            user
-              ? navigation.navigate(routes.REVIEW_SUMMARY, {
-                  _id: route.params._id,
-                  userInfo: route.params.userInfo,
-                  checksDetails: route.params.checksDetails
-                })
-              : setBottomSheetVisible(true);
+            navigation.navigate(routes.REVIEW_SUMMARY, {
+              _id: route.params._id,
+              userInfo: route.params.userInfo,
+              checksDetails: route.params.checksDetails
+            });
           }}
         >
           Continue

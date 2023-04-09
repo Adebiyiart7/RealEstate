@@ -1,8 +1,6 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -14,8 +12,6 @@ import SubmitButton from "../components/form/SubmitButton";
 import { styles } from "./RegisterScreen";
 import AuthFooter from "../components/AuthFooter";
 import routes from "../config/routes";
-import { login, reset } from "../features/auth/authSlice";
-import Loading from "../components/Loading";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
@@ -23,30 +19,9 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
-  const handleSubmit = (values) => {
-    dispatch(login(values));
-  };
-
-  useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
-    if (isSuccess || user) {
-      navigation.navigate(routes.TAB);
-    }
-
-    dispatch(reset());
-  }, [user, isSuccess, isError, message, dispatch, navigation]);
-
   return (
     <Screen>
-      <Loading visible={isLoading} />
+      {/* <Loading visible={isLoading} /> */}
       <View style={styles.container}>
         <GoBackArrowHeader navigation={navigation} />
         <Image

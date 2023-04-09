@@ -1,8 +1,6 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { FontAwesome } from "@expo/vector-icons";
+import React, { useState } from "react";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -18,10 +16,8 @@ import PropertiesFilterContent from "../components/PropertiesFilterContent";
 import routes from "../config/routes";
 import OurRecommendation from "../components/OurRecommendation";
 import SeeAllText from "../components/SeeAllText";
-import Loading from "../components/Loading";
 import LoginBottomSheet from "../components/LoginBottomSheet";
 import FillProfileBottomSheet from "../components/FillProfileBottomSheet";
-import { profile as setProfile } from "../features/profile/profileSlice";
 
 const Header = ({ title, right, onPressRight }) => {
   return (
@@ -38,34 +34,6 @@ const HomeScreen = ({ navigation }) => {
   const [bottomSheetVisibleLogin, setBottomSheetVisibleLogin] = useState(false);
   const [bottomSheetVisibleProfile, setBottomSheetVisibleProfile] =
     useState(false);
-
-  const { user } = useSelector((state) => state.auth);
-  const { profile } = useSelector((state) => state.profile);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // TODO uncomment
-    setTimeout(() => {
-      console.log(!user);
-      if (!user) setBottomSheetVisibleLogin(true);
-    }, 2000);
-  }, [user, setBottomSheetVisibleLogin]);
-
-  useEffect(() => {
-    if (user) dispatch(setProfile(user.token));
-    // if (user && !profile) setBottomSheetVisibleProfile(true); TODO uncomment
-  }, [user, profile, dispatch]);
-
-  const name = () => {
-    if (profile) {
-      if (profile?.fullname) return profile.fullname;
-    } else if (user) {
-      return user.username;
-    }
-
-    return null;
-  };
 
   return (
     <Screen style={styles.screen}>
@@ -88,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
             size={24}
           />
         }
-        first_text={name() ? name() : "Welcome!"}
+        first_text={"Welcome!"}
         second_text={`Good Morning`}
         avatar={require("../assets/images/avatar.jpg")}
       />

@@ -12,15 +12,12 @@ import AppText from "../../components/AppText";
 import colors from "../../config/colors";
 import utils from "../../utils";
 import ItemSeparatorComponent from "../../components/ItemSeparatorComponent";
-import Card1 from "../../components/cards/Card1";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
 import LoginBottomSheet from "../../components/LoginBottomSheet";
-import { useSelector } from "react-redux";
 
 const ReviewSummary = ({ navigation, route }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const { user } = useSelector((state) => state.auth);
   const item = estates.find((i) => i._id === route.params._id);
   const checksDetails = route.params.checksDetails;
 
@@ -95,13 +92,11 @@ const ReviewSummary = ({ navigation, route }) => {
       </View>
       <AppButton
         onPress={() => {
-          user
-            ? navigation.navigate(routes.CONFIRM_PIN, {
-                _id: route.params._id,
-                checksDetails: checksDetails,
-                userInfo: route.params.userInfo
-              })
-            : setBottomSheetVisible(true);
+          navigation.navigate(routes.CONFIRM_PIN, {
+            _id: route.params._id,
+            checksDetails: checksDetails,
+            userInfo: route.params.userInfo
+          });
         }}
       >
         Continue

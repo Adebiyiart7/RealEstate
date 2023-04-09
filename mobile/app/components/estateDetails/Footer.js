@@ -5,12 +5,10 @@ import AppButton from "../AppButton";
 import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
-import { useSelector } from "react-redux";
 import LoginBottomSheet from "../LoginBottomSheet";
 
 const Footer = ({ navigation, item }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const { user } = useSelector((state) => state.auth);
 
   return (
     <View style={styles.footer}>
@@ -29,12 +27,10 @@ const Footer = ({ navigation, item }) => {
         small
         style={styles.button}
         onPress={() => {
-          user
-            ? navigation.navigate(routes.BOOKING, {
-                _id: item._id,
-                user: user,
-              })
-            : setBottomSheetVisible(true);
+          navigation.navigate(routes.BOOKING, {
+            _id: item._id,
+            user: {}
+          });
         }}
       >
         Booking Now
@@ -47,12 +43,12 @@ export default Footer;
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1,
+    flex: 1
   },
   duration: {
     fontWeight: "400",
     fontSize: 13,
-    color: colors.mediumText,
+    color: colors.mediumText
   },
   footer: {
     position: "absolute",
@@ -65,16 +61,16 @@ const styles = StyleSheet.create({
     bottom: 60,
     padding: 16,
     paddingBottom: 30,
-    backgroundColor: colors.white,
+    backgroundColor: colors.white
   },
   price: {
     color: colors.primaryColor,
     fontSize: 25,
     fontWeight: "bold",
-    marginRight: 16,
+    marginRight: 16
   },
   priceText: {
     fontSize: 13,
-    color: colors.lightText,
-  },
+    color: colors.lightText
+  }
 });

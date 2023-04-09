@@ -11,7 +11,6 @@ import { Header } from "../../components/PropertiesFilterContent";
 import SubmitButton from "../../components/form/SubmitButton";
 import routes from "../../config/routes";
 import LoginBottomSheet from "../../components/LoginBottomSheet";
-import { useSelector } from "react-redux";
 
 const initialValues = {
   fullname: "Adeeyo Joseph Adebiyi",
@@ -22,6 +21,7 @@ const initialValues = {
   phoneNumber: "09029242729",
   country: "Nigeria"
 };
+
 const validationSchema = Yup.object().shape({
   fullname: Yup.string().required().min(3).max(255).label("Full Name"),
   username: Yup.string().required().min(3).max(255).label("Username"),
@@ -34,8 +34,7 @@ const validationSchema = Yup.object().shape({
 
 const BookingFormScreen = ({ navigation, route }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const { user } = useSelector((state) => state.auth);
-  
+
   return (
     <Screen>
       <LoginBottomSheet
@@ -48,13 +47,11 @@ const BookingFormScreen = ({ navigation, route }) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          user
-            ? navigation.navigate(routes.BOOKING_PAYMENT, {
-                _id: route.params._id,
-                userInfo: values,
-                checksDetails: route.params.checksDetails
-              })
-            : setBottomSheetVisible(true);
+          navigation.navigate(routes.BOOKING_PAYMENT, {
+            _id: route.params._id,
+            userInfo: values,
+            checksDetails: route.params.checksDetails
+          });
         }}
       >
         {() => (

@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
 import routes from "../config/routes";
@@ -14,8 +13,6 @@ import ProfileScreen from "../screens/ProfileScreen";
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const { user } = useSelector((state) => state.auth);
-
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -48,22 +45,18 @@ const TabNavigator = () => {
         component={FavoritesScreen}
         options={{ headerShown: false }}
       />
-
-      {/* PRIVATE SCREEN */}
-      {user && (
-        <Tab.Group>
-          <Tab.Screen
-            name={routes.MESSAGES}
-            component={MessagesScreen}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen
-            name={routes.PROFILE}
-            component={ProfileScreen}
-            options={{ headerShown: false }}
-          />
-        </Tab.Group>
-      )}
+      <Tab.Group>
+        <Tab.Screen
+          name={routes.MESSAGES}
+          component={MessagesScreen}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name={routes.PROFILE}
+          component={ProfileScreen}
+          options={{ headerShown: false }}
+        />
+      </Tab.Group>
     </Tab.Navigator>
   );
 };

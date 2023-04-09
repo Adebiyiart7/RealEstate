@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useDispatch, useSelector } from "react-redux";
 import {
   FontAwesome,
   Fontisto,
@@ -12,23 +10,13 @@ import {
 import colors from "../config/colors";
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
-import AppButton from "../components/AppButton";
 import routes from "../config/routes";
-import { clearAuth } from "../features/auth/authSlice";
 import MenuItem from "../components/MenuItem";
 import AppText from "../components/AppText";
 import ItemSeparatorComponent from "../components/ItemSeparatorComponent";
 
 const ProfileScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const { profile } = useSelector((state) => state.profile);
-  const { user } = useSelector((state) => state.auth);
-
-  const handleLogout = () => {
-    dispatch(clearAuth());
-    AsyncStorage.clear().then(() => navigation.navigate(routes.LETS_YOU_IN));
-  };
 
   return (
     <Screen>
@@ -59,7 +47,7 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <AppText style={styles.fullname} numberOfLines={1}>
-          {profile?.fullname ? profile.fullname : user.username}
+         Adeeyo Joseph Adebiyi
         </AppText>
       </View>
       <View style={styles.menu}>

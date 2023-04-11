@@ -9,9 +9,13 @@ import BaseData from "./app/components/BaseData";
 import colors from "./app/config/colors";
 
 const App = () => {
+
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.background100} />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={colors.background100}
+      />
       <BaseData />
       <NavigationContainer>
         <AppNavigator />

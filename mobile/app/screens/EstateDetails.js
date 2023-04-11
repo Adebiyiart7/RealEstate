@@ -13,7 +13,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import Carousel from "react-native-reanimated-carousel";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import { estates } from "../db";
@@ -35,7 +35,7 @@ const Header = ({ title }) => {
 const EstateDetails = ({ navigation, route }) => {
   const [itemInView, setItemInView] = useState(0);
   const [statusBarHeight] = useState(0);
-  const { width: screenWidth, height: screenHeight } = useDimensions().screen;
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const carouselHeight = screenWidth / 1.5;
   const { _id } = route.params;
   const item = estates.find((e) => e._id === _id);

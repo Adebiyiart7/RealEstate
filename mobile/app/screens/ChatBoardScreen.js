@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -13,7 +13,7 @@ import colors from "../config/colors";
 const ChatBoardScreen = ({ navigation, route }) => {
   const _id = route.params._id;
   const chat = chats.find((item) => item._id === _id);
-  const { height: screenHeight } = useDimensions().screen;
+  const { height: screenHeight } = useWindowDimensions();
 
   return (
     <Screen scrollable={false}>

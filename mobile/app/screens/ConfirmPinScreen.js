@@ -11,7 +11,7 @@ import { estates } from "../db";
 import LoginBottomSheet from "../components/LoginBottomSheet";
 
 const ConfirmPinScreen = ({ navigation, route }) => {
-  const [bottomSheetVisible, setBottomSheetVisible] = useState(true);
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const item = estates.find((i) => i._id === route.params._id);
   const userInfo = route.params.userInfo;
   const [pin, setPin] = useState({

@@ -19,7 +19,7 @@ const Footer = ({ navigation, item }) => {
       <View style={styles.left}>
         <AppText style={styles.priceText}>Price</AppText>
         <AppText style={styles.price}>
-          &#8358;{parseInt(item.cost).toLocaleString()}
+          ${parseInt(item.cost).toLocaleString()}
           <AppText style={styles.duration}> / {item.duration}</AppText>
         </AppText>
       </View>

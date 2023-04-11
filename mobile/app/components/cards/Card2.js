@@ -32,7 +32,7 @@ const Card2 = ({ item }) => {
           </AppText>
           <View style={styles.footer}>
             <AppText style={styles.f1}>
-              &#8358;{parseFloat(item.cost).toLocaleString()}
+              ${parseFloat(item.cost).toLocaleString()}
             </AppText>
             <AppText style={styles.f2}> / {item.duration}</AppText>
           </View>

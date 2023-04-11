@@ -1,6 +1,6 @@
 import { Image, StyleSheet, View } from "react-native";
 import React from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import colors from "../../config/colors";
@@ -9,7 +9,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const ChatCard = ({ fromMe, messageType, item }) => {
   const dateTime = new Date(item.dateTime);
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
 
   if (messageType === "text") {
     return (

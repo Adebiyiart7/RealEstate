@@ -49,7 +49,7 @@ const Card1 = ({ item }) => {
         </div>
         <div className="footer">
           <span className="cost">
-            &#8358;{parseInt(item.cost).toLocaleString()}
+            ${parseInt(item.cost).toLocaleString()}
           </span>{" "}
           <span className="duration">&nbsp;/ {item.duration}</span>
           <span onClick={() => setFavorited(!favorited)} className="favorite">

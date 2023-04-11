@@ -1,7 +1,7 @@
 import { Octicons } from "@expo/vector-icons";
 import React, { useState, useRef } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORT
 import defaultStyles from "../../config/styles";
@@ -10,7 +10,7 @@ import AppText from "../AppText";
 const PinForm = ({ pin, setPin, secureTextEntry }) => {
   const inputRef = useRef();
 
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
 
   const textInput = {
     width: (screenWidth - 32 - (7 * 8))/4,

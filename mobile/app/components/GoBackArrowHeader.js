@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import defaultStyles from "../config/styles";
@@ -13,7 +13,7 @@ const GoBackArrowHeader = ({
   RightIconExtra,
   isTabScreen
 }) => {
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
 
   return (
     <View style={styles.container}>

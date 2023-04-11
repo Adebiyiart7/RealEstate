@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
 import Chip from "./Chip";
 import Card3 from "./cards/Card3";
-import { estateCategory, estates } from "../db";
+import { estateCategory } from "../db";
 import colors from "../config/colors";
 import AppText from "./AppText";
 import defaultStyles from "../config/styles";
@@ -18,6 +19,54 @@ const OurRecommendation = ({
 }) => {
   const [focusedItem, setFocusedItem] = useState("All");
   const [displayFormat, setDisplayFormat] = useState("grid"); // list or grid
+
+  const { estates: rawEstates } = useSelector((state) => state.estate);
+
+  let estates = [];
+
+  for (let estate of rawEstates) {
+    estates.push({
+      _id: estate.zpid,
+      category: estate.homeType,
+      image: estate.imgSrc,
+      longitude: estate.longitude,
+      latitude: estate.latitude,
+      city: estate.city,
+      country: estate.country,
+      location: estate.streetAddress,
+      cost: estate.price,
+      beds: estate.bedrooms,
+      bath: estate.bathrooms,
+      area: `${estate.lotAreaValue} ${estate.lotAreaUnit}`,
+      name: "Adewale Hotels",
+      duration: "night",
+      rating: 4.7,
+      reviewCount: 1234,
+      owner: {
+        name: "Chibuike Adewale Suleiman",
+        image: require("../assets/images/avatar.jpg"),
+        phone: "09029242729"
+      },
+      overview:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+      facilities: [
+        { name: "Car Parking", icon: "parking" },
+        { name: "Swimming Pool", icon: "swimming" },
+        { name: "Gym & Fitness", icon: "gym" },
+        { name: "Restaurant", icon: "restaurant" },
+        { name: "Wi-fi & Network", icon: "wifi" },
+        { name: "Pet Center", icon: "pet" },
+        { name: "Sport Center", icon: "sport" },
+        { name: "Laundry", icon: "laundry" }
+      ],
+      images: []
+    });
+  }
+  
+  /**
+   * city, currency, country, homeType, imgSrc, price, state,streetAddress
+   * lotAreaValue, lotAreaUnit, longitude, latitude, zipcode, zpid
+   */
 
   return (
     <View style={styles.container}>

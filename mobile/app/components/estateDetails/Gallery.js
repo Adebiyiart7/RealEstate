@@ -1,11 +1,11 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import colors from "../../config/colors";
 import AppText from "../AppText";
 
 const Gallery = ({ item }) => {
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
   const imageWidth = (screenWidth - 64) / 3;
 
   return (

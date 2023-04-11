@@ -1,6 +1,7 @@
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
+
 
 // LOCAL IMPORT
 import AppText from "./AppText";
@@ -33,14 +34,14 @@ export const Header = ({ title, style }) => {
 };
 
 const PropertiesFilterContent = () => {
-  const dimension = useDimensions();
+  const dimension = useWindowDimensions();
   const [focusedRating, setFocusedRating] = useState(5);
   const [focusedCategory, setFocusedCategory] = useState("All");
   const [focusedPropertyFacilities, setFocusedPropertyFacilities] =
     useState("Gym");
 
   const buttonStyle = {
-    width: (dimension.screen.width - (32 + 16)) / 2
+    width: (dimension.width - (32 + 16)) / 2
   };
 
   return (

@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import AppText from "../AppText";
@@ -16,7 +16,7 @@ import utils from "../../utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Card3 = ({ navigation, item, format }) => {
-  const dimension = useDimensions().screen;
+  const dimension = useWindowDimensions();
   const [heartIcon, setHeartIcon] = useState("heart-outline");
 
   const imageDimension = {
@@ -107,7 +107,7 @@ const Card3 = ({ navigation, item, format }) => {
             style={[styles.footer, { detailsDimension }]}
           >
             <AppText style={[styles.f1, { marginTop: 10 }]}>
-              &#8358;{utils.separateToThounsand(item.cost)}
+              ${utils.separateToThounsand(item.cost)}
             </AppText>
             <AppText style={styles.f2}>&nbsp;/&nbsp;{item.duration}</AppText>
           </AppText>

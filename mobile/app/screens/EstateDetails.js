@@ -5,15 +5,15 @@ import {
   View,
   TouchableOpacity,
   Platform,
-  FlatList
+  FlatList,
+  Dimensions,
+  // StatusBar
 } from "react-native";
 import {
   FontAwesome,
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import Carousel from "react-native-reanimated-carousel";
-import { useDimensions } from "@react-native-community/hooks";
 
 // LOCAL IMPORTS
 import { estates } from "../db";
@@ -27,15 +27,16 @@ import Location from "../components/estateDetails/Location";
 import Reviews from "../components/estateDetails/Reviews";
 import SeeAllText from "../components/SeeAllText";
 import Footer from "../components/estateDetails/Footer";
+import { StatusBar } from "expo-status-bar";
 
 const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
 };
+const { width: screenWidth, height: screenHeight } = Dimensions.get("screen")
 
 const EstateDetails = ({ navigation, route }) => {
   const [itemInView, setItemInView] = useState(0);
   const [statusBarHeight] = useState(0);
-  const { width: screenWidth, height: screenHeight } = useDimensions().screen;
   const carouselHeight = screenWidth / 1.5;
   const { _id } = route.params;
   const item = estates.find((e) => e._id === _id);
@@ -48,6 +49,7 @@ const EstateDetails = ({ navigation, route }) => {
 
   return (
     <View style={{ backgroundColor: colors.white }}>
+      {/* <StatusBar translucent backgroundColor={"transparent"} barStyle={"light-content"} /> */}
       <FlatList
         data={[]}
         keyExtractor={() => "key"}
@@ -62,27 +64,24 @@ const EstateDetails = ({ navigation, route }) => {
         ListHeaderComponent={
           <>
             <View>
-              {Platform.OS !== "web" && (
-                <Carousel
-                  loop
-                  width={screenWidth}
-                  height={carouselHeight}
-                  // autoPlay={true}
-                  data={item.images.slice(0, 5)}
-                  scrollAnimationDuration={1000}
-                  pagingEnabled
-                  onSnapToItem={(index) => setItemInView(index)}
-                  renderItem={({ item }) => (
+              <FlatList
+horizontal
+showsHorizontalScrollIndicator={false}
+data={item.images}
+pagingEnabled
+keyExtractor={(image) => image}
+ renderItem={({ item }) => (
+  <>
                     <View style={styles.carousel}>
-                      <AppText>1</AppText>
                       <Image
                         source={{ uri: item }}
-                        style={{ width: screenWidth }}
-                      />
+                        style={{ width: screenWidth, height: 260 }}
+                        />
                     </View>
+                        </>
                   )}
-                />
-              )}
+/>
+
 
               {/* IMAGE SCROLL INDICATOR */}
               <View style={styles.imageScrollIndicator}>

@@ -56,15 +56,15 @@ const styles = StyleSheet.create({
   },
   footer: {
     position: "absolute",
-    borderWidth: 1,
+    borderWidth: 0,
     display: "flex",
     flexDirection: "row",
     borderTopWidth: 1,
     borderColor: colors.border200,
     // borderRadius: 25,
-    bottom: 60,
+    bottom: 47,
     padding: 16,
-    paddingBottom: 30,
+    paddingBottom: 18,
     backgroundColor: colors.white,
   },
   price: {

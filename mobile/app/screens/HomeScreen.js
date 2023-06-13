@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
+import  Constants  from "expo-constants";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -161,6 +162,6 @@ const styles = StyleSheet.create({
     marginTop: 16
   },
   screen: {
-    paddingTop: 16
+    paddingTop: Constants.statusBarHeight + 10
   }
 });

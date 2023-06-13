@@ -5,7 +5,7 @@ import React from "react";
 import AppText from "../AppText";
 import ItemSeparatorComponent from "../ItemSeparatorComponent";
 
-const SelectOptions = ({
+const SelectOptions = React.memo(({
   data,
   fieldName,
   setFieldValue,
@@ -29,8 +29,7 @@ const SelectOptions = ({
       ItemSeparatorComponent={() => <ItemSeparatorComponent />}
     />
   );
-};
-
+})
 export default SelectOptions;
 
 const styles = StyleSheet.create({

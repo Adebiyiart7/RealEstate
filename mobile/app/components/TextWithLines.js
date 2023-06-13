@@ -5,13 +5,13 @@ import React from 'react'
 import defaultStyles from '../config/styles'
 import AppText from './AppText'
 
-const TextWithLines = ({ children, style, textStyle }) => {
+const TextWithLines = React.memo(({ children, style, textStyle }) => {
   return (
     <View style={[styles.container, style]}>
       <AppText style={[styles.text, textStyle]}>{children}</AppText>
     </View>
   );
-};
+})
 
 export default TextWithLines
 

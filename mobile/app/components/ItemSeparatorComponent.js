@@ -2,9 +2,9 @@ import { StyleSheet, View } from 'react-native'
 import React from 'react'
 import defaultStyles from '../config/styles'
 
-const ItemSeparatorComponent = ({ style }) => {
+const ItemSeparatorComponent = React.memo(({ style }) => {
   return <View style={[styles.view, style]} />;
-};
+})
 
 export default ItemSeparatorComponent
 

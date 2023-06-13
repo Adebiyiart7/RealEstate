@@ -13,9 +13,8 @@ import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
 import utils from "../../utils";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Card3 = ({ navigation, item, format }) => {
+const Card3 = React.memo(({ navigation, item, format }) => {
   const dimension = useDimensions().screen;
   const [heartIcon, setHeartIcon] = useState("heart-outline");
 
@@ -57,21 +56,23 @@ const Card3 = ({ navigation, item, format }) => {
             {item.rating}
           </AppText>
           <View style={styles.heartIcon}>
-            {heartIcon === "heart-outline" ? (
-              <Ionicons
-                name={heartIcon}
-                size={22}
-                color={colors.white}
-                onPress={() => setHeartIcon("heart")}
-              />
-            ) : (
-              <Ionicons
-                name={heartIcon}
-                size={22}
-                color={colors.primaryOrange}
-                onPress={() => setHeartIcon("heart-outline")}
-              />
-            )}
+{heartIcon === "heart-outline" && (
+  <Ionicons
+    name={heartIcon}
+    size={24}
+    color={colors.white}
+    onPress={() => setHeartIcon("heart")}
+  />
+)}
+{heartIcon !== "heart-outline" && (
+  <Ionicons
+    name={heartIcon}
+    size={24}
+    color={colors.primaryOrange}
+    onPress={() => setHeartIcon("heart-outline")}
+  />
+)}
+
           </View>
         </ImageBackground>
       </TouchableOpacity>
@@ -81,7 +82,7 @@ const Card3 = ({ navigation, item, format }) => {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(routes.ESTATE_DETAILS, {
-                  _id: item._id
+                  _id: item._id,
                 });
               }}
             >
@@ -89,7 +90,7 @@ const Card3 = ({ navigation, item, format }) => {
                 numberOfLines={format === "list" ? 2 : 1}
                 style={[
                   styles.firstText,
-                  { marginTop: format === "grid" ? 8 : 0 }
+                  { marginTop: format === "grid" ? 8 : 0 },
                 ]}
               >
                 {item.name}
@@ -115,7 +116,7 @@ const Card3 = ({ navigation, item, format }) => {
       </View>
     </View>
   );
-};
+});
 
 export default Card3;
 

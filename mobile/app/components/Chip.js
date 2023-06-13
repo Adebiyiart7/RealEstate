@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import colors from "../config/colors";
 
-const Chip = ({ text, focused, Icon, onPress, style, small }) => {
+const Chip = React.memo(({ text, focused, Icon, onPress, style, small }) => {
   return (
     <Pressable
       onPress={onPress}
@@ -35,8 +35,7 @@ const Chip = ({ text, focused, Icon, onPress, style, small }) => {
       </View>
     </Pressable>
   );
-};
-
+})
 const styles = StyleSheet.create({
   chip: {
     display: "flex",

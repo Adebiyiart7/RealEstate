@@ -5,7 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 // LOCAL IMPORTS
 import colors from "../config/colors";
 
-const Rating = () => {
+const Rating = React.memo(() => {
   const [value, setValue] = useState(0);
 
   const starts = [
@@ -30,7 +30,7 @@ const Rating = () => {
       ))}
     </View>
   );
-};
+})
 
 export default Rating;
 

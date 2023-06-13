@@ -1,15 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import AppText from '../AppText'
-import defaultStyles from '../../config/styles'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-import colors from '../../config/colors'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import AppText from "../AppText";
+import defaultStyles from "../../config/styles";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import colors from "../../config/colors";
 
-const Card1 = ({ Icon, title, subTitle, selected }) => {
+const Card1 = React.memo(({ Icon, title, subTitle, selected }) => {
   const selectedStyles = {
     borderWidth: 2,
-borderColor: defaultStyles.colors.primaryColor,
-  }
+    borderColor: defaultStyles.colors.primaryColor,
+  };
   return (
     <View style={{ ...styles.card, ...(selected && selectedStyles) }}>
       <View style={styles.icon}>{Icon}</View>
@@ -28,9 +28,9 @@ borderColor: defaultStyles.colors.primaryColor,
       )}
     </View>
   );
-}
+});
 
-export default Card1
+export default Card1;
 
 const styles = StyleSheet.create({
   card: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     color: colors.primaryColor,
     fontSize: 24,
     position: "absolute",
-    right: 20
+    right: 20,
   },
   center: {
     display: "flex",
@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 12,
-    color: defaultStyles.colors.mediumText
+    color: defaultStyles.colors.mediumText,
   },
 });

@@ -9,7 +9,7 @@ import routes from "../config/routes";
 import { useNavigation } from "@react-navigation/native";
 import defaultStyles from "../config/styles";
 
-const FillProfileBottomSheet = ({
+const FillProfileBottomSheet = React.memo(({
   bottomSheetVisible,
   setBottomSheetVisible,
 }) => {
@@ -43,6 +43,6 @@ const FillProfileBottomSheet = ({
       />
     </View>
   );
-};
+})
 
 export default FillProfileBottomSheet;

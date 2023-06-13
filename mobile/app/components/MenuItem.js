@@ -4,7 +4,7 @@ import AppText from "./AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
-const MenuItem = ({
+const MenuItem = React.memo(({
   title,
   leftIcon,
   rightIcon,
@@ -37,7 +37,7 @@ const MenuItem = ({
         ))}
     </TouchableOpacity>
   );
-};
+})
 
 export default MenuItem;
 

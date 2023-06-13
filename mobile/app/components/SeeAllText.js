@@ -5,9 +5,9 @@ import React from 'react'
 import AppText from './AppText'
 import colors from '../config/colors'
 
-const SeeAllText = () => {
+const SeeAllText = React.memo(() => {
   return <AppText style={styles.seeAll}>See All</AppText>
-}
+})
 
 export default SeeAllText;
 

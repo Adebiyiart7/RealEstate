@@ -5,7 +5,7 @@ import React from "react";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-const AppButton = ({
+const AppButton = React.memo(({
   children,
   style,
   textStyle,
@@ -70,6 +70,6 @@ const AppButton = ({
       )}
     </>
   );
-};
+})
 
 export default AppButton;

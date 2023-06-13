@@ -4,7 +4,7 @@ import React from 'react'
 // LOCAL IMPORTS
 import TextWithLines from './TextWithLines';
 
-const AuthFooter = ({styles}) => {
+const AuthFooter = React.memo(({styles}) => {
   return (
     <View>
       <View style={styles.otherOptions}>
@@ -34,6 +34,6 @@ const AuthFooter = ({styles}) => {
       </View>
     </View>
   );
-}
+})
 
 export default AuthFooter;

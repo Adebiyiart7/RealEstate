@@ -1,3 +1,4 @@
+import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { Modal, StyleSheet, View, TouchableOpacity } from "react-native";
 import colors from "../config/colors";
@@ -5,7 +6,7 @@ import colors from "../config/colors";
 // LOCAL IMPORTS
 import defaultStyles from "../config/styles";
 
-const BottomSheet = ({
+const BottomSheet = React.memo(({
   bottomSheetVisible,
   setBottomSheetVisible,
   bottomSheetContent,
@@ -39,7 +40,8 @@ const BottomSheet = ({
       </Modal>
     </View>
   );
-};
+})
+
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,

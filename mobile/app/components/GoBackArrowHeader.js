@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useDimensions } from "@react-native-community/hooks";
@@ -6,7 +7,7 @@ import { useDimensions } from "@react-native-community/hooks";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-const GoBackArrowHeader = ({
+const GoBackArrowHeader = React.memo(({
   title,
   navigation,
   RightIcon,
@@ -43,7 +44,7 @@ const GoBackArrowHeader = ({
       )}
     </View>
   );
-};
+})
 
 export default GoBackArrowHeader;
 

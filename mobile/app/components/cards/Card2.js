@@ -6,7 +6,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "../AppText";
 import colors from "../../config/colors";
 
-const Card2 = ({ item }) => {
+const Card2 = React.memo(({ item }) => {
   const [heartIcon, setHeartIcon] = useState("heart-outline");
   return (
     <View style={styles.card}>
@@ -38,26 +38,28 @@ const Card2 = ({ item }) => {
           </View>
         </View>
         <View style={styles.heartIcon}>
-          {heartIcon === "heart-outline" ? (
-            <Ionicons
-              name={heartIcon}
-              size={24}
-              color={colors.white}
-              onPress={() => setHeartIcon("heart")}
-            />
-          ) : (
-            <Ionicons
-              name={heartIcon}
-              size={24}
-              color={colors.primaryOrange}
-              onPress={() => setHeartIcon("heart-outline")}
-            />
-          )}
+{heartIcon === "heart-outline" && (
+  <Ionicons
+    name={heartIcon}
+    size={24}
+    color={colors.white}
+    onPress={() => setHeartIcon("heart")}
+  />
+)}
+{heartIcon !== "heart-outline" && (
+  <Ionicons
+    name={heartIcon}
+    size={24}
+    color={colors.primaryOrange}
+    onPress={() => setHeartIcon("heart-outline")}
+  />
+)}
+
         </View>
       </ImageBackground>
     </View>
   );
-};
+});
 
 export default Card2;
 
@@ -66,30 +68,30 @@ const styles = StyleSheet.create({
     height: 280,
     width: 200,
     borderRadius: 25,
-    overflow: "hidden"
+    overflow: "hidden",
   },
   cost: {
-    color: colors.white
+    color: colors.white,
   },
   f1: {
     color: colors.white,
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
   },
   f2: {
     color: colors.white,
-    fontWeight: "300"
+    fontWeight: "300",
   },
   firstText: {
     color: colors.white,
     fontSize: 17,
     fontWeight: "bold",
-    width: "85%"
+    width: "85%",
   },
   footer: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
   },
   heartIcon: {
     position: "absolute",
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
   secondText: {
     color: colors.white,
     fontWeight: "300",
-    width: "85%"
+    width: "85%",
   },
   rating: {
     position: "absolute",
@@ -111,12 +113,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     fontSize: 12,
     fontWeight: "bold",
-    color: colors.primaryColor
+    color: colors.primaryColor,
   },
   texts: {
     position: "absolute",
     bottom: 0,
     margin: 16,
-    width: "100%"
-  }
+    width: "100%",
+  },
 });

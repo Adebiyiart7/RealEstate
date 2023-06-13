@@ -5,7 +5,7 @@ import LottieView from "lottie-react-native";
 // LOCAL IMPORTS
 import colors from "../config/colors";
 
-const Loading = ({ visible }) => {
+const Loading = React.memo(({ visible }) => {
   return (
     <Modal animationType="none" transparent visible={visible}>
       <View style={styles.container}>
@@ -17,7 +17,7 @@ const Loading = ({ visible }) => {
       </View>
     </Modal>
   );
-};
+})
 
 export default Loading;
 

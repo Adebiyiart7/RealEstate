@@ -5,7 +5,7 @@ import React from "react";
 import AppText from "../AppText";
 import colors from "../../config/colors";
 
-const NotificationCard = ({ item }) => {
+const NotificationCard = React.memo(({ item }) => {
   return (
     <View style={styles.notificationCard}>
       <View
@@ -32,7 +32,7 @@ const NotificationCard = ({ item }) => {
       <AppText style={styles.message}>{item.message}</AppText>
     </View>
   );
-};
+});
 
 export default NotificationCard;
 

@@ -7,7 +7,7 @@ import colors from "../../config/colors";
 import AppText from "../AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const ChatCard = ({ fromMe, messageType, item }) => {
+const ChatCard = React.memo(({ fromMe, messageType, item }) => {
   const dateTime = new Date(item.dateTime);
   const { width: screenWidth } = useDimensions().screen;
 
@@ -20,7 +20,7 @@ const ChatCard = ({ fromMe, messageType, item }) => {
         <AppText
           style={[
             styles.cardDateTimeText,
-            fromMe ? styles.fromMeCardDateTimeText : {}
+            fromMe ? styles.fromMeCardDateTimeText : {},
           ]}
         >
           {dateTime.getHours()}:{dateTime.getMinutes()}{" "}
@@ -43,7 +43,7 @@ const ChatCard = ({ fromMe, messageType, item }) => {
           styles.card,
           fromMe ? styles.fromMeCard : {},
           styles.cardImages,
-          item.images.length > 1 ? { width: "80%" } : {}
+          item.images.length > 1 ? { width: "80%" } : {},
         ]}
       >
         <Image
@@ -51,8 +51,8 @@ const ChatCard = ({ fromMe, messageType, item }) => {
             styles.cardImage,
             {
               width: (screenWidth - 32) * 0.4 - 10,
-              height: (screenWidth - 32) * 0.4 - 10
-            }
+              height: (screenWidth - 32) * 0.4 - 10,
+            },
           ]}
           source={{ uri: item.images[0] }}
         />
@@ -62,8 +62,8 @@ const ChatCard = ({ fromMe, messageType, item }) => {
               styles.cardImage,
               {
                 width: (screenWidth - 32) * 0.4 - 10,
-                height: (screenWidth - 32) * 0.4 - 10
-              }
+                height: (screenWidth - 32) * 0.4 - 10,
+              },
             ]}
             source={{ uri: item.images[1] }}
           />
@@ -94,7 +94,7 @@ const ChatCard = ({ fromMe, messageType, item }) => {
   //     </View>
   //   );
   // }
-};
+});
 
 export default ChatCard;
 
@@ -110,19 +110,19 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 18,
     maxWidth: "80%",
-    borderBottomLeftRadius: smallRadius
+    borderBottomLeftRadius: smallRadius,
   },
   fromMeCard: {
     alignSelf: "flex-end",
     backgroundColor: colors.primaryColor,
     borderBottomLeftRadius: radius,
-    borderBottomRightRadius: smallRadius
+    borderBottomRightRadius: smallRadius,
   },
   cardText: {
-    fontSize: 16
+    fontSize: 16,
   },
   fromMeCardText: {
-    color: colors.white
+    color: colors.white,
   },
   cardDateTimeText: {
     position: "absolute",
@@ -131,13 +131,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.mediumText,
     fontWeight: "500",
-    fontStyle: "italic"
+    fontStyle: "italic",
   },
   fromMeCardDateTimeText: {
-    color: colors.white
+    color: colors.white,
   },
   cardImage: {
-    borderRadius: radius
+    borderRadius: radius,
   },
   cardImages: {
     display: "flex",
@@ -145,6 +145,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "transparent",
     padding: 0,
-    paddingVertical: 10
-  }
+    paddingVertical: 10,
+  },
 });

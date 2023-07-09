@@ -70,12 +70,11 @@ const styles = StyleSheet.create({
   },
   notificationCard: {
     marginBottom: 16,
-    // display: "flex",
-    // flexDirection: "row",
   },
   title: {
     fontWeight: "bold",
     fontSize: 16,
+    textTransform: "capitalize",
   },
   topItems: {
     display: "flex",

@@ -1,4 +1,10 @@
-import { FlatList, StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import React from "react";
 
 // LOCAL IMPORTS
@@ -10,7 +16,7 @@ import routes from "../../config/routes";
 
 const ChatInfo = ({ item }) => {
   const dateTime = new Date(item.lastMessageDateTime);
-  
+
   return (
     <View style={{ display: "flex", alignItems: "flex-end" }}>
       <View style={styles.messagesCountContainer}>
@@ -18,7 +24,7 @@ const ChatInfo = ({ item }) => {
           <AppText style={styles.messagesCount}>
             {item.unReadMessagesCount}
           </AppText>
-        ) :null}
+        ) : null}
       </View>
       <AppText style={styles.dateTime}>
         {dateTime.getHours()}:{dateTime.getMinutes()}
@@ -42,13 +48,13 @@ const Chats = ({ navigation }) => {
             }
           >
             <AccountCard
+              showIconBorder={false}
               emptyRightComponent
               style={styles.card}
               avatar={item.secondPerson.avatar}
               first_text={item.secondPerson.fullname}
               second_text={item.lastMessage}
-              Icon1={<ChatInfo item={item} />}
-              Icon2={" "}
+              Icon={<ChatInfo item={item} />}
             />
           </TouchableOpacity>
         )}
@@ -79,6 +85,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     color: colors.white,
     marginBottom: 3,
-    paddingTop: 2
-  }
+    paddingTop: 2,
+  },
 });

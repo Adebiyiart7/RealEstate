@@ -21,9 +21,11 @@ const SearchBox = ({
     : defaultStyles.colors.mediumText;
 
   const textInputStyle = {
-    // paddingVertical: 8,
-    // borderColor: isFocus ? defaultStyles.colors.primaryColor : "transparent",
-    // borderWidth: isFocus ? 2 : 0
+    paddingVertical: 8,
+    borderColor: isFocus
+      ? defaultStyles.colors.primaryColor
+      : defaultStyles.colors.border200,
+    borderWidth: isFocus ? 1.5 : 1,
   };
 
   return (
@@ -34,11 +36,14 @@ const SearchBox = ({
         size={18}
       />
       <TextInput
-        style={[styles.textInput, isFocus && textInputStyle]}
+        style={[styles.textInput, textInputStyle]}
         name={"search"}
         onFocus={() => {
           setIsFocus(true);
           setIconName("ios-search");
+        }}
+        onBlur={() => {
+          setIsFocus(false);
         }}
         placeholder="Search..."
         placeholderTextColor={defaultStyles.colors.lightText}
@@ -57,20 +62,21 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     marginVertical: 10,
-    position: "relative"
+    position: "relative",
   },
   icon: {
     position: "absolute",
     top: 14,
     left: 14,
-    zIndex: 1234
+    zIndex: 1234,
   },
   rightIcon: {
     position: "absolute",
     top: 4,
     right: 0,
     zIndex: 1234,
-    padding: 10
+    padding: 10,
+    paddingRight: 0,
   },
   textInput: {
     borderRadius: defaultStyles.primaryBorderRadius,
@@ -78,6 +84,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 37,
     fontSize: 16,
-    color: defaultStyles.colors.primaryText
-  }
+    color: defaultStyles.colors.primaryText,
+  },
 });

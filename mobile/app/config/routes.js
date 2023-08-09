@@ -15,6 +15,7 @@ const routes = {
   LETS_YOU_IN: "LetsYouIn",
   LOGIN: "Login",
   MESSAGES: "Messages",
+  MY_BOOKING: "MyBooking",
   NEW_PASSWORD: "CreateNewPassword",
   NEW_PIN: "CreateNewPin",
   NOTIFICATIONS: "Notifications",

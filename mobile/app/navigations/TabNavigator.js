@@ -14,7 +14,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const { user } = useSelector((state) => state.auth);
+  const user = true; // { user } = useSelector((state) => state.auth);
 
   return (
     <Tab.Navigator
@@ -22,15 +22,17 @@ const TabNavigator = () => {
         tabBarIcon: ({ focused }) => tabBarIcon(route, focused),
         tabBarLabelPosition: "below-icon",
         tabBarStyle: {
-          height: 57
+          height: 57,
         },
+
         tabBarLabelStyle: {
           marginBottom: 5,
-          fontSize: 11
+          fontSize: 11,
+          fontWeight: "500",
         },
         tabBarIconStyle: {
-          marginTop: 8
-        }
+          marginTop: 8,
+        },
       })}
     >
       <Tab.Screen
@@ -38,11 +40,11 @@ const TabNavigator = () => {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={routes.EXPLORE}
         component={ExploreScreen}
         options={{ headerShown: false }}
-      />
+      /> */}
       <Tab.Screen
         name={routes.FAVORITES}
         component={FavoritesScreen}

@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // LOCAL IMPORTS
 import { API_URI } from "../config";
-let user = null;
+let user = { username: "Adeebiyiart" };
 
 const initialState = {
   user: user,
@@ -25,7 +25,6 @@ export const register = createAsyncThunk(
       }
     } catch (error) {
       const message = error.response.data.body.message.toString();
-      console.log(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -40,7 +39,6 @@ export const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
     }
   } catch (error) {
     const message = error.response.data.body.message.toString();
-    console.log(message);
     return thunkAPI.rejectWithValue(message);
   }
 });

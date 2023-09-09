@@ -27,7 +27,6 @@ export const updateProfile = createAsyncThunk(
       }
     } catch (error) {
       const message = error.response.data.body.message.toString();
-      console.log(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -35,16 +34,16 @@ export const updateProfile = createAsyncThunk(
 
 export const profile = createAsyncThunk("profile", async (token, thunkAPI) => {
   try {
-    const response = await axios.get( API_URI + "/users/me", axiosConfig(token));
+    const response = await axios.get(API_URI + "/users/me", axiosConfig(token));
 
     if (response.data) {
       return response.data.body;
     }
   } catch (error) {
     const message = error.response.data.body.message.toString();
-    return thunkAPI.rejectWithValue(message)
+    return thunkAPI.rejectWithValue(message);
   }
-})
+});
 
 const profileSlice = createSlice({
   name: "profile",

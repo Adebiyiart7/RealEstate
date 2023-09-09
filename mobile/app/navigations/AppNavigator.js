@@ -25,11 +25,12 @@ import EReceiptScreen from "../screens/booking/EReceiptScreen";
 import OTPCodeVerificationScreen from "../screens/OTPCodeVerificationScreen";
 import CreateNewPassword from "../screens/CreateNewPasswordScreen";
 import ChatBoardScreen from "../screens/ChatBoardScreen";
+import MyBookingScreen from "../screens/MyBookingScreen";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const { user } = useSelector((state) => state.auth);
+  const user = true; // TODO: Remove redux and use react context API and reducers
 
   return (
     <Stack.Navigator
@@ -91,6 +92,7 @@ const AppNavigator = () => {
           />
           <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
           <Stack.Screen name={routes.CHAT_BOARD} component={ChatBoardScreen} />
+          <Stack.Screen name={routes.MY_BOOKING} component={MyBookingScreen} />
         </Stack.Group>
       )}
       {/**

@@ -92,7 +92,6 @@ const FillProfileScreen = ({ navigation }) => {
         logout();
       }
     }
-    // console.log("hello");
   };
 
   return (

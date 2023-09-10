@@ -32,7 +32,7 @@ import { StatusBar } from "expo-status-bar";
 const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
 };
-const { width: screenWidth, height: screenHeight } = Dimensions.get("screen")
+const { width: screenWidth, height: screenHeight } = Dimensions.get("screen");
 
 const EstateDetails = ({ navigation, route }) => {
   const [itemInView, setItemInView] = useState(0);
@@ -58,30 +58,29 @@ const EstateDetails = ({ navigation, route }) => {
         style={[
           styles.container,
           {
-            height: screenHeight - statusBarHeight
-          }
+            height: screenHeight - statusBarHeight,
+          },
         ]}
         ListHeaderComponent={
           <>
             <View>
               <FlatList
-horizontal
-showsHorizontalScrollIndicator={false}
-data={item.images}
-pagingEnabled
-keyExtractor={(image) => image}
- renderItem={({ item }) => (
-  <>
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={item.images}
+                pagingEnabled
+                keyExtractor={(image) => image}
+                renderItem={({ item }) => (
+                  <>
                     <View style={styles.carousel}>
                       <Image
                         source={{ uri: item }}
                         style={{ width: screenWidth, height: 260 }}
-                        />
+                      />
                     </View>
-                        </>
-                  )}
-/>
-
+                  </>
+                )}
+              />
 
               {/* IMAGE SCROLL INDICATOR */}
               <View style={styles.imageScrollIndicator}>
@@ -96,7 +95,7 @@ keyExtractor={(image) => image}
                       height: 10,
                       width: index != itemInView ? 10 : 20,
                       margin: 2,
-                      borderRadius: 5
+                      borderRadius: 5,
                     }}
                   ></View>
                 ))}
@@ -234,7 +233,7 @@ keyExtractor={(image) => image}
                 <AppText
                   style={[
                     styles.rating,
-                    { fontWeight: "bold", fontSize: 17, marginLeft: 0 }
+                    { fontWeight: "bold", fontSize: 17, marginLeft: 0 },
                   ]}
                 >
                   <MaterialCommunityIcons

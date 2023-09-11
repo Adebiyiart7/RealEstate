@@ -1,6 +1,17 @@
 import moment from "moment";
 
 const tax = 5000;
+
+// PLURALIZE
+const pluralize = (value, word) => {
+  let parseValue = JSON.parse(value);
+  if (parseValue > 1 || parseValue === 0) {
+    return `${word}s`;
+  } else {
+    return `${word}`;
+  }
+};
+
 // THOUSAND SEPARATOR
 const separateToThounsand = (value) => {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -19,17 +30,17 @@ const privateNavigator = (navigation, user) => {
   if (user) {
     navigation;
   } else {
-
   }
 
-  return <></>
+  return <></>;
 };
 
 const utils = {
   tax,
+  pluralize,
   dateDifference,
   privateNavigator,
-  separateToThounsand
+  separateToThounsand,
 };
 
 export default utils;

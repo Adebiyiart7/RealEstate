@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   FontAwesome,
   Fontisto,
-  MaterialCommunityIcons
+  MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
@@ -36,7 +36,7 @@ const ProfileScreen = ({ navigation }) => {
         isTabScreen
         navigation={navigation}
         title={"Profile"}
-        RightIconExtra={
+        RightIcon={
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
             color={colors.primaryText}
@@ -63,7 +63,11 @@ const ProfileScreen = ({ navigation }) => {
         </AppText>
       </View>
       <View style={styles.menu}>
-        <MenuItem title={"My Booking"} leftIcon="calendar-month" />
+        <MenuItem
+          title={"My Booking"}
+          leftIcon="calendar-month"
+          onPress={() => navigation.navigate(routes.MY_BOOKING)}
+        />
         <MenuItem title={"Payments"} leftIcon="cash" />
         <ItemSeparatorComponent style={{ marginVertical: 10 }} />
         <MenuItem
@@ -124,20 +128,20 @@ const styles = StyleSheet.create({
   avatar: {
     borderRadius: 200,
     height: 150,
-    width: 150
+    width: 150,
   },
   editPhoto: {
     position: "absolute",
     color: colors.primaryColor,
     right: 0,
-    bottom: 10
+    bottom: 10,
   },
   fullname: {
     fontWeight: "bold",
     fontSize: 22,
     marginTop: 10,
     maxWidth: 280,
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   menu: {},
   user: {
@@ -145,6 +149,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
     borderBottomColor: colors.border200,
-    borderBottomWidth: 1
-  }
+    borderBottomWidth: 1,
+  },
 });

@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
-import  Constants  from "expo-constants";
+import Constants from "expo-constants";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -48,7 +48,6 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     // TODO uncomment
     setTimeout(() => {
-      console.log(!user);
       if (!user) setBottomSheetVisibleLogin(true);
     }, 2000);
   }, [user, setBottomSheetVisibleLogin]);
@@ -82,11 +81,14 @@ const HomeScreen = ({ navigation }) => {
 
       <AccountCard
         reverse
-        Icon1={
+        Icon={
           <Ionicons
             name="notifications-outline"
             color={colors.mediumText}
             size={24}
+            onPress={() => {
+              navigation.navigate(routes.NOTIFICATIONS);
+            }}
           />
         }
         first_text={name() ? name() : "Welcome!"}
@@ -97,6 +99,7 @@ const HomeScreen = ({ navigation }) => {
         onPressFilter={() => setBottomSheetVisible(true)}
         RightIcon={
           <Ionicons
+            style={{ marginRight: 20 }}
             name="md-filter-sharp"
             color={colors.primaryColor}
             size={18}
@@ -109,7 +112,7 @@ const HomeScreen = ({ navigation }) => {
           setBottomSheetVisible={setBottomSheetVisible}
           bottomSheetContent={<PropertiesFilterContent />}
         />
-        <Header title="Featured" right={<SeeAllText />} />
+        <Header title="Featured" />
         <FlatList
           data={featured}
           horizontal
@@ -150,18 +153,18 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10
+    marginTop: 10,
   },
   headerTitle: {
     fontWeight: "bold",
     color: defaultStyles.colors.primaryText,
     fontSize: 17,
-    marginBottom: 12
+    marginBottom: 12,
   },
   ourRecommendation: {
-    marginTop: 16
+    marginTop: 16,
   },
   screen: {
-    paddingTop: Constants.statusBarHeight + 10
-  }
+    paddingTop: Constants.statusBarHeight + 10,
+  },
 });

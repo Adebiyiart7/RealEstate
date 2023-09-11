@@ -14,12 +14,12 @@ const MessagesScreen = ({ navigation }) => {
   const activeTabStyle = {
     borderBottomColor: colors.primaryColor,
     borderBottomWidth: 3,
-  }
+  };
 
   const activeTabTextStyle = {
-    color: colors.primaryColor
+    color: colors.primaryColor,
   };
-  
+
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader
@@ -27,33 +27,45 @@ const MessagesScreen = ({ navigation }) => {
         navigation={navigation}
         title={"Messages"}
         RightIcon={
-          <Ionicons
-            size={24}
-            name={"ios-search-outline"}
-            style={{ colors: colors.primaryText }}
-          />
-        }
-        RightIconExtra={
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
             size={24}
             style={{ colors: colors.primaryText }}
           />
         }
+        RightIconExtra={
+          <Ionicons
+            size={24}
+            name={"ios-search-outline"}
+            style={{ colors: colors.primaryText }}
+          />
+        }
       />
       <View style={styles.tabs}>
         <AppButton
-        onPress={() => setShowChats(true)}
-        style={[styles.tab, showChats ? activeTabStyle : {}]} textStyle={[styles.tabText,showChats ? activeTabTextStyle : {}]} secondary>
+          onPress={() => setShowChats(true)}
+          style={[styles.tab, showChats ? activeTabStyle : {}]}
+          textStyle={[styles.tabText, showChats ? activeTabTextStyle : {}]}
+          secondary
+        >
           Chats
         </AppButton>
         <AppButton
-        onPress={() => setShowChats(false)}
-        style={[styles.tab, !showChats ? activeTabStyle : {}]} textStyle={[styles.tabText, !showChats ? activeTabTextStyle : {}]} secondary>
+          onPress={() => setShowChats(false)}
+          style={[styles.tab, !showChats ? activeTabStyle : {}]}
+          textStyle={[styles.tabText, !showChats ? activeTabTextStyle : {}]}
+          secondary
+        >
           Calls
         </AppButton>
       </View>
-      <View>{showChats ? <Chats navigation={navigation} /> : <Calls navigation={navigation} />}</View>
+      <View>
+        {showChats ? (
+          <Chats navigation={navigation} />
+        ) : (
+          <Calls navigation={navigation} />
+        )}
+      </View>
     </Screen>
   );
 };
@@ -66,15 +78,15 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     paddingVertical: 5,
     borderRadius: 0,
+    borderBottomColor: colors.border200,
+    borderBottomWidth: 1,
   },
   tabs: {
     display: "flex",
-    flexDirection: "row"
-    // borderBottomColor: colors.border200,
-    // borderBottomWidth: 1
+    flexDirection: "row",
   },
   tabText: {
     fontSize: 18,
-    color: colors.lightText
-  }
+    color: colors.lightText,
+  },
 });

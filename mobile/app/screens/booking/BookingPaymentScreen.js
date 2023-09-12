@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 const BookingPaymentScreen = ({ navigation, route }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const { user } = useSelector((state) => state.auth);
-
+  const [selected, setSeleted] = useState("google");
   return (
     <Screen>
       <LoginBottomSheet
@@ -28,7 +28,8 @@ const BookingPaymentScreen = ({ navigation, route }) => {
       <AppText>Select the payment method you want to use.</AppText>
       <View>
         <Card1
-          selected
+          selected={selected === "google"}
+          onPress={() => setSeleted("google")}
           title={"Google"}
           subTitle={"Google Pay"}
           Icon={
@@ -39,6 +40,8 @@ const BookingPaymentScreen = ({ navigation, route }) => {
           }
         />
         <Card1
+          selected={selected === "apple"}
+          onPress={() => setSeleted("apple")}
           title={"Apple"}
           subTitle={"Apple Pay"}
           Icon={
@@ -64,7 +67,7 @@ const BookingPaymentScreen = ({ navigation, route }) => {
               ? navigation.navigate(routes.REVIEW_SUMMARY, {
                   _id: route.params._id,
                   userInfo: route.params.userInfo,
-                  checksDetails: route.params.checksDetails
+                  checksDetails: route.params.checksDetails,
                 })
               : setBottomSheetVisible(true);
           }}
@@ -81,6 +84,6 @@ export default BookingPaymentScreen;
 const styles = StyleSheet.create({
   imageIcon: {
     height: 24,
-    width: 24
-  }
+    width: 24,
+  },
 });

@@ -20,9 +20,12 @@ const validationSchema = Yup.object().shape({
 const AddNewCardScreen = ({ navigation }) => {
   return (
     <Screen>
-      <GoBackArrowHeader navigation={navigation} title={"Add New card"} />
+      <GoBackArrowHeader navigation={navigation} title={"Add New Card"} />
       <View style={styles.card}>
-        <Image source={require("../../assets/images/atm-card.png")} />
+        <Image
+          style={styles.image}
+          source={require("../../assets/images/atm-card.png")}
+        />
       </View>
       <Formik
         initialValues={{
@@ -85,6 +88,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+  },
+  image: {
+    // flex: 1,
   },
   inputField: {
     borderRadius: 5,

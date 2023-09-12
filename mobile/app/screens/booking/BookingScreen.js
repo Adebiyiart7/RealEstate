@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
-import { StyleSheet, TextInput, View, Text } from "react-native";
+import { StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORT
@@ -11,157 +11,98 @@ import colors from "../../config/colors";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
 import LoginBottomSheet from "../../components/LoginBottomSheet";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
-class BookingScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      props: props,
-      startDate: new Date(1611106322840),
-      endDate: new Date(1671706322840),
-      displayedDate: moment(),
-      bottomSheetVisible: false,
-      openDate: false,
-      noteToOwner:
-        "I would like to know if there are extra charges apart from the tax and security",
-    };
-  }
+const BookingScreen = ({ route, navigation }) => {
+  const [startDate] = useState(new Date(1611106322840));
+  const [endDate] = useState(new Date(1671706322840));
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [noteToOwner, setNoteToOwner] = useState(
+    "I would like to know if there are extra charges apart from the tax and security"
+  );
 
-  setDates = (dates) => {
-    this.setState({
-      ...dates,
-    });
+  const handleChangeNoteToOwner = (text) => setNoteToOwner(text);
+
+  const Header = ({ title }) => {
+    return <AppText style={styles.header}>{title} </AppText>;
   };
 
-  setBottomSheetVisible = () => {
-    this.setState({
-      bottomSheetVisible: true,
-    });
-  };
-
-  setOpenDate = () => {
-    // this.setState({
-    //   openDate: true,
-    // });
-  };
-
-  handleChangeNoteToOwner = (text) => {
-    this.setState({
-      noteToOwner: text,
-    });
-  };
-
-  render() {
-    const {
-      startDate,
-      endDate,
-      displayedDate,
-      props,
-      bottomSheetVisible,
-      navigation,
-      openDate,
-      noteToOwner,
-    } = this.state;
-
-    const Header = ({ title }) => {
-      return <AppText style={styles.header}>{title} </AppText>;
-    };
-    const empty = "";
-    
-    return (
-      <>
-        {/* <DateRangePicker
-          open={openDate}
-          headerTextStyle={{ fontWeight: "bold" }}
-          selectedStyle={{ backgroundColor: colors.primaryColor }}
-          onChange={this.setDates}
-          endDate={endDate}
-          startDate={startDate}
-          displayedDate={displayedDate}
-          containerStyle={styles.calendarStyle}
-          range
-        >
-        </DateRangePicker> */}
-
-        <Screen style={styles.container}>
-          <LoginBottomSheet
-            bottomSheetVisible={bottomSheetVisible}
-            setBottomSheetVisible={this.setBottomSheetVisible}
-          />
-          <GoBackArrowHeader
-            navigation={navigation}
-            title={"Booking Real Estate"}
-          />
-          {/* <View style={styles.calendar}></View> */}
-
-          {/* DATE RANGE */}
-          <View style={styles.checks}>
-            <View style={styles.left}>
-              <Header title={"Check In"} />
-              <TouchableOpacity
-                style={styles.input}
-                onPress={() => this.setOpenDate()}
-              >
-                <AppText>
-                  {startDate && moment(startDate).format("DD-MM-YYYY")}
-                </AppText>
-                <MaterialCommunityIcons
-                  name="calendar"
-                  color={colors.mediumText}
-                  size={20}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.right}>
-              <Header title={"Check Out"} />
-              <View style={styles.input}>
-                <AppText>
-                  {endDate && moment(endDate).format("DD-MM-YYYY")}
-                </AppText>
-                <MaterialCommunityIcons
-                  name="calendar"
-                  color={colors.mediumText}
-                  size={20}
-                />
-              </View>
-            </View>
-          </View>
-
-          {/* NOTE */}
-          <View style={{ marginTop: 16 }}>
-            <Header title={"Note to Owner (Optional)"} />
-
-            <TextInput
-              placeholder="Write to the owner..."
-              style={styles.noteInput}
-              name={"note"}
-              numberOfLines={3}
-              multiline
-              onChangeText={(text) => this.handleChangeNoteToOwner(text)}
-              value={noteToOwner}
-            />
-            <AppButton
-              onPress={() => {
-                props.route.params.user
-                  ? props.navigation.navigate(routes.BOOKING_FORM, {
-                      _id: props.route.params._id,
-                      checksDetails: {
-                        startDate: startDate,
-                        endDate: endDate
-                      }
-                    })
-                  : this.setBottomSheetVisible;
-              }}
+  return (
+    <>
+      <Screen style={styles.container}>
+        <LoginBottomSheet
+          bottomSheetVisible={bottomSheetVisible}
+          setBottomSheetVisible={setBottomSheetVisible}
+        />
+        <GoBackArrowHeader
+          navigation={navigation}
+          title={"Booking Real Estate"}
+        />
+        {/* DATE RANGE */}
+        <View style={styles.checks}>
+          <View style={styles.left}>
+            <Header title={"Check In"} />
+            <TouchableOpacity
+              style={styles.input}
+              // onPress={() => setOpenDate()}
             >
-              Continue
-            </AppButton>
+              <AppText>
+                {startDate && moment(startDate).format("DD-MM-YYYY")}
+              </AppText>
+              <MaterialCommunityIcons
+                name="calendar"
+                color={colors.mediumText}
+                size={20}
+              />
+            </TouchableOpacity>
           </View>
-        </Screen>
-      </>
-    );
-  }
-}
+          <View style={styles.right}>
+            <Header title={"Check Out"} />
+            <TouchableOpacity style={styles.input}>
+              <AppText>
+                {endDate && moment(endDate).format("DD-MM-YYYY")}
+              </AppText>
+              <MaterialCommunityIcons
+                name="calendar"
+                color={colors.mediumText}
+                size={20}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* NOTE */}
+        <View style={{ marginTop: 16 }}>
+          <Header title={"Note to Owner (Optional)"} />
+
+          <TextInput
+            placeholder="Write to the owner..."
+            style={styles.noteInput}
+            name={"note"}
+            numberOfLines={3}
+            multiline
+            onChangeText={(text) => handleChangeNoteToOwner(text)}
+            value={noteToOwner}
+          />
+          <AppButton
+            onPress={() => {
+              route.params.user
+                ? navigation.navigate(routes.BOOKING_FORM, {
+                    _id: route.params._id,
+                    checksDetails: {
+                      startDate: startDate,
+                      endDate: endDate,
+                    },
+                  })
+                : setBottomSheetVisible;
+            }}
+          >
+            Continue
+          </AppButton>
+        </View>
+      </Screen>
+    </>
+  );
+};
 
 export default BookingScreen;
 

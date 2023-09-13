@@ -5,7 +5,7 @@ import {
   View,
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React from "react";
 import { useDimensions } from "@react-native-community/hooks";
 
 // LOCAL IMPORTS
@@ -13,10 +13,20 @@ import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
 import utils from "../../utils";
+import defaultStyles from "../../config/styles";
+import { useFavorite } from "../../contexts/FavoriteHomeContext";
+import BottomSheet from "../BottomSheet";
+import RemoveFavoriteContent from "../RemoveFavoriteContent";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const Card3 = React.memo(({ navigation, item, format }) => {
+const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
+  const { addToFavorites, state } = useFavorite();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const [bottomSheetVisibleRemoveFav, setBottomSheetVisibleRemoveFav] =
+    useState(false);
   const dimension = useDimensions().screen;
-  const [heartIcon, setHeartIcon] = useState("heart-outline");
 
   const imageDimension = {
     height:
@@ -32,12 +42,29 @@ const Card3 = React.memo(({ navigation, item, format }) => {
         : dimension.width / 2 - 32,
   };
 
-  // const addToFavorite = async () => {
-  //   await AsyncStorage.setItem("@favorite", {});
-  // };
+  useEffect(() => {
+    setIsFavorite(state.favorites.some((fav) => fav === item._id));
+  }, [state.favorites, item._id]);
 
   return (
-    <View style={[styles.card, format === "list" && styles.cardListFormat]}>
+    <View
+      style={[
+        styles.card,
+        format === "list" && styles.cardListFormat,
+        customCardStyle,
+      ]}
+    >
+      <BottomSheet
+        bottomSheetContent={
+          <RemoveFavoriteContent
+            item={item}
+            navigation={navigation}
+            setBottomSheetVisibleRemoveFav={setBottomSheetVisibleRemoveFav}
+          />
+        }
+        bottomSheetVisible={bottomSheetVisibleRemoveFav}
+        setBottomSheetVisible={setBottomSheetVisibleRemoveFav}
+      />
       <TouchableOpacity
         onPress={() => {
           navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id });
@@ -56,23 +83,27 @@ const Card3 = React.memo(({ navigation, item, format }) => {
             {item.rating}
           </AppText>
           <View style={styles.heartIcon}>
-{heartIcon === "heart-outline" && (
-  <Ionicons
-    name={heartIcon}
-    size={24}
-    color={colors.white}
-    onPress={() => setHeartIcon("heart")}
-  />
-)}
-{heartIcon !== "heart-outline" && (
-  <Ionicons
-    name={heartIcon}
-    size={24}
-    color={colors.primaryOrange}
-    onPress={() => setHeartIcon("heart-outline")}
-  />
-)}
-
+            {!isFavorite && (
+              <Ionicons
+                name={"heart-outline"}
+                size={24}
+                color={colors.white}
+                onPress={() => {
+                  setIsFavorite(true);
+                  addToFavorites(item._id);
+                }}
+              />
+            )}
+            {isFavorite && (
+              <Ionicons
+                name={"heart"}
+                size={24}
+                color={colors.primaryOrange}
+                onPress={() => {
+                  setBottomSheetVisibleRemoveFav(true);
+                }}
+              />
+            )}
           </View>
         </ImageBackground>
       </TouchableOpacity>
@@ -169,9 +200,10 @@ const styles = StyleSheet.create({
   },
   heartIcon: {
     position: "absolute",
-    bottom: 4,
-    right: 4,
-    padding: 6,
+    bottom: 0,
+    right: 0,
+    padding: 12,
+    zIndex: defaultStyles.zIndex + 1,
   },
   secondText: {
     color: colors.mediumText,

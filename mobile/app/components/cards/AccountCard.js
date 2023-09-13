@@ -1,6 +1,6 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
 import { useDimensions } from "@react-native-community/hooks";
+import React from "react";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 // LOCAL IMPORTS
 import AppText from "../AppText";
@@ -8,17 +8,16 @@ import colors from "../../config/colors";
 
 const avatarSize = 50;
 const AccountCard = ({
-  Icon1,
-  Icon2,
+  Icon,
   avatar,
   first_text,
   second_text,
   reverse,
   style,
-  emptyRightComponent,
-  showIconBorder = true
+  showIconBorder = true,
 }) => {
-  const { width: screenWidth } = useDimensions().screen;
+  const { width } = useDimensions().screen;
+  const textWidth = width - 150;
 
   return (
     <View style={[styles.accountCard, style]}>
@@ -28,16 +27,16 @@ const AccountCard = ({
           display: "flex",
           flexDirection: "row",
           width: "100%",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <View
           style={[
             styles.center,
             {
-              width: screenWidth - (Icon1 && Icon2 ? 173 : 173 - 40),
-              flexDirection: reverse ? "column-reverse" : "column"
-            }
+              flexDirection: reverse ? "column-reverse" : "column",
+              maxWidth: textWidth,
+            },
           ]}
         >
           <AppText numberOfLines={1} style={styles.first_text}>
@@ -48,26 +47,11 @@ const AccountCard = ({
           </AppText>
         </View>
         <View style={styles.icons}>
-          {emptyRightComponent ? (
-            <View>{Icon1}</View>
-          ) : (
-            <>
-              {Icon1 && (
-                <TouchableOpacity
-                  style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
-                >
-                  {Icon1}
-                </TouchableOpacity>
-              )}
-              {Icon2 && (
-                <TouchableOpacity
-                  style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
-                >
-                  {Icon2}
-                </TouchableOpacity>
-              )}
-            </>
-          )}
+          <TouchableOpacity
+            style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
+          >
+            {Icon}
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -80,41 +64,41 @@ const styles = StyleSheet.create({
   accountCard: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     height: avatarSize,
     width: avatarSize,
-    borderRadius: 30
+    borderRadius: 30,
   },
   center: {
-    marginLeft: 10
+    marginLeft: 10,
   },
   second_text: {
-    color: colors.mediumText
+    color: colors.mediumText,
   },
   icon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
-    borderColor: colors.border100,
+    borderColor: colors.border200,
     borderRadius: 30,
     height: 43,
-    width: 43
+    width: 43,
   },
   icons: {
     display: "flex",
     flexDirection: "row",
-    marginRight: avatarSize
+    marginRight: avatarSize,
   },
   first_text: {
     color: colors.primaryText,
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
   },
   wavingHand: {
     height: 15,
-    width: 15
-  }
+    width: 15,
+  },
 });

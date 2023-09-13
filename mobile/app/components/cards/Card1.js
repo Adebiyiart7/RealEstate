@@ -1,17 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AppText from "../AppText";
 import defaultStyles from "../../config/styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 
-const Card1 = React.memo(({ Icon, title, subTitle, selected }) => {
+const Card1 = React.memo(({ Icon, title, subTitle, selected, onPress }) => {
   const selectedStyles = {
     borderWidth: 2,
     borderColor: defaultStyles.colors.primaryColor,
   };
   return (
-    <View style={{ ...styles.card, ...(selected && selectedStyles) }}>
+    <Pressable
+      onPress={onPress}
+      style={{ ...styles.card, ...(selected && selectedStyles) }}
+    >
       <View style={styles.icon}>{Icon}</View>
       <View style={styles.center}>
         <AppText numberOfLines={1} style={styles.title}>
@@ -26,7 +29,7 @@ const Card1 = React.memo(({ Icon, title, subTitle, selected }) => {
       ) : (
         <MaterialCommunityIcons style={styles.radio} name="radiobox-blank" />
       )}
-    </View>
+    </Pressable>
   );
 });
 

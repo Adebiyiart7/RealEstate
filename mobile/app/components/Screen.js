@@ -1,6 +1,6 @@
 import { ScrollView, View, StyleSheet } from "react-native";
 import defaultStyles from "../config/styles";
-import Constants  from "expo-constants";
+import Constants from "expo-constants";
 
 const Screen = ({ children, style, scrollable = true }) => {
   if (scrollable) {

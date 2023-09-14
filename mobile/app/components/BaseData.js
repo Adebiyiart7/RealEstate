@@ -9,7 +9,6 @@ const BaseData = () => {
 
   AsyncStorage.getItem("@user")
     .then((value) => {
-      // console.log(value);
       dispatch(setUser(JSON.parse(value)));
     })
     .catch((error) => {

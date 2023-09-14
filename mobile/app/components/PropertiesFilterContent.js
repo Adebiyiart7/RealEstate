@@ -16,7 +16,7 @@ const propertyFacilitiesChips = [
   { name: "Gym" },
   { name: "Restaurant" },
   { name: "Garden" },
-  { name: "Pool" }
+  { name: "Pool" },
 ];
 
 const ratingChips = [
@@ -25,7 +25,7 @@ const ratingChips = [
   { name: 4 },
   { name: 3 },
   { name: 2 },
-  { name: 1 }
+  { name: 1 },
 ];
 
 export const Header = ({ title, style }) => {
@@ -40,14 +40,13 @@ const PropertiesFilterContent = () => {
     useState("Gym");
 
   const buttonStyle = {
-    width: (dimension.screen.width - (32 + 16)) / 2
+    width: (dimension.screen.width - (32 + 16)) / 2,
   };
 
   return (
     <>
       <AppText style={styles.filterTitle}>Filter</AppText>
       <ScrollView style={styles.container}>
-        
         {/* Category */}
         <View>
           <Header title={"Category"} />
@@ -179,7 +178,7 @@ const styles = StyleSheet.create({
     marginVertical: 24,
     display: "flex",
     justifyContent: "space-between",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   container: {
     minHeight: 200,
@@ -193,14 +192,14 @@ const styles = StyleSheet.create({
     marginTop: -10,
     borderBottomColor: colors.border100,
     borderBottomWidth: 1,
-    paddingBottom: 8
+    paddingBottom: 8,
   },
   header: {
     fontWeight: "bold",
     fontSize: 16,
-    marginVertical: 10
+    marginVertical: 10,
   },
   seperator: {
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });

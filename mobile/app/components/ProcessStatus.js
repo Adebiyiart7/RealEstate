@@ -28,8 +28,8 @@ const ProcessStatus = ({ status, message, title, image, Actions }) => {
           style={[
             styles.title,
             {
-              color: status === "failure" ? colors.danger : colors.primaryColor
-            }
+              color: status === "failure" ? colors.danger : colors.primaryColor,
+            },
           ]}
         >
           {title}
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     maxWidth: 270,
     borderRadius: 40,
     padding: 16,
-    backgroundColor: defaultStyles.colors.white
+    paddingVertical: 25,
+    backgroundColor: defaultStyles.colors.white,
   },
   title: {
     fontWeight: "bold",
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#00000099"
+    backgroundColor: "#00000099",
   },
   image: {
     // height: 165,
@@ -80,12 +81,12 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     marginTop: 10,
-    color: defaultStyles.colors.mediumText
+    color: defaultStyles.colors.mediumText,
   },
   time: {
     fontWeight: "bold",
     fontSize: 16,
     color: defaultStyles.colors.primaryColor,
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });

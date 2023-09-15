@@ -7,44 +7,40 @@ import { useDimensions } from "@react-native-community/hooks";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-const GoBackArrowHeader = React.memo(({
-  title,
-  navigation,
-  RightIcon,
-  RightIconExtra,
-  isTabScreen
-}) => {
-  const { width: screenWidth } = useDimensions().screen;
+const GoBackArrowHeader = React.memo(
+  ({ title, navigation, RightIcon, RightIconExtra, isTabScreen }) => {
+    const { width: screenWidth } = useDimensions().screen;
 
-  return (
-    <View style={styles.container}>
-      {!isTabScreen && (
-        <TouchableOpacity style={styles.left}>
-          <MaterialCommunityIcons
-            name="arrow-left"
-            size={24}
-            style={styles.arrow}
-            onPress={() => navigation.goBack()}
-          />
-        </TouchableOpacity>
-      )}
-      <AppText
-        numberOfLines={1}
-        style={[styles.title, { width: screenWidth - 138 }]}
-      >
-        {title}
-      </AppText>
-      {RightIcon && (
-        <TouchableOpacity style={styles.right}>{RightIcon}</TouchableOpacity>
-      )}
-      {RightIconExtra && (
-        <TouchableOpacity style={{ ...styles.right, ...styles.rightExtra }}>
-          {RightIconExtra}
-        </TouchableOpacity>
-      )}
-    </View>
-  );
-})
+    return (
+      <View style={styles.container}>
+        {!isTabScreen && (
+          <TouchableOpacity style={styles.left}>
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={24}
+              style={styles.arrow}
+              onPress={() => navigation.goBack()}
+            />
+          </TouchableOpacity>
+        )}
+        <AppText
+          numberOfLines={1}
+          style={[styles.title, { width: screenWidth - 138 }]}
+        >
+          {title}
+        </AppText>
+        {RightIconExtra && (
+          <TouchableOpacity style={{ ...styles.right, ...styles.rightExtra }}>
+            {RightIconExtra}
+          </TouchableOpacity>
+        )}
+        {RightIcon && (
+          <TouchableOpacity style={styles.right}>{RightIcon}</TouchableOpacity>
+        )}
+      </View>
+    );
+  }
+);
 
 export default GoBackArrowHeader;
 
@@ -66,14 +62,14 @@ const styles = StyleSheet.create({
   left: {},
   right: {
     position: "absolute",
-    right: 40,
+    right: 0,
     color: defaultStyles.colors.primaryText,
     backgroundColor: defaultStyles.colors.background100,
     padding: 10,
     borderRadius: 50,
   },
   rightExtra: {
-    right: 0,
+    right: 40,
   },
   title: {
     fontSize: 20,

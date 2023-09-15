@@ -10,14 +10,17 @@ const Chip = React.memo(({ text, focused, Icon, onPress, style, small }) => {
         style,
         styles.chip,
         {
-          backgroundColor: focused ? colors.primaryColor : colors.white
-        }
+          backgroundColor: focused ? colors.primaryColor : colors.white,
+          borderWidth: focused ? 0 : 1.5,
+          paddingHorizontal: focused ? 17 : 14,
+          paddingVertical: focused ? 7 : 5,
+        },
       ]}
     >
       <View
         style={{
           display: "flex",
-          flexDirection: "row"
+          flexDirection: "row",
         }}
       >
         {Icon && <Text style={styles.icon}>{Icon}</Text>}
@@ -26,8 +29,8 @@ const Chip = React.memo(({ text, focused, Icon, onPress, style, small }) => {
             styles.text,
             { color: focused ? colors.white : colors.primaryColor },
             {
-              fontSize: small ? 13 : 15
-            }
+              fontSize: small ? 13 : 15,
+            },
           ]}
         >
           {text}
@@ -35,25 +38,22 @@ const Chip = React.memo(({ text, focused, Icon, onPress, style, small }) => {
       </View>
     </Pressable>
   );
-})
+});
 const styles = StyleSheet.create({
   chip: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 14,
-    paddingVertical: 5,
     borderRadius: 30,
     alignSelf: "flex-start",
-    borderWidth: 1.5,
-    borderColor: colors.primaryColor
+    borderColor: colors.primaryColor,
   },
   icon: {
-    paddingRight: 5
+    paddingRight: 5,
   },
   text: {
-    fontWeight: "600"
-  }
+    fontWeight: "600",
+  },
 });
 
 export default Chip;

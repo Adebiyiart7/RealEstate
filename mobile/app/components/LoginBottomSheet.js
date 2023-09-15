@@ -14,7 +14,6 @@ const LoginBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) => {
 
   useBackHandler(() => {
     if (bottomSheetVisible) {
-      console.log("Hello");
       setBottomSheetVisible(false);
       return true;
     }

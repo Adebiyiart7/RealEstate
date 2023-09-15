@@ -10,6 +10,7 @@ import colors from "../config/colors";
 import AppText from "./AppText";
 import defaultStyles from "../config/styles";
 import PropertyDisplayFormat from "./PropertyDisplayFormat";
+import { useFavorite } from "../contexts/FavoriteHomeContext";
 
 const OurRecommendation = ({
   navigation,
@@ -18,6 +19,7 @@ const OurRecommendation = ({
 }) => {
   const [focusedItem, setFocusedItem] = useState("All");
   const [displayFormat, setDisplayFormat] = useState("grid"); // list or grid
+  const { state } = useFavorite();
 
   return (
     <View style={styles.container}>
@@ -59,7 +61,12 @@ const OurRecommendation = ({
       <View style={defaultStyles.gridStyle}>
         {estates.map((item) => (
           <View key={item._id}>
-            <Card3 navigation={navigation} format={displayFormat} item={item} />
+            <Card3
+              navigation={navigation}
+              format={displayFormat}
+              item={item}
+              state={state}
+            />
           </View>
         ))}
       </View>

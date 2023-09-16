@@ -5,6 +5,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { useDimensions } from "@react-native-community/hooks";
 import React, { useState } from "react";
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
@@ -20,6 +21,17 @@ import routes from "../config/routes";
 const MyBookingScreen = ({ navigation }) => {
   const [startDate] = useState(new Date(1611106322840));
   const [endDate] = useState(new Date(1671706322840));
+  const [showActive, setShowActive] = useState(true);
+  const { height } = useDimensions().screen;
+
+  const activeTabStyle = {
+    borderBottomColor: colors.primaryColor,
+    borderBottomWidth: 3,
+  };
+
+  const activeTabTextStyle = {
+    color: colors.primaryColor,
+  };
 
   return (
     <Screen scrollable={false}>
@@ -35,8 +47,29 @@ const MyBookingScreen = ({ navigation }) => {
         }
       />
 
+      <View style={styles.tabs}>
+        <AppButton
+          onPress={() => setShowActive(true)}
+          style={[styles.tab, showActive ? activeTabStyle : {}]}
+          textStyle={[styles.tabText, showActive ? activeTabTextStyle : {}]}
+          secondary
+        >
+          Active
+        </AppButton>
+        <AppButton
+          onPress={() => setShowActive(false)}
+          style={[styles.tab, !showActive ? activeTabStyle : {}]}
+          textStyle={[styles.tabText, !showActive ? activeTabTextStyle : {}]}
+          secondary
+        >
+          Completed
+        </AppButton>
+      </View>
+
       <FlatList
-        data={estates.slice(0, 2)}
+        style={{ height: height - 233 }}
+        showsVerticalScrollIndicator={false}
+        data={showActive ? estates.slice(0, 1) : estates.slice(3, 6)}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
           <View>
@@ -78,6 +111,9 @@ const MyBookingScreen = ({ navigation }) => {
                 </View>
               </View>
             </View>
+            <ItemSeparatorComponent
+              style={{ marginBottom: 10, borderBottomColor: colors.border200 }}
+            />
             <View style={styles.buttons}>
               <AppButton
                 style={{ flex: 1, marginRight: 8 }}
@@ -187,6 +223,23 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: "bold",
     color: colors.primaryColor,
+  },
+  tab: {
+    flex: 1,
+    backgroundColor: "transparent",
+    paddingVertical: 5,
+    borderRadius: 0,
+    borderBottomColor: colors.border200,
+    borderBottomWidth: 1,
+  },
+  tabs: {
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: 16,
+  },
+  tabText: {
+    fontSize: 18,
+    color: colors.lightText,
   },
   texts: { display: "flex", flex: 1, justifyContent: "space-between" },
 });

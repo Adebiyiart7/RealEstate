@@ -68,19 +68,32 @@ const ProfileScreen = ({ navigation }) => {
           leftIcon="calendar-month"
           onPress={() => navigation.navigate(routes.MY_BOOKING)}
         />
-        <MenuItem title={"Payments"} leftIcon="cash" />
+        <MenuItem
+          title={"Payments"}
+          leftIcon="cash"
+          onPress={() => navigation.navigate(routes.PAYMENTS)}
+        />
         <ItemSeparatorComponent style={{ marginVertical: 10 }} />
         <MenuItem
           title={"Profile"}
           leftIcon="account-outline"
           onPress={() => navigation.navigate(routes.FILL_PROFILE)}
         />
-        <MenuItem title={"Notification"} leftIcon="bell-outline" />
-        <MenuItem title={"Security"} leftIcon="shield-check-outline" />
+        <MenuItem
+          title={"Notification"}
+          leftIcon="bell-outline"
+          onPress={() => navigation.navigate(routes.NOTIFICATION_SETTINGS)}
+        />
+        <MenuItem
+          title={"Security"}
+          leftIcon="shield-check-outline"
+          onPress={() => navigation.navigate(routes.SECURITY)}
+        />
         <MenuItem
           title={"Language"}
           subTitle={"English (US)"}
           leftIcon="dots-triangle"
+          onPress={() => navigation.navigate(routes.LANGUAGE)}
         />
         <MenuItem
           title={"Dark Mode"}
@@ -103,10 +116,15 @@ const ProfileScreen = ({ navigation }) => {
             )
           }
         />
-        <MenuItem title={"Help Center"} leftIcon="exclamation-thick" />
+        <MenuItem
+          title={"Help Center"}
+          leftIcon="exclamation-thick"
+          onPress={() => navigation.navigate(routes.HELP_CENTER)}
+        />
         <MenuItem
           title={"Invite Friends"}
           leftIcon="account-supervisor-outline"
+          onPress={() => navigation.navigate(routes.INVITE_FRIENDS)}
         />
         <MenuItem
           isLogout

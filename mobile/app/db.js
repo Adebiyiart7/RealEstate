@@ -863,6 +863,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/men/70.jpg" },
       fullname: "Abdulkadir Attahiru",
+      phoneNumber: "09029242729",
     },
     lastMessage:
       "I'm so glad we have brown cows, otherwise there wouldn’t be any chocolate milk.",
@@ -878,6 +879,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/women/69.jpg" },
       fullname: "Jesse Doyle",
+      phoneNumber: "09029242729",
     },
     lastMessage: "I used to think I was indecisive. But now I’m not so sure.",
     lastMessageDateTime: 1673688875553,
@@ -892,6 +894,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/men/68.jpg" },
       fullname: "Peter Robles",
+      phoneNumber: "09029242729",
     },
     lastMessage: "Hey, what is up?",
     lastMessageDateTime: 1673678875553,
@@ -906,6 +909,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/women/67.jpg" },
       fullname: "Emiliano Burnett",
+      phoneNumber: "09029242729",
     },
     lastMessage: "6:30 is the best time on a clock, hands down.",
     lastMessageDateTime: 1673668875553,
@@ -920,6 +924,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/men/66.jpg" },
       fullname: "Dereon Rangel",
+      phoneNumber: "09029242729",
     },
     lastMessage:
       "Every woman should marry an archeologist, because the older she gets, the more he'll love her.",
@@ -935,6 +940,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/women/65.jpg" },
       fullname: "Elisha Mathis",
+      phoneNumber: "09029242729",
     },
     lastMessage: "My tallest finger loves giving people standing ovations.",
     lastMessageDateTime: 1673658875553,
@@ -949,6 +955,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/men/64.jpg" },
       fullname: "Ellis Michael",
+      phoneNumber: "09029242729",
     },
     lastMessage:
       "Don’t you hate it when someone answers their own questions? I do.",
@@ -964,6 +971,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/women/63.jpg" },
       fullname: "Darryl Riddle",
+      phoneNumber: "09029242729",
     },
     lastMessage:
       "A pessimist is someone who has spent too much time listening to optimists.",
@@ -979,6 +987,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/men/62.jpg" },
       fullname: "Beau Cantrell",
+      phoneNumber: "09029242729",
     },
     lastMessage:
       "A successful man is one who earns more than his wife can spend. A successful woman is one who knows where to look for such a man.",
@@ -994,6 +1003,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/men/61.jpg" },
       fullname: "Zaid Cervantes",
+      phoneNumber: "09029242729",
     },
     lastMessage:
       "You should always knock before opening a fridge, just in case there's a salad dressing inside.",
@@ -1009,6 +1019,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/women/60.jpg" },
       fullname: "Eve Leon",
+      phoneNumber: "09029242729",
     },
     lastMessage: "After Tuesday, even the calendar says WTF.",
     lastMessageDateTime: 1673628875553,
@@ -1023,6 +1034,7 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/men/59.jpg" },
       fullname: "Kaden Hood",
+      phoneNumber: "09029242729",
     },
     lastMessage:
       "9 out of 10 voices in my head tell me I’m crazy. The tenth is just humming.",
@@ -1038,9 +1050,104 @@ export const chats = [
     secondPerson: {
       avatar: { uri: "https://randomuser.me/portraits/thumb/women/58.jpg" },
       fullname: "Azul Hodges",
+      phoneNumber: "09029242729",
     },
     lastMessage: "I used to have a horrible signature.",
     lastMessageDateTime: 1673598875553,
     unReadMessagesCount: 0,
+  },
+];
+
+export const users = [
+  {
+    _id: "1",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/men/70.jpg" },
+    fullname: "Abdulkadir Attahiru",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "2",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/women/69.jpg" },
+    fullname: "Jesse Doyle",
+    phoneNumber: "09029242729",
+    invited: false,
+  },
+  {
+    _id: "3",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/men/68.jpg" },
+    fullname: "Peter Robles",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "4",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/women/67.jpg" },
+    fullname: "Emiliano Burnett",
+    phoneNumber: "09029242729",
+    invited: false,
+  },
+  {
+    _id: "5",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/men/66.jpg" },
+    fullname: "Dereon Rangel",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "6",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/women/65.jpg" },
+    fullname: "Elisha Mathis",
+    phoneNumber: "09029242729",
+    invited: false,
+  },
+  {
+    _id: "7",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/men/64.jpg" },
+    fullname: "Ellis Michael",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "8",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/women/63.jpg" },
+    fullname: "Darryl Riddle",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "9",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/men/62.jpg" },
+    fullname: "Beau Cantrell",
+    phoneNumber: "09029242729",
+    invited: false,
+  },
+  {
+    _id: "10",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/men/61.jpg" },
+    fullname: "Zaid Cervantes",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "11",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/women/60.jpg" },
+    fullname: "Eve Leon",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "12",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/men/59.jpg" },
+    fullname: "Kaden Hood",
+    phoneNumber: "09029242729",
+    invited: true,
+  },
+  {
+    _id: "13",
+    avatar: { uri: "https://randomuser.me/portraits/thumb/women/58.jpg" },
+    fullname: "Azul Hodges",
+    phoneNumber: "09029242729",
+    invited: true,
   },
 ];

@@ -81,7 +81,6 @@ const MyBookingScreen = ({ navigation }) => {
             <View style={styles.buttons}>
               <AppButton
                 style={{ flex: 1, marginRight: 8 }}
-                rounded
                 small
                 onPress={() =>
                   navigation.navigate(routes.ESTATE_DETAILS, { _id: item._id })
@@ -91,7 +90,6 @@ const MyBookingScreen = ({ navigation }) => {
               </AppButton>
               <AppButton
                 style={{ flex: 1, marginLeft: 8 }}
-                rounded
                 small
                 secondary
                 onPress={() =>

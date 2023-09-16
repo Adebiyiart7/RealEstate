@@ -26,6 +26,12 @@ import OTPCodeVerificationScreen from "../screens/OTPCodeVerificationScreen";
 import CreateNewPassword from "../screens/CreateNewPasswordScreen";
 import ChatBoardScreen from "../screens/ChatBoardScreen";
 import MyBookingScreen from "../screens/MyBookingScreen";
+import PaymentsScreen from "../screens/PaymentScreen";
+import NotificationSettingsScreen from "../screens/NotificationSettings";
+import SecurityScreen from "../screens/SecurityScreen";
+import LanguageScreen from "../screens/LanguageScreen";
+import InviteFriendsScreen from "../screens/InviteFriends";
+import HelpCenterScreen from "../screens/HelpCenter";
 
 const Stack = createStackNavigator();
 
@@ -93,6 +99,20 @@ const AppNavigator = () => {
           <Stack.Screen name={routes.E_RECEIPT} component={EReceiptScreen} />
           <Stack.Screen name={routes.CHAT_BOARD} component={ChatBoardScreen} />
           <Stack.Screen name={routes.MY_BOOKING} component={MyBookingScreen} />
+          <Stack.Screen name={routes.PAYMENTS} component={PaymentsScreen} />
+          <Stack.Screen
+            name={routes.NOTIFICATION_SETTINGS}
+            component={NotificationSettingsScreen}
+          />
+          <Stack.Screen name={routes.SECURITY} component={SecurityScreen} />
+          <Stack.Screen
+            name={routes.INVITE_FRIENDS}
+            component={InviteFriendsScreen}
+          />
+          <Stack.Screen
+            name={routes.HELP_CENTER}
+            component={HelpCenterScreen}
+          />
         </Stack.Group>
       )}
       {/**

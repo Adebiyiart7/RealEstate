@@ -38,23 +38,22 @@ const Card2 = React.memo(({ item }) => {
           </View>
         </View>
         <View style={styles.heartIcon}>
-{heartIcon === "heart-outline" && (
-  <Ionicons
-    name={heartIcon}
-    size={24}
-    color={colors.white}
-    onPress={() => setHeartIcon("heart")}
-  />
-)}
-{heartIcon !== "heart-outline" && (
-  <Ionicons
-    name={heartIcon}
-    size={24}
-    color={colors.primaryOrange}
-    onPress={() => setHeartIcon("heart-outline")}
-  />
-)}
-
+          {heartIcon === "heart-outline" && (
+            <Ionicons
+              name={heartIcon}
+              size={24}
+              color={colors.white}
+              onPress={() => setHeartIcon("heart")}
+            />
+          )}
+          {heartIcon !== "heart-outline" && (
+            <Ionicons
+              name={heartIcon}
+              size={24}
+              color={colors.primaryOrange}
+              onPress={() => setHeartIcon("heart-outline")}
+            />
+          )}
         </View>
       </ImageBackground>
     </View>

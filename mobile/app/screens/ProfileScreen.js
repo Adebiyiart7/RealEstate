@@ -18,16 +18,49 @@ import { clearAuth } from "../features/auth/authSlice";
 import MenuItem from "../components/MenuItem";
 import AppText from "../components/AppText";
 import ItemSeparatorComponent from "../components/ItemSeparatorComponent";
+import BottomSheet from "../components/BottomSheet";
 
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { profile } = useSelector((state) => state.profile);
   const { user } = useSelector((state) => state.auth);
+  const [showLogoutBottomSheet, setShowLogoutBottomSheet] = useState(false);
 
   const handleLogout = () => {
     dispatch(clearAuth());
     AsyncStorage.clear().then(() => navigation.navigate(routes.LETS_YOU_IN));
+  };
+
+  const LogoutConfirmation = () => {
+    return (
+      <View style={styles.logoutBottomSheet}>
+        <AppText style={styles.logoutHeader}>Logout</AppText>
+        <ItemSeparatorComponent style={{ marginVertical: 20 }} />
+        <AppText style={styles.logoutMessage}>
+          Are you sure you want to log out?
+        </AppText>
+        <View style={styles.logoutButtons}>
+          <AppButton
+            secondary
+            rounded
+            style={{ flex: 1, marginRight: 8 }}
+            onPress={() => setShowLogoutBottomSheet(false)}
+          >
+            Cancel
+          </AppButton>
+          <AppButton
+            rounded
+            style={{ flex: 1, marginLeft: 8 }}
+            onPress={() => {
+              // handleLogout();
+            }}
+          >
+            Yes, Logout
+          </AppButton>
+        </View>
+      </View>
+    );
   };
 
   return (
@@ -43,6 +76,11 @@ const ProfileScreen = ({ navigation }) => {
             size={24}
           />
         }
+      />
+      <BottomSheet
+        bottomSheetVisible={showLogoutBottomSheet}
+        setBottomSheetVisible={setShowLogoutBottomSheet}
+        bottomSheetContent={<LogoutConfirmation />}
       />
       <View style={styles.user}>
         <View>
@@ -131,9 +169,7 @@ const ProfileScreen = ({ navigation }) => {
           showRightIcon={false}
           title={"Logout"}
           leftIcon="logout"
-          onPress={() => {
-            handleLogout();
-          }}
+          onPress={() => setShowLogoutBottomSheet(true)}
         />
       </View>
     </Screen>
@@ -161,7 +197,29 @@ const styles = StyleSheet.create({
     maxWidth: 280,
     paddingBottom: 20,
   },
-  menu: {},
+  logoutButtons: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  logoutBottomSheet: {
+    padding: 16,
+    paddingTop: 5,
+  },
+  logoutHeader: {
+    color: colors.danger,
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  logoutMessage: {
+    textAlign: "center",
+    fontWeight: "500",
+    fontSize: 16,
+    marginBottom: 16,
+  },
+  menu: {
+    marginBottom: 50,
+  },
   user: {
     display: "flex",
     alignItems: "center",

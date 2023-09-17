@@ -8,11 +8,11 @@ const colors = {
   border200: "#DDD",
   lightText: "#9d9d9d",
   mediumText: "#6e6969",
-  primaryColor: "rgb(36, 107, 253)", // #246bfd 
+  primaryColor: "rgb(36, 107, 253)", // #246bfd
   primaryGreen: "#C70039",
   primaryOrange: "#D1771E",
   primaryText: "#222",
-  white: "#FFF"
+  white: "#FFF",
 };
 
 // "#7E57C2"

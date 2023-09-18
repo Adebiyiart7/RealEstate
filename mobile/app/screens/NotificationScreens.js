@@ -59,15 +59,16 @@ const styles = StyleSheet.create({
   infoHeader: {
     fontWeight: "bold",
     fontSize: 18,
-    marginBottom: 5
+    marginBottom: 5,
   },
   image: {
     // height: 400,
     // width: 270,
   },
   notifications: {
-    alignItems: "center"
-  }
+    alignItems: "center",
+    marginBottom: 16,
+  },
 });
 
 const getImage = (value) => {

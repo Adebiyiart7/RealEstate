@@ -41,39 +41,23 @@ const AddNewCardScreen = ({ navigation }) => {
           <View>
             <View>
               <Label style={styles.label} title={"Card Name"} />
-              <AppFormField
-                style={styles.inputField}
-                name={"cardName"}
-                placeholder="Card Name"
-              />
+              <AppFormField name={"cardName"} placeholder="Card Name" />
             </View>
             <View>
               <Label style={styles.label} title={"Card Number"} />
-              <AppFormField
-                style={styles.inputField}
-                name={"cardNumber"}
-                placeholder="Card Number"
-              />
+              <AppFormField name={"cardNumber"} placeholder="Card Number" />
             </View>
             <View style={styles.lastInputs}>
               <View style={styles.left}>
                 <Label style={styles.label} title={"Expiry Date"} />
-                <AppFormField
-                  style={styles.inputField}
-                  name={"expiryDate"}
-                  placeholder="Expiry Date"
-                />
+                <AppFormField name={"expiryDate"} placeholder="Expiry Date" />
               </View>
               <View style={styles.right}>
                 <Label style={styles.label} title={"CVV"} />
-                <AppFormField
-                  style={styles.inputField}
-                  name={"cvv"}
-                  placeholder="CVV"
-                />
+                <AppFormField name={"cvv"} placeholder="CVV" />
               </View>
             </View>
-            <SubmitButton title={"Add"} />
+            <SubmitButton rounded title={"Add"} />
           </View>
         )}
       </Formik>
@@ -91,9 +75,6 @@ const styles = StyleSheet.create({
   },
   image: {
     // flex: 1,
-  },
-  inputField: {
-    borderRadius: 5,
   },
   label: {
     marginTop: 10,

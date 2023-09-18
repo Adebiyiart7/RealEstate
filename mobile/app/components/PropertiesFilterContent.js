@@ -159,10 +159,10 @@ const PropertiesFilterContent = () => {
 
         {/* Button */}
         <View style={styles.buttons}>
-          <AppButton secondary small style={buttonStyle}>
+          <AppButton rounded secondary small style={buttonStyle}>
             Reset
           </AppButton>
-          <AppButton small style={buttonStyle}>
+          <AppButton rounded small style={buttonStyle}>
             Apply
           </AppButton>
         </View>

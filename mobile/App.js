@@ -28,10 +28,16 @@ const App = () => {
 
 export default App;
 
-/**
-TODO
- back bottom should close modal
+// TODO Estate Managment System UI
+// TODO useDimension Issue
+// TODO organize DB
+// TODO Splash screen
+// TODO Dark mode
+// TODO REAL Real Estate Images
+// TODO back bottom should close modal
+// TODO APK
 
+/**
 
  PUBLISH APK: eas build -p android --profile preview
  *

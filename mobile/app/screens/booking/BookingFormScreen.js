@@ -20,7 +20,7 @@ const initialValues = {
   dob: "01-01-2009",
   email: "adebiyiartworld@gmail.com",
   phoneNumber: "09029242729",
-  country: "Nigeria"
+  country: "Nigeria",
 };
 const validationSchema = Yup.object().shape({
   fullname: Yup.string().required().min(3).max(255).label("Full Name"),
@@ -29,13 +29,13 @@ const validationSchema = Yup.object().shape({
   dob: Yup.string().required().min(3).max(255).label("Date of Birth"),
   email: Yup.string().required().min(3).max(255).email().label("Email"),
   phoneNumber: Yup.string().required().min(3).max(255).label("Phone Number"),
-  country: Yup.string().required().min(3).max(255).label("Country")
+  country: Yup.string().required().min(3).max(255).label("Country"),
 });
 
 const BookingFormScreen = ({ navigation, route }) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const { user } = useSelector((state) => state.auth);
-  
+
   return (
     <Screen>
       <LoginBottomSheet
@@ -52,7 +52,7 @@ const BookingFormScreen = ({ navigation, route }) => {
             ? navigation.navigate(routes.BOOKING_PAYMENT, {
                 _id: route.params._id,
                 userInfo: values,
-                checksDetails: route.params.checksDetails
+                checksDetails: route.params.checksDetails,
               })
             : setBottomSheetVisible(true);
         }}
@@ -91,7 +91,11 @@ const BookingFormScreen = ({ navigation, route }) => {
               placeholder={"Country"}
             />
             <View>
-              <SubmitButton style={{ marginBottom: 50 }} title={"Continue"} />
+              <SubmitButton
+                rounded
+                style={{ marginBottom: 50 }}
+                title={"Continue"}
+              />
             </View>
           </View>
         )}

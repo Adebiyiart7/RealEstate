@@ -96,7 +96,7 @@ export const styles = StyleSheet.create({
     color: defaultStyles.colors.primaryText,
   },
   textInput: {
-    borderRadius: 5,
+    borderRadius: 30,
     backgroundColor: defaultStyles.colors.background200,
     paddingVertical: 10,
     fontSize: 16,

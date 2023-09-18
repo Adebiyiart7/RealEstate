@@ -1,13 +1,13 @@
 const languages = [
-  { name: "English (US)", suggested: true, available: true },
-  { name: "English (UK)", suggested: true, available: true },
-  { name: "Mandarin", available: true },
-  { name: "Spanish", available: true },
-  { name: "French", available: true },
-  { name: "Arabic", available: true },
-  { name: "Bengali", available: false },
-  { name: "Russian", available: true },
-  { name: "Indonasia", available: false },
+  { _id: "1", name: "English (US)", suggested: true, available: true },
+  { _id: "2", name: "English (UK)", suggested: true, available: true },
+  { _id: "3", name: "Mandarin", available: true },
+  { _id: "4", name: "Spanish", available: true },
+  { _id: "5", name: "French", available: true },
+  { _id: "6", name: "Arabic", available: true },
+  { _id: "7", name: "Bengali", available: false },
+  { _id: "7", name: "Russian", available: true },
+  { _id: "8", name: "Indonasia", available: false },
 ];
 
 export default languages;

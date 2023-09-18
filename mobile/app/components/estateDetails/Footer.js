@@ -27,6 +27,7 @@ const Footer = ({ navigation, item }) => {
       </View>
       <AppButton
         small
+        rounded
         style={styles.button}
         onPress={() => {
           user

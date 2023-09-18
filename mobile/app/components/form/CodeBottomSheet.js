@@ -39,7 +39,9 @@ const CodeBottomSheet = ({ code, setCode, email, handleSubmit }) => {
           placeholderTextColor={defaultStyles.colors.lightText}
         />
       </View>
-      <AppButton onPress={handleSubmit}>Submit</AppButton>
+      <AppButton rounded onPress={handleSubmit}>
+        Submit
+      </AppButton>
     </View>
   );
 };

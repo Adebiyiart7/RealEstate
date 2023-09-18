@@ -5,10 +5,14 @@ import { useFormikContext } from "formik";
 // LOCAL IMPORTS
 import AppButton from "../AppButton";
 
-const SubmitButton = React.memo(({ title, style }) => {
+const SubmitButton = React.memo(({ title, style, rounded = false }) => {
   const { handleSubmit } = useFormikContext();
-  return <AppButton style={style} onPress={() => handleSubmit()}>{title}</AppButton>;
-})
+  return (
+    <AppButton rounded={rounded} style={style} onPress={() => handleSubmit()}>
+      {title}
+    </AppButton>
+  );
+});
 
 export default SubmitButton;
 

@@ -104,6 +104,7 @@ const AppNavigator = () => {
             name={routes.NOTIFICATION_SETTINGS}
             component={NotificationSettingsScreen}
           />
+          <Stack.Screen name={routes.LANGUAGE} component={LanguageScreen} />
           <Stack.Screen name={routes.SECURITY} component={SecurityScreen} />
           <Stack.Screen
             name={routes.INVITE_FRIENDS}

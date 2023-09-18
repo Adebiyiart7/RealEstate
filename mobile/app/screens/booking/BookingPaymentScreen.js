@@ -52,6 +52,7 @@ const BookingPaymentScreen = ({ navigation, route }) => {
           }
         />
         <AppButton
+          rounded
           secondary
           onPress={() => {
             user
@@ -62,6 +63,7 @@ const BookingPaymentScreen = ({ navigation, route }) => {
           Add New Card
         </AppButton>
         <AppButton
+          rounded
           onPress={() => {
             user
               ? navigation.navigate(routes.REVIEW_SUMMARY, {

@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // LOCAL IMPORTS
 import { API_URI } from "../config";
-let user = { username: "Adeebiyiart" };
+let user = { username: "Adebiyiart" };
 
 const initialState = {
   user: user,

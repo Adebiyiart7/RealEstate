@@ -59,12 +59,14 @@ const ConfirmPinScreen = ({ navigation, route }) => {
                       })
                     : setBottomSheetVisible(true);
                 }}
+                small
                 rounded
                 style={{ width: "100%", marginBottom: 0 }}
               >
                 View E-Receipt
               </AppButton>
               {/* <AppButton
+                small
                 small
                 rounded
                 secondary
@@ -88,6 +90,7 @@ const ConfirmPinScreen = ({ navigation, route }) => {
           Actions={
             <View style={{ marginTop: 10 }}>
               <AppButton
+                small
                 rounded
                 onPress={() => setShowFailure(false)}
                 style={{ width: "100%", marginBottom: 0 }}
@@ -95,6 +98,7 @@ const ConfirmPinScreen = ({ navigation, route }) => {
                 Try Again
               </AppButton>
               <AppButton
+                small
                 rounded
                 secondary
                 onPress={() => setShowFailure(false)}
@@ -110,7 +114,11 @@ const ConfirmPinScreen = ({ navigation, route }) => {
         <View style={styles.container}>
           <AppText style={styles.text}>Enter your PIN</AppText>
           <PinForm pin={pin} setPin={setPin} secureTextEntry />
-          <AppButton style={styles.button} onPress={() => handleCorrectPin()}>
+          <AppButton
+            rounded
+            style={styles.button}
+            onPress={() => handleCorrectPin()}
+          >
             Continue
           </AppButton>
         </View>

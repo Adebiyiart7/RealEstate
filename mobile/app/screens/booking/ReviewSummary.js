@@ -94,12 +94,13 @@ const ReviewSummary = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
       <AppButton
+        rounded
         onPress={() => {
           user
             ? navigation.navigate(routes.CONFIRM_PIN, {
                 _id: route.params._id,
                 checksDetails: checksDetails,
-                userInfo: route.params.userInfo
+                userInfo: route.params.userInfo,
               })
             : setBottomSheetVisible(true);
         }}
@@ -115,18 +116,18 @@ export default ReviewSummary;
 const styles = StyleSheet.create({
   atmNumber: {
     fontWeight: "bold",
-    fontSize: 16
+    fontSize: 16,
   },
   changeText: {
     color: colors.primaryColor,
     fontWeight: "bold",
     marginRight: 5,
-    fontSize: 16
+    fontSize: 16,
   },
   selectedCard: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });

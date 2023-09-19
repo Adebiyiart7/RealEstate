@@ -7,8 +7,9 @@ import colors from "../config/colors";
 import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const ProcessStatus = ({ status, message, title, image, Actions }) => {
-  const [time, setTime] = useState();
   const { state } = useTheme();
+  const [time, setTime] = useState();
+  const isLight = state.theme === LIGHT;
 
   let counter = 5;
   useEffect(() => {
@@ -21,25 +22,24 @@ const ProcessStatus = ({ status, message, title, image, Actions }) => {
     }, 1000);
   }, [counter]);
 
-  const titleColor =
-    state.theme === LIGHT
-      ? status === "failure"
-        ? colors.light.danger
-        : colors.light.primaryColor
-      : status === "failure"
-      ? colors.dark.danger
-      : colors.dark.primaryColor;
+  const titleColor = isLight
+    ? status === "failure"
+      ? colors.light.danger
+      : colors.light.primaryColor
+    : status === "failure"
+    ? colors.dark.danger
+    : colors.dark.primaryColor;
 
-  const centerContainerStyles =
-    state.theme === LIGHT
-      ? styles.centerContainerLight
-      : styles.centerContainerDark;
+  const centerContainerStyles = isLight
+    ? styles.centerContainerLight
+    : styles.centerContainerDark;
 
-  const containerStyles =
-    state.theme === LIGHT ? styles.containerLight : styles.containerDark;
+  const containerStyles = isLight
+    ? styles.containerLight
+    : styles.containerDark;
 
-  const textStyles = state.theme === LIGHT ? styles.textLight : styles.textDark;
-  const timeStyles = state.theme === LIGHT ? styles.timeLight : styles.timeDark;
+  const textStyles = isLight ? styles.textLight : styles.textDark;
+  const timeStyles = isLight ? styles.timeLight : styles.timeDark;
 
   return (
     <View style={[styles.container, containerStyles]}>

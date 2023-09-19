@@ -13,13 +13,14 @@ const PropertyDisplayFormat = ({
   propertyCount,
 }) => {
   const { state } = useTheme();
-  const activeIconColor = (state.theme = LIGHT
+  const isLight = state.theme === LIGHT;
+  const activeIconColor = isLight
     ? colors.light.primaryColor
-    : colors.dark.primaryColor);
+    : colors.dark.primaryColor;
 
-  const inActiveIconColor = (state.theme = LIGHT
+  const inActiveIconColor = isLight
     ? colors.light.lightText
-    : colors.dark.lightText);
+    : colors.dark.lightText;
 
   return (
     <View style={styles.displayFormat}>

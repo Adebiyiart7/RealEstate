@@ -11,13 +11,10 @@ import { LIGHT, useTheme } from "../contexts/ThemeContext";
 const GoBackArrowHeader = React.memo(
   ({ title, navigation, RightIcon, RightIconExtra, isTabScreen }) => {
     const { state } = useTheme();
+    const isLight = state.theme === LIGHT;
     const { width: screenWidth } = useDimensions().screen;
-
-    const arrowStyles =
-      state.theme === LIGHT ? styles.arrowLight : styles.arrowDark;
-
-    const rightStyles =
-      state.theme === LIGHT ? styles.rightLight : styles.rightDark;
+    const arrowStyles = isLight ? styles.arrowLight : styles.arrowDark;
+    const rightStyles = isLight ? styles.rightLight : styles.rightDark;
 
     return (
       <View style={styles.container}>

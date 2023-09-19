@@ -7,10 +7,20 @@ import { useFavorite } from "../contexts/FavoriteHomeContext";
 import AppText from "./AppText";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import utils from "../utils";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const RemoveFavoriteContent = React.memo(
   ({ item, setBottomSheetVisibleRemoveFav }) => {
+    const { state } = useTheme();
+    const isLight = state.theme === LIGHT;
     const { removeFromFavorites } = useFavorite();
+
+    const iconColor = isLight
+      ? colors.light.primaryOrange
+      : colors.dark.primaryOrange;
+
+    const contentStyles = isLight ? styles.contentLight : styles.contentDark;
+    const f1Styles = isLight ? styles.f1Light : styles.f1Dark;
 
     return (
       <View>
@@ -18,7 +28,7 @@ const RemoveFavoriteContent = React.memo(
           style={{ fontSize: 20, textAlign: "center" }}
           title={"Remove from Favorites?"}
         />
-        <View style={styles.content}>
+        <View style={[styles.content, contentStyles]}>
           <View style={styles.item}>
             <View style={styles.card}>
               <ImageBackground
@@ -29,7 +39,7 @@ const RemoveFavoriteContent = React.memo(
                   <MaterialCommunityIcons
                     name="star"
                     size={12}
-                    color={colors.primaryOrange}
+                    color={iconColor}
                   />
                   {item.rating}
                 </AppText>
@@ -37,7 +47,7 @@ const RemoveFavoriteContent = React.memo(
                   <Ionicons
                     name={"heart"}
                     size={24}
-                    color={colors.primaryOrange}
+                    color={iconColor}
                     onPress={() => {
                       setBottomSheetVisibleRemoveFav(true);
                     }}
@@ -58,7 +68,7 @@ const RemoveFavoriteContent = React.memo(
                     </AppText>
                   </View>
                   <AppText numberOfLines={1} style={styles.footer}>
-                    <AppText style={[styles.f1, { marginTop: 10 }]}>
+                    <AppText style={[styles.f1, f1Styles, { marginTop: 10 }]}>
                       &#8358;{utils.separateToThounsand(item.cost)}
                     </AppText>
                     <AppText style={styles.f2}>
@@ -106,7 +116,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  content: { padding: 16, borderTopColor: colors.border100, borderTopWidth: 1 },
+  content: { padding: 16, borderTopWidth: 1 },
+  contentLight: {
+    borderTopColor: colors.light.border100,
+  },
+  contentDark: {
+    borderTopColor: colors.dark.border100,
+  },
   card: {
     display: "flex",
     alignItems: "center",
@@ -131,9 +147,14 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   f1: {
-    color: colors.primaryColor,
     fontWeight: "bold",
     fontSize: 22,
+  },
+  f1Light: {
+    color: colors.light.primaryColor,
+  },
+  f1Dark: {
+    color: colors.dark.primaryColor,
   },
   f2: {
     color: colors.mediumText,

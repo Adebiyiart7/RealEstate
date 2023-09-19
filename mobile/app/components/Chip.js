@@ -5,26 +5,25 @@ import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const Chip = React.memo(({ text, focused, Icon, onPress, style, small }) => {
   const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
 
-  const backgroundColor =
-    state.theme === LIGHT
-      ? focused
-        ? colors.light.primaryColor
-        : colors.light.background100
-      : focused
-      ? colors.dark.primaryColor
-      : colors.dark.background100;
+  const backgroundColor = isLight
+    ? focused
+      ? colors.light.primaryColor
+      : colors.light.background100
+    : focused
+    ? colors.dark.primaryColor
+    : colors.dark.background100;
 
-  const color =
-    state.theme === LIGHT
-      ? focused
-        ? colors.light.displayAsWhite
-        : colors.light.primaryColor
-      : focused
-      ? colors.dark.displayAsWhite
-      : colors.dark.primaryColor;
+  const color = isLight
+    ? focused
+      ? colors.light.displayAsWhite
+      : colors.light.primaryColor
+    : focused
+    ? colors.dark.displayAsWhite
+    : colors.dark.primaryColor;
 
-  const chipStyles = state.theme === LIGHT ? styles.chipLight : styles.chipDark;
+  const chipStyles = isLight ? styles.chipLight : styles.chipDark;
 
   return (
     <Pressable

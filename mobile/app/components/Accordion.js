@@ -7,14 +7,15 @@ import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const Accordion = ({ _id, title, detail, active, onPress }) => {
   const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
 
-  const accordionStyles =
-    state.theme === LIGHT ? styles.accordionLight : styles.accordionDark;
+  const accordionStyles = isLight
+    ? styles.accordionLight
+    : styles.accordionDark;
 
-  const detailContainerStyles =
-    state.theme === LIGHT
-      ? styles.detailContainerLight
-      : styles.detailContainerDark;
+  const detailContainerStyles = isLight
+    ? styles.detailContainerLight
+    : styles.detailContainerDark;
 
   return (
     <View style={[styles.accordion, accordionStyles]}>

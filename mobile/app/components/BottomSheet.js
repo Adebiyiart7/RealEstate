@@ -10,13 +10,15 @@ import { LIGHT, useTheme } from "../contexts/ThemeContext";
 const BottomSheet = React.memo(
   ({ bottomSheetVisible, setBottomSheetVisible, bottomSheetContent }) => {
     const { state } = useTheme();
+    const isLight = state.theme === LIGHT;
 
-    const centeredViewStyles = (state.theme = LIGHT
+    const centeredViewStyles = isLight
       ? styles.centeredViewLight
-      : styles.centeredViewDark);
+      : styles.centeredViewDark;
 
-    const modalViewStyles =
-      state.theme === LIGHT ? styles.modalViewLight : styles.modalViewDark;
+    const modalViewStyles = isLight
+      ? styles.modalViewLight
+      : styles.modalViewDark;
 
     return (
       <View style={styles.container}>

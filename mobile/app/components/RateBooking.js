@@ -1,16 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
+import { TextInput } from "react-native-gesture-handler";
 
 // LOCAL IMPORTS
 import AppText from "./AppText";
-import defaultStyles from "../config/styles";
 import ItemSeparatorComponent from "./ItemSeparatorComponent";
 import Rating from "./Rating";
-import { TextInput } from "react-native-gesture-handler";
 import colors from "../config/colors";
 import AppButton from "./AppButton";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const RateBooking = ({ estateName }) => {
+  const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
+  const inputStyles = isLight ? styles.inputLight : styles.inputDark;
+
+  const separatorStyles = isLight
+    ? styles.separatorLight
+    : styles.separatorDark;
+
   return (
     <View style={styles.container}>
       <AppText style={styles.title}>Leave a Review</AppText>
@@ -19,14 +27,14 @@ const RateBooking = ({ estateName }) => {
         How was your experience with {estateName}?
       </AppText>
       <Rating />
-      <ItemSeparatorComponent style={styles.separator} />
+      <ItemSeparatorComponent style={[styles.separator, separatorStyles]} />
       <AppText style={styles.text}>Write your review</AppText>
       <TextInput
         multiline
         numberOfLines={4}
         placeholderTextColor={colors.primaryText}
         placeholder={"Write something..."}
-        style={styles.input}
+        style={[styles.input, inputStyles]}
       />
       <View style={styles.buttons}>
         <AppButton
@@ -63,9 +71,15 @@ const styles = StyleSheet.create({
   input: {
     padding: 16,
     borderWidth: 1,
-    borderColor: colors.border200,
     borderRadius: 5,
-    color: colors.primaryText,
+  },
+  inputLight: {
+    color: colors.light.primaryText,
+    borderColor: colors.light.border200,
+  },
+  inputDark: {
+    color: colors.dark.primaryText,
+    borderColor: colors.dark.border200,
   },
   text: {
     textAlign: "center",
@@ -75,7 +89,12 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginVertical: 16,
-    borderBottomColor: colors.border200,
+  },
+  separatorLight: {
+    borderBottomColor: colors.light.border200,
+  },
+  separatorDark: {
+    borderBottomColor: colors.dark.border200,
   },
   title: {
     fontWeight: "bold",

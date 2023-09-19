@@ -35,6 +35,7 @@ export const Header = ({ title, style }) => {
 
 const PropertiesFilterContent = () => {
   const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
   const dimension = useDimensions();
   const [focusedRating, setFocusedRating] = useState(5);
   const [focusedCategory, setFocusedCategory] = useState("All");
@@ -69,7 +70,7 @@ const PropertiesFilterContent = () => {
                         name={item.icon}
                         size={15}
                         color={
-                          state.theme === LIGHT
+                          isLight
                             ? item.name === focusedCategory
                               ? colors.light.displayAsWhite
                               : colors.light.primaryColor
@@ -113,7 +114,7 @@ const PropertiesFilterContent = () => {
                         name={item.icon}
                         size={15}
                         color={
-                          state.theme === LIGHT
+                          isLight
                             ? item.name === focusedPropertyFacilities
                               ? colors.light.displayAsWhite
                               : colors.light.primaryColor
@@ -153,7 +154,7 @@ const PropertiesFilterContent = () => {
                       name={"star"}
                       size={15}
                       color={
-                        state.theme === LIGHT
+                        isLight
                           ? item.name === focusedRating
                             ? colors.light.displayAsWhite
                             : colors.light.primaryColor

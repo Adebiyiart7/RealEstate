@@ -20,18 +20,17 @@ const MenuItem = React.memo(
     showRightIcon = true,
   }) => {
     const { state } = useTheme();
+    const isLight = state.theme === LIGHT;
     const disabledStyle = {
       opacity: disabled ? 0.2 : 1,
     };
 
-    const leftIconStyles =
-      state.theme === LIGHT ? styles.leftIconLight : styles.leftIconDark;
-    const rightIconStyles =
-      state.theme === LIGHT ? styles.rightIconLight : styles.rightIconDark;
-    const subTitleStyles =
-      state.theme === LIGHT ? styles.subTitleLight : styles.subTitleDark;
-    const titleStyles =
-      state.theme === LIGHT ? styles.titleLight : styles.titleDark;
+    const rightIconStyles = isLight
+      ? styles.rightIconLight
+      : styles.rightIconDark;
+    const titleStyles = isLight ? styles.titleLight : styles.titleDark;
+    const leftIconStyles = isLight ? styles.leftIconLight : styles.leftIconDark;
+    const subTitleStyles = isLight ? styles.subTitleLight : styles.subTitleDark;
 
     return (
       <TouchableOpacity
@@ -46,10 +45,7 @@ const MenuItem = React.memo(
             leftIconStyles,
             isLogout
               ? {
-                  color:
-                    state.theme === LIGHT
-                      ? colors.light.danger
-                      : colors.dark.danger,
+                  color: isLight ? colors.light.danger : colors.dark.danger,
                 }
               : {},
           ]}
@@ -61,10 +57,7 @@ const MenuItem = React.memo(
               titleStyles,
               isLogout
                 ? {
-                    color:
-                      state.theme === LIGHT
-                        ? colors.light.danger
-                        : colors.dark.danger,
+                    color: isLight ? colors.light.danger : colors.dark.danger,
                   }
                 : {},
               disabledStyle,

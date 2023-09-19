@@ -5,19 +5,26 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 // LOCAL IMPORTS
 import AppText from "../AppText";
 import colors from "../../config/colors";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 
 const avatarSize = 50;
 const AccountCard = ({
   Icon,
   avatar,
-  first_text,
+  first_text: firstText,
   second_text,
   reverse,
   style,
   showIconBorder = true,
 }) => {
-  const { width } = useDimensions().screen;
+  const { state } = useTheme();
   const textWidth = width - 150;
+  const isLight = state.theme === LIGHT;
+  const { width } = useDimensions().screen;
+  const secondTextStyles = isLight
+    ? styles.secondTextLight
+    : styles.secondTextDark;
+  const iconStyles = isLight ? styles.iconLight : styles.iconDark;
 
   return (
     <View style={[styles.accountCard, style]}>
@@ -39,16 +46,20 @@ const AccountCard = ({
             },
           ]}
         >
-          <AppText numberOfLines={1} style={styles.first_text}>
-            {first_text}
+          <AppText numberOfLines={1} style={styles.firstText}>
+            {firstText}
           </AppText>
-          <AppText numberOfLines={1} style={styles.second_text}>
+          <AppText numberOfLines={1} style={secondTextStyles}>
             {second_text}
           </AppText>
         </View>
         <View style={styles.icons}>
           <TouchableOpacity
-            style={[styles.icon, { borderWidth: showIconBorder ? 1 : 0 }]}
+            style={[
+              styles.icon,
+              iconStyles,
+              { borderWidth: showIconBorder ? 1 : 0 },
+            ]}
           >
             {Icon}
           </TouchableOpacity>
@@ -74,25 +85,33 @@ const styles = StyleSheet.create({
   center: {
     marginLeft: 10,
   },
-  second_text: {
-    color: colors.mediumText,
+  secondTextLight: {
+    color: colors.light.mediumText,
+  },
+  secondTextDark: {
+    color: colors.dark.mediumText,
   },
   icon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
-    borderColor: colors.border200,
     borderRadius: 30,
     height: 43,
     width: 43,
+  },
+  iconLight: {
+    borderColor: colors.light.border200,
+  },
+  iconDark: {
+    borderColor: colors.dark.border200,
   },
   icons: {
     display: "flex",
     flexDirection: "row",
     marginRight: avatarSize,
   },
-  first_text: {
+  firstText: {
     color: colors.primaryText,
     fontWeight: "bold",
     fontSize: 18,

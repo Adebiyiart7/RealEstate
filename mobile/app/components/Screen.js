@@ -1,12 +1,24 @@
 import { ScrollView, View, StyleSheet } from "react-native";
-import defaultStyles from "../config/styles";
 import Constants from "expo-constants";
+
+// LOCAL IMPORTS
 import colors from "../config/colors";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const Screen = ({ children, style, scrollable = true }) => {
+  const { state } = useTheme();
+  const containerStyles =
+    state.theme === LIGHT
+      ? colors.light.background100
+      : colors.dark.background100;
+
   if (scrollable) {
     return (
-      <ScrollView style={[styles.container, style]}>{children}</ScrollView>
+      <ScrollView
+        style={[styles.container, { backgroundColor: containerStyles }, style]}
+      >
+        {children}
+      </ScrollView>
     );
   }
 
@@ -19,6 +31,5 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
     paddingHorizontal: 16,
-    backgroundColor: colors.background100,
   },
 });

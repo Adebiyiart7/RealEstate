@@ -8,6 +8,8 @@ import {
   ScrollView,
 } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
+
+// LOCAL IMPORTS
 import colors from "../../config/colors";
 import AppText from "../AppText";
 import BottomSheet from "../../components/BottomSheet";

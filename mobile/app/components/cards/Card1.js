@@ -4,20 +4,28 @@ import AppText from "../AppText";
 import defaultStyles from "../../config/styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 
 const Card1 = React.memo(({ Icon, title, subTitle, selected, onPress }) => {
+  const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
+  const iconStyles = isLight ? styles.iconLight : styles.iconDark;
+  const cardStyles = isLight ? styles.cardLight : styles.cardDark;
+  const radioStyles = isLight ? styles.radioLight : styles.radioDark;
+  const titleStyles = isLight ? styles.titleLight : styles.titleDark;
   const selectedStyles = {
     borderWidth: 2,
-    borderColor: colors.primaryColor,
+    borderColor: isLight ? colors.light.primaryColor : colors.dark.primaryColor,
   };
+
   return (
     <Pressable
       onPress={onPress}
-      style={{ ...styles.card, ...(selected && selectedStyles) }}
+      style={{ ...styles.card, cardStyles, ...(selected && selectedStyles) }}
     >
-      <View style={styles.icon}>{Icon}</View>
+      <View style={[styles.icon, iconStyles]}>{Icon}</View>
       <View style={styles.center}>
-        <AppText numberOfLines={1} style={styles.title}>
+        <AppText numberOfLines={1} style={[styles.title, titleStyles]}>
           {title}
         </AppText>
         <AppText numberOfLines={1} style={styles.subTitle}>
@@ -25,9 +33,15 @@ const Card1 = React.memo(({ Icon, title, subTitle, selected, onPress }) => {
         </AppText>
       </View>
       {selected ? (
-        <MaterialCommunityIcons style={styles.radio} name="radiobox-marked" />
+        <MaterialCommunityIcons
+          style={[styles.radio, radioStyles]}
+          name="radiobox-marked"
+        />
       ) : (
-        <MaterialCommunityIcons style={styles.radio} name="radiobox-blank" />
+        <MaterialCommunityIcons
+          style={[styles.radio, radioStyles]}
+          name="radiobox-blank"
+        />
       )}
     </Pressable>
   );
@@ -41,22 +55,37 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderWidth: 1,
     borderRadius: 25,
-    borderColor: colors.border200,
     padding: 16,
     alignItems: "center",
     marginVertical: 8,
   },
+  cardLight: {
+    borderColor: colors.light.border200,
+  },
+  cardDark: {
+    borderColor: colors.dark.border200,
+  },
   icon: {
-    backgroundColor: colors.background200,
     borderRadius: 50,
     padding: 20,
     marginRight: 10,
   },
+  iconLight: {
+    backgroundColor: colors.light.background200,
+  },
+  iconDark: {
+    backgroundColor: colors.dark.background200,
+  },
   radio: {
-    color: colors.primaryColor,
     fontSize: 24,
     position: "absolute",
     right: 20,
+  },
+  radioLight: {
+    color: colors.light.primaryColor,
+  },
+  radioDark: {
+    color: colors.dark.primaryColor,
   },
   center: {
     display: "flex",
@@ -68,6 +97,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 12,
-    color: colors.mediumText,
+  },
+  titleLight: {
+    color: colors.light.mediumText,
+  },
+  titleDark: {
+    color: colors.dark.mediumText,
   },
 });

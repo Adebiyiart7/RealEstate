@@ -1,26 +1,44 @@
 import { Image, StyleSheet, View } from "react-native";
 import React from "react";
 import { useDimensions } from "@react-native-community/hooks";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
 import colors from "../../config/colors";
 import AppText from "../AppText";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 
 const ChatCard = React.memo(({ fromMe, messageType, item }) => {
+  const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
   const dateTime = new Date(item.dateTime);
   const { width: screenWidth } = useDimensions().screen;
 
+  const cardStyles = isLight ? styles.cardLight : styles.cardDark;
+  const fromMeCardStyles = {
+    alignSelf: "flex-end",
+    borderBottomLeftRadius: radius,
+    borderBottomRightRadius: smallRadius,
+    backgroundColor: colors[state.theme].background200,
+  };
+  const fromMeCardTextStyles = isLight
+    ? { color: colors.light.white }
+    : { color: colors.dark.white };
+  const cardDateTimeTextStyles = isLight
+    ? styles.cardDateTimeTextLight
+    : styles.cardDateTimeTextDark;
+
   if (messageType === "text") {
     return (
-      <View style={[styles.card, fromMe ? styles.fromMeCard : {}]}>
-        <AppText style={[styles.cardText, fromMe ? styles.fromMeCardText : {}]}>
+      <View style={[styles.card, cardStyles, fromMe ? fromMeCardStyles : {}]}>
+        <AppText style={[styles.cardText, fromMe ? fromMeCardTextStyles : {}]}>
           {item.message}
         </AppText>
         <AppText
           style={[
             styles.cardDateTimeText,
-            fromMe ? styles.fromMeCardDateTimeText : {},
+            cardDateTimeTextStyles,
+            fromMe ? fromMeCardTextStyles : {},
           ]}
         >
           {dateTime.getHours()}:{dateTime.getMinutes()}{" "}
@@ -28,7 +46,7 @@ const ChatCard = React.memo(({ fromMe, messageType, item }) => {
             <MaterialCommunityIcons
               size={16}
               name="check-all"
-              color={colors.white}
+              color={isLight ? colors.light.white : colors.dark.white}
             />
           )}
         </AppText>
@@ -41,7 +59,8 @@ const ChatCard = React.memo(({ fromMe, messageType, item }) => {
       <View
         style={[
           styles.card,
-          fromMe ? styles.fromMeCard : {},
+          cardStyles,
+          fromMe ? fromMeCardStyles : {},
           styles.cardImages,
           item.images.length > 1 ? { width: "80%" } : {},
         ]}
@@ -68,13 +87,19 @@ const ChatCard = React.memo(({ fromMe, messageType, item }) => {
             source={{ uri: item.images[1] }}
           />
         )}
-        <AppText style={[styles.cardDateTimeText, { bottom: -8 }]}>
+        <AppText
+          style={[
+            styles.cardDateTimeText,
+            cardDateTimeTextStyles,
+            { bottom: -8 },
+          ]}
+        >
           {dateTime.getHours()}:{dateTime.getMinutes()}{" "}
           {fromMe && (
             <MaterialCommunityIcons
               size={16}
               name="check-all"
-              color={colors.mediumText}
+              color={isLight ? colors.light.mediumText : colors.dark.mediumText}
             />
           )}
         </AppText>
@@ -85,10 +110,10 @@ const ChatCard = React.memo(({ fromMe, messageType, item }) => {
   // if (messageType === "audio") {
   //   return (
   //     <View
-  //       style={[styles.card, fromMe ? styles.fromMeCard : {}, styles.cardAudio]}
+  //       style={[styles.card, cardStyles, fromMe ? fromMeCardStyles : {}, styles.cardAudio]}
   //     >
   //       <AppText>Audio Here</AppText>
-  //       <AppText style={styles.cardDateTimeText}>
+  //       <AppText style={[styles.cardDateTimeText,cardDateTimeTextStyles, cardDateTimeTextStyles]}>
   //         {dateTime.getHours()}:{dateTime.getMinutes()}
   //       </AppText>
   //     </View>
@@ -105,36 +130,34 @@ const styles = StyleSheet.create({
   card: {
     display: "flex",
     alignSelf: "flex-start",
-    backgroundColor: colors.background200,
     borderRadius: radius,
     marginVertical: 10,
     padding: 18,
     maxWidth: "80%",
     borderBottomLeftRadius: smallRadius,
   },
-  fromMeCard: {
-    alignSelf: "flex-end",
-    backgroundColor: colors.primaryColor,
-    borderBottomLeftRadius: radius,
-    borderBottomRightRadius: smallRadius,
+  cardLight: {
+    backgroundColor: colors.light.background200,
+  },
+  cardDark: {
+    backgroundColor: colors.dark.background200,
   },
   cardText: {
     fontSize: 16,
-  },
-  fromMeCardText: {
-    color: colors.white,
   },
   cardDateTimeText: {
     position: "absolute",
     bottom: 8,
     right: 16,
     fontSize: 12,
-    color: colors.mediumText,
     fontWeight: "500",
     fontStyle: "italic",
   },
-  fromMeCardDateTimeText: {
-    color: colors.white,
+  cardDateTimeTextLight: {
+    color: colors.light.mediumText,
+  },
+  cardDateTimeTextDark: {
+    color: colors.dark.mediumText,
   },
   cardImage: {
     borderRadius: radius,

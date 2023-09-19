@@ -4,8 +4,18 @@ import React from "react";
 // LOCAL IMPORTS
 import AppText from "../AppText";
 import colors from "../../config/colors";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 
 const NotificationCard = React.memo(({ item }) => {
+  const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
+
+  const newTextStyles = isLight ? styles.newTextLight : styles.newTextDark;
+  const dateTimeStyles = isLight ? styles.dateTimeLight : styles.dateTimeDark;
+  const imageContainerStyles = isLight
+    ? styles.imageContainerLight
+    : styles.imageContainerDark;
+
   return (
     <View style={styles.notificationCard}>
       <View
@@ -17,17 +27,19 @@ const NotificationCard = React.memo(({ item }) => {
         }}
       >
         <View style={styles.topItems}>
-          <View style={styles.imageContainer}>
+          <View style={[styles.imageContainer, imageContainerStyles]}>
             <Image source={item.image} style={styles.image} />
           </View>
           <View style={styles.centerItems}>
             <AppText style={styles.title}>{item.title}</AppText>
-            <AppText style={styles.dateTime}>
+            <AppText style={[styles.dateTime, dateTimeStyles]}>
               {formatTimestamp(item.timestamp)}
             </AppText>
           </View>
         </View>
-        {item.isNew && <AppText style={styles.newText}>New</AppText>}
+        {item.isNew && (
+          <AppText style={[styles.newText, newTextStyles]}>New</AppText>
+        )}
       </View>
       <AppText style={styles.message}>{item.message}</AppText>
     </View>
@@ -41,10 +53,15 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   dateTime: {
-    color: colors.mediumText,
     marginTop: 3,
     fontSize: 13,
     fontWeight: "500",
+  },
+  dateTimeLight: {
+    color: colors.light.mediumText,
+  },
+  dateTimeDark: {
+    color: colors.dark.mediumText,
   },
   image: {
     height: 20,
@@ -53,20 +70,31 @@ const styles = StyleSheet.create({
   imageContainer: {
     padding: 13,
     borderRadius: 50,
-    backgroundColor: colors.background200,
+  },
+  imageContainerLight: {
+    backgroundColor: colors.light.background200,
+  },
+  imageContainerDark: {
+    backgroundColor: colors.dark.background200,
   },
   message: {
     fontSize: 13,
     marginTop: 10,
   },
   newText: {
-    color: colors.white,
     paddingVertical: 2,
     paddingHorizontal: 8,
-    backgroundColor: colors.primaryColor,
     borderRadius: 5,
     height: 22,
     fontSize: 12,
+  },
+  newTextLight: {
+    color: colors.light.white,
+    backgroundColor: colors.light.primaryColor,
+  },
+  newTextDark: {
+    color: colors.dark.white,
+    backgroundColor: colors.dark.primaryColor,
   },
   notificationCard: {
     marginBottom: 16,

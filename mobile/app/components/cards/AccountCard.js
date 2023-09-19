@@ -24,6 +24,9 @@ const AccountCard = ({
   const secondTextStyles = isLight
     ? styles.secondTextLight
     : styles.secondTextDark;
+  const firstTextStyles = isLight
+    ? styles.firstTextLight
+    : styles.firstTextDark;
   const iconStyles = isLight ? styles.iconLight : styles.iconDark;
 
   return (
@@ -46,7 +49,10 @@ const AccountCard = ({
             },
           ]}
         >
-          <AppText numberOfLines={1} style={styles.firstText}>
+          <AppText
+            numberOfLines={1}
+            style={[styles.firstText, firstTextStyles]}
+          >
             {firstText}
           </AppText>
           <AppText numberOfLines={1} style={secondTextStyles}>
@@ -112,9 +118,14 @@ const styles = StyleSheet.create({
     marginRight: avatarSize,
   },
   firstText: {
-    color: colors.primaryText,
     fontWeight: "bold",
     fontSize: 18,
+  },
+  firstTextLight: {
+    color: colors.light.primaryText,
+  },
+  firstTextDark: {
+    color: colors.dark.primaryText,
   },
   wavingHand: {
     height: 15,

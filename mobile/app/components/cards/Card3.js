@@ -5,7 +5,7 @@ import {
   View,
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDimensions } from "@react-native-community/hooks";
 
 // LOCAL IMPORTS
@@ -16,12 +16,13 @@ import utils from "../../utils";
 import defaultStyles from "../../config/styles";
 import { useFavorite } from "../../contexts/FavoriteHomeContext";
 import BottomSheet from "../BottomSheet";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 import RemoveFavoriteContent from "../RemoveFavoriteContent";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
-  const { addToFavorites, state } = useFavorite();
+  const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
+  const { addToFavorites, state: favoriteState } = useFavorite();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const [bottomSheetVisibleRemoveFav, setBottomSheetVisibleRemoveFav] =
@@ -43,8 +44,18 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
   };
 
   useEffect(() => {
-    setIsFavorite(state.favorites.some((fav) => fav === item._id));
-  }, [state.favorites, item._id]);
+    setIsFavorite(favoriteState.favorites.some((fav) => fav === item._id));
+  }, [favoriteState.favorites, item._id]);
+
+  const iconColor = isLight
+    ? colors.light.primaryOrange
+    : colors.dark.primaryOrange;
+  const firstTextStyles = isLight
+    ? styles.firstTextLight
+    : styles.firstTextDark;
+  const f1Styles = isLight ? styles.f1Light : styles.f1Dark;
+  const f2Styles = isLight ? styles.f2Light : styles.f2Dark;
+  const ratingStyles = isLight ? styles.ratingLight : styles.ratingDark;
 
   return (
     <View
@@ -74,12 +85,8 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
           source={{ uri: item.image }}
           style={[styles.image, styles.imageListFormat, imageDimension]}
         >
-          <AppText style={styles.rating}>
-            <MaterialCommunityIcons
-              name="star"
-              size={12}
-              color={colors.primaryOrange}
-            />
+          <AppText style={[styles.rating, ratingStyles]}>
+            <MaterialCommunityIcons name="star" size={12} color={iconColor} />
             {item.rating}
           </AppText>
           <View style={styles.heartIcon}>
@@ -87,7 +94,11 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
               <Ionicons
                 name={"heart-outline"}
                 size={24}
-                color={colors.displayAsWhite}
+                color={
+                  isLight
+                    ? colors.light.displayAsWhite
+                    : colors.dark.displayAsWhite
+                }
                 onPress={() => {
                   setIsFavorite(true);
                   addToFavorites(item._id);
@@ -98,7 +109,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
               <Ionicons
                 name={"heart"}
                 size={24}
-                color={colors.primaryOrange}
+                color={iconColor}
                 onPress={() => {
                   setBottomSheetVisibleRemoveFav(true);
                 }}
@@ -121,6 +132,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
                 numberOfLines={format === "list" ? 2 : 1}
                 style={[
                   styles.firstText,
+                  firstTextStyles,
                   { marginTop: format === "grid" ? 8 : 0 },
                 ]}
               >
@@ -129,7 +141,11 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
             </TouchableOpacity>
             <AppText
               numberOfLines={format === "list" ? 2 : 1}
-              style={styles.secondText}
+              style={{
+                color: isLight
+                  ? colors.light.mediumText
+                  : colors.dark.mediumText,
+              }}
             >
               {item.location}
             </AppText>
@@ -138,10 +154,12 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
             numberOfLines={1}
             style={[styles.footer, { detailsDimension }]}
           >
-            <AppText style={[styles.f1, { marginTop: 10 }]}>
+            <AppText style={[styles.f1, f1Styles, { marginTop: 10 }]}>
               &#8358;{utils.separateToThounsand(item.cost)}
             </AppText>
-            <AppText style={styles.f2}>&nbsp;/&nbsp;{item.duration}</AppText>
+            <AppText style={[styles.f2, f2Styles]}>
+              &nbsp;/&nbsp;{item.duration}
+            </AppText>
           </AppText>
         </View>
       </View>
@@ -179,18 +197,33 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   f1: {
-    color: colors.primaryColor,
     fontWeight: "bold",
     fontSize: 18,
   },
+  f1Light: {
+    color: colors.light.primaryColor,
+  },
+  f1Dark: {
+    color: colors.dark.primaryColor,
+  },
   f2: {
-    color: colors.mediumText,
     width: "50%",
   },
+  f2Light: {
+    color: colors.light.mediumText,
+  },
+  f2Dark: {
+    color: colors.dark.mediumText,
+  },
   firstText: {
-    color: colors.primaryText,
     fontSize: 17,
     fontWeight: "bold",
+  },
+  firstTextLight: {
+    color: colors.light.primaryText,
+  },
+  firstTextDark: {
+    color: colors.dark.primaryText,
   },
   footer: {
     display: "flex",
@@ -205,20 +238,23 @@ const styles = StyleSheet.create({
     padding: 12,
     zIndex: defaultStyles.zIndex + 1,
   },
-  secondText: {
-    color: colors.mediumText,
-  },
   rating: {
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: colors.white,
     borderRadius: 9,
     paddingVertical: 2,
     paddingHorizontal: 5,
     fontSize: 11,
     fontWeight: "bold",
-    color: colors.primaryColor,
+  },
+  ratingLight: {
+    backgroundColor: colors.light.white,
+    color: colors.light.primaryColor,
+  },
+  ratingDark: {
+    backgroundColor: colors.dark.white,
+    color: colors.dark.primaryColor,
   },
   texts: { display: "flex", flex: 1, justifyContent: "space-between" },
 });

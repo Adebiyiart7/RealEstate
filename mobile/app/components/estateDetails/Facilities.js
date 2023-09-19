@@ -1,21 +1,23 @@
-import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
-
-//LOCAL IMPORTS
-import Icon from "../Icon";
-import AppText from "../AppText";
+import { FlatList, StyleSheet, View } from "react-native";
 import {
   FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
+
+//LOCAL IMPORTS
+import Icon from "../Icon";
+import AppText from "../AppText";
 import colors from "../../config/colors";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const Facilities = ({ item }) => {
+  const { state } = useTheme();
   const iconStyle = {
     fontSize: 26,
-    color: colors.primaryColor,
+    color: colors[state.theme].primaryColor,
   };
 
   const icons = {
@@ -56,7 +58,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    // width: 320
   },
   item: {
     display: "flex",

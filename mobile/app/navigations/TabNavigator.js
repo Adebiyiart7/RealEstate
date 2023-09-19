@@ -10,11 +10,12 @@ import ExploreScreen from "../screens/ExploreScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import colors from "../config/colors";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const user = true; // { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <Tab.Navigator
@@ -23,6 +24,8 @@ const TabNavigator = () => {
         tabBarLabelPosition: "below-icon",
         tabBarStyle: {
           height: 57,
+          backgroundColor: colors.background100,
+          borderTopColor: colors.border100,
         },
 
         tabBarLabelStyle: {

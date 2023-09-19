@@ -23,6 +23,9 @@ import Loading from "../components/Loading";
 import LoginBottomSheet from "../components/LoginBottomSheet";
 import FillProfileBottomSheet from "../components/FillProfileBottomSheet";
 import { profile as setProfile } from "../features/profile/profileSlice";
+import AppButton from "../components/AppButton";
+import { ScrollView } from "react-native-gesture-handler";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Header = ({ title, right, onPressRight }) => {
   return (
@@ -44,9 +47,8 @@ const HomeScreen = ({ navigation }) => {
   const { profile } = useSelector((state) => state.profile);
 
   const dispatch = useDispatch();
-
+  console.log(bottomSheetVisibleLogin);
   useEffect(() => {
-    // TODO uncomment
     setTimeout(() => {
       if (!user) setBottomSheetVisibleLogin(true);
     }, 2000);
@@ -54,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (user) dispatch(setProfile(user.token));
-    // if (user && !profile) setBottomSheetVisibleProfile(true); TODO uncomment
+    // if (user && !profile) setBottomSheetVisibleProfile(true); // TODO: Uncomment
   }, [user, profile, dispatch]);
 
   const name = () => {
@@ -68,7 +70,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <Screen style={styles.screen}>
+    <Screen scrollable={false} style={styles.screen}>
       {/* <Loading visible={loading} /> */}
       <LoginBottomSheet
         bottomSheetVisible={bottomSheetVisibleLogin}
@@ -78,69 +80,83 @@ const HomeScreen = ({ navigation }) => {
         bottomSheetVisible={bottomSheetVisibleProfile}
         setBottomSheetVisible={setBottomSheetVisibleProfile}
       />
-
-      <AccountCard
-        reverse
-        Icon={
-          <Ionicons
-            name="notifications-outline"
-            color={colors.mediumText}
-            size={24}
-            onPress={() => {
-              navigation.navigate(routes.NOTIFICATIONS);
-            }}
-          />
-        }
-        first_text={name() ? name() : "Welcome!"}
-        second_text={`Good Morning`}
-        avatar={require("../assets/images/avatar.jpg")}
-      />
-      <SearchBox
-        onPressFilter={() => setBottomSheetVisible(true)}
-        RightIcon={
-          <Ionicons
-            style={{ marginRight: 20 }}
-            name="md-filter-sharp"
-            color={colors.primaryColor}
-            size={18}
-          />
-        }
-      />
-      <View style={styles.featuredView}>
-        <BottomSheet
-          bottomSheetVisible={bottomSheetVisible}
-          setBottomSheetVisible={setBottomSheetVisible}
-          bottomSheetContent={<PropertiesFilterContent />}
+      {!user && (
+        <AppButton onPress={() => navigation.navigate(routes.LOGIN)} secondary>
+          SIGN IN
+        </AppButton>
+      )}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <AccountCard
+          reverse
+          showIconBorder={user ? true : false}
+          Icon={
+            user && (
+              <Ionicons
+                name="notifications-outline"
+                color={colors.mediumText}
+                size={24}
+                onPress={() => {
+                  navigation.navigate(routes.NOTIFICATIONS);
+                }}
+              />
+            )
+          }
+          first_text={name() ? name() : "Welcome!"}
+          second_text={`Good Morning`}
+          avatar={require("../assets/images/avatar.jpg")}
         />
-        <Header title="Featured" />
-        <FlatList
-          data={featured}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item._id}
-          renderItem={({ item }) => (
-            <View key={item._id}>
-              <Card2 item={item} />
-            </View>
-          )}
-          ItemSeparatorComponent={() => <AppText style={{ marginRight: 16 }} />}
+        <SearchBox
+          onPressFilter={() => setBottomSheetVisible(true)}
+          RightIcon={
+            <Ionicons
+              style={{ marginRight: 20 }}
+              name="md-filter-sharp"
+              color={colors.primaryColor}
+              size={18}
+            />
+          }
         />
-      </View>
-
-      {/* Our Recommendation */}
-      <View>
-        <View style={styles.ourRecommendation}>
-          <Header
-            title="Our Recommendation"
-            onPressRight={() => navigation.navigate(routes.OUR_RECOMMENDATION)}
-            right={<SeeAllText />}
+        <View style={styles.featuredView}>
+          <BottomSheet
+            bottomSheetVisible={bottomSheetVisible}
+            setBottomSheetVisible={setBottomSheetVisible}
+            bottomSheetContent={<PropertiesFilterContent />}
           />
-          <OurRecommendation
-            navigation={navigation}
-            propertyCount={"2484 found"}
+          <Header title="Featured" />
+          <FlatList
+            data={featured}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => (
+              <View key={item._id}>
+                <Card2 item={item} />
+              </View>
+            )}
+            ItemSeparatorComponent={() => (
+              <AppText style={{ marginRight: 16 }} />
+            )}
           />
         </View>
-      </View>
+
+        {/* Our Recommendation */}
+        <View>
+          <View style={styles.ourRecommendation}>
+            <Header
+              title="Our Recommendation"
+              onPressRight={() =>
+                navigation.navigate(routes.OUR_RECOMMENDATION)
+              }
+              right={<SeeAllText />}
+            />
+            <OurRecommendation
+              navigation={navigation}
+              propertyCount={"2484 found"}
+            />
+          </View>
+        </View>
+        {!user && <View style={{ marginBottom: 50 }} />}
+      </ScrollView>
     </Screen>
   );
 };
@@ -157,7 +173,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontWeight: "bold",
-    color: defaultStyles.colors.primaryText,
+    color: colors.primaryText,
     fontSize: 17,
     marginBottom: 12,
   },

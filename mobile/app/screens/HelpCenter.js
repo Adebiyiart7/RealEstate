@@ -26,7 +26,7 @@ const HelpCenterScreen = ({ navigation }) => {
   };
 
   return (
-    <Screen scrollable={false}>
+    <Screen scrollable={false} style={{ height: "100%" }}>
       <GoBackArrowHeader
         navigation={navigation}
         title={"Help Center"}
@@ -34,6 +34,7 @@ const HelpCenterScreen = ({ navigation }) => {
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
             size={24}
+            color={colors.primaryText}
           />
         }
       />
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   tabs: {
     display: "flex",
     flexDirection: "row",
-    marginBottom: 16,
+    paddingBottom: 16,
   },
   tabText: {
     fontSize: 18,

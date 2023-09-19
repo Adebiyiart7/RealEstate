@@ -5,6 +5,7 @@ const constants = {
 
   asyncStorageNames: {
     favoriteHomes: "@favorites",
+    theme: "@theme",
   },
 };
 

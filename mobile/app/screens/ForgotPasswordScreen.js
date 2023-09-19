@@ -9,6 +9,7 @@ import AppText from "../components/AppText";
 import Card1 from "../components/cards/Card1";
 import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
+import colors from "../config/colors";
 
 const mediaWidth = Dimensions.get("screen").width;
 const ForgotPasswordScreen = ({ navigation }) => {
@@ -29,7 +30,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
             <MaterialCommunityIcons
               name="chat-processing"
               size={24}
-              color={defaultStyles.colors.primaryColor}
+              color={colors.primaryColor}
             />
           }
           title="via SMS"
@@ -40,13 +41,15 @@ const ForgotPasswordScreen = ({ navigation }) => {
             <MaterialCommunityIcons
               name="email"
               size={24}
-              color={defaultStyles.colors.primaryColor}
+              color={colors.primaryColor}
             />
           }
           title="via Email"
           subTitle="ade********orld@gmail.com dsdsdsdsdsd"
         />
-        <AppButton rounded style={{ marginVertical: 20 }}>Continue</AppButton>
+        <AppButton rounded style={{ marginVertical: 20 }}>
+          Continue
+        </AppButton>
       </View>
     </Screen>
   );
@@ -56,16 +59,15 @@ export default ForgotPasswordScreen;
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex"
+    display: "flex",
   },
   image: {
     width: mediaWidth - 120,
     height: mediaWidth - 110,
     alignSelf: "center",
-    marginTop: 10
+    marginTop: 10,
   },
   text: {
     marginTop: 16,
-  
-  }
+  },
 });

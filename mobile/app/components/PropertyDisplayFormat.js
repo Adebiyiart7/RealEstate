@@ -5,12 +5,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // LOCAL IMPORT
 import colors from "../config/colors";
 import AppText from "./AppText";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const PropertyDisplayFormat = ({
   displayFormat,
   setDisplayFormat,
   propertyCount,
 }) => {
+  const { state } = useTheme();
+  const activeIconColor = (state.theme = LIGHT
+    ? colors.light.primaryColor
+    : colors.dark.primaryColor);
+
+  const inActiveIconColor = (state.theme = LIGHT
+    ? colors.light.lightText
+    : colors.dark.lightText);
+
   return (
     <View style={styles.displayFormat}>
       <AppText style={styles.propertyCount}>{propertyCount}</AppText>
@@ -20,7 +30,9 @@ const PropertyDisplayFormat = ({
             name="format-list-bulleted"
             style={[
               styles.displayFormatIcon,
-              displayFormat === "list" && styles.displayFormatIconColor,
+              displayFormat === "list"
+                ? { color: activeIconColor }
+                : { color: inActiveIconColor },
             ]}
           />
         </TouchableOpacity>
@@ -29,7 +41,9 @@ const PropertyDisplayFormat = ({
             name="view-grid-outline"
             style={[
               styles.displayFormatIcon,
-              displayFormat === "grid" && styles.displayFormatIconColor,
+              displayFormat === "grid"
+                ? { color: activeIconColor }
+                : { color: inActiveIconColor },
             ]}
           />
         </TouchableOpacity>
@@ -46,14 +60,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   displayFormatIcon: {
     fontSize: 24,
-    color: colors.lightText,
-  },
-  displayFormatIconColor: {
-    color: colors.primaryColor,
   },
   displayFormatIcons: {
     display: "flex",

@@ -1,14 +1,15 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { useDimensions } from "@react-native-community/hooks";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORT
 import AppText from "./AppText";
 import colors from "../config/colors";
 import Chip from "./Chip";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppButton from "./AppButton";
 import { estateCategory } from "../db";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const propertyFacilitiesChips = [
   { name: "All" },
@@ -33,6 +34,7 @@ export const Header = ({ title, style }) => {
 };
 
 const PropertiesFilterContent = () => {
+  const { state } = useTheme();
   const dimension = useDimensions();
   const [focusedRating, setFocusedRating] = useState(5);
   const [focusedCategory, setFocusedCategory] = useState("All");
@@ -67,9 +69,13 @@ const PropertiesFilterContent = () => {
                         name={item.icon}
                         size={15}
                         color={
-                          item.name === focusedCategory
-                            ? colors.white
-                            : colors.primaryColor
+                          state.theme === LIGHT
+                            ? item.name === focusedCategory
+                              ? colors.light.displayAsWhite
+                              : colors.light.primaryColor
+                            : item.name === focusedCategory
+                            ? colors.dark.displayAsWhite
+                            : colors.dark.primaryColor
                         }
                       />
                     )
@@ -107,9 +113,13 @@ const PropertiesFilterContent = () => {
                         name={item.icon}
                         size={15}
                         color={
-                          item.name === focusedPropertyFacilities
-                            ? colors.white
-                            : colors.primaryColor
+                          state.theme === LIGHT
+                            ? item.name === focusedPropertyFacilities
+                              ? colors.light.displayAsWhite
+                              : colors.light.primaryColor
+                            : item.name === focusedCategory
+                            ? colors.dark.displayAsWhite
+                            : colors.dark.primaryColor
                         }
                       />
                     )
@@ -143,9 +153,13 @@ const PropertiesFilterContent = () => {
                       name={"star"}
                       size={15}
                       color={
-                        item.name === focusedRating
-                          ? colors.white
-                          : colors.primaryColor
+                        state.theme === LIGHT
+                          ? item.name === focusedRating
+                            ? colors.light.displayAsWhite
+                            : colors.light.primaryColor
+                          : item.name === focusedCategory
+                          ? colors.dark.displayAsWhite
+                          : colors.dark.primaryColor
                       }
                     />
                   }
@@ -190,9 +204,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginTop: -10,
-    borderBottomColor: colors.border100,
     borderBottomWidth: 1,
     paddingBottom: 8,
+  },
+  filterTitleLight: {
+    borderBottomColor: colors.light.border100,
+  },
+  filterTitleDark: {
+    borderBottomColor: colors.dark.border100,
   },
   header: {
     fontWeight: "bold",

@@ -70,50 +70,50 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     display: "flex",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     height: 45,
     width: 45,
-    borderRadius: 30
+    borderRadius: 30,
   },
   center: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   dateTime: {
     fontWeight: "500",
     color: colors.mediumText,
     fontSize: 13,
-    marginLeft: 30
+    marginLeft: 30,
   },
   favorites: {
     fontSize: 13,
     fontWeight: "500",
-    marginLeft: 5
+    marginLeft: 5,
   },
   footer: {
     marginVertical: 5,
     display: "flex",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   fullname: {
     color: colors.primaryText,
     fontWeight: "bold",
     fontSize: 16,
-    marginLeft: 10
+    marginLeft: 10,
   },
   icons: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   review: {
-    paddingBottom: 16
+    paddingBottom: 16,
     // display: "flex",
     // flexDirection: "row",
     // justifyContent: "space-between",
@@ -127,6 +127,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontWeight: "500",
     color: colors.primaryColor,
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });

@@ -28,7 +28,7 @@ const PaymentsScreen = ({ navigation }) => {
           />
         }
       />
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <TouchableOpacity style={styles.card}>
           <View style={styles.left}>
             <Image
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: colors.white,
+    backgroundColor: colors.background200,
     borderRadius: 16,
     padding: 16,
     paddingVertical: 20,
@@ -90,6 +90,9 @@ const styles = StyleSheet.create({
     color: colors.primaryColor,
     fontWeight: "700",
     fontSize: 15,
+  },
+  container: {
+    height: "100%",
   },
   image: {
     height: 30,

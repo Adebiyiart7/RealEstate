@@ -20,6 +20,7 @@ import { updateProfile } from "../features/profile/profileSlice";
 import { clearAuth } from "../features/auth/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import routes from "../config/routes";
+import colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
   fullname: Yup.string().required().max(255).label("Full Name"),
@@ -41,7 +42,7 @@ const FillProfileScreen = ({ navigation }) => {
     fullname: user?.fullname || "Adeeyo Joseph",
     username: user?.username || "Adebiyiart",
     phoneNumber: user?.phoneNumber || "09029242729",
-    email: user?.email || "adebiyiartworld@gmail.com",
+    email: user?.email || "test@gmail.com",
     dob: user?.dob || "07/02/2023",
     country: user?.country || "Nigeria",
     gender: user?.gender || "Male",
@@ -195,7 +196,7 @@ export default FillProfileScreen;
 
 const styles = StyleSheet.create({
   avatar: {
-    color: defaultStyles.colors.mediumText,
+    color: colors.mediumText,
     // opacity: 40,
     position: "relative",
     top: 12,
@@ -205,14 +206,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 3,
     right: 3,
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
   },
   form: {
     marginVertical: 50,
   },
   photo: {
     overflow: "hidden",
-    backgroundColor: defaultStyles.colors.background100,
+    backgroundColor: colors.background100,
     borderRadius: 200,
     height: 125,
   },

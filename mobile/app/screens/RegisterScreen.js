@@ -17,6 +17,7 @@ import constants from "../config/constants";
 import routes from "../config/routes";
 import { register, reset } from "../features/auth/authSlice";
 import Loading from "../components/Loading";
+import colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
@@ -60,7 +61,7 @@ const RegisterScreen = ({ navigation }) => {
         <Formik
           initialValues={{
             username: "Adebiyiart",
-            email: "adebiyiartworld@gmail.com",
+            email: "test@gmail.com",
             password: "Test@123",
           }}
           onSubmit={(values) => {
@@ -98,7 +99,7 @@ const RegisterScreen = ({ navigation }) => {
                 />
                 <AppText style={styles.rememberMeText}>Remember me</AppText>
               </View>
-              <SubmitButton title="Sign up" />
+              <SubmitButton rounded title="Sign up" />
             </>
           )}
         </Formik>
@@ -127,13 +128,14 @@ export const styles = StyleSheet.create({
   },
   container: {
     display: "flex",
+    paddingBottom: 50,
   },
   continueText: {
     fontWeight: "500",
-    color: defaultStyles.colors.mediumText,
+    color: colors.mediumText,
   },
   forgotPassword: {
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
     fontWeight: "500",
     textAlign: "center",
     marginTop: 10,
@@ -150,23 +152,23 @@ export const styles = StyleSheet.create({
   },
   rememberMeIcon: {
     marginRight: 5,
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
   },
   rememberMeText: {
     fontWeight: "500",
   },
   signIn: {
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
     fontWeight: "500",
   },
   signiInMessage: {
     marginVertical: 20,
-    color: defaultStyles.colors.lightText,
+    color: colors.lightText,
     textAlign: "center",
   },
   social: {
     borderWidth: 1,
-    borderColor: defaultStyles.colors.border100,
+    borderColor: colors.border100,
     paddingHorizontal: 25,
     paddingVertical: 12,
     marginHorizontal: 7,

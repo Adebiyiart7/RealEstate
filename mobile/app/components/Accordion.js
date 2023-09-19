@@ -3,10 +3,21 @@ import React from "react";
 import AppText from "./AppText";
 import colors from "../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const Accordion = ({ _id, title, detail, active, onPress }) => {
+  const { state } = useTheme();
+
+  const accordionStyles =
+    state.theme === LIGHT ? styles.accordionLight : styles.accordionDark;
+
+  const detailContainerStyles =
+    state.theme === LIGHT
+      ? styles.detailContainerLight
+      : styles.detailContainerDark;
+
   return (
-    <View style={styles.accordion}>
+    <View style={[styles.accordion, accordionStyles]}>
       <TouchableOpacity onPress={onPress} style={styles.titleContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <MaterialCommunityIcons
@@ -16,7 +27,7 @@ const Accordion = ({ _id, title, detail, active, onPress }) => {
         />
       </TouchableOpacity>
       {active === _id && (
-        <View style={styles.detailContainer}>
+        <View style={[styles.detailContainer, detailContainerStyles]}>
           <AppText style={styles.detail}>{detail}</AppText>
         </View>
       )}
@@ -28,9 +39,14 @@ export default Accordion;
 
 const styles = StyleSheet.create({
   accordion: {
-    backgroundColor: colors.white,
     borderRadius: 16,
     marginVertical: 8,
+  },
+  accordionLight: {
+    backgroundColor: colors.light.background200,
+  },
+  accordionDark: {
+    backgroundColor: colors.dark.background200,
   },
   detail: {
     lineHeight: 18,
@@ -39,9 +55,10 @@ const styles = StyleSheet.create({
     margin: 26,
     marginTop: 0,
     paddingTop: 16,
-    borderTopColor: colors.border100,
     borderTopWidth: 1,
   },
+  detailContainerLight: { borderTopColor: colors.light.border100 },
+  detailContainerDark: { borderTopColor: colors.dark.border100 },
   title: {
     fontWeight: "bold",
     fontSize: 15,

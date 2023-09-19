@@ -2,12 +2,13 @@ import { Image, StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
 
 // LOCAL IMPORTS
-import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 import colors from "../config/colors";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const ProcessStatus = ({ status, message, title, image, Actions }) => {
   const [time, setTime] = useState();
+  const { state } = useTheme();
 
   let counter = 5;
   useEffect(() => {
@@ -20,22 +21,35 @@ const ProcessStatus = ({ status, message, title, image, Actions }) => {
     }, 1000);
   }, [counter]);
 
+  const titleColor =
+    state.theme === LIGHT
+      ? status === "failure"
+        ? colors.light.danger
+        : colors.light.primaryColor
+      : status === "failure"
+      ? colors.dark.danger
+      : colors.dark.primaryColor;
+
+  const centerContainerStyles =
+    state.theme === LIGHT
+      ? styles.centerContainerLight
+      : styles.centerContainerDark;
+
+  const containerStyles =
+    state.theme === LIGHT ? styles.containerLight : styles.containerDark;
+
+  const textStyles = state.theme === LIGHT ? styles.textLight : styles.textDark;
+  const timeStyles = state.theme === LIGHT ? styles.timeLight : styles.timeDark;
+
   return (
-    <View style={styles.container}>
-      <View style={styles.centerContainer}>
+    <View style={[styles.container, containerStyles]}>
+      <View style={[styles.centerContainer, centerContainerStyles]}>
         <Image style={styles.image} source={image} />
-        <AppText
-          style={[
-            styles.title,
-            {
-              color: status === "failure" ? colors.danger : colors.primaryColor,
-            },
-          ]}
-        >
-          {title}
-        </AppText>
-        <AppText style={styles.text}>{message}</AppText>
-        {!Actions && <AppText style={styles.time}>{time}</AppText>}
+        <AppText style={[styles.title, { color: titleColor }]}>{title}</AppText>
+        <AppText style={[styles.text, textStyles]}>{message}</AppText>
+        {!Actions && (
+          <AppText style={[styles.time, timeStyles]}>{time}</AppText>
+        )}
         <View style={styles.actions}>{Actions}</View>
       </View>
     </View>
@@ -54,7 +68,12 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     padding: 16,
     paddingVertical: 25,
-    backgroundColor: defaultStyles.colors.white,
+  },
+  centerContainerLight: {
+    backgroundColor: colors.light.white,
+  },
+  centerContainerDark: {
+    backgroundColor: colors.dark.white,
   },
   title: {
     fontWeight: "bold",
@@ -72,21 +91,32 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#00000099",
   },
-  image: {
-    // height: 165,
-    // width: 140
+  containerLight: {
+    backgroundColor: colors.light.transparentBackground,
+  },
+  containerDark: {
+    backgroundColor: colors.dark.transparentBackground,
   },
   text: {
     textAlign: "center",
     marginTop: 10,
-    color: defaultStyles.colors.mediumText,
+  },
+  textLight: {
+    color: colors.light.mediumText,
+  },
+  textDark: {
+    color: colors.dark.mediumText,
   },
   time: {
     fontWeight: "bold",
     fontSize: 16,
-    color: defaultStyles.colors.primaryColor,
     marginTop: 20,
+  },
+  timeLight: {
+    color: colors.light.primaryColor,
+  },
+  timeDark: {
+    color: colors.dark.primaryColor,
   },
 });

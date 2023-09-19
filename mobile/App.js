@@ -9,18 +9,24 @@ import BaseData from "./app/components/BaseData";
 import colors from "./app/config/colors";
 import { SafeAreaView } from "react-native";
 import { FavoritesProvider } from "./app/contexts/FavoriteHomeContext";
+import { ThemeProvider } from "./app/contexts/ThemeContext";
 
 const App = () => {
   return (
     <Provider store={store}>
       <SafeAreaView>
-        <StatusBar style="dark" backgroundColor={colors.background100} />
+        <StatusBar
+          style={colors.colorMode === "light" ? "dark" : "light"}
+          backgroundColor={colors.background100}
+        />
       </SafeAreaView>
-      {/* <BaseData /> */}
       <NavigationContainer>
-        <FavoritesProvider>
-          <AppNavigator />
-        </FavoritesProvider>
+        <ThemeProvider>
+          <BaseData />
+          <FavoritesProvider>
+            <AppNavigator />
+          </FavoritesProvider>
+        </ThemeProvider>
       </NavigationContainer>
     </Provider>
   );
@@ -28,13 +34,10 @@ const App = () => {
 
 export default App;
 
-// TODO Estate Managment System UI
 // TODO useDimension Issue
 // TODO organize DB
-// TODO Splash screen
-// TODO Dark mode
 // TODO REAL Real Estate Images
-// TODO back bottom should close modal
+// TODO back button should close modal
 // TODO APK
 
 /**

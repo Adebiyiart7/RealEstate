@@ -36,7 +36,7 @@ import HelpCenterScreen from "../screens/HelpCenter";
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const user = true; // TODO: Remove redux and use react context API and reducers
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <Stack.Navigator

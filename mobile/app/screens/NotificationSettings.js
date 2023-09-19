@@ -46,7 +46,7 @@ const NotificationSettingsScreen = ({ navigation }) => {
         navigation={navigation}
         title={"Notification Settings"}
       />
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <MenuItem
           style={styles.menuItem}
           title={"General Notification"}
@@ -131,6 +131,9 @@ const NotificationSettingsScreen = ({ navigation }) => {
 export default NotificationSettingsScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
   menuItem: {
     marginVertical: 12,
   },

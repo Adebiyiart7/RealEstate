@@ -24,6 +24,7 @@ const RateBooking = ({ estateName }) => {
       <TextInput
         multiline
         numberOfLines={4}
+        placeholderTextColor={colors.primaryText}
         placeholder={"Write something..."}
         style={styles.input}
       />
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   input: {
     padding: 16,
     borderWidth: 1,
-    borderColor: colors.border100,
+    borderColor: colors.border200,
     borderRadius: 5,
     color: colors.primaryText,
   },
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginVertical: 16,
+    borderBottomColor: colors.border200,
   },
   title: {
     fontWeight: "bold",

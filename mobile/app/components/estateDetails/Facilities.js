@@ -8,14 +8,14 @@ import {
   FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
-  MaterialIcons
+  MaterialIcons,
 } from "@expo/vector-icons";
 import colors from "../../config/colors";
 
 const Facilities = ({ item }) => {
   const iconStyle = {
     fontSize: 26,
-    color: colors.primaryColor
+    color: colors.primaryColor,
   };
 
   const icons = {
@@ -26,7 +26,7 @@ const Facilities = ({ item }) => {
     wifi: <MaterialCommunityIcons name="wifi" style={iconStyle} />,
     pet: <MaterialCommunityIcons name="dog-side" style={iconStyle} />,
     sport: <MaterialIcons name="sports-tennis" style={iconStyle} />,
-    laundry: <MaterialIcons name="local-laundry-service" style={iconStyle} />
+    laundry: <MaterialIcons name="local-laundry-service" style={iconStyle} />,
   };
 
   return (
@@ -38,7 +38,9 @@ const Facilities = ({ item }) => {
       renderItem={({ item }) => (
         <View style={styles.item}>
           <Icon size={60} Icon={icons[item.icon]} />
-          <AppText style={styles.name} numberOfLines={1}>{item.name}</AppText>
+          <AppText style={styles.name} numberOfLines={1}>
+            {item.name}
+          </AppText>
         </View>
       )}
     />
@@ -53,17 +55,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
     // width: 320
   },
   item: {
     display: "flex",
     alignItems: "center",
     marginBottom: 16,
-    width: 95
+    width: 95,
   },
   name: {
     marginTop: 5,
     fontWeight: "500",
-  }
+  },
 });

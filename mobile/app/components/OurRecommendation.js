@@ -11,6 +11,7 @@ import AppText from "./AppText";
 import defaultStyles from "../config/styles";
 import PropertyDisplayFormat from "./PropertyDisplayFormat";
 import { useFavorite } from "../contexts/FavoriteHomeContext";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const OurRecommendation = ({
   navigation,
@@ -19,7 +20,8 @@ const OurRecommendation = ({
 }) => {
   const [focusedItem, setFocusedItem] = useState("All");
   const [displayFormat, setDisplayFormat] = useState("grid"); // list or grid
-  const { state } = useFavorite();
+  const { state: favoriteState } = useFavorite();
+  const { state: themeState } = useTheme();
 
   return (
     <View style={styles.container}>
@@ -40,9 +42,13 @@ const OurRecommendation = ({
                     name={item.icon}
                     size={18}
                     color={
-                      item.name === focusedItem
-                        ? colors.white
-                        : colors.primaryColor
+                      themeState.theme === LIGHT
+                        ? item.name === focusedItem
+                          ? colors.light.displayAsWhite
+                          : colors.light.primaryColor
+                        : item.name === focusedItem
+                        ? colors.dark.displayAsWhite
+                        : colors.dark.primaryColor
                     }
                   />
                 )
@@ -65,7 +71,7 @@ const OurRecommendation = ({
               navigation={navigation}
               format={displayFormat}
               item={item}
-              state={state}
+              state={favoriteState}
             />
           </View>
         ))}

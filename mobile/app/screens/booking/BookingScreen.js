@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   header: {
     fontWeight: "bold",
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    backgroundColor: colors.background100,
+    backgroundColor: colors.background200,
     justifyContent: "space-between",
   },
   left: {
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
   noteInput: {
     marginVertical: 10,
     borderRadius: 5,
-    backgroundColor: colors.background100,
+    backgroundColor: colors.background200,
     padding: 16,
     fontSize: 16,
     color: colors.primaryText,

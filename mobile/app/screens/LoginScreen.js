@@ -19,7 +19,7 @@ import Loading from "../components/Loading";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
-  password: Yup.string().required().label("Password")
+  password: Yup.string().required().label("Password"),
 });
 
 const LoginScreen = ({ navigation }) => {
@@ -56,8 +56,8 @@ const LoginScreen = ({ navigation }) => {
         <AppText style={styles.title}>Login to Your Account</AppText>
         <Formik
           initialValues={{
-            email: "adebiyiartworld@gmail.com",
-            password: "Test@123"
+            email: "test@gmail.com",
+            password: "Test@123",
           }}
           onSubmit={(values) => handleSubmit(values)}
           validationSchema={validationSchema}
@@ -86,7 +86,7 @@ const LoginScreen = ({ navigation }) => {
                 />
                 <AppText style={styles.rememberMeText}>Remember me</AppText>
               </View>
-              <SubmitButton title="Sign in" />
+              <SubmitButton rounded title="Sign in" />
               <TouchableOpacity
                 onPress={() => navigation.navigate(routes.FORGOT_PASSWORD)}
               >

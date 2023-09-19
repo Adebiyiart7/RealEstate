@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // LOCAL IMPORTS
 import ErrorMessage from "./ErrorMessage";
 import defaultStyles from "../../config/styles";
+import colors from "../../config/colors";
 
 const AppFormField = ({
   name,
@@ -20,13 +21,11 @@ const AppFormField = ({
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
-  const iconColor = isFocus
-    ? defaultStyles.colors.primaryColor
-    : defaultStyles.colors.mediumText;
+  const iconColor = isFocus ? colors.primaryColor : colors.mediumText;
 
   const textInputStyle = {
     paddingVertical: 8,
-    borderColor: isFocus ? defaultStyles.colors.primaryColor : "transparent",
+    borderColor: isFocus ? colors.primaryColor : "transparent",
     borderWidth: isFocus ? 2 : 0,
   };
 
@@ -72,7 +71,7 @@ const AppFormField = ({
         value={values[name]}
         {...otherProps}
         secureTextEntry={secureInput && hideSecureInput}
-        placeholderTextColor={defaultStyles.colors.lightText}
+        placeholderTextColor={colors.lightText}
       />
       <ErrorMessage visible={touched[name]} error={errors[name]} />
     </TouchableOpacity>
@@ -93,14 +92,14 @@ export const styles = StyleSheet.create({
     top: 14,
     right: 14,
     zIndex: 1234,
-    color: defaultStyles.colors.primaryText,
+    color: colors.primaryText,
   },
   textInput: {
     borderRadius: 30,
-    backgroundColor: defaultStyles.colors.background200,
+    backgroundColor: colors.background200,
     paddingVertical: 10,
     fontSize: 16,
-    color: defaultStyles.colors.primaryText,
+    color: colors.primaryText,
   },
   icon: {
     position: "absolute",

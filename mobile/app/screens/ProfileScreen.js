@@ -19,10 +19,12 @@ import MenuItem from "../components/MenuItem";
 import AppText from "../components/AppText";
 import ItemSeparatorComponent from "../components/ItemSeparatorComponent";
 import BottomSheet from "../components/BottomSheet";
+import { DARK, useTheme } from "../contexts/ThemeContext";
 
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { state, setLightTheme, setDarkTheme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(state.theme === DARK);
   const { profile } = useSelector((state) => state.profile);
   const { user } = useSelector((state) => state.auth);
   const [showLogoutBottomSheet, setShowLogoutBottomSheet] = useState(false);
@@ -53,7 +55,7 @@ const ProfileScreen = ({ navigation }) => {
             rounded
             style={{ flex: 1, marginLeft: 8 }}
             onPress={() => {
-              // handleLogout();
+              handleLogout();
             }}
           >
             Yes, Logout
@@ -142,14 +144,20 @@ const ProfileScreen = ({ navigation }) => {
                 name="toggle-on"
                 size={30}
                 color={colors.primaryColor}
-                onPress={() => setIsDarkMode(!isDarkMode)}
+                onPress={() => {
+                  setIsDarkMode(!isDarkMode);
+                  setLightTheme();
+                }}
               />
             ) : (
               <Fontisto
                 name="toggle-off"
                 size={30}
                 color={colors.lightText}
-                onPress={() => setIsDarkMode(!isDarkMode)}
+                onPress={() => {
+                  setIsDarkMode(!isDarkMode);
+                  setDarkTheme();
+                }}
               />
             )
           }

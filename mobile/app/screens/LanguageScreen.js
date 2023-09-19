@@ -48,7 +48,7 @@ const LanguageScreen = ({ navigation }) => {
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader navigation={navigation} title={"Language"} />
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <View style={styles.suggested}>
           <AppText style={styles.title}>Suggested</AppText>
           {languages
@@ -88,6 +88,9 @@ const LanguageScreen = ({ navigation }) => {
 export default LanguageScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
   menuItem: {
     marginVertical: 12,
   },

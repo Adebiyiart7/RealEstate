@@ -8,6 +8,7 @@ import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import Screen from "../components/Screen";
 import SeeAllText from "../components/SeeAllText";
 import TextWithLines from "../components/TextWithLines";
+import colors from "../config/colors";
 import routes from "../config/routes";
 import defaultStyles from "../config/styles";
 
@@ -17,7 +18,14 @@ const LetsYouIn = ({ navigation }) => {
       <View style={styles.container}>
         <GoBackArrowHeader
           navigation={navigation}
-          RightIconExtra={<AppText onPress={() => navigation.navigate(routes.TAB)} style={styles.skipText}>Skip</AppText>}
+          RightIcon={
+            <AppText
+              onPress={() => navigation.navigate(routes.TAB)}
+              style={styles.skipText}
+            >
+              Skip
+            </AppText>
+          }
         />
         <Image
           style={styles.image}
@@ -69,12 +77,12 @@ export default LetsYouIn;
 
 const styles = StyleSheet.create({
   actions: {
-    width: "100%"
+    width: "100%",
   },
   container: {
     display: "flex",
     alignItems: "center",
-    paddingBottom: 16
+    paddingBottom: 16,
   },
   image: {
     width: 200,
@@ -82,33 +90,33 @@ const styles = StyleSheet.create({
   },
   noAccountText: {
     textAlign: "center",
-    color: defaultStyles.colors.lightText,
-    marginVertical: 10
+    color: colors.lightText,
+    marginVertical: 10,
   },
   signUpText: {
-    color: defaultStyles.colors.primaryColor,
-    fontWeight: "500"
+    color: colors.primaryColor,
+    fontWeight: "500",
   },
   skipText: {
     fontSize: 18,
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
   },
   socialActions: {
     backgroundColor: "transparent",
     borderWidth: 1,
-    borderColor: defaultStyles.colors.border200,
-    color: defaultStyles.colors.primaryText,
-    borderRadius: defaultStyles.primaryBorderRadius
+    borderColor: colors.border200,
+    color: colors.primaryText,
+    borderRadius: defaultStyles.primaryBorderRadius,
   },
   socialText: {
-    color: defaultStyles.colors.primaryText
+    color: colors.primaryText,
   },
   text: {
     fontSize: 35,
     fontWeight: "bold",
-    marginVertical: 10
+    marginVertical: 10,
   },
   textWithLines: {
-    marginVertical: 24
-  }
+    marginVertical: 24,
+  },
 });

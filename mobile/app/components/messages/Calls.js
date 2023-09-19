@@ -7,9 +7,9 @@ const Calls = ({ navigation }) => {
     <View
       style={{
         display: "flex",
-        justifyContent: "center",
         alignItems: "center",
-        paddingVertical: 100
+        paddingTop: 100,
+        height: "100%",
       }}
     >
       <AppText>You have no call history.</AppText>

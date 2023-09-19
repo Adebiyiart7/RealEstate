@@ -8,6 +8,7 @@ import AppText from "../components/AppText";
 import PinForm from "../components/form/PinForm";
 import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
+import colors from "../config/colors";
 
 const OTPCodeVerificationScreen = ({ navigation }) => {
   let counter = 5;
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     marginVertical: 40,
   },
   resendButton: {
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
     fontWeight: "600",
   },
   text: {
@@ -85,6 +86,6 @@ const styles = StyleSheet.create({
   },
   time: {
     fontWeight: "600",
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
   },
 });

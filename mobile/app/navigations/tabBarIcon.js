@@ -10,13 +10,15 @@ const tabBarIcon = (route, focused) => {
   if (route.name === routes.HOME) {
     iconName = focused ? "ios-home" : "ios-home-outline";
   } else if (route.name === routes.EXPLORE) {
-    iconName = focused ? "ios-search" : "ios-search-outline"
+    iconName = focused ? "ios-search" : "ios-search-outline";
   } else if (route.name === routes.FAVORITES) {
     iconName = focused ? "ios-heart" : "ios-heart-outline";
   } else if (route.name === routes.MESSAGES) {
-    iconName = focused ? "ios-chatbubble-ellipses" : "ios-chatbubble-ellipses-outline";
+    iconName = focused
+      ? "ios-chatbubble-ellipses"
+      : "ios-chatbubble-ellipses-outline";
   } else if (route.name === routes.PROFILE) {
-    iconName = focused ? "ios-person" :"ios-person-outline"
+    iconName = focused ? "ios-person" : "ios-person-outline";
   }
 
   return (
@@ -26,6 +28,6 @@ const tabBarIcon = (route, focused) => {
       size={24}
     />
   );
-}
+};
 
 export default tabBarIcon;

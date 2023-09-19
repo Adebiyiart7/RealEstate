@@ -18,7 +18,7 @@ const initialValues = {
   username: "Adebiyiart",
   gender: "Male",
   dob: "01-01-2009",
-  email: "adebiyiartworld@gmail.com",
+  email: "test@gmail.com",
   phoneNumber: "09029242729",
   country: "Nigeria",
 };

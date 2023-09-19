@@ -21,7 +21,7 @@ const defaultStyles = {
   summaryCard: {
     padding: 16,
     borderRadius: 12,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background200,
     marginVertical: 8,
   },
   summaryTextContainer: {

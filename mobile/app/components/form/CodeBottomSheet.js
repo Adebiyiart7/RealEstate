@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../../config/styles";
 import AppText from "../AppText";
 import AppButton from "../AppButton";
+import colors from "../../config/colors";
 
 const CodeBottomSheet = ({ code, setCode, email, handleSubmit }) => {
   return (
@@ -36,7 +37,7 @@ const CodeBottomSheet = ({ code, setCode, email, handleSubmit }) => {
           value={code}
           placeholder="Enter code"
           keyboardType="numeric"
-          placeholderTextColor={defaultStyles.colors.lightText}
+          placeholderTextColor={colors.lightText}
         />
       </View>
       <AppButton rounded onPress={handleSubmit}>

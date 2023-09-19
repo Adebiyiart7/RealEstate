@@ -4,11 +4,16 @@ import LottieView from "lottie-react-native";
 
 // LOCAL IMPORTS
 import colors from "../config/colors";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const Loading = React.memo(({ visible }) => {
+  const { state } = useTheme();
+  const containerStyles =
+    state.theme === LIGHT ? styles.containerLight : styles.containerDark;
+
   return (
     <Modal animationType="none" transparent visible={visible}>
-      <View style={styles.container}>
+      <View style={[styles.container, containerStyles]}>
         <LottieView
           autoPlay
           loop
@@ -17,7 +22,7 @@ const Loading = React.memo(({ visible }) => {
       </View>
     </Modal>
   );
-})
+});
 
 export default Loading;
 
@@ -27,6 +32,11 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     width: "100%",
-    backgroundColor: "#00000055"
-  }
+  },
+  containerLight: {
+    backgroundColor: colors.light.mediumTransparentBackground,
+  },
+  containerDark: {
+    backgroundColor: colors.dark.mediumTransparentBackground,
+  },
 });

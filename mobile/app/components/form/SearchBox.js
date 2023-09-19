@@ -4,6 +4,7 @@ import { useState } from "react";
 
 // LOCAL IMPORTS
 import defaultStyles from "../../config/styles";
+import colors from "../../config/colors";
 
 const SearchBox = ({
   name,
@@ -16,15 +17,11 @@ const SearchBox = ({
 }) => {
   const [iconName, setIconName] = useState("ios-search-outline");
   const [isFocus, setIsFocus] = useState(false);
-  const iconColor = isFocus
-    ? defaultStyles.colors.primaryColor
-    : defaultStyles.colors.mediumText;
+  const iconColor = isFocus ? colors.primaryColor : colors.mediumText;
 
   const textInputStyle = {
     paddingVertical: 8,
-    borderColor: isFocus
-      ? defaultStyles.colors.primaryColor
-      : defaultStyles.colors.border200,
+    borderColor: isFocus ? colors.primaryColor : colors.border200,
     borderWidth: isFocus ? 1.5 : 1,
   };
 
@@ -46,7 +43,7 @@ const SearchBox = ({
           setIsFocus(false);
         }}
         placeholder="Search..."
-        placeholderTextColor={defaultStyles.colors.lightText}
+        placeholderTextColor={colors.lightText}
         {...otherProps}
       />
       <TouchableOpacity onPress={onPressFilter} style={styles.rightIcon}>
@@ -80,10 +77,10 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderRadius: defaultStyles.primaryBorderRadius,
-    backgroundColor: defaultStyles.colors.background100,
+    backgroundColor: colors.background100,
     paddingVertical: 10,
     paddingHorizontal: 37,
     fontSize: 16,
-    color: defaultStyles.colors.primaryText,
+    color: colors.primaryText,
   },
 });

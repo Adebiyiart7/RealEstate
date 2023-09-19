@@ -75,7 +75,7 @@ const FavoritesScreen = ({ navigation }) => {
                       size={18}
                       color={
                         item.name === focusedItem
-                          ? colors.white
+                          ? colors.displayAsWhite
                           : colors.primaryColor
                       }
                     />
@@ -116,7 +116,7 @@ export default FavoritesScreen;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 50,
+    paddingBottom: 50,
   },
   featuredView: {
     marginTop: 10,

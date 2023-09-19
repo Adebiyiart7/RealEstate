@@ -1,44 +1,55 @@
 import React from "react";
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import colors from "../config/colors";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const Chip = React.memo(({ text, focused, Icon, onPress, style, small }) => {
+  const { state } = useTheme();
+
+  const backgroundColor =
+    state.theme === LIGHT
+      ? focused
+        ? colors.light.primaryColor
+        : colors.light.background100
+      : focused
+      ? colors.dark.primaryColor
+      : colors.dark.background100;
+
+  const color =
+    state.theme === LIGHT
+      ? focused
+        ? colors.light.displayAsWhite
+        : colors.light.primaryColor
+      : focused
+      ? colors.dark.displayAsWhite
+      : colors.dark.primaryColor;
+
+  const chipStyles = state.theme === LIGHT ? styles.chipLight : styles.chipDark;
+
   return (
     <Pressable
       onPress={onPress}
       style={[
         style,
-        styles.chip,
+        [styles.chip, chipStyles],
         {
-          backgroundColor: focused ? colors.primaryColor : colors.white,
+          backgroundColor,
           borderWidth: focused ? 0 : 1.5,
           paddingHorizontal: focused ? 17 : 14,
           paddingVertical: focused ? 7 : 5,
         },
       ]}
     >
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
+      <View style={{ display: "flex", flexDirection: "row" }}>
         {Icon && <Text style={styles.icon}>{Icon}</Text>}
-        <Text
-          style={[
-            styles.text,
-            { color: focused ? colors.white : colors.primaryColor },
-            {
-              fontSize: small ? 13 : 15,
-            },
-          ]}
-        >
+        <Text style={[styles.text, { color }, { fontSize: small ? 13 : 15 }]}>
           {text}
         </Text>
       </View>
     </Pressable>
   );
 });
+
 const styles = StyleSheet.create({
   chip: {
     display: "flex",
@@ -46,7 +57,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 30,
     alignSelf: "flex-start",
-    borderColor: colors.primaryColor,
+  },
+  chipLight: {
+    borderColor: colors.light.primaryColor,
+  },
+  chipDark: {
+    borderColor: colors.dark.primaryColor,
   },
   icon: {
     paddingRight: 5,

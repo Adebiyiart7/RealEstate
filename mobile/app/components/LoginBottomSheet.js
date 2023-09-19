@@ -1,16 +1,21 @@
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // LOCAL IMPORTS
 import BottomSheet from "./BottomSheet";
 import AppText from "./AppText";
 import AppButton from "./AppButton";
 import routes from "../config/routes";
-import { useNavigation } from "@react-navigation/native";
 import colors from "../config/colors";
 import { useBackHandler } from "./hooks/useBackHandler";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const LoginBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) => {
   const navigation = useNavigation();
+  const { state } = useTheme();
+
+  const subHeadingStyles =
+    state.theme === LIGHT ? styles.subHeadingLight : styles.subHeadingDark;
 
   useBackHandler(() => {
     if (bottomSheetVisible) {
@@ -27,13 +32,14 @@ const LoginBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) => {
           <>
             <View>
               <AppText style={styles.header}>Login/Register</AppText>
-              <AppText style={styles.subHeading}>
+              <AppText style={[styles.subHeading, subHeadingStyles]}>
                 Login or create a new account.
               </AppText>
               <View style={styles.content}>
                 <View style={styles.buttons}>
                   <AppButton
                     small
+                    rounded
                     style={styles.login}
                     onPress={() => navigation.navigate(routes.LOGIN)}
                   >
@@ -41,6 +47,7 @@ const LoginBottomSheet = ({ bottomSheetVisible, setBottomSheetVisible }) => {
                   </AppButton>
                   <AppButton
                     small
+                    rounded
                     secondary
                     style={styles.register}
                     onPress={() => navigation.navigate(routes.REGISTER)}
@@ -65,7 +72,6 @@ const styles = StyleSheet.create({
   buttons: {
     display: "flex",
     flexDirection: "row",
-    // flex: 2,
   },
   content: {
     margin: 16,
@@ -85,6 +91,11 @@ const styles = StyleSheet.create({
   },
   subHeading: {
     textAlign: "center",
-    color: colors.mediumText,
+  },
+  subHeadingLight: {
+    color: colors.light.mediumText,
+  },
+  subHeadingDark: {
+    color: colors.dark.mediumText,
   },
 });

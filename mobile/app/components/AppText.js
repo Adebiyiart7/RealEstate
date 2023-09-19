@@ -1,25 +1,32 @@
-import React from 'react'
-import { Platform, StyleSheet, Text, } from 'react-native'
+import React from "react";
+import { StyleSheet, Text } from "react-native";
 
 // LOCAL IMPORTS
-import defaultStyles from '../config/styles'
+import colors from "../config/colors";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const AppText = React.memo(({ style, children, numberOfLines, onPress }) => {
+  const { state } = useTheme();
+  const textStyles = state.theme === LIGHT ? styles.textLight : styles.textDark;
+
   return (
     <Text
       onPress={onPress}
       numberOfLines={numberOfLines}
-      style={[styles.text, style]}
+      style={[textStyles, style]}
     >
       {children}
     </Text>
   );
-})
+});
 
 export default AppText;
 
 const styles = StyleSheet.create({
-  text: {
-    color: defaultStyles.colors.primaryText,
-  }
+  textLight: {
+    color: colors.light.primaryText,
+  },
+  textDark: {
+    color: colors.dark.primaryText,
+  },
 });

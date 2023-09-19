@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // LOCAL IMPORTS
 import { API_URI } from "../config";
-let user = { username: "Adebiyiart" };
+let user = { username: "Adebiyiart" }; // TODO: Replace with null
 
 const initialState = {
   user: user,
@@ -14,15 +14,37 @@ const initialState = {
   message: "",
 };
 
+const hardCodedUser = {
+  username: "Adebiyiart",
+  fullname: "Adeeyo Joseph Adebiyi",
+  email: "test@gmail.com",
+  token: "FakeToken",
+};
+
+// TODO: UNCOMMNET THIS
+// export const register = createAsyncThunk(
+//   "auth/register",
+//   async (data, thunkAPI) => {
+//     try {
+//       const response = await axios.post(API_URI + "/users/register", data);
+//       if (response.data) {
+//         AsyncStorage.setItem("@user", JSON.stringify(response.data.body));
+//         return response.data.body;
+//       }
+//     } catch (error) {
+//       const message = error.response.data.body.message.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
+
+// TODO: REMOVE THIS
 export const register = createAsyncThunk(
   "auth/register",
   async (data, thunkAPI) => {
     try {
-      const response = await axios.post(API_URI + "/users/register", data);
-      if (response.data) {
-        AsyncStorage.setItem("@user", JSON.stringify(response.data.body));
-        return response.data.body;
-      }
+      AsyncStorage.setItem("@user", JSON.stringify(hardCodedUser));
+      return hardCodedUser;
     } catch (error) {
       const message = error.response.data.body.message.toString();
       return thunkAPI.rejectWithValue(message);
@@ -30,13 +52,24 @@ export const register = createAsyncThunk(
   }
 );
 
+// TODO: UNCOMMNET THIS
+// export const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
+//   try {
+//     const response = await axios.post(API_URI + "/users/login", data);
+//     if (response.data) {
+//       AsyncStorage.setItem("@user", JSON.stringify(response.data.body));
+//       return response.data.body;
+//     }
+//   } catch (error) {
+//     const message = error.response.data.body.message.toString();
+//     return thunkAPI.rejectWithValue(message);
+//   }
+// });
+
+// TODO: REMOVE THIS
 export const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
   try {
-    const response = await axios.post(API_URI + "/users/login", data);
-    if (response.data) {
-      AsyncStorage.setItem("@user", JSON.stringify(response.data.body));
-      return response.data.body;
-    }
+    return hardCodedUser;
   } catch (error) {
     const message = error.response.data.body.message.toString();
     return thunkAPI.rejectWithValue(message);

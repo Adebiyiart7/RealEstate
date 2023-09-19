@@ -30,14 +30,14 @@ const MessagesScreen = ({ navigation }) => {
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
             size={24}
-            style={{ colors: colors.primaryText }}
+            color={colors.primaryText}
           />
         }
         RightIconExtra={
           <Ionicons
             size={24}
             name={"ios-search-outline"}
-            style={{ colors: colors.primaryText }}
+            color={colors.primaryText}
           />
         }
       />

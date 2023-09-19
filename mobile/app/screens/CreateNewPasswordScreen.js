@@ -13,6 +13,7 @@ import SubmitButton from "../components/form/SubmitButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/styles";
 import ProcessStatus from "../components/ProcessStatus";
+import colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   checkbox: {
-    color: defaultStyles.colors.primaryColor,
+    color: colors.primaryColor,
     marginRight: 5,
   },
   image: {

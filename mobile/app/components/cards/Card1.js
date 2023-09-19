@@ -8,7 +8,7 @@ import colors from "../../config/colors";
 const Card1 = React.memo(({ Icon, title, subTitle, selected, onPress }) => {
   const selectedStyles = {
     borderWidth: 2,
-    borderColor: defaultStyles.colors.primaryColor,
+    borderColor: colors.primaryColor,
   };
   return (
     <Pressable
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderWidth: 1,
     borderRadius: 25,
-    borderColor: defaultStyles.colors.border200,
+    borderColor: colors.border200,
     padding: 16,
     alignItems: "center",
     marginVertical: 8,
   },
   icon: {
-    backgroundColor: defaultStyles.colors.background200,
+    backgroundColor: colors.background200,
     borderRadius: 50,
     padding: 20,
     marginRight: 10,
@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 12,
-    color: defaultStyles.colors.mediumText,
+    color: colors.mediumText,
   },
 });

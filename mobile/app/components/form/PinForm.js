@@ -6,6 +6,7 @@ import { useDimensions } from "@react-native-community/hooks";
 // LOCAL IMPORT
 import defaultStyles from "../../config/styles";
 import AppText from "../AppText";
+import colors from "../../config/colors";
 
 const PinForm = ({ pin, setPin, secureTextEntry }) => {
   const inputRef = useRef();
@@ -13,17 +14,17 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
   const { width: screenWidth } = useDimensions().screen;
 
   const textInput = {
-    width: (screenWidth - 32 - (7 * 8))/4,
+    width: (screenWidth - 32 - 7 * 8) / 4,
   };
 
   const focusedInputStyle = {
     borderWidth: 2,
-    borderColor: defaultStyles.colors.primaryColor
+    borderColor: colors.primaryColor,
   };
 
   const handleOnPress = (pinValue) => {
     inputRef.current.focus();
-    if(pinValue) setPin("")
+    if (pinValue) setPin("");
   };
 
   return (
@@ -43,25 +44,33 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
         onPress={() => handleOnPress(pin[0])}
         style={[styles.input, textInput]}
       >
-        {secureTextEntry ? pin[0] && <Octicons name="dot-fill" size={35} /> : pin[0]}
+        {secureTextEntry
+          ? pin[0] && <Octicons name="dot-fill" size={35} />
+          : pin[0]}
       </AppText>
       <AppText
         onPress={() => handleOnPress(pin[1])}
         style={[styles.input, textInput]}
       >
-        {secureTextEntry ? pin[1] && <Octicons name="dot-fill" size={35} /> : pin[1]}
+        {secureTextEntry
+          ? pin[1] && <Octicons name="dot-fill" size={35} />
+          : pin[1]}
       </AppText>
       <AppText
         onPress={() => handleOnPress(pin[2])}
         style={[styles.input, textInput]}
       >
-        {secureTextEntry ? pin[2] && <Octicons name="dot-fill" size={35} /> : pin[2]}
+        {secureTextEntry
+          ? pin[2] && <Octicons name="dot-fill" size={35} />
+          : pin[2]}
       </AppText>
       <AppText
         onPress={() => handleOnPress(pin[3])}
         style={[styles.input, textInput]}
       >
-        {secureTextEntry ? pin[3] && <Octicons name="dot-fill" size={35} /> : pin[3]}
+        {secureTextEntry
+          ? pin[3] && <Octicons name="dot-fill" size={35} />
+          : pin[3]}
       </AppText>
     </View>
   );
@@ -79,7 +88,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: defaultStyles.colors.border200,
+    borderColor: colors.border200,
     borderRadius: defaultStyles.primaryBorderRadius,
     height: 55,
     marginHorizontal: 7,
@@ -87,11 +96,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "500",
     paddingTop: 9,
-    backgroundColor: defaultStyles.colors.lightBackground,
-    color: defaultStyles.colors.primaryText
+    backgroundColor: colors.lightBackground,
+    color: colors.primaryText,
   },
   realInput: {
     position: "absolute",
     color: "transparent",
-  }
+  },
 });

@@ -1,46 +1,44 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { Modal, StyleSheet, View, TouchableOpacity } from "react-native";
-import colors from "../config/colors";
 
 // LOCAL IMPORTS
 import defaultStyles from "../config/styles";
+import colors from "../config/colors";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
-const BottomSheet = React.memo(({
-  bottomSheetVisible,
-  setBottomSheetVisible,
-  bottomSheetContent,
-}) => {
-  return (
-    <View style={styles.container}>
-      <Modal
-        animationType="none"
-        transparent={true}
-        visible={bottomSheetVisible}
-      >
-        <View style={styles.centeredView}>
-          <TouchableOpacity
-            onPress={() => setBottomSheetVisible(false)}
-            style={styles.backdrop}
-          ></TouchableOpacity>
-          <View style={styles.modalView}>
-            {/* <TouchableOpacity
+const BottomSheet = React.memo(
+  ({ bottomSheetVisible, setBottomSheetVisible, bottomSheetContent }) => {
+    const { state } = useTheme();
+
+    const centeredViewStyles = (state.theme = LIGHT
+      ? styles.centeredViewLight
+      : styles.centeredViewDark);
+
+    const modalViewStyles =
+      state.theme === LIGHT ? styles.modalViewLight : styles.modalViewDark;
+
+    return (
+      <View style={styles.container}>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={bottomSheetVisible}
+        >
+          <View style={[styles.centeredView, centeredViewStyles]}>
+            <TouchableOpacity
               onPress={() => setBottomSheetVisible(false)}
-              style={styles.closeButtonContainer}
-            >
-              <FontAwesome
-                name="times"
-                size={32}
-                style={styles.closeButton}
-              />
-            </TouchableOpacity> */}
-            {bottomSheetContent}
+              style={styles.backdrop}
+            ></TouchableOpacity>
+            <View style={[styles.modalView, modalViewStyles]}>
+              {bottomSheetContent}
+            </View>
           </View>
-        </View>
-      </Modal>
-    </View>
-  );
-})
+        </Modal>
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   backdrop: {
@@ -49,29 +47,29 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     display: "flex",
-    backgroundColor: "#00000099",
     position: "relative",
     justifyContent: "space-between",
   },
-  closeButton: {
-    marginTop: 4,
-    marginRight: 3,
-    color: defaultStyles.colors.primaryColor,
-  },
+  centeredViewLight: { backgroundColor: colors.light.transparentBackground },
+  centeredViewDark: { backgroundColor: colors.dark.transparentBackground },
   closeButtonContainer: {
     position: "absolute",
     top: 5,
     right: 5,
   },
   modalView: {
-    backgroundColor: "white",
     borderTopStartRadius: defaultStyles.primaryBorderRadius,
     borderTopEndRadius: defaultStyles.primaryBorderRadius,
     width: "100%",
-    // position: "absolute",
     bottom: 0,
-    paddingTop: 20, // 35,
+    paddingTop: 20,
     maxHeight: 500,
+  },
+  modalViewLight: {
+    backgroundColor: colors.light.background100,
+  },
+  modalViewDark: {
+    backgroundColor: colors.dark.background100,
   },
   modalText: {
     marginBottom: 15,

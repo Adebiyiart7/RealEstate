@@ -70,19 +70,19 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   cost: {
-    color: colors.white,
+    color: colors.displayAsWhite,
   },
   f1: {
-    color: colors.white,
+    color: colors.displayAsWhite,
     fontWeight: "bold",
     fontSize: 18,
   },
   f2: {
-    color: colors.white,
+    color: colors.displayAsWhite,
     fontWeight: "300",
   },
   firstText: {
-    color: colors.white,
+    color: colors.displayAsWhite,
     fontSize: 17,
     fontWeight: "bold",
     width: "85%",
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     right: 16,
   },
   secondText: {
-    color: colors.white,
+    color: colors.displayAsWhite,
     fontWeight: "300",
     width: "85%",
   },
@@ -117,7 +117,9 @@ const styles = StyleSheet.create({
   texts: {
     position: "absolute",
     bottom: 0,
-    margin: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
     width: "100%",
+    backgroundColor: "#00000050",
   },
 });

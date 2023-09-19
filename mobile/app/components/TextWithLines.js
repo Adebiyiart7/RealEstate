@@ -1,9 +1,10 @@
-import { StyleSheet, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, View } from "react-native";
+import React from "react";
 
 // LOCAL IMPORTS
-import defaultStyles from '../config/styles'
-import AppText from './AppText'
+import defaultStyles from "../config/styles";
+import AppText from "./AppText";
+import colors from "../config/colors";
 
 const TextWithLines = React.memo(({ children, style, textStyle }) => {
   return (
@@ -11,20 +12,20 @@ const TextWithLines = React.memo(({ children, style, textStyle }) => {
       <AppText style={[styles.text, textStyle]}>{children}</AppText>
     </View>
   );
-})
+});
 
-export default TextWithLines
+export default TextWithLines;
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomColor: defaultStyles.colors.border200,
+    borderBottomColor: colors.border200,
     borderBottomWidth: 1,
     alignItems: "center",
   },
   text: {
     position: "absolute",
-    top:-12,
+    top: -12,
     paddingHorizontal: 10,
-    backgroundColor: defaultStyles.colors.background100,
-  }
+    backgroundColor: colors.background100,
+  },
 });

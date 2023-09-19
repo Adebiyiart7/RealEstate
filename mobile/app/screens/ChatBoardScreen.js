@@ -32,7 +32,7 @@ const ChatBoardScreen = ({ navigation, route }) => {
           messageType={"text"} // text, images, audio or video
           item={{
             message: `Hello, Good Afternoon Joseph!🙂`,
-            dateTime: 1673948875553
+            dateTime: 1673948875553,
           }}
           fromMe={false}
         />
@@ -40,7 +40,7 @@ const ChatBoardScreen = ({ navigation, route }) => {
           messageType={"text"} // text, images, audio or video
           item={{
             message: `Of course, the apartment is always open anytime.`,
-            dateTime: 16736993575553
+            dateTime: 16736993575553,
           }}
           fromMe={false}
         />
@@ -48,7 +48,7 @@ const ChatBoardScreen = ({ navigation, route }) => {
           messageType={"text"} // text, images, audio or video
           item={{
             message: `I will book for December 23-27. I will also bring some of my things to move.`,
-            dateTime: 1673698873053
+            dateTime: 1673698873053,
           }}
           fromMe={true}
         />
@@ -59,7 +59,7 @@ const ChatBoardScreen = ({ navigation, route }) => {
               "https://picsum.photos/150/150",
               "https://picsum.photos/151/151",
             ],
-            dateTime: 1673694975553
+            dateTime: 1673694975553,
           }}
           fromMe={true}
         />
@@ -67,7 +67,7 @@ const ChatBoardScreen = ({ navigation, route }) => {
           messageType={"audio"} // text, images, audio or video
           item={{
             audioLink: "",
-            dateTime: 1676998875553
+            dateTime: 1676998875553,
           }}
           fromMe={true}
         />
@@ -75,7 +75,7 @@ const ChatBoardScreen = ({ navigation, route }) => {
           messageType={"text"} // text, images, audio or video
           item={{
             message: `Alright, I will wait for your booking and arraival.`,
-            dateTime: 1693398875553
+            dateTime: 1693398875553,
           }}
           fromMe={false}
         />
@@ -102,6 +102,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontWeight: "bold",
     borderRadius: 3,
-    backgroundColor: colors.background200
-  }
+    backgroundColor: colors.background200,
+  },
 });

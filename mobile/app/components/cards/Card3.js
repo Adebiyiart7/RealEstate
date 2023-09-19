@@ -87,7 +87,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
               <Ionicons
                 name={"heart-outline"}
                 size={24}
-                color={colors.white}
+                color={colors.displayAsWhite}
                 onPress={() => {
                   setIsFavorite(true);
                   addToFavorites(item._id);

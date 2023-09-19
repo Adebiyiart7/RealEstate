@@ -36,11 +36,8 @@ const SecurityScreen = ({ navigation }) => {
 
   return (
     <Screen scrollable={false}>
-      <GoBackArrowHeader
-        navigation={navigation}
-        title={"Notification Settings"}
-      />
-      <ScrollView>
+      <GoBackArrowHeader navigation={navigation} title={"Security"} />
+      <ScrollView style={styles.container}>
         <MenuItem
           style={styles.menuItem}
           title={"Remember me"}
@@ -75,6 +72,9 @@ const SecurityScreen = ({ navigation }) => {
 export default SecurityScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
   menuItem: {
     marginVertical: 12,
   },

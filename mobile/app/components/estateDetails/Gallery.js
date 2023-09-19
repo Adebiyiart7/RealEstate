@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 25,
-    color: colors.white,
+    color: colors.displayAsWhite,
     fontWeight: "bold",
     zIndex: 1234,
   },

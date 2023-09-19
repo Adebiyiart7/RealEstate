@@ -103,7 +103,7 @@ const EReceiptScreen = ({ navigation, route }) => {
             numberOfLines={1}
             style={[
               defaultStyles.summaryValue,
-              { maxWidth: screenWidth - 110 }
+              { maxWidth: screenWidth - 110 },
             ]}
           >
             {userInfo.fullname}
@@ -143,17 +143,17 @@ const styles = StyleSheet.create({
     color: colors.primaryColor,
     fontSize: 16,
     marginLeft: 8,
-    marginTop: 2
+    marginTop: 2,
   },
   paidText: {
     fontStyle: "italic",
     fontWeight: "bold",
     textTransform: "uppercase",
-    color: colors.primaryGreen
+    color: colors.primaryGreen,
   },
   receiptImage: {
     width: "100%",
     maxWidth: 400,
-    height: 100
-  }
+    height: 100,
+  },
 });

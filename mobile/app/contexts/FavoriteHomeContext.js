@@ -51,12 +51,12 @@ export const FavoritesProvider = ({ children }) => {
         (value) => {
           if (value) {
             const favorites = JSON.parse(value);
-            dispatch({ type: "SET_FAVORITES", payload: favorites });
+            dispatch({ type: SET_FAVORITES, payload: favorites });
           }
         }
       );
     } catch (error) {
-      console.log(error, "Error Setting Favorites");
+      console.log(error, "Error Setting Favorites!");
     }
   }, []);
 

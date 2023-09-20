@@ -1,5 +1,4 @@
 import React from "react";
-import { FontAwesome } from "@expo/vector-icons";
 import { Modal, StyleSheet, View, TouchableOpacity } from "react-native";
 
 // LOCAL IMPORTS

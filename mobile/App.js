@@ -16,8 +16,8 @@ const App = () => {
     <Provider store={store}>
       <SafeAreaView>
         <StatusBar
-          style={colors.colorMode === "light" ? "dark" : "light"}
-          backgroundColor={colors.background100}
+          style={"light"}
+          backgroundColor={colors.light.background100}
         />
       </SafeAreaView>
       <NavigationContainer>

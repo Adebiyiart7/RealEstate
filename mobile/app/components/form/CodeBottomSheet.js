@@ -22,6 +22,7 @@ const CodeBottomSheet = ({ code, setCode, email, handleSubmit }) => {
         numberOfLines={1}
         style={{
           ...defaultStyles.bottomSheetStyles.subHeading,
+          color: colors[state.theme].mediumText,
           width: "90%",
         }}
       >

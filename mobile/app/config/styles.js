@@ -1,62 +1,56 @@
-import colors from "./colors";
+const defaultStyles = {
+  primaryBorderRadius: 12,
+  titleFont: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  gridStyle: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 16,
+    marginHorizontal: -36,
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
 
-const defaultStyles = (theme) => {
-  return {
-    primaryBorderRadius: 12,
-    titleFont: {
-      fontSize: 24,
+  // Start Summary Card
+  summaryCard: {
+    padding: 16,
+    borderRadius: 12,
+    marginVertical: 8,
+  },
+  summaryTextContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 4,
+  },
+  summaryValue: {
+    fontWeight: "500",
+  },
+  summarySeperator: {
+    marginVertical: 6,
+  },
+  // end
+
+  bottomSheetStyles: {
+    content: {
+      margin: 16,
+    },
+    header: {
+      textAlign: "center",
       fontWeight: "bold",
-      marginBottom: 10,
+      fontSize: 18,
     },
-    gridStyle: {
-      display: "flex",
-      justifyContent: "center",
-      marginTop: 16,
-      marginHorizontal: -36,
-      flexDirection: "row",
-      flexWrap: "wrap",
+    subHeading: {
+      textAlign: "center",
     },
-
-    // Start Summary Card
-    summaryCard: {
-      padding: 16,
-      borderRadius: 12,
-      backgroundColor: colors[theme].background200,
-      marginVertical: 8,
-    },
-    summaryTextContainer: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      padding: 4,
-    },
-    summaryValue: {
-      fontWeight: "500",
-    },
-    summarySeperator: {
-      marginVertical: 6,
-    },
-    // end
-
-    bottomSheetStyles: {
-      content: {
-        margin: 16,
-      },
-      header: {
-        textAlign: "center",
-        fontWeight: "bold",
-        fontSize: 18,
-      },
-      subHeading: {
-        textAlign: "center",
-        color: colors[theme].mediumText,
-      },
-    },
-    alertTextBodyStyle: {
-      fontSize: 16,
-    },
-    zIndex: 1,
-  };
+  },
+  alertTextBodyStyle: {
+    fontSize: 16,
+  },
+  zIndex: 1,
 };
 
 export default defaultStyles;

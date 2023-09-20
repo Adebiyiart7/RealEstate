@@ -24,6 +24,7 @@ const EReceiptScreen = ({ navigation, route }) => {
   const checksDetails = route.params.checksDetails;
   const userInfo = route.params.userInfo;
   const { width: screenWidth } = useDimensions().screen;
+  const summaryCardBg = { backgroundColor: colors[state.theme].background200 };
 
   return (
     <Screen>
@@ -47,7 +48,9 @@ const EReceiptScreen = ({ navigation, route }) => {
         style={styles.receiptImage}
         source={require("../../assets/images/e-receipt.png")}
       />
-      <View style={[defaultStyles.summaryCard, styles.checksDetails]}>
+      <View
+        style={[defaultStyles.summaryCard, summaryCardBg, styles.checksDetails]}
+      >
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Date</AppText>
           <AppText style={defaultStyles.summaryValue}>
@@ -69,7 +72,7 @@ const EReceiptScreen = ({ navigation, route }) => {
         </View>
       </View>
 
-      <View style={defaultStyles.summaryCard}>
+      <View style={[defaultStyles.summaryCard, summaryCardBg]}>
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>
             Amount (
@@ -98,7 +101,9 @@ const EReceiptScreen = ({ navigation, route }) => {
         </View>
       </View>
 
-      <View style={[defaultStyles.summaryCard, styles.checksDetails]}>
+      <View
+        style={[defaultStyles.summaryCard, summaryCardBg, styles.checksDetails]}
+      >
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Name</AppText>
           <AppText

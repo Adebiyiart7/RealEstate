@@ -8,41 +8,47 @@ import AppButton from "./AppButton";
 import routes from "../config/routes";
 import { useNavigation } from "@react-navigation/native";
 import defaultStyles from "../config/styles";
+import { useTheme } from "../contexts/ThemeContext";
 
-const FillProfileBottomSheet = React.memo(({
-  bottomSheetVisible,
-  setBottomSheetVisible,
-}) => {
-  const navigation = useNavigation();
+const FillProfileBottomSheet = React.memo(
+  ({ bottomSheetVisible, setBottomSheetVisible }) => {
+    const { state } = useTheme();
+    const navigation = useNavigation();
 
-  return (
-    <View>
-      <BottomSheet
-        bottomSheetContent={
-          <>
-            <View>
-              <AppText style={defaultStyles.bottomSheetStyles.header}>
-                Create Profile
-              </AppText>
-              <AppText style={defaultStyles.bottomSheetStyles.subHeading}>
-                Your profile is incomplete.
-              </AppText>
-              <View style={defaultStyles.bottomSheetStyles.content}>
-                <AppButton
-                  style={defaultStyles.bottomSheetStyles.fill}
-                  onPress={() => navigation.navigate(routes.FILL_PROFILE)}
+    return (
+      <View>
+        <BottomSheet
+          bottomSheetContent={
+            <>
+              <View>
+                <AppText style={defaultStyles.bottomSheetStyles.header}>
+                  Create Profile
+                </AppText>
+                <AppText
+                  style={[
+                    defaultStyles.bottomSheetStyles.subHeading,
+                    { color: colors[state.theme].mediumText },
+                  ]}
                 >
-                  Fill Your Profile
-                </AppButton>
+                  Your profile is incomplete.
+                </AppText>
+                <View style={defaultStyles.bottomSheetStyles.content}>
+                  <AppButton
+                    style={defaultStyles.bottomSheetStyles.fill}
+                    onPress={() => navigation.navigate(routes.FILL_PROFILE)}
+                  >
+                    Fill Your Profile
+                  </AppButton>
+                </View>
               </View>
-            </View>
-          </>
-        }
-        bottomSheetVisible={bottomSheetVisible}
-        setBottomSheetVisible={setBottomSheetVisible}
-      />
-    </View>
-  );
-})
+            </>
+          }
+          bottomSheetVisible={bottomSheetVisible}
+          setBottomSheetVisible={setBottomSheetVisible}
+        />
+      </View>
+    );
+  }
+);
 
 export default FillProfileBottomSheet;

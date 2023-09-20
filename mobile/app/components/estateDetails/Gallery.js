@@ -13,11 +13,18 @@ import { useDimensions } from "@react-native-community/hooks";
 import colors from "../../config/colors";
 import AppText from "../AppText";
 import BottomSheet from "../../components/BottomSheet";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 
 const Gallery = ({ item }) => {
+  const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
   const { width: screenWidth } = useDimensions().screen;
   const imageWidth = (screenWidth - 64) / 3;
   const [showBottomSheet, setShowBottomSheet] = useState(false);
+  const imageStyles = isLight ? styles.imageLight : styles.imageDark;
+  const innerTextStyles = isLight
+    ? styles.innerTextlight
+    : styles.innerTextDark;
 
   const GalleryImages = React.memo(() => (
     <FlatList
@@ -82,7 +89,11 @@ const Gallery = ({ item }) => {
           <ImageBackground
             key={index}
             source={{ uri: imageItem }}
-            style={[styles.image, { width: imageWidth, height: imageWidth }]}
+            style={[
+              styles.image,
+              imageStyles,
+              { width: imageWidth, height: imageWidth },
+            ]}
           >
             {index == 2 && (
               <TouchableOpacity
@@ -93,7 +104,7 @@ const Gallery = ({ item }) => {
             {index == 2 && (
               <AppText
                 onPress={() => setShowBottomSheet(true)}
-                style={styles.innerText}
+                style={[styles.innerText, innerTextStyles]}
               >
                 {item.images.length - 3}+
               </AppText>
@@ -132,19 +143,34 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: colors.background200,
+  },
+  imageLight: {
+    borderColor: colors.light.background200,
+  },
+  imageDark: {
+    borderColor: colors.dark.background200,
   },
   innerText: {
     fontSize: 25,
-    color: colors.displayAsWhite,
     fontWeight: "bold",
     zIndex: 1234,
+  },
+  innerTextlight: {
+    color: colors.light.displayAsWhite,
+  },
+  innerTextDark: {
+    color: colors.dark.displayAsWhite,
   },
   opaqImage: {
     position: "absolute",
     width: "100%",
     height: "100%",
-    backgroundColor: "#00000099",
+  },
+  opaqImageLight: {
+    backgroundColor: colors.light.transparentBackground,
+  },
+  opaqImageDark: {
+    backgroundColor: colors.dark.transparentBackground,
   },
   title: {
     fontSize: 20,

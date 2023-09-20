@@ -13,6 +13,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import Accordion from "../Accordion";
 import { useEffect } from "react";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const faqCategories = ["All", "General", "Account", "Service", "Payment"];
 const FAQs = [
@@ -66,7 +67,9 @@ const FAQs = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.  Quas voluptas molestias nobis temporibus, architecto omnis minima similique unde iusto iste, velit hic explicabo quibusdam accusantium nisi voluptatum tempora quia debitis.",
   },
 ];
+
 const FAQ = () => {
+  const { state } = useTheme();
   const [activeQuestion, setActiveQuestion] = useState(FAQs[1]._id);
   const [activeCategory, setActiveCategory] = useState(faqCategories[0]);
   const [faqsToDisplay, setFaqsToDisplay] = useState(FAQs);
@@ -132,7 +135,10 @@ const FAQ = () => {
             <TouchableOpacity>
               <MaterialCommunityIcons
                 name="filter-variant"
-                style={styles.filter}
+                style={[
+                  styles.filter,
+                  { color: colors[state.theme].primaryColor },
+                ]}
               />
             </TouchableOpacity>
           }
@@ -165,6 +171,5 @@ const styles = StyleSheet.create({
   filter: {
     marginRight: 16,
     fontSize: 20,
-    color: colors.primaryColor,
   },
 });

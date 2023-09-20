@@ -1,29 +1,32 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
-import { users } from "../db";
-import AccountCard from "../components/cards/AccountCard";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import { useState } from "react";
 import AppButton from "../components/AppButton";
 import FAQ from "../components/helpCenter/FAQ";
 import ContactUs from "../components/helpCenter/ContactUs";
+import { useTheme } from "../contexts/ThemeContext";
 
 const HelpCenterScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [showFAQ, setShowFAQ] = useState(true);
 
   const activeTabStyle = {
-    borderBottomColor: colors.primaryColor,
+    borderBottomColor: colors[state.theme].primaryColor,
     borderBottomWidth: 3,
   };
 
   const activeTabTextStyle = {
-    color: colors.primaryColor,
+    color: colors[state.theme].primaryColor,
   };
+
+  const tabTextColor = { color: colors[state.theme].lightText };
+  const tabBorderColor = { borderBottomColor: colors[state.theme].border200 };
 
   return (
     <Screen scrollable={false} style={{ height: "100%" }}>
@@ -34,7 +37,7 @@ const HelpCenterScreen = ({ navigation }) => {
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
             size={24}
-            color={colors.primaryText}
+            color={colors[state.theme].primaryText}
           />
         }
       />
@@ -42,16 +45,24 @@ const HelpCenterScreen = ({ navigation }) => {
       <View style={styles.tabs}>
         <AppButton
           onPress={() => setShowFAQ(true)}
-          style={[styles.tab, showFAQ ? activeTabStyle : {}]}
-          textStyle={[styles.tabText, showFAQ ? activeTabTextStyle : {}]}
+          style={[styles.tab, tabBorderColor, showFAQ ? activeTabStyle : {}]}
+          textStyle={[
+            styles.tabText,
+            tabTextColor,
+            showFAQ ? activeTabTextStyle : {},
+          ]}
           secondary
         >
           FAQ
         </AppButton>
         <AppButton
           onPress={() => setShowFAQ(false)}
-          style={[styles.tab, !showFAQ ? activeTabStyle : {}]}
-          textStyle={[styles.tabText, !showFAQ ? activeTabTextStyle : {}]}
+          style={[styles.tab, tabBorderColor, !showFAQ ? activeTabStyle : {}]}
+          textStyle={[
+            styles.tabText,
+            tabTextColor,
+            !showFAQ ? activeTabTextStyle : {},
+          ]}
           secondary
         >
           Contact Us
@@ -69,13 +80,11 @@ const styles = StyleSheet.create({
   accountCard: {
     marginVertical: 12,
   },
-
   tab: {
     flex: 1,
     backgroundColor: "transparent",
     paddingVertical: 5,
     borderRadius: 0,
-    borderBottomColor: colors.border200,
     borderBottomWidth: 1,
   },
   tabs: {
@@ -85,6 +94,5 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 18,
-    color: colors.lightText,
   },
 });

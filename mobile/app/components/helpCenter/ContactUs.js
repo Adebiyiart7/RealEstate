@@ -5,13 +5,15 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // LOCAL IMPORTS
 import colors from "../../config/colors";
 import AppText from "../AppText";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const ContactUs = () => {
+  const { state } = useTheme();
   const Item = React.memo(({ icon, title }) => (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity style={[styles.item, itemTheme[state.theme]]}>
       <MaterialCommunityIcons
         name={icon}
-        color={colors.primaryColor}
+        color={colors[state.theme].primaryColor}
         size={25}
       />
       <AppText style={styles.title}>{title}</AppText>
@@ -40,7 +42,14 @@ const styles = StyleSheet.create({
     padding: 16,
     marginVertical: 10,
     borderRadius: 16,
-    backgroundColor: colors.white,
+  },
+  itemTheme: {
+    light: {
+      backgroundColor: colors.light.white,
+    },
+    dark: {
+      backgroundColor: colors.dark.white,
+    },
   },
   title: {
     fontWeight: "500",

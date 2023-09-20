@@ -1,13 +1,17 @@
-import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
+import { Fontisto } from "@expo/vector-icons";
+import { ScrollView, StyleSheet } from "react-native";
+
+// LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import MenuItem from "../components/MenuItem";
-import { Fontisto } from "@expo/vector-icons";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
+import { useTheme } from "../contexts/ThemeContext";
 
 const SecurityScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [rememberMe, setsetRememberMe] = useState(true);
   const [faceID, setFaceID] = useState(true);
   const [biometricID, setBiometricID] = useState(false);
@@ -19,14 +23,14 @@ const SecurityScreen = ({ navigation }) => {
           <Fontisto
             name="toggle-on"
             size={40}
-            color={colors.primaryColor}
+            color={colors[state.theme].primaryColor}
             onPress={() => setState(!state)}
           />
         ) : (
           <Fontisto
             name="toggle-off"
             size={40}
-            color={colors.lightText}
+            color={colors[state.theme].lightText}
             onPress={() => setState(!state)}
           />
         )}

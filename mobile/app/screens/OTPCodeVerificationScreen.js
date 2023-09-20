@@ -6,11 +6,12 @@ import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppText from "../components/AppText";
 import PinForm from "../components/form/PinForm";
-import defaultStyles from "../config/styles";
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const OTPCodeVerificationScreen = ({ navigation }) => {
+  const { state } = useTheme();
   let counter = 5;
   const [time, setTime] = useState(counter);
   const [showResend, setShowResend] = useState(false);
@@ -48,11 +49,27 @@ const OTPCodeVerificationScreen = ({ navigation }) => {
           <View style={styles.resendText}>
             {!showResend ? (
               <AppText>
-                Resend code in <AppText style={styles.time}>{time}</AppText>s
+                Resend code in{" "}
+                <AppText
+                  style={[
+                    styles.time,
+                    { color: colors[state.theme].primaryColor },
+                  ]}
+                >
+                  {time}
+                </AppText>
+                s
               </AppText>
             ) : (
               <TouchableOpacity>
-                <AppText style={styles.resendButton}>Resend</AppText>
+                <AppText
+                  style={[
+                    styles.resendButton,
+                    { color: colors[state.theme].primaryColor },
+                  ]}
+                >
+                  Resend
+                </AppText>
               </TouchableOpacity>
             )}
           </View>
@@ -76,7 +93,6 @@ const styles = StyleSheet.create({
     marginVertical: 40,
   },
   resendButton: {
-    color: colors.primaryColor,
     fontWeight: "600",
   },
   text: {
@@ -86,6 +102,5 @@ const styles = StyleSheet.create({
   },
   time: {
     fontWeight: "600",
-    color: colors.primaryColor,
   },
 });

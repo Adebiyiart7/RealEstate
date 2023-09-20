@@ -13,20 +13,32 @@ import AccountCard from "../cards/AccountCard";
 import AppText from "../AppText";
 import colors from "../../config/colors";
 import routes from "../../config/routes";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const ChatInfo = ({ item }) => {
+  const { state } = useTheme();
   const dateTime = new Date(item.lastMessageDateTime);
 
   return (
     <View style={{ display: "flex", alignItems: "flex-end" }}>
       <View style={styles.messagesCountContainer}>
         {item.unReadMessagesCount ? (
-          <AppText style={styles.messagesCount}>
+          <AppText
+            style={[
+              styles.messagesCount,
+              {
+                color: colors[state.theme].white,
+                backgroundColor: colors[state.theme].primaryColor,
+              },
+            ]}
+          >
             {item.unReadMessagesCount}
           </AppText>
         ) : null}
       </View>
-      <AppText style={styles.dateTime}>
+      <AppText
+        style={[styles.dateTime, { color: colors[state.theme].mediumText }]}
+      >
         {dateTime.getHours()}:{dateTime.getMinutes()}
       </AppText>
     </View>
@@ -71,7 +83,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   dateTime: {
-    color: colors.mediumText,
     fontSize: 12,
     fontWeight: "600",
   },
@@ -80,10 +91,8 @@ const styles = StyleSheet.create({
     width: 25,
     fontSize: 15,
     textAlign: "center",
-    backgroundColor: colors.primaryColor,
     fontWeight: "500",
     borderRadius: 20,
-    color: colors.white,
     marginBottom: 3,
     paddingTop: 2,
   },

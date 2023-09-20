@@ -17,15 +17,17 @@ import defaultStyles from "../config/styles";
 import PropertyDisplayFormat from "../components/PropertyDisplayFormat";
 import { useFavorite } from "../contexts/FavoriteHomeContext";
 import utils from "../utils";
+import { useTheme } from "../contexts/ThemeContext";
 
 const FavoritesScreen = ({ navigation }) => {
-  const { state } = useFavorite();
+  const { state: favoriteState } = useFavorite();
+  const { state: themeState } = useTheme();
   const [focusedItem, setFocusedItem] = useState("All");
   const [displayFormat, setDisplayFormat] = useState("grid"); // list or grid
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   const favoriteHomes = estates.filter((estate) =>
-    state.favorites.includes(estate._id)
+    favoriteState.favorites.includes(estate._id)
   );
 
   return (
@@ -44,14 +46,14 @@ const FavoritesScreen = ({ navigation }) => {
           <Ionicons
             size={24}
             name={"ios-search-outline"}
-            style={{ colors: colors.primaryText }}
+            style={{ colors: colors[themeState.theme].primaryText }}
           />
         }
         RightIconExtra={
           <Ionicons
             name="md-filter-outline"
             size={24}
-            style={{ colors: colors.primaryText }}
+            style={{ colors: colors[themeState.theme].primaryText }}
             onPress={() => setBottomSheetVisible(true)}
           />
         }
@@ -75,8 +77,8 @@ const FavoritesScreen = ({ navigation }) => {
                       size={18}
                       color={
                         item.name === focusedItem
-                          ? colors.displayAsWhite
-                          : colors.primaryColor
+                          ? colors[themeState.theme].displayAsWhite
+                          : colors[themeState.theme].primaryColor
                       }
                     />
                   )
@@ -89,8 +91,8 @@ const FavoritesScreen = ({ navigation }) => {
         />
         <PropertyDisplayFormat
           displayFormat={displayFormat}
-          propertyCount={`${state.favorites.length} ${utils.pluralize(
-            state.favorites.length,
+          propertyCount={`${favoriteState.favorites.length} ${utils.pluralize(
+            favoriteState.favorites.length,
             "favorite"
           )}`}
           setDisplayFormat={setDisplayFormat}
@@ -102,7 +104,7 @@ const FavoritesScreen = ({ navigation }) => {
                 navigation={navigation}
                 format={displayFormat}
                 item={item}
-                state={state}
+                state={favoriteState}
               />
             </View>
           ))}

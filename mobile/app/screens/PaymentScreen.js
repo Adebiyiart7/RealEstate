@@ -5,16 +5,23 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+// LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import routes from "../config/routes";
+import { useTheme } from "../contexts/ThemeContext";
 
 const PaymentsScreen = ({ navigation }) => {
+  const { state } = useTheme();
+  const cardBackground = { backgroundColor: colors[state.theme].background200 };
+  const connectedTextColor = { color: colors[state.theme].primaryColor };
+
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader
@@ -23,13 +30,13 @@ const PaymentsScreen = ({ navigation }) => {
         RightIcon={
           <MaterialCommunityIcons
             name="qrcode-scan"
-            color={colors.primaryText}
+            color={colors[state.theme].primaryText}
             size={24}
           />
         }
       />
       <ScrollView style={styles.container}>
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={[styles.card, cardBackground]}>
           <View style={styles.left}>
             <Image
               style={styles.image}
@@ -37,10 +44,12 @@ const PaymentsScreen = ({ navigation }) => {
             />
             <AppText style={styles.text}>Apple Pay</AppText>
           </View>
-          <AppText style={styles.connected}>Connected</AppText>
+          <AppText style={[styles.connected, connectedTextColor]}>
+            Connected
+          </AppText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={[styles.card, cardBackground]}>
           <View style={styles.left}>
             <Image
               style={styles.image}
@@ -48,10 +57,12 @@ const PaymentsScreen = ({ navigation }) => {
             />
             <AppText style={styles.text}>Google Pay</AppText>
           </View>
-          <AppText style={styles.connected}>Connected</AppText>
+          <AppText style={[styles.connected, connectedTextColor]}>
+            Connected
+          </AppText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={[styles.card, cardBackground]}>
           <View style={styles.left}>
             <Image
               style={styles.image}
@@ -59,7 +70,9 @@ const PaymentsScreen = ({ navigation }) => {
             />
             <AppText style={styles.text}>**** **** **** 4194</AppText>
           </View>
-          <AppText style={styles.connected}>Connected</AppText>
+          <AppText style={[styles.connected, connectedTextColor]}>
+            Connected
+          </AppText>
         </TouchableOpacity>
         <AppButton
           rounded
@@ -80,14 +93,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: colors.background200,
     borderRadius: 16,
     padding: 16,
     paddingVertical: 20,
     marginBottom: 20,
   },
   connected: {
-    color: colors.primaryColor,
     fontWeight: "700",
     fontSize: 15,
   },

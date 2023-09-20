@@ -9,8 +9,10 @@ import { chats } from "../db";
 import ChatCard from "../components/chat/ChatCard";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const ChatBoardScreen = ({ navigation, route }) => {
+  const { state } = useTheme();
   const _id = route.params._id;
   const chat = chats.find((item) => item._id === _id);
   const { height: screenHeight } = useDimensions().screen;
@@ -26,7 +28,18 @@ const ChatBoardScreen = ({ navigation, route }) => {
         style={[styles.chatCards, { height: screenHeight - 160 - 65 }]}
       >
         <View style={{ display: "flex", alignItems: "center", height: 30 }}>
-          <AppText style={styles.dayText}>Today</AppText>
+          <AppText
+            style={[
+              styles.dayText,
+              {
+                color: colors[state.theme].mediumText,
+                borderColor: colors[state.theme].border200,
+                backgroundColor: colors[state.theme].background200,
+              },
+            ]}
+          >
+            Today
+          </AppText>
         </View>
         <ChatCard
           messageType={"text"} // text, images, audio or video
@@ -91,17 +104,13 @@ const styles = StyleSheet.create({
     // display: "flex",
     // borderWidth: 1,
   },
-
   dayText: {
     position: "absolute",
-    color: colors.mediumText,
     textAlign: "center",
     borderWidth: 1,
-    borderColor: colors.border200,
     paddingVertical: 2,
     paddingHorizontal: 10,
     fontWeight: "bold",
     borderRadius: 3,
-    backgroundColor: colors.background200,
   },
 });

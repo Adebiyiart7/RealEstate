@@ -1,7 +1,8 @@
-import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
 import moment from "moment";
+import React, { useState } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useDimensions } from "@react-native-community/hooks";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 
 // LOCAL IMPORTS
 import Screen from "../../components/Screen";
@@ -11,12 +12,13 @@ import { estates } from "../../db";
 import AppText from "../../components/AppText";
 import utils from "../../utils";
 import ItemSeparatorComponent from "../../components/ItemSeparatorComponent";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import BottomSheet from "../../components/BottomSheet";
 import RateBooking from "../../components/RateBooking";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const EReceiptScreen = ({ navigation, route }) => {
+  const { state } = useTheme();
   const [bottomSheetVisible, setBottomSheetVisible] = useState(true);
   const item = estates.find((i) => i._id === route.params._id);
   const checksDetails = route.params.checksDetails;
@@ -35,7 +37,7 @@ const EReceiptScreen = ({ navigation, route }) => {
         navigation={navigation}
         RightIcon={
           <MaterialCommunityIcons
-            color={colors.primaryText}
+            color={colors[state.theme].primaryText}
             size={24}
             name="dots-horizontal-circle-outline"
           />
@@ -122,14 +124,24 @@ const EReceiptScreen = ({ navigation, route }) => {
             <TouchableOpacity>
               <MaterialCommunityIcons
                 name="content-copy"
-                style={styles.contentCopy}
+                style={[
+                  styles.contentCopy,
+                  { color: colors[state.theme].primaryColor },
+                ]}
               />
             </TouchableOpacity>
           </View>
         </View>
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Status</AppText>
-          <AppText style={styles.paidText}>paid</AppText>
+          <AppText
+            style={[
+              styles.paidText,
+              { color: colors[state.theme].primaryGreen },
+            ]}
+          >
+            paid
+          </AppText>
         </View>
       </View>
     </Screen>
@@ -140,7 +152,6 @@ export default EReceiptScreen;
 
 const styles = StyleSheet.create({
   contentCopy: {
-    color: colors.primaryColor,
     fontSize: 16,
     marginLeft: 8,
     marginTop: 2,
@@ -149,7 +160,6 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     fontWeight: "bold",
     textTransform: "uppercase",
-    color: colors.primaryGreen,
   },
   receiptImage: {
     width: "100%",

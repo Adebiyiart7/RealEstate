@@ -1,10 +1,9 @@
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
-import AppText from "../components/AppText";
 import Card3 from "../components/cards/Card3";
 import Chip from "../components/Chip";
 import SearchBox from "../components/form/SearchBox";
@@ -13,8 +12,10 @@ import colors from "../config/colors";
 import defaultStyles from "../config/styles";
 import { estateCategory, estates } from "../db";
 import PropertyDisplayFormat from "../components/PropertyDisplayFormat";
+import { useTheme } from "../contexts/ThemeContext";
 
 const SearchScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [focusedItem, setFocusedItem] = useState("All");
   const [displayFormat, setDisplayFormat] = useState("list"); // or grid
   const { width: screnWidth } = useDimensions().screen;
@@ -26,14 +27,18 @@ const SearchScreen = ({ navigation }) => {
         <MaterialCommunityIcons
           onPress={() => navigation.goBack()}
           name="arrow-left"
-          color={colors.primaryText}
+          color={colors[state.theme].primaryText}
           size={24}
           style={styles.backArrow}
         />
         <SearchBox
           width={screnWidth - 80}
           RightIcon={
-            <Ionicons size={18} color={colors.primaryColor} name="filter" />
+            <Ionicons
+              size={18}
+              color={colors[state.theme].primaryColor}
+              name="filter"
+            />
           }
         />
       </View>
@@ -55,8 +60,8 @@ const SearchScreen = ({ navigation }) => {
                   size={18}
                   color={
                     item.name === focusedItem
-                      ? colors.white
-                      : colors.primaryColor
+                      ? colors[state.theme].white
+                      : colors[state.theme].primaryColor
                   }
                 />
               )
@@ -91,7 +96,6 @@ const styles = StyleSheet.create({
   backArrow: {
     marginRight: 16,
   },
-
   searchContainer: {
     display: "flex",
     alignItems: "center",

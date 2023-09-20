@@ -1,5 +1,5 @@
 import { Octicons } from "@expo/vector-icons";
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
 
@@ -7,19 +7,19 @@ import { useDimensions } from "@react-native-community/hooks";
 import defaultStyles from "../../config/styles";
 import AppText from "../AppText";
 import colors from "../../config/colors";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const PinForm = ({ pin, setPin, secureTextEntry }) => {
   const inputRef = useRef();
-
+  const { state } = useTheme();
   const { width: screenWidth } = useDimensions().screen;
-
   const textInput = {
     width: (screenWidth - 32 - 7 * 8) / 4,
   };
 
   const focusedInputStyle = {
     borderWidth: 2,
-    borderColor: colors.primaryColor,
+    borderColor: colors[state.theme].primaryColor,
   };
 
   const handleOnPress = (pinValue) => {
@@ -37,7 +37,7 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
         value={pin}
         caretHidden={true}
         keyboardType={"numeric"}
-        style={styles.realInput}
+        style={styles.mainInput}
       />
 
       <AppText
@@ -66,7 +66,7 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
       </AppText>
       <AppText
         onPress={() => handleOnPress(pin[3])}
-        style={[styles.input, textInput]}
+        style={[styles.input, inputTheme[state.theme], textInput]}
       >
         {secureTextEntry
           ? pin[3] && <Octicons name="dot-fill" size={35} />
@@ -83,23 +83,30 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    // alignItems: "center",
-    // maxWidth: 300,
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.border200,
-    borderRadius: defaultStyles.primaryBorderRadius,
     height: 55,
     marginHorizontal: 7,
     textAlign: "center",
     fontSize: 25,
     fontWeight: "500",
     paddingTop: 9,
-    backgroundColor: colors.lightBackground,
-    color: colors.primaryText,
+    borderRadius: defaultStyles.primaryBorderRadius,
   },
-  realInput: {
+  inputTheme: {
+    light: {
+      color: colors.light.primaryText,
+      borderColor: colors.light.border200,
+      backgroundColor: colors.light.lightBackground,
+    },
+    dark: {
+      color: colors.dark.primaryText,
+      borderColor: colors.dark.border200,
+      backgroundColor: colors.dark.lightBackground,
+    },
+  },
+  mainInput: {
     position: "absolute",
     color: "transparent",
   },

@@ -18,6 +18,7 @@ import routes from "../config/routes";
 import { register, reset } from "../features/auth/authSlice";
 import Loading from "../components/Loading";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
@@ -29,6 +30,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterScreen = ({ navigation }) => {
+  const { state: themeState } = useTheme();
   const dispatch = useDispatch();
   const { isLoading, isError, isSuccess, message, user } = useSelector(
     (state) => state.auth
@@ -95,7 +97,10 @@ const RegisterScreen = ({ navigation }) => {
                 <MaterialCommunityIcons
                   name="square-rounded-outline"
                   size={24}
-                  style={styles.rememberMeIcon}
+                  style={[
+                    styles.rememberMeIcon,
+                    { color: colors[themeState.theme].primaryColor },
+                  ]}
                 />
                 <AppText style={styles.rememberMeText}>Remember me</AppText>
               </View>
@@ -104,11 +109,19 @@ const RegisterScreen = ({ navigation }) => {
           )}
         </Formik>
         <AuthFooter styles={styles} />
-        <AppText style={styles.signiInMessage}>
+        <AppText
+          style={[
+            styles.signiInMessage,
+            { color: colors[themeState.theme].lightText },
+          ]}
+        >
           Already have an account?{" "}
           <AppText
             onPress={() => navigation.navigate(routes.LOGIN)}
-            style={styles.signIn}
+            style={[
+              styles.signIn,
+              { color: colors[themeState.theme].primaryColor },
+            ]}
           >
             Sign in
           </AppText>
@@ -130,16 +143,6 @@ export const styles = StyleSheet.create({
     display: "flex",
     paddingBottom: 50,
   },
-  continueText: {
-    fontWeight: "500",
-    color: colors.mediumText,
-  },
-  forgotPassword: {
-    color: colors.primaryColor,
-    fontWeight: "500",
-    textAlign: "center",
-    marginTop: 10,
-  },
   otherOptions: {
     marginTop: 30,
   },
@@ -152,37 +155,16 @@ export const styles = StyleSheet.create({
   },
   rememberMeIcon: {
     marginRight: 5,
-    color: colors.primaryColor,
   },
   rememberMeText: {
     fontWeight: "500",
   },
   signIn: {
-    color: colors.primaryColor,
     fontWeight: "500",
   },
   signiInMessage: {
     marginVertical: 20,
-    color: colors.lightText,
     textAlign: "center",
-  },
-  social: {
-    borderWidth: 1,
-    borderColor: colors.border100,
-    paddingHorizontal: 25,
-    paddingVertical: 12,
-    marginHorizontal: 7,
-    borderRadius: defaultStyles.primaryBorderRadius,
-  },
-  socialImage: {
-    height: 20,
-    width: 20,
-  },
-  socials: {
-    marginTop: 30,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
   },
   title: {
     ...defaultStyles.titleFont,

@@ -1,24 +1,26 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import Screen from "../components/Screen";
-import GoBackArrowHeader from "../components/GoBackArrowHeader";
+import { StyleSheet, View } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+
+// LOCAL IMPORTS
 import colors from "../config/colors";
+import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
 import Chats from "../components/messages/Chats";
 import Calls from "../components/messages/Calls";
+import GoBackArrowHeader from "../components/GoBackArrowHeader";
+import { useTheme } from "../contexts/ThemeContext";
 
 const MessagesScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [showChats, setShowChats] = useState(true);
 
   const activeTabStyle = {
-    borderBottomColor: colors.primaryColor,
+    borderBottomColor: colors[state.theme].primaryColor,
     borderBottomWidth: 3,
   };
-
-  const activeTabTextStyle = {
-    color: colors.primaryColor,
-  };
+  const tabTextColor = { color: colors[state.theme].lightText };
+  const activeTabTextStyle = { color: colors[state.theme].primaryColor };
 
   return (
     <Screen scrollable={false}>
@@ -30,31 +32,44 @@ const MessagesScreen = ({ navigation }) => {
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
             size={24}
-            color={colors.primaryText}
+            color={colors[state.theme].primaryText}
           />
         }
         RightIconExtra={
           <Ionicons
             size={24}
             name={"ios-search-outline"}
-            color={colors.primaryText}
+            color={colors[state.theme].primaryText}
           />
         }
       />
-      <View style={styles.tabs}>
+      <View
+        style={[
+          styles.tabs,
+          { borderBottomColor: colors[state.theme].border200 },
+        ]}
+      >
         <AppButton
+          secondary
           onPress={() => setShowChats(true)}
           style={[styles.tab, showChats ? activeTabStyle : {}]}
-          textStyle={[styles.tabText, showChats ? activeTabTextStyle : {}]}
-          secondary
+          textStyle={[
+            styles.tabText,
+            tabTextColor,
+            showChats ? activeTabTextStyle : {},
+          ]}
         >
           Chats
         </AppButton>
         <AppButton
+          secondary
           onPress={() => setShowChats(false)}
           style={[styles.tab, !showChats ? activeTabStyle : {}]}
-          textStyle={[styles.tabText, !showChats ? activeTabTextStyle : {}]}
-          secondary
+          textStyle={[
+            styles.tabText,
+            tabTextColor,
+            !showChats ? activeTabTextStyle : {},
+          ]}
         >
           Calls
         </AppButton>
@@ -78,7 +93,6 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     paddingVertical: 5,
     borderRadius: 0,
-    borderBottomColor: colors.border200,
     borderBottomWidth: 1,
   },
   tabs: {
@@ -87,6 +101,5 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 18,
-    color: colors.lightText,
   },
 });

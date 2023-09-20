@@ -11,8 +11,10 @@ import colors from "../../config/colors";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
 import LoginBottomSheet from "../../components/LoginBottomSheet";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const BookingScreen = ({ route, navigation }) => {
+  const { state } = useTheme();
   const [startDate] = useState(new Date(1611106322840));
   const [endDate] = useState(new Date(1671706322840));
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
@@ -50,20 +52,25 @@ const BookingScreen = ({ route, navigation }) => {
               </AppText>
               <MaterialCommunityIcons
                 name="calendar"
-                color={colors.mediumText}
+                color={colors[state.theme].mediumText}
                 size={20}
               />
             </TouchableOpacity>
           </View>
           <View style={styles.right}>
             <Header title={"Check Out"} />
-            <TouchableOpacity style={styles.input}>
+            <TouchableOpacity
+              style={[
+                styles.input,
+                { backgroundColor: colors[state.theme].background200 },
+              ]}
+            >
               <AppText>
                 {endDate && moment(endDate).format("DD-MM-YYYY")}
               </AppText>
               <MaterialCommunityIcons
                 name="calendar"
-                color={colors.mediumText}
+                color={colors[state.theme].mediumText}
                 size={20}
               />
             </TouchableOpacity>
@@ -76,7 +83,13 @@ const BookingScreen = ({ route, navigation }) => {
 
           <TextInput
             placeholder="Write to the owner..."
-            style={styles.noteInput}
+            style={[
+              styles.noteInput,
+              {
+                color: colors[state.theme].primaryText,
+                backgroundColor: colors[state.theme].background200,
+              },
+            ]}
             name={"note"}
             numberOfLines={3}
             multiline
@@ -132,7 +145,6 @@ const styles = StyleSheet.create({
     marginTop: 6,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    backgroundColor: colors.background200,
     justifyContent: "space-between",
   },
   left: {
@@ -148,9 +160,7 @@ const styles = StyleSheet.create({
   noteInput: {
     marginVertical: 10,
     borderRadius: 5,
-    backgroundColor: colors.background200,
     padding: 16,
     fontSize: 16,
-    color: colors.primaryText,
   },
 });

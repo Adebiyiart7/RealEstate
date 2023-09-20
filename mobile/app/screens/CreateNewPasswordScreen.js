@@ -1,7 +1,8 @@
 import React from "react";
+import * as Yup from "yup";
 import { Formik } from "formik";
 import { Image, StyleSheet, View } from "react-native";
-import * as Yup from "yup";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -10,10 +11,9 @@ import AppText from "../components/AppText";
 import constants from "../config/constants";
 import AppFormField from "../components/form/AppFormField";
 import SubmitButton from "../components/form/SubmitButton";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import defaultStyles from "../config/styles";
 import ProcessStatus from "../components/ProcessStatus";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -22,6 +22,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateNewPasswordScreen = ({ navigation }) => {
+  const { state } = useTheme();
+
   return (
     <>
       <ProcessStatus
@@ -65,11 +67,19 @@ const CreateNewPasswordScreen = ({ navigation }) => {
                 secureTextEntry
                 placeholder="Confirm New Password"
               />
-              <View style={styles.rememberMe}>
+              <View
+                style={[
+                  styles.rememberMe,
+                  { color: colors[state.theme].primaryColor },
+                ]}
+              >
                 <MaterialCommunityIcons
                   name="square-rounded-outline"
                   size={24}
-                  style={styles.checkbox}
+                  style={[
+                    styles.checkbox,
+                    { color: colors[state.theme].primaryColor },
+                  ]}
                 />
                 <AppText>Remember me</AppText>
               </View>
@@ -89,7 +99,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   checkbox: {
-    color: colors.primaryColor,
     marginRight: 5,
   },
   image: {

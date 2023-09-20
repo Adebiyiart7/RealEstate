@@ -5,6 +5,7 @@ import { useState } from "react";
 // LOCAL IMPORTS
 import defaultStyles from "../../config/styles";
 import colors from "../../config/colors";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const SearchBox = ({
   name,
@@ -15,13 +16,18 @@ const SearchBox = ({
   width,
   ...otherProps
 }) => {
+  const { state } = useTheme();
   const [iconName, setIconName] = useState("ios-search-outline");
   const [isFocus, setIsFocus] = useState(false);
-  const iconColor = isFocus ? colors.primaryColor : colors.mediumText;
+  const iconColor = isFocus
+    ? colors[state.theme].primaryColor
+    : colors[state.theme].mediumText;
 
   const textInputStyle = {
     paddingVertical: 8,
-    borderColor: isFocus ? colors.primaryColor : colors.border200,
+    borderColor: isFocus
+      ? colors[state.theme].primaryColor
+      : colors[state.theme].border200,
     borderWidth: isFocus ? 1.5 : 1,
   };
 
@@ -33,7 +39,7 @@ const SearchBox = ({
         size={18}
       />
       <TextInput
-        style={[styles.textInput, textInputStyle]}
+        style={[styles.textInput, textInputStyle, textInputTheme]}
         name={"search"}
         onFocus={() => {
           setIsFocus(true);
@@ -43,7 +49,7 @@ const SearchBox = ({
           setIsFocus(false);
         }}
         placeholder="Search..."
-        placeholderTextColor={colors.lightText}
+        placeholderTextColor={colors[state.theme].lightText}
         {...otherProps}
       />
       <TouchableOpacity onPress={onPressFilter} style={styles.rightIcon}>
@@ -77,10 +83,18 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderRadius: defaultStyles.primaryBorderRadius,
-    backgroundColor: colors.background100,
     paddingVertical: 10,
     paddingHorizontal: 37,
     fontSize: 16,
-    color: colors.primaryText,
+  },
+  textInputTheme: {
+    light: {
+      color: colors.light.primaryText,
+      backgroundColor: colors.light.background100,
+    },
+    dark: {
+      color: colors.dark.primaryText,
+      backgroundColor: colors.dark.background100,
+    },
   },
 });

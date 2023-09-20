@@ -1,15 +1,18 @@
-import { FlatList, StyleSheet } from "react-native";
 import React from "react";
+import { FlatList, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import { users } from "../db";
 import AccountCard from "../components/cards/AccountCard";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const InviteFriendsScreen = ({ navigation }) => {
+  const { state } = useTheme();
+
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader navigation={navigation} title={"Invite Friends"} />
@@ -26,7 +29,7 @@ const InviteFriendsScreen = ({ navigation }) => {
             Icon={
               <MaterialCommunityIcons
                 name="plus"
-                color={colors.primaryColor}
+                color={colors[state.theme].primaryColor}
                 size={30}
               />
             }

@@ -1,18 +1,26 @@
 // NODE_MODULES
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 // LOCAL IMPORTS
 import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import Screen from "../components/Screen";
-import SeeAllText from "../components/SeeAllText";
 import TextWithLines from "../components/TextWithLines";
 import colors from "../config/colors";
 import routes from "../config/routes";
 import defaultStyles from "../config/styles";
+import { useTheme } from "../contexts/ThemeContext";
 
 const LetsYouIn = ({ navigation }) => {
+  const { state } = useTheme();
+  const socialTextStyles = { color: colors[state.theme].primaryText };
+  const socialActionsStyles = {
+    borderColor: colors[state.theme].border200,
+    color: colors[state.theme].primaryText,
+    borderRadius: defaultStyles.primaryBorderRadius,
+  };
+
   return (
     <Screen>
       <View style={styles.container}>
@@ -21,7 +29,10 @@ const LetsYouIn = ({ navigation }) => {
           RightIcon={
             <AppText
               onPress={() => navigation.navigate(routes.TAB)}
-              style={styles.skipText}
+              style={[
+                styles.skipText,
+                { color: colors[state.theme].primaryColor },
+              ]}
             >
               Skip
             </AppText>
@@ -35,22 +46,22 @@ const LetsYouIn = ({ navigation }) => {
         <View style={styles.actions}>
           <AppButton
             startImage={require("../assets/images/facebook-icon.png")}
-            style={styles.socialActions}
-            textStyle={styles.socialText}
+            style={[styles.socialActions, socialActionsStyles]}
+            textStyle={[styles.socialText, socialTextStyles]}
           >
             Continue with Facebook
           </AppButton>
           <AppButton
             startImage={require("../assets/images/google-icon.png")}
-            style={styles.socialActions}
-            textStyle={styles.socialText}
+            style={[styles.socialActions, socialActionsStyles]}
+            textStyle={[styles.socialText, socialTextStyles]}
           >
             Continue with Google
           </AppButton>
           <AppButton
             startImage={require("../assets/images/apple-icon.png")}
-            style={styles.socialActions}
-            textStyle={styles.socialText}
+            style={[styles.socialActions, socialActionsStyles]}
+            textStyle={[styles.socialText, socialTextStyles]}
           >
             Continue with Apple
           </AppButton>
@@ -58,11 +69,19 @@ const LetsYouIn = ({ navigation }) => {
           <AppButton rounded onPress={() => navigation.navigate(routes.LOGIN)}>
             Sign in with password
           </AppButton>
-          <AppText style={styles.noAccountText}>
+          <AppText
+            style={[
+              styles.noAccountText,
+              { color: colors[state.theme].lightText },
+            ]}
+          >
             Don't have an account?{" "}
             <AppText
               onPress={() => navigation.navigate(routes.REGISTER)}
-              style={styles.signUpText}
+              style={[
+                styles.signUpText,
+                { color: colors[state.theme].primaryColor },
+              ]}
             >
               Sign up
             </AppText>
@@ -90,26 +109,17 @@ const styles = StyleSheet.create({
   },
   noAccountText: {
     textAlign: "center",
-    color: colors.lightText,
     marginVertical: 10,
   },
   signUpText: {
-    color: colors.primaryColor,
     fontWeight: "500",
   },
   skipText: {
     fontSize: 18,
-    color: colors.primaryColor,
   },
   socialActions: {
     backgroundColor: "transparent",
     borderWidth: 1,
-    borderColor: colors.border200,
-    color: colors.primaryText,
-    borderRadius: defaultStyles.primaryBorderRadius,
-  },
-  socialText: {
-    color: colors.primaryText,
   },
   text: {
     fontSize: 35,

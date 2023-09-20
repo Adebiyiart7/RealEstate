@@ -1,15 +1,11 @@
-import {
-  FlatList,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { useDimensions } from "@react-native-community/hooks";
 import React, { useState } from "react";
+import { useDimensions } from "@react-native-community/hooks";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FlatList, ImageBackground, StyleSheet, View } from "react-native";
+
+// LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import { estates } from "../db";
 import AppText from "../components/AppText";
@@ -17,21 +13,23 @@ import utils from "../utils";
 import ItemSeparatorComponent from "../components/ItemSeparatorComponent";
 import AppButton from "../components/AppButton";
 import routes from "../config/routes";
+import { useTheme } from "../contexts/ThemeContext";
 
 const MyBookingScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [startDate] = useState(new Date(1611106322840));
   const [endDate] = useState(new Date(1671706322840));
   const [showActive, setShowActive] = useState(true);
   const { height } = useDimensions().screen;
 
   const activeTabStyle = {
-    borderBottomColor: colors.primaryColor,
+    borderBottomColor: colors[state.theme].primaryColor,
     borderBottomWidth: 3,
   };
 
-  const activeTabTextStyle = {
-    color: colors.primaryColor,
-  };
+  const tabTextColor = { color: colors[state.theme].lightText };
+  const activeTabTextStyle = { color: colors[state.theme].primaryColor };
+  const tabBorderColor = { borderBottomColor: colors[state.theme].border200 };
 
   return (
     <Screen scrollable={false}>
@@ -41,7 +39,7 @@ const MyBookingScreen = ({ navigation }) => {
         RightIcon={
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
-            color={colors.primaryText}
+            color={colors[state.theme].primaryText}
             size={24}
           />
         }
@@ -50,16 +48,28 @@ const MyBookingScreen = ({ navigation }) => {
       <View style={styles.tabs}>
         <AppButton
           onPress={() => setShowActive(true)}
-          style={[styles.tab, showActive ? activeTabStyle : {}]}
-          textStyle={[styles.tabText, showActive ? activeTabTextStyle : {}]}
+          style={[styles.tab, tabBorderColor, showActive ? activeTabStyle : {}]}
+          textStyle={[
+            styles.tabText,
+            tabTextColor,
+            showActive ? activeTabTextStyle : {},
+          ]}
           secondary
         >
           Active
         </AppButton>
         <AppButton
           onPress={() => setShowActive(false)}
-          style={[styles.tab, !showActive ? activeTabStyle : {}]}
-          textStyle={[styles.tabText, !showActive ? activeTabTextStyle : {}]}
+          style={[
+            styles.tab,
+            tabBorderColor,
+            !showActive ? activeTabStyle : {},
+          ]}
+          textStyle={[
+            styles.tabText,
+            tabTextColor,
+            !showActive ? activeTabTextStyle : {},
+          ]}
           secondary
         >
           Completed
@@ -78,11 +88,19 @@ const MyBookingScreen = ({ navigation }) => {
                 source={{ uri: item.image }}
                 style={styles.image}
               >
-                <AppText style={styles.rating}>
+                <AppText
+                  style={[
+                    styles.rating,
+                    {
+                      color: colors[state.theme].primaryColor,
+                      backgroundColor: colors[state.theme].white,
+                    },
+                  ]}
+                >
                   <MaterialCommunityIcons
                     name="star"
                     size={12}
-                    color={colors.primaryOrange}
+                    color={colors[state.theme].primaryOrange}
                   />
                   {item.rating}
                 </AppText>
@@ -92,19 +110,44 @@ const MyBookingScreen = ({ navigation }) => {
                   <View>
                     <AppText
                       numberOfLines={2}
-                      style={[styles.firstText, { marginTop: 0 }]}
+                      style={[
+                        styles.firstText,
+                        {
+                          marginTop: 0,
+                          color: colors[state.theme].primaryText,
+                        },
+                      ]}
                     >
                       {item.name}
                     </AppText>
-                    <AppText numberOfLines={2} style={styles.secondText}>
+                    <AppText
+                      numberOfLines={2}
+                      style={[
+                        styles.secondText,
+                        { color: colors[state.theme].mediumText },
+                      ]}
+                    >
                       Feb 02 - 07, 2023 (6 days)
                     </AppText>
                   </View>
                   <AppText numberOfLines={1} style={styles.footer}>
-                    <AppText style={[styles.f1, { marginTop: 10 }]}>
+                    <AppText
+                      style={[
+                        styles.f1,
+                        {
+                          marginTop: 10,
+                          color: colors[state.theme].primaryColor,
+                        },
+                      ]}
+                    >
                       &#8358;{utils.separateToThounsand(item.cost)}
                     </AppText>
-                    <AppText style={styles.f2}>
+                    <AppText
+                      style={[
+                        styles.f2,
+                        { color: colors[state.theme].mediumText },
+                      ]}
+                    >
                       &nbsp;/&nbsp;{item.duration}
                     </AppText>
                   </AppText>
@@ -112,7 +155,10 @@ const MyBookingScreen = ({ navigation }) => {
               </View>
             </View>
             <ItemSeparatorComponent
-              style={{ marginBottom: 10, borderBottomColor: colors.border200 }}
+              style={{
+                marginBottom: 10,
+                borderBottomColor: colors[state.theme].border200,
+              }}
             />
             <View style={styles.buttons}>
               <AppButton
@@ -151,7 +197,10 @@ const MyBookingScreen = ({ navigation }) => {
         )}
         ItemSeparatorComponent={
           <ItemSeparatorComponent
-            style={{ marginBottom: 10, borderBottomColor: colors.border200 }}
+            style={{
+              marginBottom: 10,
+              borderBottomColor: colors[state.theme].border200,
+            }}
           />
         }
       />
@@ -176,7 +225,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 20,
   },
-
   details: {
     marginVertical: 5,
     marginHorizontal: 5,
@@ -192,16 +240,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   f1: {
-    color: colors.primaryColor,
     fontWeight: "bold",
     fontSize: 22,
   },
   f2: {
-    color: colors.mediumText,
     width: "50%",
   },
   firstText: {
-    color: colors.primaryText,
     fontSize: 20,
     fontWeight: "bold",
   },
@@ -211,25 +256,25 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     marginTop: 5,
   },
-  secondText: { marginTop: 4, fontWeight: "500", color: colors.mediumText },
+  secondText: {
+    marginTop: 4,
+    fontWeight: "500",
+  },
   rating: {
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: colors.white,
     borderRadius: 9,
     paddingVertical: 2,
     paddingHorizontal: 5,
     fontSize: 11,
     fontWeight: "bold",
-    color: colors.primaryColor,
   },
   tab: {
     flex: 1,
     backgroundColor: "transparent",
     paddingVertical: 5,
     borderRadius: 0,
-    borderBottomColor: colors.border200,
     borderBottomWidth: 1,
   },
   tabs: {
@@ -239,7 +284,6 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 18,
-    color: colors.lightText,
   },
   texts: { display: "flex", flex: 1, justifyContent: "space-between" },
 });

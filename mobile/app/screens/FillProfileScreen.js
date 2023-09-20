@@ -1,26 +1,24 @@
-import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
-import { useEffect, useState } from "react";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import { useContext } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //LOCAL IMPORTS
-import defaultStyles from "../config/styles";
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import AppFormField from "../components/form/AppFormField";
-import SubmitButton from "../components/form/SubmitButton";
 import BottomSheet from "../components/BottomSheet";
 import SelectOptions from "../components/form/SelectOptions";
 import CodeBottomSheet from "../components/form/CodeBottomSheet";
 import AppButton from "../components/AppButton";
 import { updateProfile } from "../features/profile/profileSlice";
 import { clearAuth } from "../features/auth/authSlice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import routes from "../config/routes";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const validationSchema = Yup.object().shape({
   fullname: Yup.string().required().max(255).label("Full Name"),
@@ -32,6 +30,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const FillProfileScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [code, setCode] = useState("");
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [bottomSheetVisibleCode, setBottomSheetVisibleCode] = useState(false);
@@ -99,14 +98,26 @@ const FillProfileScreen = ({ navigation }) => {
     <Screen>
       <GoBackArrowHeader title="Fill Your Profile" navigation={navigation} />
       <View style={styles.photoContainer}>
-        <View style={styles.photo}>
-          <Ionicons style={styles.avatar} name="md-person" size={125} />
+        <View
+          style={[
+            styles.photo,
+            { backgroundColor: colors[state.theme].background100 },
+          ]}
+        >
+          <Ionicons
+            style={[styles.avatar, { color: colors[state.theme].mediumText }]}
+            name="md-person"
+            size={125}
+          />
         </View>
         <TouchableOpacity>
           <FontAwesome
             name="pencil-square"
             size={30}
-            style={styles.editPhoto}
+            style={[
+              styles.editPhoto,
+              { color: colors[state.theme].primaryColor },
+            ]}
           />
         </TouchableOpacity>
       </View>
@@ -196,8 +207,6 @@ export default FillProfileScreen;
 
 const styles = StyleSheet.create({
   avatar: {
-    color: colors.mediumText,
-    // opacity: 40,
     position: "relative",
     top: 12,
   },
@@ -206,14 +215,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 3,
     right: 3,
-    color: colors.primaryColor,
   },
   form: {
     marginVertical: 50,
   },
   photo: {
     overflow: "hidden",
-    backgroundColor: colors.background100,
     borderRadius: 200,
     height: 125,
   },

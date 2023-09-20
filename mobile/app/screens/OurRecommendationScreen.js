@@ -7,8 +7,11 @@ import Screen from "../components/Screen";
 import OurRecommendation from "../components/OurRecommendation";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const OurRecommendationScreen = ({ navigation }) => {
+  const { state } = useTheme();
+
   return (
     <Screen style={styles.container}>
       <GoBackArrowHeader
@@ -16,7 +19,7 @@ const OurRecommendationScreen = ({ navigation }) => {
         title={"Our Recommendation"}
         RightIcon={
           <Ionicons
-            style={{ colors: colors.primaryText }}
+            style={{ colors: colors[state.theme].primaryText }}
             name={"ios-search-outline"}
             size={24}
           />

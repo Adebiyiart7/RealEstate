@@ -2,8 +2,8 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FontAwesome } from "@expo/vector-icons";
 import Constants from "expo-constants";
+import { ScrollView } from "react-native-gesture-handler";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -11,7 +11,6 @@ import AccountCard from "../components/cards/AccountCard";
 import colors from "../config/colors";
 import SearchBox from "../components/form/SearchBox";
 import AppText from "../components/AppText";
-import defaultStyles from "../config/styles";
 import Card2 from "../components/cards/Card2";
 import { featured } from "../db";
 import BottomSheet from "../components/BottomSheet";
@@ -19,24 +18,29 @@ import PropertiesFilterContent from "../components/PropertiesFilterContent";
 import routes from "../config/routes";
 import OurRecommendation from "../components/OurRecommendation";
 import SeeAllText from "../components/SeeAllText";
-import Loading from "../components/Loading";
 import LoginBottomSheet from "../components/LoginBottomSheet";
 import FillProfileBottomSheet from "../components/FillProfileBottomSheet";
 import { profile as setProfile } from "../features/profile/profileSlice";
 import AppButton from "../components/AppButton";
-import { ScrollView } from "react-native-gesture-handler";
 import { useTheme } from "../contexts/ThemeContext";
 
 const Header = ({ title, right, onPressRight }) => {
+  const { state } = useTheme();
+
   return (
     <View style={styles.header}>
-      <AppText style={styles.headerTitle}>{title}</AppText>
+      <AppText
+        style={[styles.headerTitle, { color: colors[state.theme].primaryText }]}
+      >
+        {title}
+      </AppText>
       <TouchableOpacity onPress={onPressRight}>{right}</TouchableOpacity>
     </View>
   );
 };
 
 const HomeScreen = ({ navigation }) => {
+  const { state } = useTheme();
   // const [loading, setLoading] = useState(true);
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [bottomSheetVisibleLogin, setBottomSheetVisibleLogin] = useState(false);
@@ -93,7 +97,7 @@ const HomeScreen = ({ navigation }) => {
             user && (
               <Ionicons
                 name="notifications-outline"
-                color={colors.mediumText}
+                color={colors[state.theme].mediumText}
                 size={24}
                 onPress={() => {
                   navigation.navigate(routes.NOTIFICATIONS);
@@ -111,7 +115,7 @@ const HomeScreen = ({ navigation }) => {
             <Ionicons
               style={{ marginRight: 20 }}
               name="md-filter-sharp"
-              color={colors.primaryColor}
+              color={colors[state.theme].primaryColor}
               size={18}
             />
           }
@@ -173,7 +177,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontWeight: "bold",
-    color: colors.primaryText,
     fontSize: 17,
     marginBottom: 12,
   },

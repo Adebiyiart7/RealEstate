@@ -37,7 +37,11 @@ const ProfileScreen = ({ navigation }) => {
   const LogoutConfirmation = () => {
     return (
       <View style={styles.logoutBottomSheet}>
-        <AppText style={styles.logoutHeader}>Logout</AppText>
+        <AppText
+          style={[styles.logoutHeader, { color: colors[state.theme].danger }]}
+        >
+          Logout
+        </AppText>
         <ItemSeparatorComponent style={{ marginVertical: 20 }} />
         <AppText style={styles.logoutMessage}>
           Are you sure you want to log out?
@@ -74,7 +78,7 @@ const ProfileScreen = ({ navigation }) => {
         RightIcon={
           <MaterialCommunityIcons
             name="dots-horizontal-circle-outline"
-            color={colors.primaryText}
+            color={colors[state.theme].primaryText}
             size={24}
           />
         }
@@ -84,7 +88,12 @@ const ProfileScreen = ({ navigation }) => {
         setBottomSheetVisible={setShowLogoutBottomSheet}
         bottomSheetContent={<LogoutConfirmation />}
       />
-      <View style={styles.user}>
+      <View
+        style={[
+          styles.user,
+          { borderBottomColor: colors[state.theme].border200 },
+        ]}
+      >
         <View>
           <Image
             style={styles.avatar}
@@ -94,7 +103,10 @@ const ProfileScreen = ({ navigation }) => {
             <FontAwesome
               name="pencil-square"
               size={30}
-              style={styles.editPhoto}
+              style={[
+                styles.editPhoto,
+                { color: colors[state.theme].primaryColor },
+              ]}
             />
           </TouchableOpacity>
         </View>
@@ -143,7 +155,7 @@ const ProfileScreen = ({ navigation }) => {
               <Fontisto
                 name="toggle-on"
                 size={30}
-                color={colors.primaryColor}
+                color={colors[state.theme].primaryColor}
                 onPress={() => {
                   setIsDarkMode(!isDarkMode);
                   setLightTheme();
@@ -153,7 +165,7 @@ const ProfileScreen = ({ navigation }) => {
               <Fontisto
                 name="toggle-off"
                 size={30}
-                color={colors.lightText}
+                color={colors[state.theme].lightText}
                 onPress={() => {
                   setIsDarkMode(!isDarkMode);
                   setDarkTheme();
@@ -194,7 +206,6 @@ const styles = StyleSheet.create({
   },
   editPhoto: {
     position: "absolute",
-    color: colors.primaryColor,
     right: 0,
     bottom: 10,
   },
@@ -214,7 +225,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
   },
   logoutHeader: {
-    color: colors.danger,
     fontWeight: "bold",
     fontSize: 20,
     textAlign: "center",
@@ -232,7 +242,6 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     marginBottom: 20,
-    borderBottomColor: colors.border200,
     borderBottomWidth: 1,
   },
 });

@@ -10,8 +10,10 @@ import colors from "../config/colors";
 import languages from "../config/languages";
 import ItemSeparatorComponent from "../components/ItemSeparatorComponent";
 import AppText from "../components/AppText";
+import { useTheme } from "../contexts/ThemeContext";
 
 const LanguageScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [activeLanguage, setActiveLanguage] = useState(languages[0].name);
 
   const Switch = React.memo(({ language }) => {
@@ -22,14 +24,14 @@ const LanguageScreen = ({ navigation }) => {
             <MaterialCommunityIcons
               name="radiobox-marked"
               size={24}
-              color={colors.primaryColor}
+              color={colors[state.theme].primaryColor}
               onPress={() => setActiveLanguage(language.name)}
             />
           ) : (
             <MaterialCommunityIcons
               name="radiobox-blank"
               size={24}
-              color={colors.primaryColor}
+              color={colors[state.theme].primaryColor}
               onPress={() => setActiveLanguage(language.name)}
             />
           )
@@ -37,7 +39,7 @@ const LanguageScreen = ({ navigation }) => {
           <MaterialCommunityIcons
             name="radiobox-blank"
             size={24}
-            color={colors.lightText}
+            color={colors[state.theme].lightText}
             style={{ opacity: 0.6 }}
           />
         )}

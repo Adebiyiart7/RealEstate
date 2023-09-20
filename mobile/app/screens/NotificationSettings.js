@@ -1,12 +1,16 @@
-import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
+import { Fontisto } from "@expo/vector-icons";
+import { ScrollView, StyleSheet } from "react-native";
+
+// LOCAL IMPORTS
 import Screen from "../components/Screen";
 import GoBackArrowHeader from "../components/GoBackArrowHeader";
 import MenuItem from "../components/MenuItem";
-import { Fontisto } from "@expo/vector-icons";
 import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const NotificationSettingsScreen = ({ navigation }) => {
+  const { state } = useTheme();
   const [generalNotification, setGeneralNotification] = useState(true);
   const [sound, setSound] = useState(true);
   const [vibration, setVibration] = useState(false);
@@ -25,14 +29,14 @@ const NotificationSettingsScreen = ({ navigation }) => {
           <Fontisto
             name="toggle-on"
             size={40}
-            color={colors.primaryColor}
+            color={colors[state.theme].primaryColor}
             onPress={() => setState(!state)}
           />
         ) : (
           <Fontisto
             name="toggle-off"
             size={40}
-            color={colors.lightText}
+            color={colors[state.theme].lightText}
             onPress={() => setState(!state)}
           />
         )}

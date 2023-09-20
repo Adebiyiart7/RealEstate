@@ -3,8 +3,10 @@ import { Ionicons } from "@expo/vector-icons";
 // LOCAL IMPORTS
 import colors from "../config/colors";
 import routes from "../config/routes";
+import { useTheme } from "../contexts/ThemeContext";
 
 const tabBarIcon = (route, focused) => {
+  const { state } = useTheme();
   let iconName;
 
   if (route.name === routes.HOME) {
@@ -24,7 +26,11 @@ const tabBarIcon = (route, focused) => {
   return (
     <Ionicons
       name={iconName}
-      color={focused ? colors.primaryColor : colors.lightText}
+      color={
+        focused
+          ? colors[state.theme].primaryColor
+          : colors[state.theme].lightText
+      }
       size={24}
     />
   );

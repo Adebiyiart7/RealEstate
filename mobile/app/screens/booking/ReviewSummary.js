@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import moment from "moment";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 // LOCAL IMPORTS
@@ -16,9 +17,10 @@ import Card1 from "../../components/cards/Card1";
 import AppButton from "../../components/AppButton";
 import routes from "../../config/routes";
 import LoginBottomSheet from "../../components/LoginBottomSheet";
-import { useSelector } from "react-redux";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const ReviewSummary = ({ navigation, route }) => {
+  const { state } = useTheme();
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const item = estates.find((i) => i._id === route.params._id);
@@ -90,7 +92,14 @@ const ReviewSummary = ({ navigation, route }) => {
         />
         <AppText style={styles.atmNumber}>**** **** **** 4194</AppText>
         <TouchableOpacity>
-          <AppText style={styles.changeText}>Change</AppText>
+          <AppText
+            style={[
+              styles.changeText,
+              { color: colors[state.theme].primaryColor },
+            ]}
+          >
+            Change
+          </AppText>
         </TouchableOpacity>
       </View>
       <AppButton
@@ -119,7 +128,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   changeText: {
-    color: colors.primaryColor,
     fontWeight: "bold",
     marginRight: 5,
     fontSize: 16,

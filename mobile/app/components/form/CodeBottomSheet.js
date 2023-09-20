@@ -8,8 +8,11 @@ import defaultStyles from "../../config/styles";
 import AppText from "../AppText";
 import AppButton from "../AppButton";
 import colors from "../../config/colors";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const CodeBottomSheet = ({ code, setCode, email, handleSubmit }) => {
+  const { state } = useTheme();
+
   return (
     <View style={defaultStyles.bottomSheetStyles.content}>
       <AppText style={defaultStyles.bottomSheetStyles.header}>
@@ -37,7 +40,7 @@ const CodeBottomSheet = ({ code, setCode, email, handleSubmit }) => {
           value={code}
           placeholder="Enter code"
           keyboardType="numeric"
-          placeholderTextColor={colors.lightText}
+          placeholderTextColor={colors[state.theme].lightText}
         />
       </View>
       <AppButton rounded onPress={handleSubmit}>

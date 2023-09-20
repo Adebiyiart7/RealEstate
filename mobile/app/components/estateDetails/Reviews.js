@@ -1,14 +1,20 @@
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useDimensions } from "@react-native-community/hooks";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 // LOCAL IMPORTS
 import AppText from "../AppText";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 
 const Reviews = ({ item }) => {
+  const { state } = useTheme();
+  const isLight = state.theme === LIGHT;
   const { width: screenWidth } = useDimensions().screen;
+  const starStyles = isLight ? styles.starLight : styles.startDark;
+  const dateTimeStyles = isLight ? styles.dateTimeLight : styles.dateTimeDark;
+  const fullnameStyles = isLight ? styles.fullnameLight : styles.fullnameDark;
 
   return (
     <View>
@@ -20,18 +26,22 @@ const Reviews = ({ item }) => {
               <View>
                 <AppText
                   numberOfLines={1}
-                  style={[styles.fullname, { width: screenWidth - 175 }]}
+                  style={[
+                    styles.fullname,
+                    fullnameStyles,
+                    { width: screenWidth - 175 },
+                  ]}
                 >
                   {review.author.name}
                 </AppText>
               </View>
               <View style={styles.icons}>
                 <View>
-                  <AppText style={styles.star}>
+                  <AppText style={[styles.star, starStyles]}>
                     <MaterialCommunityIcons
                       name="star"
                       size={16}
-                      color={colors.primaryColor}
+                      color={colors[state.theme].primaryColor}
                     />{" "}
                     {review.star}
                   </AppText>
@@ -39,7 +49,7 @@ const Reviews = ({ item }) => {
                 <TouchableOpacity>
                   <MaterialCommunityIcons
                     size={24}
-                    color={colors.mediumText}
+                    color={colors[state.theme].mediumText}
                     name="dots-horizontal-circle-outline"
                   />
                 </TouchableOpacity>
@@ -50,11 +60,13 @@ const Reviews = ({ item }) => {
           <View style={styles.footer}>
             <MaterialCommunityIcons
               size={24}
-              color={colors.primaryColor}
+              color={colors[state.theme].primaryColor}
               name="heart-outline"
             />
             <AppText style={styles.favorites}>{review.favorites}</AppText>
-            <AppText style={styles.dateTime}>2 weeks ago</AppText>
+            <AppText style={[styles.dateTime, dateTimeStyles]}>
+              2 weeks ago
+            </AppText>
           </View>
         </View>
       ))}
@@ -85,9 +97,14 @@ const styles = StyleSheet.create({
   },
   dateTime: {
     fontWeight: "500",
-    color: colors.mediumText,
     fontSize: 13,
     marginLeft: 30,
+  },
+  dateTimeLight: {
+    color: colors.light.mediumText,
+  },
+  dateTimeDark: {
+    color: colors.dark.mediumText,
   },
   favorites: {
     fontSize: 13,
@@ -101,10 +118,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   fullname: {
-    color: colors.primaryText,
     fontWeight: "bold",
     fontSize: 16,
     marginLeft: 10,
+  },
+  fullnameLight: {
+    color: colors.light.primaryText,
+  },
+  fullnameDark: {
+    color: colors.dark.primaryText,
   },
   icons: {
     display: "flex",
@@ -114,19 +136,21 @@ const styles = StyleSheet.create({
   },
   review: {
     paddingBottom: 16,
-    // display: "flex",
-    // flexDirection: "row",
-    // justifyContent: "space-between",
-    // alignItems: "center"
   },
   star: {
     borderWidth: 2,
-    borderColor: colors.primaryColor,
     borderRadius: 20,
     paddingVertical: 2,
     paddingHorizontal: 10,
     fontWeight: "500",
-    color: colors.primaryColor,
     marginRight: 10,
+  },
+  starLight: {
+    color: colors.light.primaryColor,
+    borderColor: colors.light.primaryColor,
+  },
+  startDark: {
+    color: colors.dark.primaryColor,
+    borderColor: colors.dark.primaryColor,
   },
 });

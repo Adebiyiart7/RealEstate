@@ -5,8 +5,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
 import ErrorMessage from "./ErrorMessage";
-import defaultStyles from "../../config/styles";
 import colors from "../../config/colors";
+import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 
 const AppFormField = ({
   name,
@@ -16,16 +16,19 @@ const AppFormField = ({
   secureInput,
   ...otherProps
 }) => {
+  const { state } = useTheme();
   const [isFocus, setIsFocus] = useState(false);
   const [hideSecureInput, setHideSecureInput] = useState(true);
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
-  const iconColor = isFocus ? colors.primaryColor : colors.mediumText;
+  const iconColor = isFocus
+    ? colors[state.theme].primaryColor
+    : colors[state.theme].mediumText;
 
   const textInputStyle = {
     paddingVertical: 8,
-    borderColor: isFocus ? colors.primaryColor : "transparent",
+    borderColor: isFocus ? colors[state.theme].primaryColor : "transparent",
     borderWidth: isFocus ? 2 : 0,
   };
 
@@ -40,7 +43,7 @@ const AppFormField = ({
         (hideSecureInput ? (
           <MaterialCommunityIcons
             name="eye-off"
-            style={styles.eye}
+            style={[styles.eye, eyeColor[state.theme]]}
             onPress={() => {
               setHideSecureInput(false);
             }}
@@ -48,7 +51,7 @@ const AppFormField = ({
         ) : (
           <MaterialCommunityIcons
             name="eye"
-            style={styles.eye}
+            style={[styles.eye, eyeColor[state.theme]]}
             onPress={() => {
               setHideSecureInput(true);
             }}
@@ -57,6 +60,7 @@ const AppFormField = ({
       <TextInput
         style={[
           styles.textInput,
+          textInputTheme[state.theme],
           { paddingHorizontal: icon ? 37 : 16 },
           isFocus && textInputStyle,
           style,
@@ -71,7 +75,7 @@ const AppFormField = ({
         value={values[name]}
         {...otherProps}
         secureTextEntry={secureInput && hideSecureInput}
-        placeholderTextColor={colors.lightText}
+        placeholderTextColor={colors[styles.theme].lightText}
       />
       <ErrorMessage visible={touched[name]} error={errors[name]} />
     </TouchableOpacity>
@@ -92,14 +96,29 @@ export const styles = StyleSheet.create({
     top: 14,
     right: 14,
     zIndex: 1234,
-    color: colors.primaryText,
+  },
+  eyeTheme: {
+    light: {
+      color: colors.light.primaryText,
+    },
+    dark: {
+      color: colors.dark.primaryText,
+    },
   },
   textInput: {
     borderRadius: 30,
-    backgroundColor: colors.background200,
     paddingVertical: 10,
     fontSize: 16,
-    color: colors.primaryText,
+  },
+  textInputTheme: {
+    light: {
+      color: colors.light.primaryText,
+      backgroundColor: colors.light.background200,
+    },
+    dark: {
+      color: colors.dark.primaryText,
+      backgroundColor: colors.dark.background200,
+    },
   },
   icon: {
     position: "absolute",

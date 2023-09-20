@@ -4,10 +4,8 @@ import {
   Image,
   View,
   TouchableOpacity,
-  Platform,
   FlatList,
   Dimensions,
-  // StatusBar
 } from "react-native";
 import {
   FontAwesome,
@@ -27,7 +25,7 @@ import Location from "../components/estateDetails/Location";
 import Reviews from "../components/estateDetails/Reviews";
 import SeeAllText from "../components/SeeAllText";
 import Footer from "../components/estateDetails/Footer";
-import { StatusBar } from "expo-status-bar";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
@@ -35,6 +33,7 @@ const Header = ({ title }) => {
 const { width: screenWidth, height: screenHeight } = Dimensions.get("screen");
 
 const EstateDetails = ({ navigation, route }) => {
+  const { state } = useTheme();
   const [itemInView, setItemInView] = useState(0);
   const [statusBarHeight] = useState(0);
   const carouselHeight = screenWidth / 1.5;
@@ -48,8 +47,7 @@ const EstateDetails = ({ navigation, route }) => {
   };
 
   return (
-    <View style={{ backgroundColor: colors.white }}>
-      {/* <StatusBar translucent backgroundColor={"transparent"} barStyle={"light-content"} /> */}
+    <View style={{ backgroundColor: colors[state.theme].white }}>
       <FlatList
         data={[]}
         keyExtractor={() => "key"}
@@ -59,6 +57,7 @@ const EstateDetails = ({ navigation, route }) => {
           styles.container,
           {
             height: screenHeight - statusBarHeight,
+            backgroundColor: colors[state.theme].white,
           },
         ]}
         ListHeaderComponent={
@@ -90,8 +89,8 @@ const EstateDetails = ({ navigation, route }) => {
                     style={{
                       backgroundColor:
                         index == itemInView
-                          ? colors.primaryColor
-                          : colors.white,
+                          ? colors[state.theme].primaryColor
+                          : colors[state.theme].white,
                       height: 10,
                       width: index != itemInView ? 10 : 20,
                       margin: 2,
@@ -107,7 +106,14 @@ const EstateDetails = ({ navigation, route }) => {
               <MaterialCommunityIcons
                 name="arrow-left"
                 size={24}
-                style={[styles.topIcon, { top: -carouselHeight }]}
+                style={[
+                  styles.topIcon,
+                  {
+                    top: -carouselHeight,
+                    color: colors[state.theme].primaryText,
+                    backgroundColor: colors[state.theme].background100,
+                  },
+                ]}
                 onPress={() => navigation.goBack()}
               />
             </TouchableOpacity>
@@ -115,7 +121,15 @@ const EstateDetails = ({ navigation, route }) => {
               <MaterialCommunityIcons
                 name="heart-outline"
                 size={24}
-                style={[styles.topIcon, { top: -carouselHeight, right: 0 }]}
+                style={[
+                  styles.topIcon,
+                  {
+                    top: -carouselHeight,
+                    right: 0,
+                    color: colors[state.theme].primaryText,
+                    backgroundColor: colors[state.theme].background100,
+                  },
+                ]}
               />
             </TouchableOpacity>
 
@@ -127,12 +141,22 @@ const EstateDetails = ({ navigation, route }) => {
 
               {/* BASIC DETAILS 1 */}
               <View style={styles.basics1}>
-                <AppText style={styles.category}>{item.category}</AppText>
+                <AppText
+                  style={[
+                    styles.category,
+                    {
+                      color: colors[state.theme].primaryColor,
+                      backgroundColor: colors[state.theme].background200,
+                    },
+                  ]}
+                >
+                  {item.category}
+                </AppText>
                 <AppText style={styles.rating}>
                   <MaterialCommunityIcons
                     name="star"
                     size={16}
-                    color={colors.primaryOrange}
+                    color={colors[state.theme].primaryOrange}
                   />{" "}
                   {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
                   reviews)
@@ -140,7 +164,12 @@ const EstateDetails = ({ navigation, route }) => {
               </View>
 
               {/* BASIC DETAILS 2 */}
-              <View style={styles.basics2}>
+              <View
+                style={[
+                  styles.basics2,
+                  { borderBottomColor: colors[state.theme].border200 },
+                ]}
+              >
                 <View style={styles.iconContainer}>
                   <Icon
                     size={42}
@@ -148,7 +177,7 @@ const EstateDetails = ({ navigation, route }) => {
                       <MaterialCommunityIcons
                         name="bed"
                         size={20}
-                        color={colors.primaryColor}
+                        color={colors[state.theme].primaryColor}
                       />
                     }
                   />
@@ -161,7 +190,7 @@ const EstateDetails = ({ navigation, route }) => {
                       <FontAwesome
                         name="bath"
                         size={20}
-                        color={colors.primaryColor}
+                        color={colors[state.theme].primaryColor}
                       />
                     }
                   />
@@ -174,7 +203,7 @@ const EstateDetails = ({ navigation, route }) => {
                       <MaterialCommunityIcons
                         name="arrow-expand-all"
                         size={20}
-                        color={colors.primaryColor}
+                        color={colors[state.theme].primaryColor}
                       />
                     }
                   />
@@ -188,14 +217,14 @@ const EstateDetails = ({ navigation, route }) => {
                   Icon1={
                     <Ionicons
                       name="chatbubble-ellipses-outline"
-                      color={colors.primaryColor}
+                      color={colors[state.theme].primaryColor}
                       size={24}
                     />
                   }
                   Icon2={
                     <Ionicons
                       name="ios-call-outline"
-                      color={colors.primaryColor}
+                      color={colors[state.theme].primaryColor}
                       size={24}
                     />
                   }
@@ -212,7 +241,14 @@ const EstateDetails = ({ navigation, route }) => {
                 <AppText numberOfLines={4} style={styles.overview}>
                   {item.overview}
                 </AppText>
-                <AppText style={styles.readMore}>Read more</AppText>
+                <AppText
+                  style={[
+                    styles.readMore,
+                    { color: colors[state.theme].primaryColor },
+                  ]}
+                >
+                  Read more
+                </AppText>
               </View>
 
               {/* FACILITIES */}
@@ -239,7 +275,7 @@ const EstateDetails = ({ navigation, route }) => {
                   <MaterialCommunityIcons
                     name="star"
                     size={20}
-                    color={colors.primaryOrange}
+                    color={colors[state.theme].primaryOrange}
                   />{" "}
                   {item.rating} ({parseInt(item.reviewCount).toLocaleString()}{" "}
                   reviews)
@@ -273,7 +309,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     borderBottomWidth: 1,
-    borderBottomColor: colors.border200,
     maxWidth: 340,
     paddingVertical: 16,
   },
@@ -289,17 +324,14 @@ const styles = StyleSheet.create({
   },
   category: {
     position: "relative",
-    color: colors.primaryColor,
     fontSize: 12,
     paddingHorizontal: 10,
     paddingVertical: 3,
     borderRadius: 4,
-    backgroundColor: colors.background200,
   },
   container: {
     display: "flex",
     overflow: "hidden",
-    backgroundColor: colors.white,
   },
   details: {
     paddingHorizontal: 16,
@@ -323,7 +355,6 @@ const styles = StyleSheet.create({
     bottom: 20,
   },
   overview: {
-    // color: colors.mediumText,
     lineHeight: 18,
     fontSize: 15,
   },
@@ -333,7 +364,6 @@ const styles = StyleSheet.create({
   },
   readMore: {
     fontWeight: "500",
-    color: colors.primaryColor,
   },
   reviewSummary: {
     display: "flex",
@@ -342,10 +372,8 @@ const styles = StyleSheet.create({
   },
   topIcon: {
     position: "absolute",
-    color: colors.primaryText,
     padding: 10,
     zIndex: 1234,
-    backgroundColor: colors.background100,
     borderRadius: 50,
     margin: 16,
     marginTop: 25,

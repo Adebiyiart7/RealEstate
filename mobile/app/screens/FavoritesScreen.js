@@ -46,14 +46,14 @@ const FavoritesScreen = ({ navigation }) => {
           <Ionicons
             size={24}
             name={"ios-search-outline"}
-            style={{ colors: colors[themeState.theme].primaryText }}
+            style={{ color: colors[themeState.theme].primaryText }}
           />
         }
         RightIconExtra={
           <Ionicons
             name="md-filter-outline"
             size={24}
-            style={{ colors: colors[themeState.theme].primaryText }}
+            style={{ color: colors[themeState.theme].primaryText }}
             onPress={() => setBottomSheetVisible(true)}
           />
         }

@@ -13,13 +13,13 @@ const OurRecommendationScreen = ({ navigation }) => {
   const { state } = useTheme();
 
   return (
-    <Screen style={styles.container}>
+    <Screen scrollable={false} style={styles.container}>
       <GoBackArrowHeader
         navigation={navigation}
         title={"Our Recommendation"}
         RightIcon={
           <Ionicons
-            style={{ colors: colors[state.theme].primaryText }}
+            style={{ color: colors[state.theme].primaryText }}
             name={"ios-search-outline"}
             size={24}
           />

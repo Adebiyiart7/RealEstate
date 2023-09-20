@@ -63,6 +63,7 @@ export default ForgotPasswordScreen;
 const styles = StyleSheet.create({
   container: {
     display: "flex",
+    paddingBottom: 76,
   },
   image: {
     width: mediaWidth - 120,

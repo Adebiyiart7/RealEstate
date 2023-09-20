@@ -32,7 +32,7 @@ const RateBooking = ({ estateName }) => {
       <TextInput
         multiline
         numberOfLines={4}
-        placeholderTextColor={colors.primaryText}
+        placeholderTextColor={colors[state.theme].primaryText}
         placeholder={"Write something..."}
         style={[styles.input, inputStyles]}
       />

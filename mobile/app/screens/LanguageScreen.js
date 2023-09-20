@@ -73,13 +73,15 @@ const LanguageScreen = ({ navigation }) => {
           {languages
             .filter((language) => language.suggested !== true)
             .map((language) => (
-              <MenuItem
-                activeOpacity={1}
-                disabled={!language.available}
-                style={styles.menuItem}
-                title={language.name}
-                RightIcon={<Switch language={language} />}
-              />
+              <View key={language._id}>
+                <MenuItem
+                  activeOpacity={1}
+                  disabled={!language.available}
+                  style={styles.menuItem}
+                  title={language.name}
+                  RightIcon={<Switch language={language} />}
+                />
+              </View>
             ))}
         </View>
       </ScrollView>

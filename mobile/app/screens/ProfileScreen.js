@@ -19,7 +19,7 @@ import MenuItem from "../components/MenuItem";
 import AppText from "../components/AppText";
 import ItemSeparatorComponent from "../components/ItemSeparatorComponent";
 import BottomSheet from "../components/BottomSheet";
-import { DARK, useTheme } from "../contexts/ThemeContext";
+import { DARK, LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -143,20 +143,25 @@ const ProfileScreen = ({ navigation }) => {
         />
         <MenuItem
           title={"Language"}
-          subTitle={"English (US)"}
+          subTitle={"English (US)."}
           leftIcon="dots-triangle"
           onPress={() => navigation.navigate(routes.LANGUAGE)}
         />
         <MenuItem
+          onLongPress={() => {
+            setIsDarkMode(!isDarkMode);
+            isDarkMode ? setLightTheme() : setDarkTheme();
+          }}
           title={"Dark Mode"}
           leftIcon="eye-outline"
+          subTitle={"Long-press to toggle mode."}
           RightIcon={
             isDarkMode ? (
               <Fontisto
                 name="toggle-on"
-                size={30}
+                size={40}
                 color={colors[state.theme].primaryColor}
-                onPress={() => {
+                onLongPress={() => {
                   setIsDarkMode(!isDarkMode);
                   setLightTheme();
                 }}
@@ -164,9 +169,9 @@ const ProfileScreen = ({ navigation }) => {
             ) : (
               <Fontisto
                 name="toggle-off"
-                size={30}
+                size={40}
                 color={colors[state.theme].lightText}
-                onPress={() => {
+                onLongPress={() => {
                   setIsDarkMode(!isDarkMode);
                   setDarkTheme();
                 }}

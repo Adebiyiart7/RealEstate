@@ -7,21 +7,13 @@ const Chip = React.memo(({ text, focused, Icon, onPress, style, small }) => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
 
-  const backgroundColor = isLight
-    ? focused
-      ? colors.light.primaryColor
-      : colors.light.background100
-    : focused
-    ? colors.dark.primaryColor
-    : colors.dark.background100;
+  const backgroundColor = focused
+    ? colors[state.theme].primaryColor
+    : colors[state.theme].background100;
 
-  const color = isLight
-    ? focused
-      ? colors.light.displayAsWhite
-      : colors.light.primaryColor
-    : focused
-    ? colors.dark.displayAsWhite
-    : colors.dark.primaryColor;
+  const color = focused
+    ? colors[state.theme].displayAsWhite
+    : colors[state.theme].primaryColor;
 
   const chipStyles = isLight ? styles.chipLight : styles.chipDark;
 

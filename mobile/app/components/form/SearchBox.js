@@ -39,7 +39,11 @@ const SearchBox = ({
         size={18}
       />
       <TextInput
-        style={[styles.textInput, textInputStyle, textInputTheme]}
+        style={[
+          styles.textInput,
+          textInputStyle,
+          styles.textInputTheme[state.theme],
+        ]}
         name={"search"}
         onFocus={() => {
           setIsFocus(true);

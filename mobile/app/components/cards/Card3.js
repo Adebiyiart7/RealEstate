@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState, useEffect } from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import AppText from "../AppText";
@@ -27,7 +27,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
 
   const [bottomSheetVisibleRemoveFav, setBottomSheetVisibleRemoveFav] =
     useState(false);
-  const dimension = useDimensions().screen;
+  const dimension = useWindowDimensions();
 
   const imageDimension = {
     height:

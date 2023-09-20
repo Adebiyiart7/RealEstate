@@ -4,6 +4,7 @@ import React from "react";
 // LOCAL IMPORTS
 import AppText from "./AppText";
 import { useTheme } from "../contexts/ThemeContext";
+import colors from "../config/colors";
 
 const AppButton = React.memo(
   ({
@@ -17,7 +18,7 @@ const AppButton = React.memo(
     secondary,
     rounded,
   }) => {
-    const { colors } = useTheme();
+    const { state } = useTheme();
 
     const btn = {
       display: "flex",
@@ -32,8 +33,8 @@ const AppButton = React.memo(
     const styles = {
       button: {
         backgroundColor: !secondary
-          ? colors.primaryColor
-          : colors.background200,
+          ? colors[state.theme].primaryColor
+          : colors[state.theme].background200,
       },
       startImageStyle: {
         height: 20,
@@ -41,13 +42,15 @@ const AppButton = React.memo(
         marginRight: 5,
       },
       text: {
-        color: !secondary ? colors.displayAsWhite : colors.primaryColor,
+        color: !secondary
+          ? colors[state.theme].displayAsWhite
+          : colors[state.theme].primaryColor,
         fontWeight: "600",
         fontSize: 16,
       },
       disabled: {
         button: {
-          backgroundColor: colors.disabled,
+          backgroundColor: colors[state.theme].disabled,
         },
       },
     };

@@ -1,7 +1,7 @@
 import { Octicons } from "@expo/vector-icons";
 import React, { useRef } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORT
 import defaultStyles from "../../config/styles";
@@ -12,7 +12,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 const PinForm = ({ pin, setPin, secureTextEntry }) => {
   const inputRef = useRef();
   const { state } = useTheme();
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
   const textInput = {
     width: (screenWidth - 32 - 7 * 8) / 4,
   };
@@ -42,7 +42,7 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
 
       <AppText
         onPress={() => handleOnPress(pin[0])}
-        style={[styles.input, textInput]}
+        style={[styles.input, styles.inputTheme[state.theme], textInput]}
       >
         {secureTextEntry
           ? pin[0] && <Octicons name="dot-fill" size={35} />
@@ -50,7 +50,7 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
       </AppText>
       <AppText
         onPress={() => handleOnPress(pin[1])}
-        style={[styles.input, textInput]}
+        style={[styles.input, styles.inputTheme[state.theme], textInput]}
       >
         {secureTextEntry
           ? pin[1] && <Octicons name="dot-fill" size={35} />
@@ -58,7 +58,7 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
       </AppText>
       <AppText
         onPress={() => handleOnPress(pin[2])}
-        style={[styles.input, textInput]}
+        style={[styles.input, styles.inputTheme[state.theme], textInput]}
       >
         {secureTextEntry
           ? pin[2] && <Octicons name="dot-fill" size={35} />
@@ -66,7 +66,7 @@ const PinForm = ({ pin, setPin, secureTextEntry }) => {
       </AppText>
       <AppText
         onPress={() => handleOnPress(pin[3])}
-        style={[styles.input, inputTheme[state.theme], textInput]}
+        style={[styles.input, styles.inputTheme[state.theme], textInput]}
       >
         {secureTextEntry
           ? pin[3] && <Octicons name="dot-fill" size={35} />

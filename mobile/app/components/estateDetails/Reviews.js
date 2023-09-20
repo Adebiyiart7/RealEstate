@@ -1,6 +1,6 @@
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 // LOCAL IMPORTS
@@ -11,7 +11,7 @@ import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 const Reviews = ({ item }) => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
   const starStyles = isLight ? styles.starLight : styles.startDark;
   const dateTimeStyles = isLight ? styles.dateTimeLight : styles.dateTimeDark;
   const fullnameStyles = isLight ? styles.fullnameLight : styles.fullnameDark;
@@ -56,7 +56,11 @@ const Reviews = ({ item }) => {
               </View>
             </View>
           </View>
-          <AppText>{review.comment}</AppText>
+          <AppText
+            style={{ color: colors[state.theme].mediumText, marginVertical: 5 }}
+          >
+            {review.comment}
+          </AppText>
           <View style={styles.footer}>
             <MaterialCommunityIcons
               size={24}

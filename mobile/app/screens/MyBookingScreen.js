@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { FlatList, ImageBackground, StyleSheet, View } from "react-native";
 
@@ -20,7 +20,7 @@ const MyBookingScreen = ({ navigation }) => {
   const [startDate] = useState(new Date(1611106322840));
   const [endDate] = useState(new Date(1671706322840));
   const [showActive, setShowActive] = useState(true);
-  const { height } = useDimensions().screen;
+  const { height } = useWindowDimensions();
 
   const activeTabStyle = {
     borderBottomColor: colors[state.theme].primaryColor,

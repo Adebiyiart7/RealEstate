@@ -14,6 +14,7 @@ const MenuItem = React.memo(
     subTitle,
     isLogout,
     onPress,
+    onLongPress,
     style,
     activeOpacity,
     disabled = false,
@@ -37,6 +38,7 @@ const MenuItem = React.memo(
         activeOpacity={activeOpacity}
         style={[styles.menuItem, style]}
         onPress={onPress}
+        onLongPress={onLongPress}
       >
         <MaterialCommunityIcons
           name={leftIcon}
@@ -118,17 +120,17 @@ const styles = StyleSheet.create({
     color: colors.dark.primaryText,
   },
   subTitleLight: {
-    color: colors.mediumText,
+    color: colors.light.mediumText,
   },
   subTitleDark: {
-    color: colors.mediumText,
+    color: colors.dark.mediumText,
   },
   title: {
     fontWeight: "500",
     fontSize: 16,
   },
   titleLight: {
-    color: colors.dark.primaryText,
+    color: colors.light.primaryText,
   },
   titleDark: {
     color: colors.dark.primaryText,

@@ -25,6 +25,7 @@ const ReviewSummary = ({ navigation, route }) => {
   const { user } = useSelector((state) => state.auth);
   const item = estates.find((i) => i._id === route.params._id);
   const checksDetails = route.params.checksDetails;
+  const summaryCardBg = { backgroundColor: colors[state.theme].background200 };
 
   return (
     <Screen>
@@ -36,7 +37,9 @@ const ReviewSummary = ({ navigation, route }) => {
       <View>
         <Card3 format={"list"} item={item} navigation={navigation} />
       </View>
-      <View style={[defaultStyles.summaryCard, styles.checksDetails]}>
+      <View
+        style={[defaultStyles.summaryCard, summaryCardBg, styles.checksDetails]}
+      >
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>Date</AppText>
           <AppText style={defaultStyles.summaryValue}>
@@ -57,7 +60,7 @@ const ReviewSummary = ({ navigation, route }) => {
           </AppText>
         </View>
       </View>
-      <View style={defaultStyles.summaryCard}>
+      <View style={[defaultStyles.summaryCard, summaryCardBg]}>
         <View style={defaultStyles.summaryTextContainer}>
           <AppText>
             Amount (
@@ -85,11 +88,10 @@ const ReviewSummary = ({ navigation, route }) => {
           </AppText>
         </View>
       </View>
-      <View style={[defaultStyles.summaryCard, styles.selectedCard]}>
-        <Image
-          style={defaultStyles.summaryCardLogo}
-          source={require("../../assets/images/master-card-logo.png")}
-        />
+      <View
+        style={[styles.selectedCard, defaultStyles.summaryCard, summaryCardBg]}
+      >
+        <Image source={require("../../assets/images/master-card-logo.png")} />
         <AppText style={styles.atmNumber}>**** **** **** 4194</AppText>
         <TouchableOpacity>
           <AppText

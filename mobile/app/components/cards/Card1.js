@@ -1,7 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 import AppText from "../AppText";
-import defaultStyles from "../../config/styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import { LIGHT, useTheme } from "../../contexts/ThemeContext";
@@ -10,18 +9,22 @@ const Card1 = React.memo(({ Icon, title, subTitle, selected, onPress }) => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
   const iconStyles = isLight ? styles.iconLight : styles.iconDark;
-  const cardStyles = isLight ? styles.cardLight : styles.cardDark;
+
   const radioStyles = isLight ? styles.radioLight : styles.radioDark;
   const titleStyles = isLight ? styles.titleLight : styles.titleDark;
   const selectedStyles = {
     borderWidth: 2,
-    borderColor: isLight ? colors.light.primaryColor : colors.dark.primaryColor,
+    borderColor: colors[state.theme].primaryColor,
   };
 
   return (
     <Pressable
       onPress={onPress}
-      style={{ ...styles.card, cardStyles, ...(selected && selectedStyles) }}
+      style={{
+        ...styles.card,
+        borderColor: colors[state.theme].border200,
+        ...(selected && selectedStyles),
+      }}
     >
       <View style={[styles.icon, iconStyles]}>{Icon}</View>
       <View style={styles.center}>
@@ -58,12 +61,6 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     marginVertical: 8,
-  },
-  cardLight: {
-    borderColor: colors.light.border200,
-  },
-  cardDark: {
-    borderColor: colors.dark.border200,
   },
   icon: {
     borderRadius: 50,

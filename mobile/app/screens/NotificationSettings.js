@@ -10,7 +10,7 @@ import colors from "../config/colors";
 import { useTheme } from "../contexts/ThemeContext";
 
 const NotificationSettingsScreen = ({ navigation }) => {
-  const { state } = useTheme();
+  const { state: themeState } = useTheme();
   const [generalNotification, setGeneralNotification] = useState(true);
   const [sound, setSound] = useState(true);
   const [vibration, setVibration] = useState(false);
@@ -29,14 +29,14 @@ const NotificationSettingsScreen = ({ navigation }) => {
           <Fontisto
             name="toggle-on"
             size={40}
-            color={colors[state.theme].primaryColor}
+            color={colors[themeState.theme].primaryColor}
             onPress={() => setState(!state)}
           />
         ) : (
           <Fontisto
             name="toggle-off"
             size={40}
-            color={colors[state.theme].lightText}
+            color={colors[themeState.theme].lightText}
             onPress={() => setState(!state)}
           />
         )}

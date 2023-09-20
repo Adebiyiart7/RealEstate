@@ -14,12 +14,7 @@ import { ThemeProvider } from "./app/contexts/ThemeContext";
 const App = () => {
   return (
     <Provider store={store}>
-      <SafeAreaView>
-        <StatusBar
-          style={"light"}
-          backgroundColor={colors.light.background100}
-        />
-      </SafeAreaView>
+      <SafeAreaView></SafeAreaView>
       <NavigationContainer>
         <ThemeProvider>
           <BaseData />

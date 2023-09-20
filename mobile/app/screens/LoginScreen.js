@@ -16,6 +16,8 @@ import AuthFooter from "../components/AuthFooter";
 import routes from "../config/routes";
 import { login, reset } from "../features/auth/authSlice";
 import Loading from "../components/Loading";
+import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
@@ -23,6 +25,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = ({ navigation }) => {
+  const { state: themeState } = useTheme();
   const dispatch = useDispatch();
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -90,7 +93,12 @@ const LoginScreen = ({ navigation }) => {
               <TouchableOpacity
                 onPress={() => navigation.navigate(routes.FORGOT_PASSWORD)}
               >
-                <AppText style={styles.forgotPassword}>
+                <AppText
+                  style={[
+                    styles.forgotPassword,
+                    { color: colors[themeState.theme].primaryColor },
+                  ]}
+                >
                   Forgot the password?
                 </AppText>
               </TouchableOpacity>
@@ -98,11 +106,19 @@ const LoginScreen = ({ navigation }) => {
           )}
         </Formik>
         <AuthFooter styles={styles} />
-        <AppText style={styles.signiInMessage}>
+        <AppText
+          style={[
+            styles.signiInMessage,
+            { color: colors[themeState.theme].lightText },
+          ]}
+        >
           Don't have an account?{" "}
           <AppText
             onPress={() => navigation.navigate(routes.REGISTER)}
-            style={styles.signIn}
+            style={[
+              styles.signIn,
+              { color: colors[themeState.theme].primaryColor },
+            ]}
           >
             Sign up
           </AppText>

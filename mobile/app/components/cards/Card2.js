@@ -10,13 +10,8 @@ import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 const Card2 = React.memo(({ item }) => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
-  const iconColor = isLight
-    ? colors.light.primaryOrange
-    : colors.dark.primaryOrange;
-  const textColor = isLight
-    ? { color: colors.light.displayAsWhite }
-    : { color: colors.dark.displayAsWhite };
-  const [heartIcon, setHeartIcon] = useState("heart-outline");
+  const iconColor = colors[state.theme].primaryOrange;
+  const textColor = { color: colors[state.theme].displayAsWhite };
   const textStyles = isLight ? styles.textsLight : styles.textsDark;
   const ratingStyles = isLight ? styles.ratingLight : styles.ratingDark;
 
@@ -45,24 +40,6 @@ const Card2 = React.memo(({ item }) => {
             <AppText style={[styles.f2, textColor]}> / {item.duration}</AppText>
           </View>
         </View>
-        <View style={styles.heartIcon}>
-          {heartIcon === "heart-outline" && (
-            <Ionicons
-              name={heartIcon}
-              size={24}
-              color={colors.white}
-              onPress={() => setHeartIcon("heart")}
-            />
-          )}
-          {heartIcon !== "heart-outline" && (
-            <Ionicons
-              name={heartIcon}
-              size={24}
-              color={iconColor}
-              onPress={() => setHeartIcon("heart-outline")}
-            />
-          )}
-        </View>
       </ImageBackground>
     </View>
   );
@@ -87,21 +64,14 @@ const styles = StyleSheet.create({
   firstText: {
     fontSize: 17,
     fontWeight: "bold",
-    width: "85%",
   },
   footer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "flex-end",
   },
-  heartIcon: {
-    position: "absolute",
-    bottom: 16,
-    right: 16,
-  },
   secondText: {
     fontWeight: "300",
-    width: "85%",
   },
   rating: {
     position: "absolute",
@@ -115,11 +85,11 @@ const styles = StyleSheet.create({
   },
   ratingLight: {
     color: colors.light.primaryColor,
-    backgroundColor: colors.dark.white,
+    backgroundColor: colors.dark.displayAsWhite,
   },
   ratingDark: {
     color: colors.dark.primaryColor,
-    backgroundColor: colors.dark.white,
+    backgroundColor: colors.dark.displayAsWhite,
   },
   texts: {
     position: "absolute",

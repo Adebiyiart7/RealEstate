@@ -44,7 +44,10 @@ const BookingScreen = ({ route, navigation }) => {
           <View style={styles.left}>
             <Header title={"Check In"} />
             <TouchableOpacity
-              style={styles.input}
+              style={[
+                styles.input,
+                { backgroundColor: colors[state.theme].background200 },
+              ]}
               // onPress={() => setOpenDate()}
             >
               <AppText>

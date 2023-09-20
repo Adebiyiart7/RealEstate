@@ -43,12 +43,7 @@ const MessagesScreen = ({ navigation }) => {
           />
         }
       />
-      <View
-        style={[
-          styles.tabs,
-          { borderBottomColor: colors[state.theme].border200 },
-        ]}
-      >
+      <View style={styles.tabs}>
         <AppButton
           secondary
           onPress={() => setShowChats(true)}
@@ -64,7 +59,11 @@ const MessagesScreen = ({ navigation }) => {
         <AppButton
           secondary
           onPress={() => setShowChats(false)}
-          style={[styles.tab, !showChats ? activeTabStyle : {}]}
+          style={[
+            styles.tab,
+            { borderBottomColor: colors[state.theme].border200 },
+            !showChats ? activeTabStyle : {},
+          ]}
           textStyle={[
             styles.tabText,
             tabTextColor,

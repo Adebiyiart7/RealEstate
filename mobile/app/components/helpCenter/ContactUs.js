@@ -10,7 +10,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 const ContactUs = () => {
   const { state } = useTheme();
   const Item = React.memo(({ icon, title }) => (
-    <TouchableOpacity style={[styles.item, itemTheme[state.theme]]}>
+    <TouchableOpacity style={[styles.item, styles.itemTheme[state.theme]]}>
       <MaterialCommunityIcons
         name={icon}
         color={colors[state.theme].primaryColor}
@@ -45,10 +45,10 @@ const styles = StyleSheet.create({
   },
   itemTheme: {
     light: {
-      backgroundColor: colors.light.white,
+      backgroundColor: colors.light.background200,
     },
     dark: {
-      backgroundColor: colors.dark.white,
+      backgroundColor: colors.dark.background200,
     },
   },
   title: {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
@@ -18,7 +18,7 @@ const SearchScreen = ({ navigation }) => {
   const { state } = useTheme();
   const [focusedItem, setFocusedItem] = useState("All");
   const [displayFormat, setDisplayFormat] = useState("list"); // or grid
-  const { width: screnWidth } = useDimensions().screen;
+  const { width: screnWidth } = useWindowDimensions();
 
   return (
     <Screen>

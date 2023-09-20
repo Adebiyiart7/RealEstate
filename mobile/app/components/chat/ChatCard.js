@@ -1,6 +1,6 @@
 import { Image, StyleSheet, View } from "react-native";
 import React from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
@@ -12,7 +12,7 @@ const ChatCard = React.memo(({ fromMe, messageType, item }) => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
   const dateTime = new Date(item.dateTime);
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
 
   const cardStyles = isLight ? styles.cardLight : styles.cardDark;
   const fromMeCardStyles = {

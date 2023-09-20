@@ -23,7 +23,7 @@ const Accordion = ({ _id, title, detail, active, onPress }) => {
         <AppText style={styles.title}>{title}</AppText>
         <MaterialCommunityIcons
           name="chevron-down"
-          color={colors.primaryColor}
+          color={colors[state.theme].primaryColor}
           size={24}
         />
       </TouchableOpacity>

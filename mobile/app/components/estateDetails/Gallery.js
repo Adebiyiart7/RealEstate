@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import colors from "../../config/colors";
@@ -18,7 +18,7 @@ import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 const Gallery = ({ item }) => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
   const imageWidth = (screenWidth - 64) / 3;
   const [showBottomSheet, setShowBottomSheet] = useState(false);
   const imageStyles = isLight ? styles.imageLight : styles.imageDark;

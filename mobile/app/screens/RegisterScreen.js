@@ -143,6 +143,14 @@ export const styles = StyleSheet.create({
     display: "flex",
     paddingBottom: 50,
   },
+  continueText: {
+    fontWeight: "500",
+  },
+  forgotPassword: {
+    fontWeight: "500",
+    textAlign: "center",
+    marginTop: 10,
+  },
   otherOptions: {
     marginTop: 30,
   },
@@ -166,9 +174,77 @@ export const styles = StyleSheet.create({
     marginVertical: 20,
     textAlign: "center",
   },
+  social: {
+    borderWidth: 1,
+    paddingHorizontal: 25,
+    paddingVertical: 12,
+    marginHorizontal: 7,
+    borderRadius: defaultStyles.primaryBorderRadius,
+  },
+  socialImage: {
+    height: 20,
+    width: 20,
+  },
+  socials: {
+    marginTop: 30,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
   title: {
     ...defaultStyles.titleFont,
     marginTop: 25,
     textAlign: "center",
   },
 });
+
+/**
+ * 
+ * 
+ *  logo: {
+    height: 120,
+    width: 330,
+    alignSelf: "center",
+  },
+  container: {
+    display: "flex",
+    paddingBottom: 50,
+  },
+  continueText: {
+    fontWeight: "500",
+    color: colors.mediumText,
+  },
+
+  otherOptions: {
+    marginTop: 30,
+  },
+  rememberMe: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 5,
+  },
+  rememberMeIcon: {
+    marginRight: 5,
+    color: colors.primaryColor,
+  },
+  rememberMeText: {
+    fontWeight: "500",
+  },
+  signIn: {
+    color: colors.primaryColor,
+    fontWeight: "500",
+  },
+  signiInMessage: {
+    marginVertical: 20,
+    color: colors.lightText,
+    textAlign: "center",
+  },
+
+  title: {
+    ...defaultStyles.titleFont,
+    marginTop: 25,
+    textAlign: "center",
+  },
+ */

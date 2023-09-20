@@ -9,6 +9,7 @@ import routes from "../config/routes";
 import { useNavigation } from "@react-navigation/native";
 import defaultStyles from "../config/styles";
 import { useTheme } from "../contexts/ThemeContext";
+import colors from "../config/colors";
 
 const FillProfileBottomSheet = React.memo(
   ({ bottomSheetVisible, setBottomSheetVisible }) => {

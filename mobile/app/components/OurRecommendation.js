@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
@@ -24,7 +24,7 @@ const OurRecommendation = ({
   const { state: themeState } = useTheme();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <FlatList
         horizontal
         style={{ marginTop: 8, ...categoryChipStyle }}
@@ -42,13 +42,9 @@ const OurRecommendation = ({
                     name={item.icon}
                     size={18}
                     color={
-                      themeState.theme === LIGHT
-                        ? item.name === focusedItem
-                          ? colors.light.displayAsWhite
-                          : colors.light.primaryColor
-                        : item.name === focusedItem
-                        ? colors.dark.displayAsWhite
-                        : colors.dark.primaryColor
+                      item.name === focusedItem
+                        ? colors[themeState.theme].displayAsWhite
+                        : colors[themeState.theme].primaryColor
                     }
                   />
                 )
@@ -76,7 +72,7 @@ const OurRecommendation = ({
           </View>
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 
 // LOCAL IMPORTS
 import AppText from "./AppText";
@@ -12,9 +12,8 @@ const GoBackArrowHeader = React.memo(
   ({ title, navigation, RightIcon, RightIconExtra, isTabScreen }) => {
     const { state } = useTheme();
     const isLight = state.theme === LIGHT;
-    const { width: screenWidth } = useDimensions().screen;
-    const arrowStyles = isLight ? styles.arrowLight : styles.arrowDark;
-    const rightStyles = isLight ? styles.rightLight : styles.rightDark;
+    const { width: screenWidth } = useWindowDimensions();
+    const iconColor = isLight ? styles.iconLight : styles.iconDark;
 
     return (
       <View style={styles.container}>
@@ -23,7 +22,7 @@ const GoBackArrowHeader = React.memo(
             <MaterialCommunityIcons
               name="arrow-left"
               size={24}
-              style={[styles.arrow, arrowStyles]}
+              style={[styles.arrow, iconColor]}
               onPress={() => navigation.goBack()}
             />
           </TouchableOpacity>
@@ -40,9 +39,7 @@ const GoBackArrowHeader = React.memo(
           </TouchableOpacity>
         )}
         {RightIcon && (
-          <TouchableOpacity style={[styles.right, rightStyles]}>
-            {RightIcon}
-          </TouchableOpacity>
+          <TouchableOpacity style={styles.right}>{RightIcon}</TouchableOpacity>
         )}
       </View>
     );
@@ -57,11 +54,11 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 50,
   },
-  arrowLight: {
-    backgroundColor: colors.light.background100,
+  iconLight: {
+    color: colors.light.primaryText,
   },
-  arrowDark: {
-    backgroundColor: colors.dark.background100,
+  iconDark: {
+    color: colors.dark.primaryText,
   },
   container: {
     display: "flex",
@@ -78,12 +75,6 @@ const styles = StyleSheet.create({
     color: colors.primaryText,
     padding: 10,
     borderRadius: 50,
-  },
-  rightLight: {
-    backgroundColor: colors.light.background100,
-  },
-  rightDark: {
-    backgroundColor: colors.dark.background100,
   },
   rightExtra: {
     right: 40,

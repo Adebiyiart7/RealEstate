@@ -41,7 +41,11 @@ const NotificationCard = React.memo(({ item }) => {
           <AppText style={[styles.newText, newTextStyles]}>New</AppText>
         )}
       </View>
-      <AppText style={styles.message}>{item.message}</AppText>
+      <AppText
+        style={[styles.message, { color: colors[state.theme].mediumText }]}
+      >
+        {item.message}
+      </AppText>
     </View>
   );
 });
@@ -80,6 +84,7 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 13,
     marginTop: 10,
+    lineHeight: 18,
   },
   newText: {
     paddingVertical: 2,
@@ -89,11 +94,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   newTextLight: {
-    color: colors.light.white,
+    color: colors.light.displayAsWhite,
     backgroundColor: colors.light.primaryColor,
   },
   newTextDark: {
-    color: colors.dark.white,
+    color: colors.dark.displayAsWhite,
     backgroundColor: colors.dark.primaryColor,
   },
   notificationCard: {

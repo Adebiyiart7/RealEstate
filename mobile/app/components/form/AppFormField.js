@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 // LOCAL IMPORTS
 import ErrorMessage from "./ErrorMessage";
 import colors from "../../config/colors";
-import { LIGHT, useTheme } from "../../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const AppFormField = ({
   name,
@@ -43,7 +43,7 @@ const AppFormField = ({
         (hideSecureInput ? (
           <MaterialCommunityIcons
             name="eye-off"
-            style={[styles.eye, eyeColor[state.theme]]}
+            style={[styles.eye, styles.eyeTheme[state.theme]]}
             onPress={() => {
               setHideSecureInput(false);
             }}
@@ -51,7 +51,7 @@ const AppFormField = ({
         ) : (
           <MaterialCommunityIcons
             name="eye"
-            style={[styles.eye, eyeColor[state.theme]]}
+            style={[styles.eye, styles.eyeTheme[state.theme]]}
             onPress={() => {
               setHideSecureInput(true);
             }}
@@ -60,7 +60,7 @@ const AppFormField = ({
       <TextInput
         style={[
           styles.textInput,
-          textInputTheme[state.theme],
+          styles.textInputTheme[state.theme],
           { paddingHorizontal: icon ? 37 : 16 },
           isFocus && textInputStyle,
           style,
@@ -75,7 +75,7 @@ const AppFormField = ({
         value={values[name]}
         {...otherProps}
         secureTextEntry={secureInput && hideSecureInput}
-        placeholderTextColor={colors[styles.theme].lightText}
+        placeholderTextColor={colors[state.theme].lightText}
       />
       <ErrorMessage visible={touched[name]} error={errors[name]} />
     </TouchableOpacity>

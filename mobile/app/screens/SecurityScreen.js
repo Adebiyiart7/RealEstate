@@ -11,7 +11,7 @@ import AppButton from "../components/AppButton";
 import { useTheme } from "../contexts/ThemeContext";
 
 const SecurityScreen = ({ navigation }) => {
-  const { state } = useTheme();
+  const { state: themeState } = useTheme();
   const [rememberMe, setsetRememberMe] = useState(true);
   const [faceID, setFaceID] = useState(true);
   const [biometricID, setBiometricID] = useState(false);
@@ -23,14 +23,14 @@ const SecurityScreen = ({ navigation }) => {
           <Fontisto
             name="toggle-on"
             size={40}
-            color={colors[state.theme].primaryColor}
+            color={colors[themeState.theme].primaryColor}
             onPress={() => setState(!state)}
           />
         ) : (
           <Fontisto
             name="toggle-off"
             size={40}
-            color={colors[state.theme].lightText}
+            color={colors[themeState.theme].lightText}
             onPress={() => setState(!state)}
           />
         )}

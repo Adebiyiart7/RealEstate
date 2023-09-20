@@ -51,7 +51,7 @@ const HomeScreen = ({ navigation }) => {
   const { profile } = useSelector((state) => state.profile);
 
   const dispatch = useDispatch();
-  console.log(bottomSheetVisibleLogin);
+
   useEffect(() => {
     setTimeout(() => {
       if (!user) setBottomSheetVisibleLogin(true);

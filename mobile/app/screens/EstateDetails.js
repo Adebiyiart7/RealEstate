@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   StyleSheet,
   Image,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
+  StatusBar,
 } from "react-native";
 import {
   FontAwesome,
@@ -25,7 +26,7 @@ import Location from "../components/estateDetails/Location";
 import Reviews from "../components/estateDetails/Reviews";
 import SeeAllText from "../components/SeeAllText";
 import Footer from "../components/estateDetails/Footer";
-import { useTheme } from "../contexts/ThemeContext";
+import { LIGHT, useTheme } from "../contexts/ThemeContext";
 
 const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
@@ -34,20 +35,47 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get("screen");
 
 const EstateDetails = ({ navigation, route }) => {
   const { state } = useTheme();
-  const [itemInView, setItemInView] = useState(0);
+  const lastScrollX = useRef(0);
   const [statusBarHeight] = useState(0);
+  const [itemInView, setItemInView] = useState(0);
+  const [statusBarBg, setStatusBarBg] = useState("transparent");
+  const [imageScrollDirection, setImageScrollDirection] = useState("left");
   const carouselHeight = screenWidth / 1.5;
   const { _id } = route.params;
   const item = estates.find((e) => e._id === _id);
 
   const handleScroll = (e) => {
     if (e.nativeEvent.contentOffset.y > carouselHeight - 5) {
+      setStatusBarBg(colors[state.theme].background100);
     } else if (e.nativeEvent.contentOffset.y < carouselHeight + 5) {
+      setStatusBarBg("transparent");
     }
+  };
+
+  const handleImageScroll = (event) => {
+    const currentScrollX = event.nativeEvent.contentOffset.x;
+
+    // Determine the scroll direction based on the change in scroll position
+    if (currentScrollX > lastScrollX.current) {
+      // Scrolling right
+      setImageScrollDirection("left");
+    } else {
+      // Scrolling left
+      setImageScrollDirection("right");
+    }
+
+    // Update the last scroll position
+    lastScrollX.current = currentScrollX;
   };
 
   return (
     <View style={{ backgroundColor: colors[state.theme].white }}>
+      {/* {route.name === "EstateDetails" && (
+        <StatusBar
+          backgroundColor={statusBarBg}
+          barStyle={state.theme === LIGHT ? "dark-content" : "light-content"}
+        />
+      )} */}
       <FlatList
         data={[]}
         keyExtractor={() => "key"}
@@ -65,6 +93,20 @@ const EstateDetails = ({ navigation, route }) => {
             <View>
               <FlatList
                 horizontal
+                onMomentumScrollBegin={() => {
+                  if (imageScrollDirection === "left") {
+                    if (itemInView !== item.images.length - 1) {
+                      setItemInView(itemInView + 1);
+                    }
+                  }
+
+                  if (imageScrollDirection === "right") {
+                    if (itemInView !== 0) {
+                      setItemInView(itemInView - 1);
+                    }
+                  }
+                }}
+                onScroll={handleImageScroll}
                 showsHorizontalScrollIndicator={false}
                 data={item.images}
                 pagingEnabled
@@ -83,14 +125,14 @@ const EstateDetails = ({ navigation, route }) => {
 
               {/* IMAGE SCROLL INDICATOR */}
               <View style={styles.imageScrollIndicator}>
-                {item.images.slice(0, 5).map((item, index) => (
+                {item.images.map((_, index) => (
                   <View
                     key={index}
                     style={{
                       backgroundColor:
                         index == itemInView
                           ? colors[state.theme].primaryColor
-                          : colors[state.theme].white,
+                          : colors[state.theme].displayAsWhite,
                       height: 10,
                       width: index != itemInView ? 10 : 20,
                       margin: 2,
@@ -238,7 +280,13 @@ const EstateDetails = ({ navigation, route }) => {
               {/* OVERVIEW */}
               <View>
                 <Header title={"Overview"} />
-                <AppText numberOfLines={4} style={styles.overview}>
+                <AppText
+                  numberOfLines={4}
+                  style={[
+                    styles.overview,
+                    { color: colors[state.theme].mediumText },
+                  ]}
+                >
                   {item.overview}
                 </AppText>
                 <AppText
@@ -355,7 +403,7 @@ const styles = StyleSheet.create({
     bottom: 20,
   },
   overview: {
-    lineHeight: 18,
+    lineHeight: 20,
     fontSize: 15,
   },
   rating: {

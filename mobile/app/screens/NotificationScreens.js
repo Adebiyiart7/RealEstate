@@ -10,14 +10,24 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "../components/AppText";
 import { notifications } from "../db";
 import NotificationCard from "../components/cards/NotificationCard";
+import colors from "../config/colors";
+import { useTheme } from "../contexts/ThemeContext";
 
 const NotificationsScreen = ({ navigation }) => {
+  const { state } = useTheme();
+
   return (
     <Screen scrollable={false}>
       <GoBackArrowHeader
         title={"Notification"}
         navigation={navigation}
-        RightIcon={<MaterialCommunityIcons name="dots-horizontal" size={24} />}
+        RightIcon={
+          <MaterialCommunityIcons
+            name="dots-horizontal"
+            size={24}
+            color={colors[state.theme].primaryText}
+          />
+        }
       />
       <View style={styles.notifications}>
         {notifications.length > 0 ? (

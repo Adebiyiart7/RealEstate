@@ -1,6 +1,6 @@
 import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 import React, { useState } from "react";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORT
@@ -36,19 +36,26 @@ export const Header = ({ title, style }) => {
 const PropertiesFilterContent = () => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
-  const dimension = useDimensions();
+  const dimension = useWindowDimensions();
   const [focusedRating, setFocusedRating] = useState(5);
   const [focusedCategory, setFocusedCategory] = useState("All");
   const [focusedPropertyFacilities, setFocusedPropertyFacilities] =
     useState("Gym");
 
   const buttonStyle = {
-    width: (dimension.screen.width - (32 + 16)) / 2,
+    width: (dimension.width - (32 + 16)) / 2,
   };
 
   return (
     <>
-      <AppText style={styles.filterTitle}>Filter</AppText>
+      <AppText
+        style={[
+          styles.filterTitle,
+          { borderBottomColor: colors[state.theme].border100 },
+        ]}
+      >
+        Filter
+      </AppText>
       <ScrollView style={styles.container}>
         {/* Category */}
         <View>
@@ -61,7 +68,6 @@ const PropertiesFilterContent = () => {
             renderItem={({ item }) => (
               <View>
                 <Chip
-                  small
                   text={item.name}
                   focused={item.name === focusedCategory}
                   Icon={
@@ -105,7 +111,6 @@ const PropertiesFilterContent = () => {
             renderItem={({ item }) => (
               <View>
                 <Chip
-                  small
                   text={item.name}
                   focused={item.name === focusedPropertyFacilities}
                   Icon={
@@ -114,13 +119,9 @@ const PropertiesFilterContent = () => {
                         name={item.icon}
                         size={15}
                         color={
-                          isLight
-                            ? item.name === focusedPropertyFacilities
-                              ? colors.light.displayAsWhite
-                              : colors.light.primaryColor
-                            : item.name === focusedCategory
-                            ? colors.dark.displayAsWhite
-                            : colors.dark.primaryColor
+                          item.name === focusedPropertyFacilities
+                            ? colors[state.theme].displayAsWhite
+                            : colors[state.theme].primaryColor
                         }
                       />
                     )
@@ -146,7 +147,6 @@ const PropertiesFilterContent = () => {
             renderItem={({ item }) => (
               <View>
                 <Chip
-                  small
                   text={item.name}
                   focused={item.name === focusedRating}
                   Icon={
@@ -154,13 +154,9 @@ const PropertiesFilterContent = () => {
                       name={"star"}
                       size={15}
                       color={
-                        isLight
-                          ? item.name === focusedRating
-                            ? colors.light.displayAsWhite
-                            : colors.light.primaryColor
-                          : item.name === focusedCategory
-                          ? colors.dark.displayAsWhite
-                          : colors.dark.primaryColor
+                        item.name === focusedRating
+                          ? colors[state.theme].displayAsWhite
+                          : colors[state.theme].primaryColor
                       }
                     />
                   }
@@ -174,10 +170,10 @@ const PropertiesFilterContent = () => {
 
         {/* Button */}
         <View style={styles.buttons}>
-          <AppButton rounded secondary small style={buttonStyle}>
+          <AppButton rounded secondary style={buttonStyle}>
             Reset
           </AppButton>
-          <AppButton rounded small style={buttonStyle}>
+          <AppButton rounded style={buttonStyle}>
             Apply
           </AppButton>
         </View>
@@ -204,20 +200,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
     textAlign: "center",
-    marginTop: -10,
+    marginTop: -16,
+    paddingVertical: 16,
     borderBottomWidth: 1,
-    paddingBottom: 8,
-  },
-  filterTitleLight: {
-    borderBottomColor: colors.light.border100,
-  },
-  filterTitleDark: {
-    borderBottomColor: colors.dark.border100,
   },
   header: {
     fontWeight: "bold",
     fontSize: 16,
-    marginVertical: 10,
+    marginVertical: 16,
   },
   seperator: {
     marginRight: 10,

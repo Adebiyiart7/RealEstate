@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 
 // LOCAL IMPORTS
@@ -23,7 +23,7 @@ const EReceiptScreen = ({ navigation, route }) => {
   const item = estates.find((i) => i._id === route.params._id);
   const checksDetails = route.params.checksDetails;
   const userInfo = route.params.userInfo;
-  const { width: screenWidth } = useDimensions().screen;
+  const { width: screenWidth } = useWindowDimensions();
   const summaryCardBg = { backgroundColor: colors[state.theme].background200 };
 
   return (

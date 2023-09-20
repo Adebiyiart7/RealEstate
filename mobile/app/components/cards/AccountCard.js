@@ -1,4 +1,4 @@
-import { useDimensions } from "@react-native-community/hooks";
+import { useWindowDimensions } from "react-native";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -18,9 +18,9 @@ const AccountCard = ({
   showIconBorder = true,
 }) => {
   const { state } = useTheme();
+  const { width } = useWindowDimensions();
   const textWidth = width - 150;
   const isLight = state.theme === LIGHT;
-  const { width } = useDimensions().screen;
   const secondTextStyles = isLight
     ? styles.secondTextLight
     : styles.secondTextDark;

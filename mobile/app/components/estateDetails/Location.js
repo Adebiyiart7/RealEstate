@@ -12,7 +12,10 @@ const Location = ({ item }) => {
 
   return (
     <View>
-      <AppText numberOfLines={2}>
+      <AppText
+        numberOfLines={2}
+        style={{ color: colors[state.theme].mediumText }}
+      >
         <Ionicons
           name="location"
           size={24}

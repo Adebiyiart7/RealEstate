@@ -24,8 +24,14 @@ const Footer = ({ navigation, item }) => {
         setBottomSheetVisible={setBottomSheetVisible}
       />
       <View style={styles.left}>
-        <AppText style={styles.priceText}>Price</AppText>
-        <AppText style={styles.price}>
+        <AppText
+          style={[styles.priceText, { color: colors[state.theme].lightText }]}
+        >
+          Price
+        </AppText>
+        <AppText
+          style={[styles.price, { color: colors[state.theme].primaryColor }]}
+        >
           &#8358;{parseInt(item.cost).toLocaleString()}
           <AppText style={[styles.duration, durationStyles]}>
             {" "}
@@ -34,7 +40,6 @@ const Footer = ({ navigation, item }) => {
         </AppText>
       </View>
       <AppButton
-        small
         rounded
         style={styles.button}
         onPress={() => {
@@ -73,27 +78,30 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     display: "flex",
     flexDirection: "row",
-    borderTopWidth: 1,
+    borderWidth: 1,
     bottom: 47,
     padding: 16,
+    paddingTop: 20,
     paddingBottom: 18,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    marginLeft: -1,
+    marginRight: -1,
   },
   footerLight: {
     backgroundColor: colors.light.white,
-    borderColor: colors.light.border200,
+    borderColor: colors.light.border100,
   },
   footerDark: {
     backgroundColor: colors.dark.white,
-    borderColor: colors.dark.border200,
+    borderColor: colors.dark.border100,
   },
   price: {
-    color: colors.primaryColor,
     fontSize: 25,
     fontWeight: "bold",
     marginRight: 16,
   },
   priceText: {
     fontSize: 13,
-    color: colors.lightText,
   },
 });

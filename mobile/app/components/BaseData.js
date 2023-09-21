@@ -9,10 +9,9 @@ import { setUser } from "../features/auth/authSlice";
 
 const BaseData = () => {
   const dispatch = useDispatch();
-  const {
-    state: { theme },
-  } = useTheme();
+  const { state } = useTheme();
 
+  // USER
   AsyncStorage.getItem("@user")
     .then((value) => {
       dispatch(setUser(JSON.parse(value)));
@@ -24,8 +23,8 @@ const BaseData = () => {
   return (
     <>
       <StatusBar
-        style={theme === LIGHT ? DARK : LIGHT}
-        backgroundColor={colors[theme].background100}
+        style={state.theme === LIGHT ? DARK : LIGHT}
+        backgroundColor={colors[state.theme].background100}
       />
     </>
   );

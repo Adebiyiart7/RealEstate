@@ -1,6 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useContext, useReducer, createContext } from "react";
 import constants from "../config/constants";
+import * as SplashScreen from "expo-splash-screen";
+
+// keep splashscreen visible while resources are still loading
+SplashScreen.preventAutoHideAsync();
 
 // ACTION TYPES
 export const LIGHT = "light";
@@ -38,14 +42,20 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     try {
       AsyncStorage.getItem(constants.asyncStorageNames.theme).then((value) => {
-        if (value) {
-          const theme = value;
-          dispatch({ type: LIGHT, payload: theme });
+        if (value === LIGHT) {
+          dispatch({ type: LIGHT, payload: value });
+        } else if (value === DARK) {
+          dispatch({ type: DARK, payload: value });
         }
       });
     } catch (error) {
       dispatch({ type: LIGHT, payload: LIGHT });
       console.log(error, "Error loading theme!");
+    } finally {
+      // hide splashscreen
+      setTimeout(() => {
+        SplashScreen.hideAsync();
+      }, 2000);
     }
   }, []);
 

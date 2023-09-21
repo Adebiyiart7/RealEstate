@@ -23,6 +23,7 @@ import FillProfileBottomSheet from "../components/FillProfileBottomSheet";
 import { profile as setProfile } from "../features/profile/profileSlice";
 import AppButton from "../components/AppButton";
 import { useTheme } from "../contexts/ThemeContext";
+import Loading from "../components/Loading";
 
 const Header = ({ title, right, onPressRight }) => {
   const { state } = useTheme();

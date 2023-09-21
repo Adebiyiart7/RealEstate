@@ -1,20 +1,18 @@
 import { Provider } from "react-redux";
+import { SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
 
 // LOCAL IMPORTS
 import store from "./app/store/store";
 import AppNavigator from "./app/navigations/AppNavigator";
 import BaseData from "./app/components/BaseData";
-import colors from "./app/config/colors";
-import { SafeAreaView } from "react-native";
 import { FavoritesProvider } from "./app/contexts/FavoriteHomeContext";
 import { ThemeProvider } from "./app/contexts/ThemeContext";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <SafeAreaView></SafeAreaView>
+      {/* <SafeAreaView></SafeAreaView> */}
       <NavigationContainer>
         <ThemeProvider>
           <BaseData />
@@ -29,7 +27,6 @@ const App = () => {
 
 export default App;
 
-// TODO useDimension Issue
 // TODO organize DB
 // TODO REAL Real Estate Images
 // TODO back button should close modal

@@ -19,6 +19,8 @@ import BottomSheet from "../BottomSheet";
 import { LIGHT, useTheme } from "../../contexts/ThemeContext";
 import RemoveFavoriteContent from "../RemoveFavoriteContent";
 
+const LIST = "list";
+
 const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
   const { state } = useTheme();
   const isLight = state.theme === LIGHT;
@@ -31,14 +33,14 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
 
   const imageDimension = {
     height:
-      format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
+      format === LIST ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
     width:
-      format === "list" ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
+      format === LIST ? dimension.width / 2.4 - 32 : dimension.width / 2 - 32,
   };
 
   const detailsDimension = {
     width:
-      format === "list"
+      format === LIST
         ? dimension.width - imageDimension.width - 48
         : dimension.width / 2 - 32,
   };
@@ -47,9 +49,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
     setIsFavorite(favoriteState.favorites.some((fav) => fav === item._id));
   }, [favoriteState.favorites, item._id]);
 
-  const iconColor = isLight
-    ? colors.light.primaryOrange
-    : colors.dark.primaryOrange;
+  const iconColor = colors[state.theme].primaryOrange;
   const firstTextStyles = isLight
     ? styles.firstTextLight
     : styles.firstTextDark;
@@ -61,7 +61,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
     <View
       style={[
         styles.card,
-        format === "list" && styles.cardListFormat,
+        format === LIST && styles.cardListFormat,
         customCardStyle,
       ]}
     >
@@ -83,7 +83,11 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
       >
         <ImageBackground
           source={{ uri: item.image }}
-          style={[styles.image, styles.imageListFormat, imageDimension]}
+          style={[
+            styles.image,
+            { marginRight: format === LIST ? 10 : 0 },
+            imageDimension,
+          ]}
         >
           <AppText style={[styles.rating, ratingStyles]}>
             <MaterialCommunityIcons name="star" size={12} color={iconColor} />
@@ -129,7 +133,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
               }}
             >
               <AppText
-                numberOfLines={format === "list" ? 2 : 1}
+                numberOfLines={format === LIST ? 2 : 1}
                 style={[
                   styles.firstText,
                   firstTextStyles,
@@ -140,7 +144,7 @@ const Card3 = React.memo(({ navigation, item, format, customCardStyle }) => {
               </AppText>
             </TouchableOpacity>
             <AppText
-              numberOfLines={format === "list" ? 2 : 1}
+              numberOfLines={format === LIST ? 2 : 1}
               style={{
                 color: isLight
                   ? colors.light.mediumText
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
   card: {
     display: "flex",
     alignItems: "center",
-    padding: 8,
+    // padding: 8,
     borderRadius: 20,
   },
   cardListFormat: {
@@ -184,7 +188,7 @@ const styles = StyleSheet.create({
 
   details: {
     marginVertical: 5,
-    marginHorizontal: 5,
+    // marginHorizontal: 5,
     maxWidth: 200,
   },
   image: {
@@ -192,9 +196,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     maxHeight: 200,
     maxWidth: 200,
-  },
-  imageListFormat: {
-    marginRight: 10,
   },
   f1: {
     fontWeight: "bold",

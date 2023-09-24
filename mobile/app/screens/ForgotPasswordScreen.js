@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { StyleSheet, Dimensions, Image, View } from "react-native";
+import { StyleSheet, Dimensions, Image, View, ScrollView } from "react-native";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -12,14 +12,17 @@ import colors from "../config/colors";
 import { useTheme } from "../contexts/ThemeContext";
 
 const mediaWidth = Dimensions.get("screen").width;
+const SMS = "sms";
+const EMAIL = "email";
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const { state } = useTheme();
+  const [sendTo, setSendTo] = useState(SMS);
 
   return (
-    <Screen>
-      <View style={styles.container}>
-        <GoBackArrowHeader title={"Forgot Password"} navigation={navigation} />
+    <Screen scrollable={false}>
+      <GoBackArrowHeader title={"Forgot Password"} navigation={navigation} />
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Image
           style={styles.image}
           source={require("../assets/images/forgot-password.png")}
@@ -28,7 +31,8 @@ const ForgotPasswordScreen = ({ navigation }) => {
           Which contact detail should we use to reset your password?
         </AppText>
         <Card1
-          selected
+          selected={sendTo === SMS}
+          onPress={() => setSendTo(SMS)}
           Icon={
             <MaterialCommunityIcons
               name="chat-processing"
@@ -40,6 +44,8 @@ const ForgotPasswordScreen = ({ navigation }) => {
           subTitle="+234 902*****29"
         />
         <Card1
+          selected={sendTo === EMAIL}
+          onPress={() => setSendTo(EMAIL)}
           Icon={
             <MaterialCommunityIcons
               name="email"
@@ -53,7 +59,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
         <AppButton rounded style={{ marginVertical: 20 }}>
           Continue
         </AppButton>
-      </View>
+      </ScrollView>
     </Screen>
   );
 };

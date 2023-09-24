@@ -1,9 +1,9 @@
 import * as Yup from "yup";
 import { Formik } from "formik";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // LOCAL IMPORTS
 import Screen from "../components/Screen";
@@ -31,6 +31,7 @@ const validationSchema = Yup.object().shape({
 
 const RegisterScreen = ({ navigation }) => {
   const { state: themeState } = useTheme();
+  const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
   const { isLoading, isError, isSuccess, message, user } = useSelector(
     (state) => state.auth
@@ -51,10 +52,10 @@ const RegisterScreen = ({ navigation }) => {
   }, [dispatch, isSuccess, message, navigation, isError, user]);
 
   return (
-    <Screen>
+    <Screen scrollable={false}>
       <Loading visible={isLoading} />
-      <View style={styles.container}>
-        <GoBackArrowHeader navigation={navigation} />
+      <GoBackArrowHeader navigation={navigation} />
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <Image
           source={require("../assets/images/logo.png")}
           style={styles.logo}
@@ -95,14 +96,22 @@ const RegisterScreen = ({ navigation }) => {
               />
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons
-                  name="square-rounded-outline"
+                  name={
+                    rememberMe ? "checkbox-marked" : "checkbox-blank-outline"
+                  }
                   size={24}
                   style={[
                     styles.rememberMeIcon,
                     { color: colors[themeState.theme].primaryColor },
                   ]}
+                  onPress={() => setRememberMe(!rememberMe)}
                 />
-                <AppText style={styles.rememberMeText}>Remember me</AppText>
+                <AppText
+                  style={styles.rememberMeText}
+                  onPress={() => setRememberMe(!rememberMe)}
+                >
+                  Remember me
+                </AppText>
               </View>
               <SubmitButton rounded title="Sign up" />
             </>
@@ -126,7 +135,7 @@ const RegisterScreen = ({ navigation }) => {
             Sign in
           </AppText>
         </AppText>
-      </View>
+      </ScrollView>
     </Screen>
   );
 };
@@ -140,7 +149,6 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
   },
   container: {
-    display: "flex",
     paddingBottom: 50,
   },
   continueText: {
@@ -197,54 +205,3 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
-/**
- * 
- * 
- *  logo: {
-    height: 120,
-    width: 330,
-    alignSelf: "center",
-  },
-  container: {
-    display: "flex",
-    paddingBottom: 50,
-  },
-  continueText: {
-    fontWeight: "500",
-    color: colors.mediumText,
-  },
-
-  otherOptions: {
-    marginTop: 30,
-  },
-  rememberMe: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 5,
-  },
-  rememberMeIcon: {
-    marginRight: 5,
-    color: colors.primaryColor,
-  },
-  rememberMeText: {
-    fontWeight: "500",
-  },
-  signIn: {
-    color: colors.primaryColor,
-    fontWeight: "500",
-  },
-  signiInMessage: {
-    marginVertical: 20,
-    color: colors.lightText,
-    textAlign: "center",
-  },
-
-  title: {
-    ...defaultStyles.titleFont,
-    marginTop: 25,
-    textAlign: "center",
-  },
- */

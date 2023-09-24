@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +18,7 @@ import { login, reset } from "../features/auth/authSlice";
 import Loading from "../components/Loading";
 import colors from "../config/colors";
 import { useTheme } from "../contexts/ThemeContext";
+import { useState } from "react";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
@@ -26,6 +27,7 @@ const validationSchema = Yup.object().shape({
 
 const LoginScreen = ({ navigation }) => {
   const { state: themeState } = useTheme();
+  const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -48,10 +50,10 @@ const LoginScreen = ({ navigation }) => {
   }, [user, isSuccess, isError, message, dispatch, navigation]);
 
   return (
-    <Screen>
+    <Screen scrollable={false}>
       <Loading visible={isLoading} />
-      <View style={styles.container}>
-        <GoBackArrowHeader navigation={navigation} />
+      <GoBackArrowHeader navigation={navigation} />
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Image
           source={require("../assets/images/logo.png")}
           style={styles.logo}
@@ -83,11 +85,22 @@ const LoginScreen = ({ navigation }) => {
               />
               <View style={styles.rememberMe}>
                 <MaterialCommunityIcons
-                  name="square-rounded-outline"
+                  name={
+                    rememberMe ? "checkbox-marked" : "checkbox-blank-outline"
+                  }
                   size={24}
-                  style={styles.rememberMeIcon}
+                  style={[
+                    styles.rememberMeIcon,
+                    { color: colors[themeState.theme].primaryColor },
+                  ]}
+                  onPress={() => setRememberMe(!rememberMe)}
                 />
-                <AppText style={styles.rememberMeText}>Remember me</AppText>
+                <AppText
+                  style={styles.rememberMeText}
+                  onPress={() => setRememberMe(!rememberMe)}
+                >
+                  Remember me
+                </AppText>
               </View>
               <SubmitButton rounded title="Sign in" />
               <TouchableOpacity
@@ -123,7 +136,7 @@ const LoginScreen = ({ navigation }) => {
             Sign up
           </AppText>
         </AppText>
-      </View>
+      </ScrollView>
     </Screen>
   );
 };

@@ -35,7 +35,15 @@ const RemoveFavoriteContent = React.memo(
                 source={{ uri: item.image }}
                 style={styles.image}
               >
-                <AppText style={styles.rating}>
+                <AppText
+                  style={[
+                    styles.rating,
+                    {
+                      backgroundColor: colors[state.theme].white,
+                      color: colors[state.theme].primaryColor,
+                    },
+                  ]}
+                >
                   <MaterialCommunityIcons
                     name="star"
                     size={12}
@@ -59,11 +67,25 @@ const RemoveFavoriteContent = React.memo(
                   <View>
                     <AppText
                       numberOfLines={2}
-                      style={[styles.firstText, { marginTop: 0 }]}
+                      style={[
+                        styles.firstText,
+                        {
+                          marginTop: 0,
+                          color: colors[state.theme].primaryText,
+                        },
+                      ]}
                     >
                       {item.name}
                     </AppText>
-                    <AppText numberOfLines={2} style={styles.secondText}>
+                    <AppText
+                      numberOfLines={2}
+                      style={[
+                        styles.secondText,
+                        {
+                          color: colors[state.theme].mediumText,
+                        },
+                      ]}
+                    >
                       {item.location}
                     </AppText>
                   </View>
@@ -71,7 +93,12 @@ const RemoveFavoriteContent = React.memo(
                     <AppText style={[styles.f1, f1Styles, { marginTop: 10 }]}>
                       &#8358;{utils.separateToThounsand(item.cost)}
                     </AppText>
-                    <AppText style={styles.f2}>
+                    <AppText
+                      style={[
+                        styles.f2,
+                        { color: colors[state.theme].mediumText },
+                      ]}
+                    >
                       &nbsp;/&nbsp;{item.duration}
                     </AppText>
                   </AppText>
@@ -157,11 +184,9 @@ const styles = StyleSheet.create({
     color: colors.dark.primaryColor,
   },
   f2: {
-    color: colors.mediumText,
     width: "50%",
   },
   firstText: {
-    color: colors.primaryText,
     fontSize: 17,
     fontWeight: "bold",
   },
@@ -177,20 +202,15 @@ const styles = StyleSheet.create({
     right: 1,
     padding: 12,
   },
-  secondText: {
-    color: colors.mediumText,
-  },
   rating: {
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: colors.white,
     borderRadius: 9,
     paddingVertical: 2,
     paddingHorizontal: 5,
     fontSize: 11,
     fontWeight: "bold",
-    color: colors.primaryColor,
   },
   texts: { display: "flex", flex: 1, justifyContent: "space-between" },
 });

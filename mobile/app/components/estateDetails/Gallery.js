@@ -21,7 +21,6 @@ const Gallery = ({ item }) => {
   const { width: screenWidth } = useWindowDimensions();
   const imageWidth = (screenWidth - 64) / 3;
   const [showBottomSheet, setShowBottomSheet] = useState(false);
-  const imageStyles = isLight ? styles.imageLight : styles.imageDark;
   const innerTextStyles = isLight
     ? styles.innerTextlight
     : styles.innerTextDark;
@@ -89,11 +88,7 @@ const Gallery = ({ item }) => {
           <ImageBackground
             key={index}
             source={{ uri: imageItem }}
-            style={[
-              styles.image,
-              imageStyles,
-              { width: imageWidth, height: imageWidth },
-            ]}
+            style={[styles.image, { width: imageWidth, height: imageWidth }]}
           >
             {index == 2 && (
               <TouchableOpacity
@@ -142,13 +137,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
-    borderWidth: 1,
-  },
-  imageLight: {
-    borderColor: colors.light.background200,
-  },
-  imageDark: {
-    borderColor: colors.dark.background200,
   },
   innerText: {
     fontSize: 25,

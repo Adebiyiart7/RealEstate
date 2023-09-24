@@ -5,6 +5,7 @@ import React from "react";
 import TextWithLines from "./TextWithLines";
 import { useTheme } from "../contexts/ThemeContext";
 import colors from "../config/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const AuthFooter = React.memo(({ styles }) => {
   const { state } = useTheme();
@@ -34,9 +35,10 @@ const AuthFooter = React.memo(({ styles }) => {
             />
           </TouchableOpacity>
           <TouchableOpacity style={[styles.social, socialBorderColor]}>
-            <Image
-              style={styles.socialImage}
-              source={require("../assets/images/apple-icon.png")}
+            <MaterialCommunityIcons
+              name="apple"
+              color={colors[state.theme].primaryText}
+              size={20}
             />
           </TouchableOpacity>
         </View>

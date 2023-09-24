@@ -19,11 +19,13 @@ import { useFavorite } from "../contexts/FavoriteHomeContext";
 import utils from "../utils";
 import { useTheme } from "../contexts/ThemeContext";
 
+const GRID = "grid";
+
 const FavoritesScreen = ({ navigation }) => {
   const { state: favoriteState } = useFavorite();
   const { state: themeState } = useTheme();
   const [focusedItem, setFocusedItem] = useState("All");
-  const [displayFormat, setDisplayFormat] = useState("grid"); // list or grid
+  const [displayFormat, setDisplayFormat] = useState(GRID); // GRID or LIST
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   const favoriteHomes = estates.filter((estate) =>
@@ -31,13 +33,12 @@ const FavoritesScreen = ({ navigation }) => {
   );
 
   return (
-    <Screen style={styles.container}>
+    <Screen scrollable={false}>
       <BottomSheet
         bottomSheetVisible={bottomSheetVisible}
         setBottomSheetVisible={setBottomSheetVisible}
         bottomSheetContent={<PropertiesFilterContent />}
       />
-
       <GoBackArrowHeader
         isTabScreen
         navigation={navigation}
@@ -58,7 +59,7 @@ const FavoritesScreen = ({ navigation }) => {
           />
         }
       />
-      <View style={styles.container}>
+      <View>
         <FlatList
           horizontal
           style={{ marginTop: 0 }}
@@ -66,26 +67,24 @@ const FavoritesScreen = ({ navigation }) => {
           data={estateCategory}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
-            <View>
-              <Chip
-                text={item.name}
-                focused={item.name === focusedItem}
-                Icon={
-                  item.icon && (
-                    <MaterialCommunityIcons
-                      name={item.icon}
-                      size={18}
-                      color={
-                        item.name === focusedItem
-                          ? colors[themeState.theme].displayAsWhite
-                          : colors[themeState.theme].primaryColor
-                      }
-                    />
-                  )
-                }
-                onPress={() => setFocusedItem(item.name)}
-              />
-            </View>
+            <Chip
+              text={item.name}
+              focused={item.name === focusedItem}
+              Icon={
+                item.icon && (
+                  <MaterialCommunityIcons
+                    name={item.icon}
+                    size={18}
+                    color={
+                      item.name === focusedItem
+                        ? colors[themeState.theme].displayAsWhite
+                        : colors[themeState.theme].primaryColor
+                    }
+                  />
+                )
+              }
+              onPress={() => setFocusedItem(item.name)}
+            />
           )}
           ItemSeparatorComponent={() => <AppText style={styles.seperator} />}
         />
@@ -97,19 +96,30 @@ const FavoritesScreen = ({ navigation }) => {
           )}`}
           setDisplayFormat={setDisplayFormat}
         />
-        <View style={defaultStyles.gridStyle}>
-          {favoriteHomes.map((item) => (
-            <View key={item._id}>
-              <Card3
-                navigation={navigation}
-                format={displayFormat}
-                item={item}
-                state={favoriteState}
-              />
-            </View>
-          ))}
-        </View>
       </View>
+
+      <FlatList
+        // scrollEnabled={false}
+        showsVerticalScrollIndicator={false}
+        style={{ marginHorizontal: -8 }}
+        key={displayFormat === GRID ? 2 : 1}
+        numColumns={displayFormat === GRID ? 2 : 1}
+        data={favoriteHomes}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => (
+          <View
+            key={item._id}
+            style={{ marginHorizontal: 12, marginVertical: 5 }}
+          >
+            <Card3
+              navigation={navigation}
+              format={displayFormat}
+              item={item}
+              state={favoriteState}
+            />
+          </View>
+        )}
+      />
     </Screen>
   );
 };
@@ -117,9 +127,6 @@ const FavoritesScreen = ({ navigation }) => {
 export default FavoritesScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 50,
-  },
   featuredView: {
     marginTop: 10,
   },

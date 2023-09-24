@@ -13,14 +13,8 @@ const PropertyDisplayFormat = ({
   propertyCount,
 }) => {
   const { state } = useTheme();
-  const isLight = state.theme === LIGHT;
-  const activeIconColor = isLight
-    ? colors.light.primaryColor
-    : colors.dark.primaryColor;
-
-  const inActiveIconColor = isLight
-    ? colors.light.lightText
-    : colors.dark.lightText;
+  const activeIconColor = colors[state.theme].primaryColor;
+  const inActiveIconColor = colors[state.theme].lightText;
 
   return (
     <View style={styles.displayFormat}>
@@ -58,6 +52,7 @@ export default PropertyDisplayFormat;
 const styles = StyleSheet.create({
   displayFormat: {
     marginTop: 16,
+    paddingBottom: 5,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

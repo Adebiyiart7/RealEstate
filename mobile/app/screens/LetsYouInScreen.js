@@ -1,5 +1,5 @@
 // NODE_MODULES
-import { Image, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 // LOCAL IMPORTS
 import AppButton from "../components/AppButton";
@@ -22,22 +22,22 @@ const LetsYouIn = ({ navigation }) => {
   };
 
   return (
-    <Screen>
-      <View style={styles.container}>
-        <GoBackArrowHeader
-          navigation={navigation}
-          RightIcon={
-            <AppText
-              onPress={() => navigation.navigate(routes.TAB)}
-              style={[
-                styles.skipText,
-                { color: colors[state.theme].primaryColor },
-              ]}
-            >
-              Skip
-            </AppText>
-          }
-        />
+    <Screen scrollable={false}>
+      <GoBackArrowHeader
+        navigation={navigation}
+        RightIcon={
+          <AppText
+            onPress={() => navigation.navigate(routes.TAB)}
+            style={[
+              styles.skipText,
+              { color: colors[state.theme].primaryColor },
+            ]}
+          >
+            Skip
+          </AppText>
+        }
+      />
+      <ScrollView style={styles.container}>
         <Image
           style={styles.image}
           source={require("../assets/images/lets-you-in.png")}
@@ -87,7 +87,7 @@ const LetsYouIn = ({ navigation }) => {
             </AppText>
           </AppText>
         </View>
-      </View>
+      </ScrollView>
     </Screen>
   );
 };
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
   },
   container: {
     display: "flex",
-    alignItems: "center",
     paddingBottom: 16,
   },
   image: {
     width: 200,
     height: 170,
+    alignSelf: "center",
   },
   noAccountText: {
     textAlign: "center",
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: "bold",
     marginVertical: 10,
+    alignSelf: "center",
   },
   textWithLines: {
     marginVertical: 24,

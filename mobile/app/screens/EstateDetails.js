@@ -32,25 +32,16 @@ const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
 };
 const { width: screenWidth, height: screenHeight } = Dimensions.get("screen");
+const carouselHeight = screenWidth / 1.5;
 
 const EstateDetails = ({ navigation, route }) => {
   const { state } = useTheme();
   const lastScrollX = useRef(0);
   const [statusBarHeight] = useState(0);
   const [itemInView, setItemInView] = useState(0);
-  const [statusBarBg, setStatusBarBg] = useState("transparent");
   const [imageScrollDirection, setImageScrollDirection] = useState("left");
-  const carouselHeight = screenWidth / 1.5;
   const { _id } = route.params;
   const item = estates.find((e) => e._id === _id);
-
-  const handleScroll = (e) => {
-    if (e.nativeEvent.contentOffset.y > carouselHeight - 5) {
-      setStatusBarBg(colors[state.theme].background100);
-    } else if (e.nativeEvent.contentOffset.y < carouselHeight + 5) {
-      setStatusBarBg("transparent");
-    }
-  };
 
   const handleImageScroll = (event) => {
     const currentScrollX = event.nativeEvent.contentOffset.x;
@@ -70,112 +61,110 @@ const EstateDetails = ({ navigation, route }) => {
 
   return (
     <View style={{ backgroundColor: colors[state.theme].white }}>
-      {/* {route.name === "EstateDetails" && (
-        <StatusBar
-          backgroundColor={statusBarBg}
-          barStyle={state.theme === LIGHT ? "dark-content" : "light-content"}
-        />
-      )} */}
+      <StatusBar backgroundColor={"transparent"} barStyle={"dark-content"} />
+
+      {/* ===== HORIZONTAL LIST OF IMAGES ===== */}
+      <>
+        <View>
+          <FlatList
+            horizontal
+            onMomentumScrollBegin={() => {
+              if (imageScrollDirection === "left") {
+                if (itemInView !== item.images.length - 1) {
+                  setItemInView(itemInView + 1);
+                }
+              }
+
+              if (imageScrollDirection === "right") {
+                if (itemInView !== 0) {
+                  setItemInView(itemInView - 1);
+                }
+              }
+            }}
+            onScroll={handleImageScroll}
+            showsHorizontalScrollIndicator={false}
+            data={item.images}
+            pagingEnabled
+            keyExtractor={(image) => image}
+            renderItem={({ item }) => (
+              <>
+                <View style={styles.carousel}>
+                  <Image
+                    source={{ uri: item }}
+                    style={{ width: screenWidth, height: carouselHeight }}
+                  />
+                </View>
+              </>
+            )}
+          />
+
+          {/* ===== IMAGE SCROLL INDICATOR ===== */}
+          <View style={styles.imageScrollIndicator}>
+            {item.images.map((_, index) => (
+              <View
+                key={index}
+                style={{
+                  backgroundColor:
+                    index == itemInView
+                      ? colors[state.theme].primaryColor
+                      : colors[state.theme].displayAsWhite,
+                  height: 10,
+                  width: index != itemInView ? 10 : 20,
+                  margin: 2,
+                  borderRadius: 5,
+                }}
+              ></View>
+            ))}
+          </View>
+        </View>
+
+        {/* TOP NAV */}
+        <TouchableOpacity>
+          <MaterialCommunityIcons
+            name="arrow-left"
+            size={24}
+            style={[
+              styles.topIcon,
+              {
+                top: -carouselHeight,
+                color: colors[state.theme].primaryText,
+                backgroundColor: colors[state.theme].background100,
+              },
+            ]}
+            onPress={() => navigation.goBack()}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <MaterialCommunityIcons
+            name="heart-outline"
+            size={24}
+            style={[
+              styles.topIcon,
+              {
+                top: -carouselHeight,
+                right: 0,
+                color: colors[state.theme].primaryText,
+                backgroundColor: colors[state.theme].background100,
+              },
+            ]}
+          />
+        </TouchableOpacity>
+      </>
+
+      {/* ===== DETAILS ===== */}
       <FlatList
         data={[]}
         keyExtractor={() => "key"}
         renderItem={null}
-        onScroll={(e) => handleScroll(e)}
         style={[
           styles.container,
           {
-            height: screenHeight - statusBarHeight,
+            height: screenHeight - carouselHeight - 12,
             backgroundColor: colors[state.theme].white,
           },
         ]}
         ListHeaderComponent={
           <>
-            <View>
-              <FlatList
-                horizontal
-                onMomentumScrollBegin={() => {
-                  if (imageScrollDirection === "left") {
-                    if (itemInView !== item.images.length - 1) {
-                      setItemInView(itemInView + 1);
-                    }
-                  }
-
-                  if (imageScrollDirection === "right") {
-                    if (itemInView !== 0) {
-                      setItemInView(itemInView - 1);
-                    }
-                  }
-                }}
-                onScroll={handleImageScroll}
-                showsHorizontalScrollIndicator={false}
-                data={item.images}
-                pagingEnabled
-                keyExtractor={(image) => image}
-                renderItem={({ item }) => (
-                  <>
-                    <View style={styles.carousel}>
-                      <Image
-                        source={{ uri: item }}
-                        style={{ width: screenWidth, height: 260 }}
-                      />
-                    </View>
-                  </>
-                )}
-              />
-
-              {/* IMAGE SCROLL INDICATOR */}
-              <View style={styles.imageScrollIndicator}>
-                {item.images.map((_, index) => (
-                  <View
-                    key={index}
-                    style={{
-                      backgroundColor:
-                        index == itemInView
-                          ? colors[state.theme].primaryColor
-                          : colors[state.theme].displayAsWhite,
-                      height: 10,
-                      width: index != itemInView ? 10 : 20,
-                      margin: 2,
-                      borderRadius: 5,
-                    }}
-                  ></View>
-                ))}
-              </View>
-            </View>
-
-            {/* TOP NAV */}
-            <TouchableOpacity>
-              <MaterialCommunityIcons
-                name="arrow-left"
-                size={24}
-                style={[
-                  styles.topIcon,
-                  {
-                    top: -carouselHeight,
-                    color: colors[state.theme].primaryText,
-                    backgroundColor: colors[state.theme].background100,
-                  },
-                ]}
-                onPress={() => navigation.goBack()}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <MaterialCommunityIcons
-                name="heart-outline"
-                size={24}
-                style={[
-                  styles.topIcon,
-                  {
-                    top: -carouselHeight,
-                    right: 0,
-                    color: colors[state.theme].primaryText,
-                    backgroundColor: colors[state.theme].background100,
-                  },
-                ]}
-              />
-            </TouchableOpacity>
-
-            {/* ===== DETAILS ===== */}
             <View style={styles.details}>
               <AppText numberOfLines={1} style={styles.title}>
                 {item.name}
@@ -334,9 +323,9 @@ const EstateDetails = ({ navigation, route }) => {
             </View>
           </>
         }
+        // ListFooterComponent={}
       />
       <View style={{}}>
-        {/* FOOTER */}
         <Footer navigation={navigation} item={item} />
       </View>
     </View>
@@ -378,12 +367,11 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   container: {
-    display: "flex",
     overflow: "hidden",
   },
   details: {
     paddingHorizontal: 16,
-    marginBottom: 160,
+    marginBottom: carouselHeight - 70,
   },
   header: {
     marginVertical: 16,

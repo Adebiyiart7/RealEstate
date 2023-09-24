@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import * as Yup from "yup";
 
@@ -37,12 +37,13 @@ const BookingFormScreen = ({ navigation, route }) => {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <Screen>
+    <Screen scrollable={false}>
       <LoginBottomSheet
         bottomSheetVisible={bottomSheetVisible}
         setBottomSheetVisible={setBottomSheetVisible}
       />
       <GoBackArrowHeader navigation={navigation} title={"Book Real Estate"} />
+
       <Header title={"Your Information Details"} />
       <Formik
         initialValues={initialValues}
@@ -58,45 +59,52 @@ const BookingFormScreen = ({ navigation, route }) => {
         }}
       >
         {() => (
-          <View>
-            <AppFormField
-              icon={"account"}
-              name={"fullname"}
-              placeholder={"Full Name"}
-            />
-            <AppFormField
-              icon={"account"}
-              name={"username"}
-              placeholder={"Username"}
-            />
-            <AppFormField
-              icon={"account-box"}
-              name={"gender"}
-              placeholder={"Gender"}
-            />
-            <AppFormField
-              icon={"calendar"}
-              name={"dob"}
-              placeholder={"Date of Birth"}
-            />
-            <AppFormField icon={"email"} name={"email"} placeholder={"Email"} />
-            <AppFormField
-              icon={"phone"}
-              name={"phoneNumber"}
-              placeholder={"Phone Number"}
-            />
-            <AppFormField
-              icon={"flag-variant"}
-              name={"country"}
-              placeholder={"Country"}
-            />
-            <View>
-              <SubmitButton
-                rounded
-                style={{ marginBottom: 50 }}
-                title={"Continue"}
+          <View style={{ flex: 1, paddingBottom: 16 }}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ marginBottom: 16 }}
+            >
+              <AppFormField
+                icon={"account"}
+                name={"fullname"}
+                placeholder={"Full Name"}
               />
-            </View>
+              <AppFormField
+                icon={"account"}
+                name={"username"}
+                placeholder={"Username"}
+              />
+              <AppFormField
+                icon={"account-box"}
+                name={"gender"}
+                placeholder={"Gender"}
+              />
+              <AppFormField
+                icon={"calendar"}
+                name={"dob"}
+                placeholder={"Date of Birth"}
+              />
+              <AppFormField
+                icon={"email"}
+                name={"email"}
+                placeholder={"Email"}
+              />
+              <AppFormField
+                icon={"phone"}
+                name={"phoneNumber"}
+                placeholder={"Phone Number"}
+              />
+              <AppFormField
+                icon={"flag-variant"}
+                name={"country"}
+                placeholder={"Country"}
+              />
+            </ScrollView>
+            <SubmitButton
+              rounded
+              style={{ marginTop: "auto" }}
+              title={"Continue"}
+            />
           </View>
         )}
       </Formik>

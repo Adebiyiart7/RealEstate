@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // LOCAL IMPORT
@@ -27,18 +33,18 @@ const BookingScreen = ({ route, navigation }) => {
   const Header = ({ title }) => {
     return <AppText style={styles.header}>{title} </AppText>;
   };
-
+  console.log(route);
   return (
-    <>
-      <Screen style={styles.container}>
-        <LoginBottomSheet
-          bottomSheetVisible={bottomSheetVisible}
-          setBottomSheetVisible={setBottomSheetVisible}
-        />
-        <GoBackArrowHeader
-          navigation={navigation}
-          title={"Booking Real Estate"}
-        />
+    <Screen scrollable={false} style={styles.container}>
+      <LoginBottomSheet
+        bottomSheetVisible={bottomSheetVisible}
+        setBottomSheetVisible={setBottomSheetVisible}
+      />
+      <GoBackArrowHeader
+        navigation={navigation}
+        title={"Booking Real Estate"}
+      />
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* DATE RANGE */}
         <View style={styles.checks}>
           <View style={styles.left}>
@@ -99,24 +105,26 @@ const BookingScreen = ({ route, navigation }) => {
             onChangeText={(text) => handleChangeNoteToOwner(text)}
             value={noteToOwner}
           />
-          <AppButton
-            onPress={() => {
-              route.params.user
-                ? navigation.navigate(routes.BOOKING_FORM, {
-                    _id: route.params._id,
-                    checksDetails: {
-                      startDate: startDate,
-                      endDate: endDate,
-                    },
-                  })
-                : setBottomSheetVisible;
-            }}
-          >
-            Continue
-          </AppButton>
         </View>
-      </Screen>
-    </>
+      </ScrollView>
+      <AppButton
+        rounded
+        style={{ marginTop: "auto" }}
+        onPress={() => {
+          route.params.user
+            ? navigation.navigate(routes.BOOKING_FORM, {
+                _id: route.params._id,
+                checksDetails: {
+                  startDate: startDate,
+                  endDate: endDate,
+                },
+              })
+            : setBottomSheetVisible;
+        }}
+      >
+        Continue
+      </AppButton>
+    </Screen>
   );
 };
 
@@ -130,13 +138,11 @@ const styles = StyleSheet.create({
   },
   calendarStyle: {},
   checks: {
-    display: "flex",
-    flex: 10,
     flexDirection: "row",
     marginTop: 16,
   },
   container: {
-    flex: 1,
+    paddingBottom: 16,
   },
   header: {
     fontWeight: "bold",

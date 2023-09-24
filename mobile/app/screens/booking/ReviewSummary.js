@@ -1,7 +1,13 @@
 import moment from "moment";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 // LOCAL IMPORTS
 import Screen from "../../components/Screen";
@@ -28,84 +34,95 @@ const ReviewSummary = ({ navigation, route }) => {
   const summaryCardBg = { backgroundColor: colors[state.theme].background200 };
 
   return (
-    <Screen>
+    <Screen scrollable={false} style={{ paddingBottom: 16 }}>
       <LoginBottomSheet
         bottomSheetVisible={bottomSheetVisible}
         setBottomSheetVisible={setBottomSheetVisible}
       />
       <GoBackArrowHeader navigation={navigation} title={"Review Summary"} />
-      <View>
-        <Card3 format={"list"} item={item} navigation={navigation} />
-      </View>
-      <View
-        style={[defaultStyles.summaryCard, summaryCardBg, styles.checksDetails]}
-      >
-        <View style={defaultStyles.summaryTextContainer}>
-          <AppText>Date</AppText>
-          <AppText style={defaultStyles.summaryValue}>
-            {moment(checksDetails.startDate).format("DD MMM, YYYY")} -
-            {moment(checksDetails.endDate).format("DD MMM, YYYY")}
-          </AppText>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View>
+          <Card3 format={"list"} item={item} navigation={navigation} />
         </View>
-        <View style={defaultStyles.summaryTextContainer}>
-          <AppText>Checks In</AppText>
-          <AppText style={defaultStyles.summaryValue}>
-            {moment(checksDetails.startDate).format("DD MMMM, YYYY")}
-          </AppText>
+        <View
+          style={[
+            defaultStyles.summaryCard,
+            summaryCardBg,
+            styles.checksDetails,
+          ]}
+        >
+          <View style={defaultStyles.summaryTextContainer}>
+            <AppText>Date</AppText>
+            <AppText style={defaultStyles.summaryValue}>
+              {moment(checksDetails.startDate).format("DD MMM, YYYY")} -
+              {moment(checksDetails.endDate).format("DD MMM, YYYY")}
+            </AppText>
+          </View>
+          <View style={defaultStyles.summaryTextContainer}>
+            <AppText>Checks In</AppText>
+            <AppText style={defaultStyles.summaryValue}>
+              {moment(checksDetails.startDate).format("DD MMMM, YYYY")}
+            </AppText>
+          </View>
+          <View style={defaultStyles.summaryTextContainer}>
+            <AppText>Checks Out</AppText>
+            <AppText style={defaultStyles.summaryValue}>
+              {moment(checksDetails.endDate).format("DD MMMM, YYYY")}
+            </AppText>
+          </View>
         </View>
-        <View style={defaultStyles.summaryTextContainer}>
-          <AppText>Checks Out</AppText>
-          <AppText style={defaultStyles.summaryValue}>
-            {moment(checksDetails.endDate).format("DD MMMM, YYYY")}
-          </AppText>
+        <View style={[defaultStyles.summaryCard, summaryCardBg]}>
+          <View style={defaultStyles.summaryTextContainer}>
+            <AppText>
+              Amount (
+              {utils.dateDifference(
+                checksDetails.startDate,
+                checksDetails.endDate
+              )}
+              )
+            </AppText>
+            <AppText style={defaultStyles.summaryValue}>
+              &#8358;{utils.separateToThounsand(item.cost)}
+            </AppText>
+          </View>
+          <View style={defaultStyles.summaryTextContainer}>
+            <AppText>Tax</AppText>
+            <AppText style={defaultStyles.summaryValue}>
+              &#8358;{utils.separateToThounsand(utils.tax)}
+            </AppText>
+          </View>
+          <ItemSeparatorComponent style={defaultStyles.summarySeperator} />
+          <View style={defaultStyles.summaryTextContainer}>
+            <AppText>Total</AppText>
+            <AppText style={defaultStyles.summaryValue}>
+              &#8358;{utils.separateToThounsand(item.cost + utils.tax)}
+            </AppText>
+          </View>
         </View>
-      </View>
-      <View style={[defaultStyles.summaryCard, summaryCardBg]}>
-        <View style={defaultStyles.summaryTextContainer}>
-          <AppText>
-            Amount (
-            {utils.dateDifference(
-              checksDetails.startDate,
-              checksDetails.endDate
-            )}
-            )
-          </AppText>
-          <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.separateToThounsand(item.cost)}
-          </AppText>
+        <View
+          style={[
+            styles.selectedCard,
+            defaultStyles.summaryCard,
+            summaryCardBg,
+          ]}
+        >
+          <Image source={require("../../assets/images/master-card-logo.png")} />
+          <AppText style={styles.atmNumber}>**** **** **** 4194</AppText>
+          <TouchableOpacity>
+            <AppText
+              style={[
+                styles.changeText,
+                { color: colors[state.theme].primaryColor },
+              ]}
+            >
+              Change
+            </AppText>
+          </TouchableOpacity>
         </View>
-        <View style={defaultStyles.summaryTextContainer}>
-          <AppText>Tax</AppText>
-          <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.separateToThounsand(utils.tax)}
-          </AppText>
-        </View>
-        <ItemSeparatorComponent style={defaultStyles.summarySeperator} />
-        <View style={defaultStyles.summaryTextContainer}>
-          <AppText>Total</AppText>
-          <AppText style={defaultStyles.summaryValue}>
-            &#8358;{utils.separateToThounsand(item.cost + utils.tax)}
-          </AppText>
-        </View>
-      </View>
-      <View
-        style={[styles.selectedCard, defaultStyles.summaryCard, summaryCardBg]}
-      >
-        <Image source={require("../../assets/images/master-card-logo.png")} />
-        <AppText style={styles.atmNumber}>**** **** **** 4194</AppText>
-        <TouchableOpacity>
-          <AppText
-            style={[
-              styles.changeText,
-              { color: colors[state.theme].primaryColor },
-            ]}
-          >
-            Change
-          </AppText>
-        </TouchableOpacity>
-      </View>
+      </ScrollView>
       <AppButton
         rounded
+        style={{ marginTop: "auto" }}
         onPress={() => {
           user
             ? navigation.navigate(routes.CONFIRM_PIN, {

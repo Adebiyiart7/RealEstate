@@ -109,19 +109,17 @@ const ConfirmPinScreen = ({ navigation, route }) => {
           }
         />
       )}
-      <Screen>
+      <Screen scrollable={false} style={styles.screen}>
         <GoBackArrowHeader navigation={navigation} title={"Enter Your Pin"} />
-        <View style={styles.container}>
-          <AppText style={styles.text}>Enter your PIN</AppText>
-          <PinForm pin={pin} setPin={setPin} secureTextEntry />
-          <AppButton
-            rounded
-            style={styles.button}
-            onPress={() => handleCorrectPin()}
-          >
-            Continue
-          </AppButton>
-        </View>
+        <AppText style={styles.text}>Enter your PIN</AppText>
+        <PinForm pin={pin} setPin={setPin} secureTextEntry />
+        <AppButton
+          rounded
+          style={styles.button}
+          onPress={() => handleCorrectPin()}
+        >
+          Continue
+        </AppButton>
       </Screen>
     </>
   );
@@ -131,13 +129,13 @@ export default ConfirmPinScreen;
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 50,
+    marginTop: "auto",
   },
-  container: {
-    marginTop: 50,
+  screen: {
+    paddingBottom: 16,
   },
   text: {
-    marginBottom: 30,
+    marginVertical: 50,
     textAlign: "center",
   },
 });

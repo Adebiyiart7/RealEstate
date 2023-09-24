@@ -25,7 +25,7 @@ const OurRecommendationScreen = ({ navigation }) => {
           />
         }
       />
-      <OurRecommendation />
+      <OurRecommendation navigation={navigation} />
     </Screen>
   );
 };

@@ -11,7 +11,7 @@ export const LIGHT = "light";
 export const DARK = "dark";
 
 const initialState = {
-  theme: "light",
+  theme: DARK,
 };
 
 // REDUCER

@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 
 // LOCAL IMPORTS
@@ -16,7 +16,7 @@ const BookingPaymentScreen = ({ navigation, route }) => {
   const { user } = useSelector((state) => state.auth);
   const [selected, setSeleted] = useState("google");
   return (
-    <Screen>
+    <Screen scrollable={false}>
       <LoginBottomSheet
         bottomSheetVisible={bottomSheetVisible}
         setBottomSheetVisible={setBottomSheetVisible}
@@ -25,58 +25,61 @@ const BookingPaymentScreen = ({ navigation, route }) => {
         navigation={navigation}
         title={"Booking Real Estate"}
       />
-      <AppText>Select the payment method you want to use.</AppText>
-      <View>
-        <Card1
-          selected={selected === "google"}
-          onPress={() => setSeleted("google")}
-          title={"Google"}
-          subTitle={"Google Pay"}
-          Icon={
-            <Image
-              style={styles.imageIcon}
-              source={require("../../assets/images/google-icon.png")}
-            />
-          }
-        />
-        <Card1
-          selected={selected === "apple"}
-          onPress={() => setSeleted("apple")}
-          title={"Apple"}
-          subTitle={"Apple Pay"}
-          Icon={
-            <Image
-              style={styles.imageIcon}
-              source={require("../../assets/images/apple-icon.png")}
-            />
-          }
-        />
-        <AppButton
-          rounded
-          secondary
-          onPress={() => {
-            user
-              ? navigation.navigate(routes.ADD_NEW_CARD)
-              : setBottomSheetVisible(true);
-          }}
-        >
-          Add New Card
-        </AppButton>
-        <AppButton
-          rounded
-          onPress={() => {
-            user
-              ? navigation.navigate(routes.REVIEW_SUMMARY, {
-                  _id: route.params._id,
-                  userInfo: route.params.userInfo,
-                  checksDetails: route.params.checksDetails,
-                })
-              : setBottomSheetVisible(true);
-          }}
-        >
-          Continue
-        </AppButton>
-      </View>
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <AppText>Select the payment method you want to use.</AppText>
+        <View>
+          <Card1
+            selected={selected === "google"}
+            onPress={() => setSeleted("google")}
+            title={"Google"}
+            subTitle={"Google Pay"}
+            Icon={
+              <Image
+                style={styles.imageIcon}
+                source={require("../../assets/images/google-icon.png")}
+              />
+            }
+          />
+          <Card1
+            selected={selected === "apple"}
+            onPress={() => setSeleted("apple")}
+            title={"Apple"}
+            subTitle={"Apple Pay"}
+            Icon={
+              <Image
+                style={styles.imageIcon}
+                source={require("../../assets/images/apple-icon.png")}
+              />
+            }
+          />
+          <AppButton
+            rounded
+            secondary
+            onPress={() => {
+              user
+                ? navigation.navigate(routes.ADD_NEW_CARD)
+                : setBottomSheetVisible(true);
+            }}
+          >
+            Add New Card
+          </AppButton>
+          <AppButton
+            rounded
+            onPress={() => {
+              user
+                ? navigation.navigate(routes.REVIEW_SUMMARY, {
+                    _id: route.params._id,
+                    userInfo: route.params.userInfo,
+                    checksDetails: route.params.checksDetails,
+                  })
+                : setBottomSheetVisible(true);
+            }}
+          >
+            Continue
+          </AppButton>
+        </View>
+      </ScrollView>
     </Screen>
   );
 };

@@ -27,6 +27,7 @@ import Reviews from "../components/estateDetails/Reviews";
 import SeeAllText from "../components/SeeAllText";
 import Footer from "../components/estateDetails/Footer";
 import { LIGHT, useTheme } from "../contexts/ThemeContext";
+import routes from "../config/routes";
 
 const Header = ({ title }) => {
   return <AppText style={styles.header}>{title}</AppText>;
@@ -61,8 +62,12 @@ const EstateDetails = ({ navigation, route }) => {
 
   return (
     <View style={{ backgroundColor: colors[state.theme].white }}>
-      <StatusBar backgroundColor={"transparent"} barStyle={"dark-content"} />
-
+      {route.name === routes.ESTATE_DETAILS && (
+        <StatusBar
+          backgroundColor={"transparent"}
+          barStyle={state.theme === LIGHT ? "dark-content" : "light-content"}
+        />
+      )}
       {/* ===== HORIZONTAL LIST OF IMAGES ===== */}
       <>
         <View>

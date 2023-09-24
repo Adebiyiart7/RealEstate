@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -19,14 +19,8 @@ const validationSchema = Yup.object().shape({
 
 const AddNewCardScreen = ({ navigation }) => {
   return (
-    <Screen>
+    <Screen scrollable={false}>
       <GoBackArrowHeader navigation={navigation} title={"Add New Card"} />
-      <View style={styles.card}>
-        <Image
-          style={styles.image}
-          source={require("../../assets/images/atm-card.png")}
-        />
-      </View>
       <Formik
         initialValues={{
           cardName: "",
@@ -38,26 +32,36 @@ const AddNewCardScreen = ({ navigation }) => {
         onSubmit={(values) => console.log(values)}
       >
         {({}) => (
-          <View>
-            <View>
-              <Label style={styles.label} title={"Card Name"} />
-              <AppFormField name={"cardName"} placeholder="Card Name" />
-            </View>
-            <View>
-              <Label style={styles.label} title={"Card Number"} />
-              <AppFormField name={"cardNumber"} placeholder="Card Number" />
-            </View>
-            <View style={styles.lastInputs}>
-              <View style={styles.left}>
-                <Label style={styles.label} title={"Expiry Date"} />
-                <AppFormField name={"expiryDate"} placeholder="Expiry Date" />
+          <View style={{ flex: 1 }}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View style={styles.card}>
+                <Image
+                  style={styles.image}
+                  source={require("../../assets/images/atm-card.png")}
+                />
               </View>
-              <View style={styles.right}>
-                <Label style={styles.label} title={"CVV"} />
-                <AppFormField name={"cvv"} placeholder="CVV" />
+              <View>
+                <Label style={styles.label} title={"Card Name"} />
+                <AppFormField name={"cardName"} placeholder="Card Name" />
               </View>
+              <View>
+                <Label style={styles.label} title={"Card Number"} />
+                <AppFormField name={"cardNumber"} placeholder="Card Number" />
+              </View>
+              <View style={styles.lastInputs}>
+                <View style={styles.left}>
+                  <Label style={styles.label} title={"Expiry Date"} />
+                  <AppFormField name={"expiryDate"} placeholder="Expiry Date" />
+                </View>
+                <View style={styles.right}>
+                  <Label style={styles.label} title={"CVV"} />
+                  <AppFormField name={"cvv"} placeholder="CVV" />
+                </View>
+              </View>
+            </ScrollView>
+            <View style={{ marginTop: "auto", paddingVertical: 16 }}>
+              <SubmitButton rounded title={"Add"} />
             </View>
-            <SubmitButton rounded title={"Add"} />
           </View>
         )}
       </Formik>

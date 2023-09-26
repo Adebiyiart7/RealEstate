@@ -19,11 +19,9 @@ const ChatCard = React.memo(({ fromMe, messageType, item }) => {
     alignSelf: "flex-end",
     borderBottomLeftRadius: radius,
     borderBottomRightRadius: smallRadius,
-    backgroundColor: colors[state.theme].background200,
+    backgroundColor: colors[state.theme].primaryColor,
   };
-  const fromMeCardTextStyles = isLight
-    ? { color: colors.light.white }
-    : { color: colors.dark.white };
+  const fromMeCardTextStyles = { color: colors[state.theme].displayAsWhite };
   const cardDateTimeTextStyles = isLight
     ? styles.cardDateTimeTextLight
     : styles.cardDateTimeTextDark;
@@ -46,7 +44,7 @@ const ChatCard = React.memo(({ fromMe, messageType, item }) => {
             <MaterialCommunityIcons
               size={16}
               name="check-all"
-              color={isLight ? colors.light.white : colors.dark.white}
+              color={colors[state.theme].white}
             />
           )}
         </AppText>

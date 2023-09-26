@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -70,7 +76,7 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   return (
-    <Screen>
+    <Screen scrollable={false}>
       <GoBackArrowHeader
         isTabScreen
         navigation={navigation}
@@ -88,115 +94,117 @@ const ProfileScreen = ({ navigation }) => {
         setBottomSheetVisible={setShowLogoutBottomSheet}
         bottomSheetContent={<LogoutConfirmation />}
       />
-      <View
-        style={[
-          styles.user,
-          { borderBottomColor: colors[state.theme].border200 },
-        ]}
-      >
-        <View>
-          <Image
-            style={styles.avatar}
-            source={require("../assets/images/avatar.jpg")}
-          />
-          <TouchableOpacity>
-            <FontAwesome
-              name="pencil-square"
-              size={30}
-              style={[
-                styles.editPhoto,
-                { color: colors[state.theme].primaryColor },
-              ]}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View
+          style={[
+            styles.user,
+            { borderBottomColor: colors[state.theme].border200 },
+          ]}
+        >
+          <View>
+            <Image
+              style={styles.avatar}
+              source={require("../assets/images/avatar.jpg")}
             />
-          </TouchableOpacity>
+            <TouchableOpacity>
+              <FontAwesome
+                name="pencil-square"
+                size={30}
+                style={[
+                  styles.editPhoto,
+                  { color: colors[state.theme].primaryColor },
+                ]}
+              />
+            </TouchableOpacity>
+          </View>
+          <AppText style={styles.fullname} numberOfLines={1}>
+            {profile?.fullname ? profile.fullname : user.username}
+          </AppText>
         </View>
-        <AppText style={styles.fullname} numberOfLines={1}>
-          {profile?.fullname ? profile.fullname : user.username}
-        </AppText>
-      </View>
-      <View style={styles.menu}>
-        <MenuItem
-          title={"My Booking"}
-          leftIcon="calendar-month"
-          onPress={() => navigation.navigate(routes.MY_BOOKING)}
-        />
-        <MenuItem
-          title={"Payments"}
-          leftIcon="cash"
-          onPress={() => navigation.navigate(routes.PAYMENTS)}
-        />
-        <ItemSeparatorComponent style={{ marginVertical: 10 }} />
-        <MenuItem
-          title={"Profile"}
-          leftIcon="account-outline"
-          onPress={() => navigation.navigate(routes.FILL_PROFILE)}
-        />
-        <MenuItem
-          title={"Notification"}
-          leftIcon="bell-outline"
-          onPress={() => navigation.navigate(routes.NOTIFICATION_SETTINGS)}
-        />
-        <MenuItem
-          title={"Security"}
-          leftIcon="shield-check-outline"
-          onPress={() => navigation.navigate(routes.SECURITY)}
-        />
-        <MenuItem
-          title={"Language"}
-          subTitle={"English (US)."}
-          leftIcon="dots-triangle"
-          onPress={() => navigation.navigate(routes.LANGUAGE)}
-        />
-        <MenuItem
-          onLongPress={() => {
-            setIsDarkMode(!isDarkMode);
-            isDarkMode ? setLightTheme() : setDarkTheme();
-          }}
-          title={"Dark Mode"}
-          leftIcon="eye-outline"
-          subTitle={"Long-press to toggle mode."}
-          RightIcon={
-            isDarkMode ? (
-              <Fontisto
-                name="toggle-on"
-                size={40}
-                color={colors[state.theme].primaryColor}
-                onLongPress={() => {
-                  setIsDarkMode(!isDarkMode);
-                  setLightTheme();
-                }}
-              />
-            ) : (
-              <Fontisto
-                name="toggle-off"
-                size={40}
-                color={colors[state.theme].lightText}
-                onLongPress={() => {
-                  setIsDarkMode(!isDarkMode);
-                  setDarkTheme();
-                }}
-              />
-            )
-          }
-        />
-        <MenuItem
-          title={"Help Center"}
-          leftIcon="exclamation-thick"
-          onPress={() => navigation.navigate(routes.HELP_CENTER)}
-        />
-        <MenuItem
-          title={"Invite Friends"}
-          leftIcon="account-supervisor-outline"
-          onPress={() => navigation.navigate(routes.INVITE_FRIENDS)}
-        />
-        <MenuItem
-          isLogout
-          showRightIcon={false}
-          title={"Logout"}
-          leftIcon="logout"
-          onPress={() => setShowLogoutBottomSheet(true)}
-        />
-      </View>
+        <View style={styles.menu}>
+          <MenuItem
+            title={"My Booking"}
+            leftIcon="calendar-month"
+            onPress={() => navigation.navigate(routes.MY_BOOKING)}
+          />
+          <MenuItem
+            title={"Payments"}
+            leftIcon="cash"
+            onPress={() => navigation.navigate(routes.PAYMENTS)}
+          />
+          <ItemSeparatorComponent style={{ marginVertical: 10 }} />
+          <MenuItem
+            title={"Profile"}
+            leftIcon="account-outline"
+            onPress={() => navigation.navigate(routes.FILL_PROFILE)}
+          />
+          <MenuItem
+            title={"Notification"}
+            leftIcon="bell-outline"
+            onPress={() => navigation.navigate(routes.NOTIFICATION_SETTINGS)}
+          />
+          <MenuItem
+            title={"Security"}
+            leftIcon="shield-check-outline"
+            onPress={() => navigation.navigate(routes.SECURITY)}
+          />
+          <MenuItem
+            title={"Language"}
+            subTitle={"English (US)."}
+            leftIcon="dots-triangle"
+            onPress={() => navigation.navigate(routes.LANGUAGE)}
+          />
+          <MenuItem
+            onLongPress={() => {
+              setIsDarkMode(!isDarkMode);
+              isDarkMode ? setLightTheme() : setDarkTheme();
+            }}
+            title={"Dark Mode"}
+            leftIcon="eye-outline"
+            subTitle={"Long-press to toggle mode."}
+            RightIcon={
+              isDarkMode ? (
+                <Fontisto
+                  name="toggle-on"
+                  size={40}
+                  color={colors[state.theme].primaryColor}
+                  onLongPress={() => {
+                    setIsDarkMode(!isDarkMode);
+                    setLightTheme();
+                  }}
+                />
+              ) : (
+                <Fontisto
+                  name="toggle-off"
+                  size={40}
+                  color={colors[state.theme].lightText}
+                  onLongPress={() => {
+                    setIsDarkMode(!isDarkMode);
+                    setDarkTheme();
+                  }}
+                />
+              )
+            }
+          />
+          <MenuItem
+            title={"Help Center"}
+            leftIcon="exclamation-thick"
+            onPress={() => navigation.navigate(routes.HELP_CENTER)}
+          />
+          <MenuItem
+            title={"Invite Friends"}
+            leftIcon="account-supervisor-outline"
+            onPress={() => navigation.navigate(routes.INVITE_FRIENDS)}
+          />
+          <MenuItem
+            isLogout
+            showRightIcon={false}
+            title={"Logout"}
+            leftIcon="logout"
+            onPress={() => setShowLogoutBottomSheet(true)}
+          />
+        </View>
+      </ScrollView>
     </Screen>
   );
 };
@@ -239,9 +247,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 16,
     marginBottom: 16,
-  },
-  menu: {
-    marginBottom: 50,
   },
   user: {
     display: "flex",

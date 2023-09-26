@@ -62,7 +62,7 @@ const OurRecommendation = ({
         setDisplayFormat={setDisplayFormat}
       />
       <FlatList
-        scrollEnabled={false}
+        showsVerticalScrollIndicator={false}
         style={{ marginHorizontal: -8 }}
         key={displayFormat === GRID ? 2 : 1}
         numColumns={displayFormat === GRID ? 2 : 1}
@@ -90,7 +90,7 @@ export default OurRecommendation;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 50,
+    flex: 1,
   },
   featuredView: {
     marginTop: 10,

@@ -1,5 +1,4 @@
 import { Provider } from "react-redux";
-import { SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 // LOCAL IMPORTS
@@ -12,7 +11,6 @@ import { ThemeProvider } from "./app/contexts/ThemeContext";
 const App = () => {
   return (
     <Provider store={store}>
-      {/* <SafeAreaView></SafeAreaView> */}
       <NavigationContainer>
         <ThemeProvider>
           <BaseData />
